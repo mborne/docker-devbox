@@ -15,4 +15,3 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 * [postgis](postgis/README.md)
 * [ELK](elk/README.md)
 * [geoserver](geoserver/README.md)
-
