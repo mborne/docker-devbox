@@ -1,0 +1,41 @@
+version: '3.5'
+
+services:
+
+  #-----------------------------------------------------------------------------
+  # elasticsearch
+  #-----------------------------------------------------------------------------
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.3.0
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      - discovery.type=single-node
+    volumes:
+      - es-data:/usr/share/elasticsearch/data
+    restart: always
+
+  #-----------------------------------------------------------------------------
+  # kibana
+  #-----------------------------------------------------------------------------
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:6.3.0
+    ports:
+      - "5601:5601"
+    environment:
+      SERVER_NAME: kibana.docker
+      ELASTICSEARCH_URL: http://elasticsearch:9200
+    restart: always
+
+
+volumes:
+  es-data:
+    name: es-data
+
+networks:
+  default:
+    external:
+      name: webgateway

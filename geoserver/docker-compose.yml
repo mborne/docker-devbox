@@ -1,0 +1,28 @@
+version: '3.5'
+
+services:
+
+  #-----------------------------------------------------------------------------
+  # geoserver
+  #-----------------------------------------------------------------------------
+  geoserver:
+    container_name: geoserver
+    image: geoserver:2.13.1
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - POSTGRES_USER=postgis
+      - POSTGRES_PASSWORD=postgis
+    volumes:
+      - geoserver-data:/var/geoserver
+    restart: always
+
+volumes:
+  geoserver-data:
+    name: geoserver-data
+
+networks:
+  default:
+    external:
+      name: webgateway
