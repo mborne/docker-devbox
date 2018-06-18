@@ -2,7 +2,7 @@
 
 ## Description
 
-Docker stacks for local and dev use.
+Docker stacks for **local and dev use only** .
 
 ## Create webgateway network
 
@@ -10,7 +10,9 @@ Docker stacks for local and dev use.
 docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 ```
 
-## Start stacks
+## Stacks
 
 * [postgis](postgis/README.md)
 * [ELK](elk/README.md)
+* [geoserver](geoserver/README.md)
+
