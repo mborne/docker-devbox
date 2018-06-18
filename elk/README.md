@@ -1,7 +1,7 @@
 
 # ELK
 
-## Description
+## Description
 
 Docker containers running elasticsearch and kibana
 

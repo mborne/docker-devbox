@@ -1,7 +1,7 @@
 
 # geoserver
 
-## Description
+## Description
 
 Docker container running geoserver
 
