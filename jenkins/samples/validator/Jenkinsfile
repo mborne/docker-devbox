@@ -1,0 +1,19 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            label 'docker'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'master', url: 'https://github.com/IGNF/validator.git'
+
+                sh 'mvn clean package -DskipTests'
+                archiveArtifacts 'validator-cli/target/validator-cli.jar'
+            }
+        }
+    }
+}

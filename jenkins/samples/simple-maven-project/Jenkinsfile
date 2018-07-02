@@ -1,0 +1,30 @@
+pipeline {
+    agent {
+        docker {
+            image 'maven:3-alpine'
+            label 'docker'
+            args '-v $HOME/.m2:/root/.m2'
+        }
+    }
+    stages {
+        stage('Prepare') {
+            steps {
+                git branch: 'master', url: 'https://github.com/jglick/simple-maven-project-with-tests.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                sh "mvn -Dmaven.test.failure.ignore clean package"   
+            }
+       }
+       stage('Results') {
+           steps {
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archive 'target/*.jar'               
+           }
+       }
+    }
+}
+
+
+
