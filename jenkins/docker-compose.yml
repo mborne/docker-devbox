@@ -3,26 +3,24 @@ version: '3.5'
 services:
 
   #-----------------------------------------------------------------------------
-  # geoserver
+  # postgis
   #-----------------------------------------------------------------------------
-  geoserver:
-    container_name: geoserver
-    image: geoserver:2.13.1
-    build: .
-    environment:
-      - POSTGRES_USER=postgis
-      - POSTGRES_PASSWORD=postgis
+  jenkins:
+    container_name: jenkins
+    image: jenkins/jenkins:lts
+    ports:
+      - "50000:50000"
     labels:
       - "traefik.enable=true"
       - "traefik.backend.port=8080"
-      - "traefik.frontend.rule=Host:geoserver.localhost"      
+      - "traefik.frontend.rule=Host:jenkins.localhost"
     volumes:
-      - geoserver-data:/var/geoserver
+      - jenkins-data:/var/jenkins_home
     restart: always
 
 volumes:
-  geoserver-data:
-    name: geoserver-data
+  jenkins-data:
+    name: jenkins-data
 
 networks:
   default:

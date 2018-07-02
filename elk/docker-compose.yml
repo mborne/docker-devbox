@@ -13,6 +13,10 @@ services:
       - "9300:9300"
     environment:
       - discovery.type=single-node
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=9200"
+      - "traefik.frontend.rule=Host:es.localhost"      
     volumes:
       - es-data:/usr/share/elasticsearch/data
     restart: always
@@ -25,11 +29,16 @@ services:
     image: docker.elastic.co/kibana/kibana:6.3.0
     ports:
       - "5601:5601"
+    depends_on:
+      - elasticsearch
     environment:
       SERVER_NAME: kibana.docker
       ELASTICSEARCH_URL: http://elasticsearch:9200
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=9200"
+      - "traefik.frontend.rule=Host:kibana.localhost"    
     restart: always
-
 
 volumes:
   es-data:

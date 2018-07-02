@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  #-----------------------------------------------------------------------------
+  # postgis
+  #-----------------------------------------------------------------------------
+  portainer:
+    container_name: portainer
+    image: portainer/portainer:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=9000"
+      - "traefik.frontend.rule=Host:portainer.localhost"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+volumes:
+  portainer-data:
+    name: portainer-data
+
+networks:
+  default:
+    external:
+      name: webgateway
+
