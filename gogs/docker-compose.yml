@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+
+  gogs:
+    container_name: gogs
+    image: gogs/gogs:0.11
+    ports:
+      - "10022:22"    
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=3000"
+      - "traefik.frontend.rule=Host:gogs.localhost"
+    volumes:
+      - gogs-data:/data
+    restart: always
+
+volumes:
+  gogs-data:
+    name: gogs-data
+
+networks:
+  default:
+    external:
+      name: webgateway

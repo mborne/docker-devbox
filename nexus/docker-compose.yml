@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+
+  nexus:
+    container_name: nexus
+    image: sonatype/nexus3:3.12.1
+    labels:
+      - "traefik.enable=true"
+      - "traefik.nexus.port=8081"
+      - "traefik.nexus.frontend.rule=Host:nexus.localhost"
+      - "traefik.registry.port=8082"
+      - "traefik.registry.frontend.rule=Host:registry.localhost"
+    volumes:
+      - nexus-data:/nexus-data
+    restart: always
+
+volumes:
+  nexus-data:
+    name: nexus-data
+
+networks:
+  default:
+    external:
+      name: webgateway
