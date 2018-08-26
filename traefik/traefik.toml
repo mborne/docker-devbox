@@ -6,7 +6,7 @@ defaultEntryPoints = ["http"]
 
 [docker]
 endpoint = "unix:///var/run/docker.sock"
-domain = "localhost"
+#domain = "localhost"
 watch = true
 exposedByDefault = false
 swarmMode = false

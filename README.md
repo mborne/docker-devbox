@@ -2,13 +2,19 @@
 
 ## Description
 
-Docker stacks for **local and dev use only** .
+Docker stacks for **local and dev use only**.
 
 ## Create webgateway network
 
-```
+```bash
 docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 ```
+
+## Environment variables
+
+| Name          | Description                                                     | Default   |
+|---------------|-----------------------------------------------------------------|-----------|
+| HOST_HOSTNAME | Allows to change domain for LAN use (registry.localhost, etc.)  | localhost |
 
 ## Stacks
 
@@ -18,7 +24,7 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 * [nexus](nexus/README.md)
 * [ELK](elk/README.md)
 
-### Docker UI
+### Docker management
 
 * [portainer](portainer/README.md)
 
@@ -31,3 +37,6 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 * [postgis](postgis/README.md)
 * [geoserver](geoserver/README.md)
 
+## License
+
+[MIT](LICENSE)

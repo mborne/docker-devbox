@@ -6,11 +6,11 @@ services:
     container_name: gogs
     image: gogs/gogs:0.11
     ports:
-      - "10022:22"    
+      - "10022:22"
     labels:
       - "traefik.enable=true"
       - "traefik.port=3000"
-      - "traefik.frontend.rule=Host:gogs.localhost"
+      - "traefik.frontend.rule=Host:gogs.${HOST_HOSTNAME}"
     volumes:
       - gogs-data:/data
     restart: always

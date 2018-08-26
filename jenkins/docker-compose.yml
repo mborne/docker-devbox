@@ -10,7 +10,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.backend.port=8080"
-      - "traefik.frontend.rule=Host:jenkins.localhost"
+      - "traefik.frontend.rule=Host:jenkins.${HOST_HOSTNAME}"
     volumes:
       - jenkins-data:/var/jenkins_home
     restart: always
