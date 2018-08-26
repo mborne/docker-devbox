@@ -7,7 +7,11 @@ Docker containers running elasticsearch and kibana
 
 ## Usage
 
-`docker-compose up -d`
+* Start elasticsearch and kibana : `docker-compose up -d`
 
-* Kibana : http://localhost:5601
-* ElasticSearch : http://localhost:9200
+* Open following URLs
+
+| Service       | Direct                | Traefik                 |
+|---------------|-----------------------|-------------------------|
+| Kibana        | http://localhost:5601 | http://kibana.localhost |
+| ElasticSearch | http://localhost:9200 | http://es.localhost     |

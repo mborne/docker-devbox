@@ -1,0 +1,40 @@
+version: '3.5'
+
+services:
+
+  openldap:
+    container_name: openldap
+    image: osixia/openldap:1.2.1
+    ports:
+      - "389:389"
+    environment:
+      - LDAP_ORGANISATION=${LDAP_ORGANISATION}
+      - LDAP_DOMAIN=${LDAP_DOMAIN}
+      - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
+    volumes:
+      - ldap-data:/var/lib/ldap
+      - ldap-config:/etc/ldap/slapd.d
+    restart: always
+
+  ldapadmin:
+    container_name: ldapadmin
+    image: osixia/phpldapadmin:0.7.1
+    environment:
+      - PHPLDAPADMIN_LDAP_HOSTS=openldap
+      - PHPLDAPADMIN_HTTPS=false
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=80"
+      - "traefik.frontend.rule=Host:ldapadmin.${HOST_HOSTNAME}"
+    restart: always
+
+volumes:
+  ldap-data:
+    name: ldap-data
+  ldap-config:
+    name: ldap-config
+
+networks:
+  default:
+    external:
+      name: webgateway

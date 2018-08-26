@@ -7,8 +7,10 @@ Docker container running geoserver
 
 ## Usage
 
-`docker-compose up -d`
+* Start geoserver : `docker-compose up -d`
 
-Open http://localhost:8080 with user admin/geoserver
+* Open http://localhost:8080
+
+* Login with admin/geoserver
 
 

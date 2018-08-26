@@ -12,9 +12,9 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 
 ## Environment variables
 
-| Name          | Description                                                     | Default   |
-|---------------|-----------------------------------------------------------------|-----------|
-| HOST_HOSTNAME | Allows to change domain for LAN use (registry.localhost, etc.)  | localhost |
+| Name          | Description                                                                   | Default   |
+|---------------|-------------------------------------------------------------------------------|-----------|
+| HOST_HOSTNAME | Allows to change domain for LAN use throw traefik (registry.localhost, etc.)  | localhost |
 
 ## Stacks
 
@@ -23,6 +23,7 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 * [traefik](traefik/README.md)
 * [nexus](nexus/README.md)
 * [ELK](elk/README.md)
+* [openldap](openldap/README.md)
 
 ### Docker management
 
