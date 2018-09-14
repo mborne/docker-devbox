@@ -4,7 +4,7 @@ services:
 
   postgis:
     container_name: postgis
-    image: postgis:10.4-2.3
+    image: postgis:10.5-2.4
     build: .
     ports:
       - "5432:5432"

@@ -29,6 +29,11 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 
 * [portainer](portainer/README.md)
 
+### GIT hosting
+
+* [gogs](gogs/README.md)
+* [gitlab](gitlab/README.md)
+
 ### CI
 
 * [jenkins](jenkins/README.md)

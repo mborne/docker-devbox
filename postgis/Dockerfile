@@ -1,4 +1,4 @@
-FROM postgres:10.4
+FROM postgres:10.5
 
 RUN apt-get update \
  && apt-get install -y postgresql-10-postgis-2.4 \
