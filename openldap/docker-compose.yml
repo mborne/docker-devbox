@@ -2,23 +2,28 @@ version: '3.5'
 
 services:
 
+  # https://github.com/osixia/docker-openldap
   openldap:
     container_name: openldap
-    image: osixia/openldap:1.2.1
+    image: osixia/openldap:1.2.2
     ports:
       - "389:389"
     environment:
       - LDAP_ORGANISATION=${LDAP_ORGANISATION}
       - LDAP_DOMAIN=${LDAP_DOMAIN}
       - LDAP_ADMIN_PASSWORD=${LDAP_ADMIN_PASSWORD}
+      - LDAP_READONLY_USER=true
+      - LDAP_READONLY_USER_USERNAME=readonly
+      - LDAP_READONLY_USER_PASSWORD=${LDAP_READONLY_USER_PASSWORD}
     volumes:
       - ldap-data:/var/lib/ldap
       - ldap-config:/etc/ldap/slapd.d
     restart: always
 
+  # https://github.com/osixia/docker-phpldapadmin
   ldapadmin:
     container_name: ldapadmin
-    image: osixia/phpldapadmin:0.7.1
+    image: osixia/phpldapadmin:0.7.2
     environment:
       - PHPLDAPADMIN_LDAP_HOSTS=openldap
       - PHPLDAPADMIN_HTTPS=false
