@@ -13,6 +13,7 @@ services:
       - "traefik.frontend.rule=Host:gogs.${HOST_HOSTNAME}"
     volumes:
       - gogs-data:/data
+      - ./backup:/backup
     restart: always
 
 volumes:
