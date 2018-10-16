@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+
+  postgis-integration:
+    container_name: postgis-integration
+    image: postgis-integration:latest
+    command: 'npm run postgis-init'
+    build: https://github.com/mborne/postgis-integration.git
+    environment:
+      - POSTGRES_USER=postgis
+      - POSTGRES_PASSWORD=postgis
+
+networks:
+  default:
+    external:
+      name: webgateway
+

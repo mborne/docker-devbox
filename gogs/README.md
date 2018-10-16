@@ -22,7 +22,7 @@ bash backup.sh
 
 ```bash
 docker-compose down
-docker-compose run gogs /bin/bash
+docker-compose run --rm gogs /bin/bash
 ```
 
 Then, in container :
