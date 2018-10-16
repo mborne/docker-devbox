@@ -42,6 +42,7 @@ docker network create -d bridge --subnet=192.168.100.0/24 webgateway
 
 * [postgis](postgis/README.md)
 * [geoserver](geoserver/README.md)
+* [postgis-integration](postgis-integration/README.md)
 
 ## License
 
