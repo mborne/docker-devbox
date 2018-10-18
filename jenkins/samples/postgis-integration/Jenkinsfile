@@ -1,0 +1,34 @@
+/* 
+ * Pipeline to import datasets from https://github.com/mborne/postgis-integration
+ * throw jenkins
+ */
+pipeline {
+    agent {
+        label 'docker'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'master', url: 'https://github.com/mborne/postgis-integration.git'
+                sh 'docker build -t postgis-integration .'
+            }
+        }
+        stage('Init database') {
+            steps {
+                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-init'
+            }
+        }
+        stage('Import naturalearth') {
+            steps {
+                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-import naturalearth'
+            }
+        }
+        stage('Import adminexpress') {
+            steps {
+                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-import adminexpress'
+            }
+        }
+    }
+}
+
+
