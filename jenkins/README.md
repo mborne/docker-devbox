@@ -20,3 +20,13 @@ Docker container with jenkins
 * Data CI
     * [postgis-integration/Jenkinsfile](postgis-integration/Jenkinsfile)
 
+## Notes
+
+* [~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+
+* `ssh username@192.168.100.1` works from jenkins
+
+
+
+
+
