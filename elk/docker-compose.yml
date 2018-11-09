@@ -19,7 +19,7 @@ services:
       - "traefik.frontend.rule=Host:es.${HOST_HOSTNAME}"
     volumes:
       - es-data:/usr/share/elasticsearch/data
-    restart: always
+    restart: unless-stopped
 
   #-----------------------------------------------------------------------------
   # kibana
@@ -38,7 +38,7 @@ services:
       - "traefik.enable=true"
       - "traefik.backend.port=9200"
       - "traefik.frontend.rule=Host:kibana.${HOST_HOSTNAME}"
-    restart: always
+    restart: unless-stopped
 
 volumes:
   es-data:

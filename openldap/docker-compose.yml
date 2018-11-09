@@ -18,7 +18,7 @@ services:
     volumes:
       - ldap-data:/var/lib/ldap
       - ldap-config:/etc/ldap/slapd.d
-    restart: always
+    restart: unless-stopped
 
   # https://github.com/osixia/docker-phpldapadmin
   ldapadmin:
@@ -31,7 +31,7 @@ services:
       - "traefik.enable=true"
       - "traefik.backend.port=80"
       - "traefik.frontend.rule=Host:ldapadmin.${HOST_HOSTNAME}"
-    restart: always
+    restart: unless-stopped
 
 volumes:
   ldap-data:

@@ -13,7 +13,7 @@ services:
       - "traefik.registry.frontend.rule=Host:registry.${HOST_HOSTNAME}"
     volumes:
       - nexus-data:/nexus-data
-    restart: always
+    restart: unless-stopped
 
 volumes:
   nexus-data:

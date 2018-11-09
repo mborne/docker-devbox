@@ -13,7 +13,7 @@ services:
       - "traefik.frontend.rule=Host:jenkins.${HOST_HOSTNAME}"
     volumes:
       - jenkins-data:/var/jenkins_home
-    restart: always
+    restart: unless-stopped
 
 volumes:
   jenkins-data:

@@ -14,7 +14,7 @@ services:
     volumes:
       - gogs-data:/data
       - ./backup:/backup
-    restart: always
+    restart: unless-stopped
 
 volumes:
   gogs-data:
