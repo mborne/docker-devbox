@@ -2,7 +2,7 @@
 
 ## Description
 
-Docker container with gogs
+Docker container with gogs official image extended with backup/restore facilities. 
 
 ## Usage
 
@@ -15,32 +15,15 @@ Docker container with gogs
 On host : 
 
 ```bash
-bash backup.sh
+docker-compose exec gogs gogs-backup.sh
 ```
 
 ## Restore
 
 ```bash
 docker-compose down
-docker-compose run --rm gogs /bin/bash
-```
-
-Then, in container :
-
-```bash
-cd /data
-
-mkdir -p data
-rm -fR data/*
-
-rm -fR gogs.bak
-rm -fR tmp
-mkdir -p tmp
-mkdir -p tmp/gogs-backup
-mkdir -p tmp/gogs-backup/data/
-mkdir -p tmp/gogs-backup/data/attachments
-mkdir -p tmp/gogs-backup/data/avatars
-
-USER=git /app/gogs/gogs restore -t tmp --from /backup/gogs-backup-1538373444.zip
+docker volume rm gogs-data
+docker-compose run --rm gogs gogs-restore.sh /backup/gogs/gogs-backup-1542542824.zip
+docker-compose up -d
 ```
 

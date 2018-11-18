@@ -4,7 +4,8 @@ services:
 
   gogs:
     container_name: gogs
-    image: gogs/gogs:0.11
+    image: mborne/gogs:0.11
+    build: .
     ports:
       - "10022:22"
     labels:
@@ -13,10 +14,12 @@ services:
       - "traefik.frontend.rule=Host:gogs.${HOST_HOSTNAME}"
     volumes:
       - gogs-data:/data
-      - ./backup:/backup
+      - backup:/backup
     restart: unless-stopped
 
 volumes:
+  backup:
+    name: backup
   gogs-data:
     name: gogs-data
 
