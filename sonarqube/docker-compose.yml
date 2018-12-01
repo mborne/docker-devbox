@@ -1,0 +1,24 @@
+version: '3.5'
+
+services:
+
+  sonarqube:
+    container_name: sonarqube
+    image: sonarqube:lts
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=9000"
+      - "traefik.frontend.rule=Host:sonarqube.${HOST_HOSTNAME}"
+    volumes:
+      - sonarqube-data:/opt/sonarqube/data
+    restart: unless-stopped
+
+volumes:
+  sonarqube-data:
+    name: sonarqube-data
+
+networks:
+  default:
+    external:
+      name: webgateway
+
