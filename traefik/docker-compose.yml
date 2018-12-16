@@ -4,7 +4,7 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik:1.6
+    image: traefik:1.7
     ports:
       - "80:80"
       - "8888:8080"
