@@ -1,15 +1,19 @@
-FROM tomcat:8.5
+FROM tomcat:8.5-slim
 
-ARG version=2.13.1
+ARG version=2.14.1
 
-ENV GEOSERVER_DATA_DIR=/usr/local/tomcat/webapps/geoserver/data
+ENV GEOSERVER_DATA_DIR=/var/geoserver
 
 WORKDIR /tmp
 
-RUN wget --progress=bar:force -O geoserver-war.zip http://sourceforge.net/projects/geoserver/files/GeoServer/${version}/geoserver-${version}-war.zip \
+RUN apt-get update \
+ && apt-get install -y wget \
+ && wget --progress=bar:force -O geoserver-war.zip http://sourceforge.net/projects/geoserver/files/GeoServer/${version}/geoserver-${version}-war.zip \
  && unzip geoserver-war.zip \
- && unzip -d /usr/local/tomcat/webapps/geoserver geoserver.war \
- && rm -rf geoserver*
+ && rm -rf /usr/local/tomcat/webapps/ROOT \
+ && unzip -d /usr/local/tomcat/webapps/ROOT geoserver.war \
+ && rm -rf geoserver* \
+ && rm -rf /var/lib/apt/lists/*
 
-VOLUME /usr/local/tomcat/webapps/geoserver/data
-#/usr/local/tomcat
+VOLUME /var/geoserver
+WORKDIR /var/geoserver

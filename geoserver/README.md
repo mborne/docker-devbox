@@ -9,8 +9,7 @@ Docker container running geoserver
 
 * Start geoserver : `docker-compose up -d`
 
-* Open http://localhost:8080
+* Open http://geoserver.localhost
 
 * Login with admin/geoserver
-
 
