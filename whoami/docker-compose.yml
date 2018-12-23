@@ -1,0 +1,18 @@
+version: '3.5'
+
+services:
+
+  whoami:
+    container_name: whoami
+    image: containous/whoami:latest
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=80"
+      - "traefik.frontend.rule=Host:whoami.${HOST_HOSTNAME}"
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: webgateway
+
