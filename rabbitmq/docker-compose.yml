@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+    ports:
+      - "5672:5672"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=15672"
+      - "traefik.frontend.rule=Host:rabbitmq.${HOST_HOSTNAME}"
+    restart: unless-stopped
+
+volumes:
+  portainer-data:
+    name: portainer-data
+
+networks:
+  default:
+    external:
+      name: webgateway
+
