@@ -1,0 +1,27 @@
+version: '3.5'
+
+services:
+
+  keycloak:
+    container_name: keycloak
+    image: jboss/keycloak:4.8.3.Final
+    environment:
+      - KEYCLOAK_USER=${KEYCLOAK_USER}
+      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=8080"
+      - "traefik.frontend.rule=Host:keycloak.${HOST_HOSTNAME}"
+    restart: unless-stopped
+
+volumes:
+  keycloak-data:
+    name: keycloak-data
+
+networks:
+  default:
+    external:
+      name: webgateway
+
+
+

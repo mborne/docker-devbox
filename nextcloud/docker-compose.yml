@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+  nextcloud:
+    image: nextcloud:15
+    container_name: nextcloud
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.port=80"
+      - "traefik.frontend.rule=Host:nextcloud.${HOST_HOSTNAME}"
+    volumes:
+      - files:/var/www/html
+
+volumes:
+  files:
+    driver: local
+
+networks:
+  default:
+    external:
+      name: webgateway
+

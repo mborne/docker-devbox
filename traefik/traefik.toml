@@ -1,3 +1,4 @@
+#logLevel = "DEBUG"
 defaultEntryPoints = ["http"]
 
 [entryPoints]
