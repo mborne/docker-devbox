@@ -4,7 +4,7 @@ services:
 
   geoserver:
     container_name: geoserver
-    image: mborne/geoserver:2.14.2
+    image: mborne/geoserver:2.14.3
     build: .
     environment:
       - POSTGRES_USER=postgis

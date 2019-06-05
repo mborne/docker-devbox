@@ -5,7 +5,7 @@ services:
   # https://github.com/osixia/docker-openldap
   openldap:
     container_name: openldap
-    image: osixia/openldap:1.2.2
+    image: osixia/openldap:1.2.4
     ports:
       - "389:389"
     environment:
