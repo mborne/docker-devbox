@@ -5,8 +5,8 @@ services:
   jenkins:
     container_name: jenkins
     image: jenkins/jenkins:lts
-    ports:
-      - "50000:50000"
+    environment:
+      - TZ=Europe/Paris
     labels:
       - "traefik.enable=true"
       - "traefik.backend.port=8080"
