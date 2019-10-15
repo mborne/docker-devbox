@@ -1,0 +1,25 @@
+version: '3.5'
+
+services:
+
+  geonetwork:
+    container_name: geonetwork
+    image: geonetwork:3.8
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend.port=8080"
+      - "traefik.frontend.rule=Host:geonetwork.${HOST_HOSTNAME}"
+    environment:
+      - DATA_DIR:/var/lib/geonetwork_data
+    volumes:
+      - geonetwork-data:/var/lib/geonetwork_data
+    restart: unless-stopped
+
+volumes:
+  geonetwork-data:
+    name: geonetwork-data
+
+networks:
+  default:
+    external:
+      name: webgateway

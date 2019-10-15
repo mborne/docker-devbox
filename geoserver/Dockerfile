@@ -1,6 +1,6 @@
 FROM tomcat:8.5-slim
 
-ARG version=2.14.3
+ARG version=2.15.3
 
 ENV GEOSERVER_DATA_DIR=/var/geoserver
 
