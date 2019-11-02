@@ -1,0 +1,59 @@
+version: '3.5'
+
+# see https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#docker
+
+services:
+
+  es01:
+    container_name: es01
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    environment:
+      - node.name=es01
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es02
+      - cluster.initial_master_nodes=es01,es02
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    labels:
+      - "traefik.http.routers.es01.rule=Host(`es.${HOST_HOSTNAME}`)"
+    volumes:
+      - es01-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+
+  es02:
+    container_name: es02
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.4.2
+    environment:
+      - node.name=es02
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es01
+      - cluster.initial_master_nodes=es01,es02
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    labels:
+      - "traefik.http.routers.es02.rule=Host(`es.${HOST_HOSTNAME}`)"
+    volumes:
+      - es02-data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+volumes:
+  es01-data:
+    name: es01-data
+  es02-data:
+    name: es02-data
+
+networks:
+  default:
+    external:
+      name: webgateway

@@ -6,9 +6,7 @@ services:
     container_name: geonetwork
     image: geonetwork:3.8
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=8080"
-      - "traefik.frontend.rule=Host:geonetwork.${HOST_HOSTNAME}"
+      - "traefik.http.routers.geonetwork.rule=Host(`geonetwork.${HOST_HOSTNAME}`)"
     environment:
       - DATA_DIR:/var/lib/geonetwork_data
     volumes:

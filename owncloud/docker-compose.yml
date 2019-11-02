@@ -26,9 +26,7 @@ services:
       timeout: 10s
       retries: 5
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=80"
-      - "traefik.frontend.rule=Host:owncloud.${HOST_HOSTNAME}"
+      - "traefik.http.routers.owncloud.rule=Host(`owncloud.${HOST_HOSTNAME}`)"
     volumes:
       - files:/mnt/data
 

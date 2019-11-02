@@ -3,6 +3,7 @@ FROM tomcat:8.5-slim
 ARG version=2.15.3
 
 ENV GEOSERVER_DATA_DIR=/var/geoserver
+ENV geoserver.xframe.shouldSetPolicy=false
 
 WORKDIR /tmp
 

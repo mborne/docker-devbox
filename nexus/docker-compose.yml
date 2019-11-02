@@ -4,13 +4,18 @@ services:
 
   nexus:
     container_name: nexus
-    image: sonatype/nexus3:3.12.1
+    image: sonatype/nexus3:3.19.1
+    # labels:
+    #   - "traefik.enable=true"
+    #   - "traefik.nexus.port=8081"
+    #   - "traefik.nexus.frontend.rule=Host:nexus.${HOST_HOSTNAME}"
+    #   - "traefik.registry.port=8082"
+    #   - "traefik.registry.frontend.rule=Host:registry.${HOST_HOSTNAME}"
     labels:
-      - "traefik.enable=true"
-      - "traefik.nexus.port=8081"
-      - "traefik.nexus.frontend.rule=Host:nexus.${HOST_HOSTNAME}"
-      - "traefik.registry.port=8082"
-      - "traefik.registry.frontend.rule=Host:registry.${HOST_HOSTNAME}"
+      - "traefik.http.routers.nexus.rule=Host(`nexus.${HOST_HOSTNAME}`)"
+      - "traefik.http.services.nexus-service.loadbalancer.server.port=8081"
+      - "traefik.http.routers.registry.rule=Host(`registry.${HOST_HOSTNAME}`)"
+      - "traefik.http.services.registry-service.loadbalancer.server.port=8082"
     volumes:
       - nexus-data:/nexus-data
     restart: unless-stopped

@@ -6,10 +6,9 @@ services:
     container_name: portainer
     image: portainer/portainer:latest
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=9000"
-      - "traefik.frontend.rule=Host:portainer.${HOST_HOSTNAME}"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.${HOST_HOSTNAME}`)"
     volumes:
+      - portainer-data:/data
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
