@@ -9,7 +9,7 @@ services:
       - "5601:5601"
     environment:
       - "SERVER_NAME=kibana.${HOST_HOSTNAME}"
-      - "ELASTICSEARCH_HOSTS=http://es01:9200"
+      - "ELASTICSEARCH_HOSTS=${ES_URL}"
     labels:
       - "traefik.http.routers.kibana.rule=Host(`kibana.${HOST_HOSTNAME}`)"
     restart: unless-stopped

@@ -1,8 +1,9 @@
 #!/bin/bash
 
-HOST_HOSTNAME=${HOST_HOSTNAME:-localhost}
+ES_URL=${ES_URL:-localhost:9200}
 
-curl -X PUT "http://es.${HOST_HOSTNAME}/_cluster/settings" -H 'Content-Type: application/json' -d'
+echo ""
+curl -X PUT "${ES_URL}/_cluster/settings" -H 'Content-Type: application/json' -d'
 {
     "transient": {
     "cluster.routing.allocation.disk.watermark.low": "30mb",
@@ -12,5 +13,7 @@ curl -X PUT "http://es.${HOST_HOSTNAME}/_cluster/settings" -H 'Content-Type: app
     }
 }
 '
+echo ""
+curl -XPUT -H "Content-Type: application/json" "${ES_URL}/_all/_settings" -d '{"index.blocks.read_only_allow_delete": null}'
+echo ""
 
-curl -XPUT -H "Content-Type: application/json" http://es.${HOST_HOSTNAME}/_all/_settings -d '{"index.blocks.read_only_allow_delete": null}'
