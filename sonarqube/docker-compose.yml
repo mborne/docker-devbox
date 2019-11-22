@@ -6,9 +6,7 @@ services:
     container_name: sonarqube
     image: sonarqube:lts
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=9000"
-      - "traefik.frontend.rule=Host:sonarqube.${HOST_HOSTNAME}"
+    - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${HOST_HOSTNAME}`)"
     volumes:
       - sonarqube-data:/opt/sonarqube/data
     restart: unless-stopped

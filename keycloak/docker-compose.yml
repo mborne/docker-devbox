@@ -13,9 +13,7 @@ services:
       - DB_USER=postgis
       - DB_PASSWORD=postgis
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=8080"
-      - "traefik.frontend.rule=Host:keycloak.${HOST_HOSTNAME}"
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
 volumes:

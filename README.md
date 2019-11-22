@@ -6,10 +6,9 @@ Docker stacks to quickly setup a dev environment and test some tools.
 
 ### Reverse proxy
 
-| Name                                                 | Description                                            |
-| ---------------------------------------------------- | ------------------------------------------------------ |
-| [traefik](traefik/README.md)                         | Provides `http://<service>.${HOST_HOSTNAME}` URLs      |
-| [traefik-letsencrypt](traefik-letsencrypt/README.md) | Provides `https://<service>.${HOST_HOSTNAME}` URLs (1) |
+| Name                         | Description                                       |
+| ---------------------------- | ------------------------------------------------- |
+| [traefik](traefik/README.md) | Provides `http://<service>.${HOST_HOSTNAME}` URLs |
 
 ### Spatial
 
@@ -22,10 +21,18 @@ Docker stacks to quickly setup a dev environment and test some tools.
 
 ### Authentication
 
-| Name                             | Description                                   |
-| -------------------------------- | --------------------------------------------- |
-| [openldap](openldap/README.md)   | LDAP server and admin UI                      |
-| [keycloak](keycloak/README.md)   | SSO identity server (OAuth2)                  |
+| Name                           | Description                  |
+| ------------------------------ | ---------------------------- |
+| [openldap](openldap/README.md) | LDAP server and admin UI     |
+| [keycloak](keycloak/README.md) | SSO identity server (OAuth2) |
+
+## ELK
+
+| Name                                     | Description             |
+| ---------------------------------------- | ----------------------- |
+| [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
+| [kibana](kibana/README.md)               | kibana                  |
+| [logstash](logstash/README.md)           | logstash with heartbeat |
 
 ### Other
 
@@ -34,7 +41,6 @@ Docker stacks to quickly setup a dev environment and test some tools.
 | [gogs](gogs/README.md)           | GIT hosting                                   |
 | [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
 | [jenkins](jenkins/README.md)     | Continous Integration                         |
-| [ELK](elk/README.md)             | elasticsearch & kibana                        |
 | [portainer](portainer/README.md) | Docker UI                                     |
 | [sonarqube](sonarqube/README.md) | Code quality                                  |
 | [owncloud](owncloud/README.md)   | File hosting                                  |

@@ -10,9 +10,7 @@ services:
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL}
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}
     labels:
-      - "traefik.enable=true"
-      - "traefik.port=80"
-      - "traefik.frontend.rule=Host:seafile.${HOST_HOSTNAME}"
+      - "traefik.http.routers.seafile.rule=Host(`seafile.${HOST_HOSTNAME}`)"
     volumes:
       - files:/shared
 

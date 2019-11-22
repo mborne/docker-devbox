@@ -4,15 +4,20 @@ services:
 
   geoserver:
     container_name: geoserver
-    image: mborne/geoserver:2.14.3
-    build: .
+    image: mborne/geoserver:2.15.3
+    build:
+      context: .
+      args:
+        version: '2.15.3'
     environment:
       - POSTGRES_USER=postgis
       - POSTGRES_PASSWORD=postgis
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=8080"
-      - "traefik.frontend.rule=Host:geoserver.${HOST_HOSTNAME}"
+      - "traefik.http.routers.geoserver.rule=Host(`geoserver.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.geoserver.middlewares=cors"
+      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=GET,PUT,POST,DELETE,OPTIONS,PUT"
+      - "traefik.http.middlewares.cors.headers.accesscontrolalloworigin=*"
+      - "traefik.http.middlewares.cors.headers.customrequestheaders.X-Frame-Options=ALLOWALL"
     volumes:
       - geoserver-data:/var/geoserver
     restart: unless-stopped

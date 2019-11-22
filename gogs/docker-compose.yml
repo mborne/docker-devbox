@@ -9,9 +9,7 @@ services:
     ports:
       - "10022:22"
     labels:
-      - "traefik.enable=true"
-      - "traefik.port=3000"
-      - "traefik.frontend.rule=Host:gogs.${HOST_HOSTNAME}"
+      - "traefik.http.routers.gogs.rule=Host(`gogs.${HOST_HOSTNAME}`)"
     volumes:
       - gogs-data:/data
       - backup:/backup

@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
 
-  # https://github.com/osixia/docker-openldap
+  # https://github.com/osixia/docker-openldap
   openldap:
     container_name: openldap
     image: osixia/openldap:1.2.4
@@ -20,7 +20,7 @@ services:
       - ldap-config:/etc/ldap/slapd.d
     restart: unless-stopped
 
-  # https://github.com/osixia/docker-phpldapadmin
+  # https://github.com/osixia/docker-phpldapadmin
   ldapadmin:
     container_name: ldapadmin
     image: osixia/phpldapadmin:0.7.2
@@ -28,9 +28,7 @@ services:
       - PHPLDAPADMIN_LDAP_HOSTS=openldap
       - PHPLDAPADMIN_HTTPS=false
     labels:
-      - "traefik.enable=true"
-      - "traefik.backend.port=80"
-      - "traefik.frontend.rule=Host:ldapadmin.${HOST_HOSTNAME}"
+      - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
 volumes:

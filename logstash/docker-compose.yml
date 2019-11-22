@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+
+  logstash:
+    container_name: logstash
+    image: docker.elastic.co/logstash/logstash:7.4.2
+    volumes:
+    - ./pipeline:/usr/share/logstash/pipeline:ro
+    environment:
+    - XPACK_MONITORING_ENABLED=false
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: webgateway

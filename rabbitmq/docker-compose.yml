@@ -11,9 +11,8 @@ services:
     ports:
       - "5672:5672"
     labels:
-      - "traefik.enable=true"
-      - "traefik.port=15672"
-      - "traefik.frontend.rule=Host:rabbitmq.${HOST_HOSTNAME}"
+      - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.${HOST_HOSTNAME}`)"
+      - "traefik.http.services.rabbitmq-service.loadbalancer.server.port=15672"
     restart: unless-stopped
 
 volumes:
