@@ -1,5 +1,0 @@
-#!/bin/bash
-
-echo "address=/localhost/127.0.0.1" | sudo tee /etc/dnsmasq.d/localhost
-
-sudo service dnsmasq restart

@@ -6,6 +6,7 @@ services:
     container_name: nextcloud
     restart: unless-stopped
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${HOST_HOSTNAME}`)"
     volumes:
       - files:/var/www/html
@@ -17,5 +18,5 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 

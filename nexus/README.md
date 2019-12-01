@@ -17,10 +17,10 @@ Repository manager for maven and docker
 * Test docker registry
 
 ```bash
-# re-tag
+# re-tag
 docker login registry.localhost
 docker tag hello-world:latest registry.localhost/hello-world:latest
-# push
+# push
 docker pull hello-world:latest
 docker push registry.localhost/hello-world:latest
 ```

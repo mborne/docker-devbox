@@ -21,6 +21,7 @@ services:
         soft: -1
         hard: -1
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.es01.rule=Host(`es.${HOST_HOSTNAME}`)"
     volumes:
       - es01-data:/usr/share/elasticsearch/data
@@ -42,6 +43,7 @@ services:
         soft: -1
         hard: -1
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.es02.rule=Host(`es.${HOST_HOSTNAME}`)"
     volumes:
       - es02-data:/usr/share/elasticsearch/data
@@ -56,4 +58,4 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

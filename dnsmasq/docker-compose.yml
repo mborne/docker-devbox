@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+
+  dnsmasq:
+    container_name: dnsmasq
+    image: mborne/dnsmasq:latest
+    build: img
+    environment:
+      - DEBUG=1
+      - DNS_SERVERS=1.1.1.1 1.0.0.1
+    volumes:
+      - ./dnsmasq.d:/etc/dnsmasq.d:ro
+    networks:
+      default:
+        ipv4_address: 192.168.150.2
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: devbox
+

@@ -28,6 +28,7 @@ services:
       - PHPLDAPADMIN_LDAP_HOSTS=openldap
       - PHPLDAPADMIN_HTTPS=false
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
@@ -40,4 +41,4 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

@@ -11,10 +11,11 @@ services:
       - "SERVER_NAME=kibana.${HOST_HOSTNAME}"
       - "ELASTICSEARCH_HOSTS=${ES_URL}"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=Host(`kibana.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

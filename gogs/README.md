@@ -2,7 +2,7 @@
 
 ## Description
 
-Docker container with gogs official image extended with backup/restore facilities. 
+Docker container with gogs official image extended with backup/restore facilities.
 
 ## Usage
 
@@ -10,15 +10,15 @@ Docker container with gogs official image extended with backup/restore facilitie
 * Open http://gogs.localhost
 * Create an account (the first one will be an administrator)
 
-## Backup
+## Backup
 
-On host : 
+On host :
 
 ```bash
 docker-compose exec gogs gogs-backup.sh
 ```
 
-## Restore
+## Restore
 
 ```bash
 docker-compose down

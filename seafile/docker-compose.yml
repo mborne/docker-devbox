@@ -10,6 +10,7 @@ services:
       - SEAFILE_ADMIN_EMAIL=${SEAFILE_ADMIN_EMAIL}
       - SEAFILE_ADMIN_PASSWORD=${SEAFILE_ADMIN_PASSWORD}
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.seafile.rule=Host(`seafile.${HOST_HOSTNAME}`)"
     volumes:
       - files:/shared
@@ -21,5 +22,5 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 

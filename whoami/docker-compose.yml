@@ -5,11 +5,12 @@ services:
   whoami:
     image: containous/whoami
     labels:
+    - "traefik.enable=true"
     - "traefik.http.routers.whoami.rule=Host(`whoami.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 

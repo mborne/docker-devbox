@@ -38,7 +38,7 @@ git clone https://github.com/mborne/remote-git
 # send to sonarqube
 docker run --rm \
     -v $PWD/remote-git:/project \
-    -w=/project --network=webgateway \
+    -w=/project --network=devbox \
     nikhuber/sonar-scanner:latest sonar-scanner \
     -Dsonar.projectKey=remote-git \
     -Dsonar.language=php \

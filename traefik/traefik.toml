@@ -1,0 +1,9 @@
+# see https://docs.traefik.io/reference/static-configuration/file/
+[providers.docker]
+  exposedByDefault = false
+
+[api]
+  insecure = true
+
+[accessLog]
+
