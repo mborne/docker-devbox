@@ -44,9 +44,18 @@ docker network create -d bridge \
 
 ### Core services
 
-| Name                         | Description                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------------ |
-| [traefik](traefik/README.md) | Reverse proxy providing `http://<service>.${HOST_HOSTNAME}` URLs according to labels |
+| Name                         | Description                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------------------------- |
+| [traefik](traefik/README.md) | Reverse proxy providing `http://<service>.${HOST_HOSTNAME}` URLs according to labels     |
+| [dnsmasq](dnsmasq/README.md) | DNS server (`*.localhost` -> `127.0.0.1`, `*.devbox` -> container IP, `other` -> forward |
+
+## ELK
+
+| Name                                     | Description             |
+| ---------------------------------------- | ----------------------- |
+| [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
+| [kibana](kibana/README.md)               | kibana                  |
+| [logstash](logstash/README.md)           | logstash with heartbeat |
 
 ### Spatial
 
@@ -63,14 +72,6 @@ docker network create -d bridge \
 | ------------------------------ | ---------------------------- |
 | [openldap](openldap/README.md) | LDAP server and admin UI     |
 | [keycloak](keycloak/README.md) | SSO identity server (OAuth2) |
-
-## ELK
-
-| Name                                     | Description             |
-| ---------------------------------------- | ----------------------- |
-| [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
-| [kibana](kibana/README.md)               | kibana                  |
-| [logstash](logstash/README.md)           | logstash with heartbeat |
 
 ### Other
 
