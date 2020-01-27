@@ -3,8 +3,9 @@
 ## Usage
 
 ```bash
+#export ES_URL=http://es.other-machine.lan
 docker-compose up -d
 ```
 
-Open http://localhost:5601 or http://kibana.localhost (traefik)
+Open http://kibana.localhost (traefik)
 

@@ -14,12 +14,12 @@ services:
       - cluster.initial_master_nodes=es01,es02
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-    ports:
-      - 9200:9200
     ulimits:
       memlock:
         soft: -1
         hard: -1
+    ports:
+      - "127.0.0.1:9200:9200"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.es01.rule=Host(`es.${HOST_HOSTNAME}`)"

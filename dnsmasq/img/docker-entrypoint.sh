@@ -12,9 +12,10 @@ fi
 echo "strict-order" >> /etc/dnsmasq.conf
 
 # forward resolution for containers
-echo "server=127.0.0.11" >> /etc/dnsmasq.conf
+echo "server=/devbox/127.0.0.11" >> /etc/dnsmasq.conf
+
 # forward resolution for internet domains
-for $DNS_SERVER in $DNS_SERVERS;
+for DNS_SERVER in $DNS_SERVERS;
 do
     echo "server=${DNS_SERVER}" >> /etc/dnsmasq.conf
 done

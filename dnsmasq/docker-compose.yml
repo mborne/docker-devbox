@@ -7,7 +7,7 @@ services:
     image: mborne/dnsmasq:latest
     build: img
     environment:
-      - DEBUG=1
+      - DEBUG=0
       - DNS_SERVERS=1.1.1.1 1.0.0.1
     volumes:
       - ./dnsmasq.d:/etc/dnsmasq.d:ro

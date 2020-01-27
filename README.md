@@ -6,7 +6,7 @@ A set of conventions and stacks to setup a local dev environment with docker.
 
 * Start, stop, rebuild and upgrade services without losing data
 * Access web services from host throw nice URL (http://kibana.localhost for example)
-* Access other services from host (SMTP) thow nice hostnames (mailhog.devbox)
+* Access other services from host (SMTP) throw nice hostnames (mailhog.devbox)
 
 ## How it works?
 

@@ -12,3 +12,7 @@ Auto-configured reverse proxy according to container labels.
 
 * Run [whoami](../whoami/README.md) to test traefik
 
+## Warning
+
+Traefik is listening only on localhost because exposing `80:80` might cause security issue as [UFW](https://help.ubuntu.com/community/UFW) rules would be ignored.
+

@@ -7,10 +7,10 @@ Docker containers running 2 elasticsearch nodes (es01,es02)
 ## Usage
 
 * Start elasticsearch and kibana : `docker-compose up -d`
-* Open http://localhost:9200 or http://es.localhost
+* Open http://es.localhost
 
 ```bash
-curl -X GET "localhost:9200/_cat/nodes?v&pretty"
+curl -X GET "es.localhost/_cat/nodes?v&pretty"
 ```
 
 ## Troubleshooting

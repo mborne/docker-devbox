@@ -7,7 +7,7 @@ services:
     image: traefik:v2.0
     # Enables the web UI and tells Traefik to listen to docker
     ports:
-      - "80:80"
+      - "127.0.0.1:80:80"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.traefik.rule=Host(`traefik.${HOST_HOSTNAME}`)"

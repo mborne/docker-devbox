@@ -8,8 +8,6 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
-    ports:
-      - "5672:5672"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.${HOST_HOSTNAME}`)"
