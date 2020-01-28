@@ -17,7 +17,8 @@ Docker container running sonarqube
 ```bash
 git clone https://github.com/IGNF/validator
 cd validator
-mvn sonar:sonar -Dsonar.java.binaries=$PWD/**/target/classes -Dsonar.java.binaries=$PWD/**/target/test-classes -Dsonar.host.url=http://sonarqube.localhost   -Dsonar.login=$SONAR_TOKEN
+mvn sonar:sonar -Dsonar.java.binaries=$PWD/**/target/classes \
+    -Dsonar.host.url=http://sonarqube.localhost -Dsonar.login=$SONAR_TOKEN
 ```
 
 ### PHP
@@ -25,7 +26,7 @@ mvn sonar:sonar -Dsonar.java.binaries=$PWD/**/target/classes -Dsonar.java.binari
 ```bash
 # install sonar-runner
 composer global require neuralys/sonar-runner
-# fix permission (think about finding another one) 
+# fix permission (think about finding another one)
 chmod +x ~/.config/composer/vendor/neuralys/sonar-runner/bin/sonar-runner
 # run
 ~/.config/composer/vendor/neuralys/sonar-runner/bin/sonar-runner -Dsonar.projectKey=remote-git -Dsonar.language=php -Dsonar.sources=$PWD/src -Dsonar.host.url=http://sonarqube.localhost   -Dsonar.login=$SONAR_TOKEN

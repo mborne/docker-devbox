@@ -47,6 +47,7 @@ docker network create -d bridge \
 | Name                         | Description                                                                              |
 | ---------------------------- | ---------------------------------------------------------------------------------------- |
 | [traefik](traefik/README.md) | Reverse proxy providing `http://<service>.${HOST_HOSTNAME}` URLs according to labels     |
+| [whoami](whoami/README.md)   | Trivial service to test and understand traefik                                           |
 | [dnsmasq](dnsmasq/README.md) | DNS server (`*.localhost` -> `127.0.0.1`, `*.devbox` -> container IP, `other` -> forward |
 
 ## ELK
@@ -55,7 +56,6 @@ docker network create -d bridge \
 | ---------------------------------------- | ----------------------- |
 | [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
 | [kibana](kibana/README.md)               | kibana                  |
-| [logstash](logstash/README.md)           | logstash with heartbeat |
 
 ### Spatial
 
@@ -73,19 +73,28 @@ docker network create -d bridge \
 | [openldap](openldap/README.md) | LDAP server and admin UI     |
 | [keycloak](keycloak/README.md) | SSO identity server (OAuth2) |
 
-### Other
+### Storage
 
 | Name                             | Description                                   |
 | -------------------------------- | --------------------------------------------- |
 | [gogs](gogs/README.md)           | GIT hosting                                   |
 | [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
-| [jenkins](jenkins/README.md)     | Continous Integration                         |
-| [portainer](portainer/README.md) | Docker UI                                     |
-| [sonarqube](sonarqube/README.md) | Code quality                                  |
 | [owncloud](owncloud/README.md)   | File hosting                                  |
-| [netcloud](netcloud/README.md)   | File hosting                                  |
-| [rabbitmq](rabbitmq/README.md)   | Message Queue server                          |
-| [whoami](netcloud/README.md)     | Trivial service to debug reverse proxy        |
+| [nextcloud](nextcloud/README.md) | File hosting                                  |
+
+### Continuous integration
+
+| Name                             | Description           |
+| -------------------------------- | --------------------- |
+| [jenkins](jenkins/README.md)     | Continous Integration |
+| [sonarqube](sonarqube/README.md) | Code quality          |
+
+### Various
+
+| Name                           | Description                        |
+| ------------------------------ | ---------------------------------- |
+| [mailhog](mailhog/README.md)   | Web and API based SMTP test server |
+| [rabbitmq](rabbitmq/README.md) | Message broker                     |
 
 ## License
 
