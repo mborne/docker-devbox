@@ -15,17 +15,17 @@ pipeline {
         }
         stage('Init database') {
             steps {
-                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-init'
+                sh 'docker run --rm --network devbox postgis-integration npm run postgis-init'
             }
         }
         stage('Import naturalearth') {
             steps {
-                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-import naturalearth'
+                sh 'docker run --rm --network devbox postgis-integration npm run postgis-import naturalearth'
             }
         }
         stage('Import adminexpress') {
             steps {
-                sh 'docker run --rm --network webgateway postgis-integration npm run postgis-import adminexpress'
+                sh 'docker run --rm --network devbox postgis-integration npm run postgis-import adminexpress'
             }
         }
     }

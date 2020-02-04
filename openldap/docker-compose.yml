@@ -6,8 +6,6 @@ services:
   openldap:
     container_name: openldap
     image: osixia/openldap:1.2.4
-    ports:
-      - "389:389"
     environment:
       - LDAP_ORGANISATION=${LDAP_ORGANISATION}
       - LDAP_DOMAIN=${LDAP_DOMAIN}
@@ -28,6 +26,7 @@ services:
       - PHPLDAPADMIN_LDAP_HOSTS=openldap
       - PHPLDAPADMIN_HTTPS=false
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
@@ -40,4 +39,4 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

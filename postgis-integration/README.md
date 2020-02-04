@@ -1,8 +1,6 @@
 # postgis-integration
 
-## Description
-
-Helper script to load open datasets into postgis
+Helper scripts to load opendata into postgis
 
 see [mborne/postgis-integration](https://github.com/mborne/postgis-integration)
 
@@ -17,5 +15,5 @@ see [mborne/postgis-integration](https://github.com/mborne/postgis-integration)
 docker-compose run postgis-integration npm run postgis-init
 docker-compose run postgis-integration npm run postgis-import naturalearth
 docker-compose run postgis-integration npm run postgis-import adminexpress
-# ...
+# ...
 ```

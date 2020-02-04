@@ -1,0 +1,17 @@
+version: '3.5'
+
+services:
+
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog:latest
+    labels:
+      - "traefik.http.routers.mailhog.rule=Host(`mailhog.${HOST_HOSTNAME}`)"
+      - "traefik.http.services.mailhog-service.loadbalancer.server.port=8025"
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: devbox
+

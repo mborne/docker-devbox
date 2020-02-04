@@ -6,9 +6,8 @@ services:
     container_name: gogs
     image: mborne/gogs:0.11
     build: .
-    ports:
-      - "10022:22"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.gogs.rule=Host(`gogs.${HOST_HOSTNAME}`)"
     volumes:
       - gogs-data:/data
@@ -24,4 +23,4 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

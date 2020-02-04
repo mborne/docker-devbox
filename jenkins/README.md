@@ -20,7 +20,7 @@ See [~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think 
 
 You may :
 
-* Connect docker host as a jenkins slave (note that `ssh username@192.168.100.1` works from `jenkins` container with `webgateway`)
+* Connect docker host as a jenkins slave (note that `ssh username@192.168.100.1` works from `jenkins` container with `devbox`)
 * Create VM (`jenkins-slave-XX`) with docker daemon and connect them as jenkins slaves
 
 ### 2) Configure registry access throw global environment variables

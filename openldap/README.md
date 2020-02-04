@@ -32,6 +32,10 @@ cn=somebody,ou=people,dc=my-domain,dc=com
 ...
 ```
 
+```bash
+ldapsearch -H ldap://openldap.devbox -D "cn=admin,dc=my-domain,dc=com" -b "dc=my-domain,dc=com" -w "my-password" -s sub "(objectClass=*)"
+```
+
 ## Resources
 
 See https://github.com/osixia/docker-openldap

@@ -6,7 +6,8 @@ services:
     container_name: sonarqube
     image: sonarqube:lts
     labels:
-    - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${HOST_HOSTNAME}`)"
+      - "traefik.enable=true"
+      - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${HOST_HOSTNAME}`)"
     volumes:
       - sonarqube-data:/opt/sonarqube/data
     restart: unless-stopped
@@ -18,5 +19,5 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 

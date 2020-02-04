@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# create target directory
+# create target directory
 mkdir -p /backup/gogs
 
 # fix permissions
 chown -R git:users /backup/gogs
 
-# create backup
+# create backup
 su -c "/app/gogs/gogs backup --target=/backup/gogs" -s /bin/sh - git
 
 # keep only 3 backups

@@ -5,16 +5,15 @@ services:
   kibana:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:7.4.2
-    ports:
-      - "5601:5601"
     environment:
       - "SERVER_NAME=kibana.${HOST_HOSTNAME}"
       - "ELASTICSEARCH_HOSTS=${ES_URL}"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=Host(`kibana.${HOST_HOSTNAME}`)"
     restart: unless-stopped
 
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox

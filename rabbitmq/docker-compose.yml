@@ -8,9 +8,8 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
-    ports:
-      - "5672:5672"
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.rabbitmq.rule=Host(`rabbitmq.${HOST_HOSTNAME}`)"
       - "traefik.http.services.rabbitmq-service.loadbalancer.server.port=15672"
     restart: unless-stopped
@@ -22,5 +21,5 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 

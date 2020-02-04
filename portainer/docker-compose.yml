@@ -6,6 +6,7 @@ services:
     container_name: portainer
     image: portainer/portainer:latest
     labels:
+      - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.${HOST_HOSTNAME}`)"
     volumes:
       - portainer-data:/data
@@ -19,5 +20,5 @@ volumes:
 networks:
   default:
     external:
-      name: webgateway
+      name: devbox
 
