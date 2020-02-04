@@ -14,10 +14,6 @@ services:
       - "traefik.http.services.rabbitmq-service.loadbalancer.server.port=15672"
     restart: unless-stopped
 
-volumes:
-  portainer-data:
-    name: portainer-data
-
 networks:
   default:
     external:

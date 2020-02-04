@@ -1,6 +1,7 @@
 # see https://docs.traefik.io/reference/static-configuration/file/
 [providers.docker]
   exposedByDefault = false
+  watch = true
 
 [api]
   insecure = true
