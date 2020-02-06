@@ -1,27 +1,20 @@
-# docker-devbox
+# mborne/docker-devbox
 
-A set of conventions and stacks to setup a local dev environment with docker.
+This repository provides a framework to setup a local dev environment with docker :
 
-## Goals
+* [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
+* [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : http://kibana.localhost)
+* [dnsmasq](dnsmasq/README.md) allows container IP resolution from host (ex : `openldap.devbox`, `mailhog.devbox`, `postgis.devbox`, etc.) and avoid port exposure while coding new services
+* Containers run on the same network named `devbox` (`192.168.150.0/24`) to simplify communication between containers/stacks
+* Named volumes allows data persistence to ease the purge of running services
 
-* Start, stop, rebuild and upgrade services without losing data
-* Access web services from host throw nice URL (http://kibana.localhost for example)
-* Access other services from host (SMTP) throw nice hostnames (mailhog.devbox)
-
-## How it works?
-
-* `docker-compose` is used to define and start each service (`{service-name}/docker-compose.yml`)
-* Data are persisted in named volumes
-* All containers runs on the same network : `devbox` (`192.168.150.0/24`)
-* `traefik` container exposes URL according to container labels
-* `dnsmasq` is running in a container with a static IP `192.168.150.2` to :
-
-  * Resolve `*.localhost` as `127.0.0.1` and to use `192.168.150.2`
-  * Forward container name resolution to the [docker embedded DNS server](https://docs.docker.com/v17.09/engine/userguide/networking/configure-dns/) (`127.0.0.11`)
+It also provides a set of sample stacks (usual dependencies for my projects, sandbox, experiments, etc.)
 
 ## Usage
 
-* Create a network named `devbox`
+> Note that a [start.sh](start.sh) script is under development to performs this steps with some checks
+
+* 1) Create a network named `devbox`
 
 ```bash
 docker network create -d bridge \
@@ -31,24 +24,28 @@ docker network create -d bridge \
     devbox
 ```
 
-* Configure environment variables
+* 2) Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.1` as DNS server on host
 
-| Name            | Description                                                                  | Default   |
-| --------------- | ---------------------------------------------------------------------------- | --------- |
-| `HOST_HOSTNAME` | Allows to change domain for LAN use throw traefik (registry.localhost, etc.) | localhost |
+> optional, to resolve `*.devbox` IP's from host
 
-* Run services
+```bash
+cd dnsmasq
+docker-compose up -d
+# configure your system to add 192.168.150.2 as a DNS server...
+```
+
+* 3) Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
 
 
 ## Stacks
 
 ### Core services
 
-| Name                         | Description                                                                              |
-| ---------------------------- | ---------------------------------------------------------------------------------------- |
-| [traefik](traefik/README.md) | Reverse proxy providing `http://<service>.${HOST_HOSTNAME}` URLs according to labels     |
-| [whoami](whoami/README.md)   | Trivial service to test and understand traefik                                           |
-| [dnsmasq](dnsmasq/README.md) | DNS server (`*.localhost` -> `127.0.0.1`, `*.devbox` -> container IP, `other` -> forward |
+| Name                         | Description                                                                                          |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------- |
+| [traefik](traefik/README.md) | Reverse proxy providing `http://<service>.${HOST_HOSTNAME}` URLs according to labels                 |
+| [dnsmasq](dnsmasq/README.md) | DNS server (`*.localhost` -> `127.0.0.1`, `*.devbox` -> container IP, `other` -> external DNS server |
+| [whoami](whoami/README.md)   | Trivial service to test and understand traefik                                                       |
 
 ## ELK
 
