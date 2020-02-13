@@ -12,7 +12,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 
 ## Usage
 
-> Note that a [start.sh](start.sh) script is under development to performs this steps with some checks
+> Note that a [start.sh](start.sh) performs this steps with some checks
 
 * 1) Create a network named `devbox`
 
@@ -24,9 +24,7 @@ docker network create -d bridge \
     devbox
 ```
 
-* 2) Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.1` as DNS server on host
-
-> optional, to resolve `*.devbox` IP's from host
+* 2) Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.2` as DNS server on host (optional)
 
 ```bash
 cd dnsmasq

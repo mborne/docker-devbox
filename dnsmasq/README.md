@@ -1,7 +1,5 @@
 # dnsmasq
 
-## Description
-
 Allows container name resolution from host.
 
 ## How it works?

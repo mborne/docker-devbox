@@ -42,6 +42,15 @@ ping dnsmasq.devbox -c 1 || {
     exit 1;
 }
 
-# TODO ensure that 80 port is free
-# TODO start traefik
-
+echo "-- Ensure that traefik is started..."
+if [ -z "$(docker ps -a | grep traefik)" ];
+then
+    echo "start traefik..."
+    cd traefik
+    docker-compose up -d || {
+        echo "KO : fail to start traefik!"
+        exit 1
+    }
+    cd ..
+fi
+echo "OK"
