@@ -1,7 +1,5 @@
 # geonetwork
 
-## Description
-
 Docker container running geonetwork (CSW, CSW-T)
 
 ## Usage

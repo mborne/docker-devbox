@@ -1,0 +1,29 @@
+version: '3.6'
+
+services:
+
+  vault:
+    container_name: vault
+    image: vault:1.3.2
+    command: server -config=/vault/config.json
+    volumes:
+      - ./config.json:/vault/config.json
+      - vault-file:/vault/file
+      - vault-logs:/vault/logs
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.vault.rule=Host(`vault.${HOST_HOSTNAME}`)"
+    - "traefik.http.services.vault-service.loadbalancer.server.port=8200"
+    cap_add:
+    - IPC_LOCK
+
+volumes:
+  vault-file:
+    name: vault-file
+  vault-logs:
+    name: vault-logs
+
+networks:
+  default:
+    external:
+      name: devbox

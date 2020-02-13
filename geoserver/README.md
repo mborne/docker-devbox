@@ -1,8 +1,6 @@
 
 # geoserver
 
-## Description
-
 Docker container running geoserver
 
 ## Usage
