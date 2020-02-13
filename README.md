@@ -12,9 +12,9 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 
 ## Usage
 
-> Note that a [start.sh](start.sh) performs this steps with some checks
+> Note that a [start.sh](start.sh) performs most of this steps with some checks
 
-* 1) Create a network named `devbox`
+* Create a network named `devbox`
 
 ```bash
 docker network create -d bridge \
@@ -24,7 +24,7 @@ docker network create -d bridge \
     devbox
 ```
 
-* 2) Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.2` as DNS server on host (optional)
+* Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.2` as DNS server on host (optional)
 
 ```bash
 cd dnsmasq
@@ -32,7 +32,7 @@ docker-compose up -d
 # configure your system to add 192.168.150.2 as a DNS server...
 ```
 
-* 3) Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
+* Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
 
 
 ## Stacks
