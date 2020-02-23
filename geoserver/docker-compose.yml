@@ -14,9 +14,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.geoserver.rule=Host(`geoserver.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.geoserver.middlewares=cors"
-      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=GET,PUT,POST,DELETE,OPTIONS,PUT"
-      - "traefik.http.middlewares.cors.headers.accesscontrolalloworigin=*"
+      - "traefik.http.routers.geoserver.middlewares=cors@file"
     volumes:
       - geoserver-data:/var/geoserver
     restart: unless-stopped

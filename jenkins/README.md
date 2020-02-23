@@ -10,7 +10,7 @@ Docker container with jenkins
 
 * Retrieve initial password `docker exec -ti jenkins cat /var/jenkins_home/secrets/initialAdminPassword`
 
-* Open http://localhost:8180
+* Open http://jenkins.localhost
 
 ## Framework for docker slaves
 

@@ -3,6 +3,14 @@
   exposedByDefault = false
   watch = true
 
+[providers.file]
+  filename = "/etc/traefik/traefik.toml"
+
+[http.middlewares]
+  [http.middlewares.cors.headers]
+    accessControlAllowMethods= ["GET", "OPTIONS", "PUT", "POST", "DELETE"]
+    accessControlAllowOrigin = "*"
+
 [api]
   insecure = true
 
