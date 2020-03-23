@@ -4,11 +4,15 @@ services:
 
   gogs:
     container_name: gogs
-    image: mborne/gogs:0.11
-    build: .
+    image: mborne/gogs:latest
+    build:
+      context: https://gogs.quadtreeworld.net/docker/docker-gogs.git#master
+      args:
+        version: 0.11.91
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.gogs.rule=Host(`gogs.${HOST_HOSTNAME}`)"
+      - "traefik.http.services.gogs-service.loadbalancer.server.port=3000"
     volumes:
       - gogs-data:/data
       - backup:/backup
