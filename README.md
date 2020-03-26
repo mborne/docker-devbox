@@ -1,14 +1,20 @@
 # mborne/docker-devbox
 
-This repository provides a framework to setup a local dev environment with docker :
+This repository provides a framework to setup a local dev environment with docker.
+
+## Key points
 
 * [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
 * [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : http://kibana.localhost)
-* [dnsmasq](dnsmasq/README.md) allows container IP resolution from host (ex : `openldap.devbox`, `mailhog.devbox`, `postgis.devbox`, etc.) and avoid port exposure while coding new services
 * Containers run on the same network named `devbox` (`192.168.150.0/24`) to simplify communication between containers/stacks
 * Named volumes allows data persistence to ease the purge of running services
+* An optional [dnsmasq](dnsmasq/README.md) instance allows container name resolution from host (ex : `openldap.devbox`, `mailhog.devbox`, `postgis.devbox`, etc.) to avoid port exposure while coding new services on host
 
 It also provides a set of sample stacks (usual dependencies for my projects, sandbox, experiments, etc.)
+
+## Schema
+
+![Architecture schema](docs/devbox.png)
 
 ## Usage
 
@@ -24,6 +30,8 @@ docker network create -d bridge \
     devbox
 ```
 
+* Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
+
 * Start [dnsmasq](dnsmasq/README.md) and add `192.168.150.2` as DNS server on host (optional)
 
 ```bash
@@ -31,8 +39,6 @@ cd dnsmasq
 docker-compose up -d
 # configure your system to add 192.168.150.2 as a DNS server...
 ```
-
-* Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
 
 
 ## Stacks
