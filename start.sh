@@ -36,22 +36,4 @@ then
 fi
 echo "OK"
 
-echo "-- Ensure that dnsmasq is started..."
-if [ -z "$(docker ps -a | grep dnsmasq)" ];
-then
-    echo "start dnsmasq..."
-    cd dnsmasq
-    docker-compose up -d || {
-        echo "KO : fail to start dnsmasq!"
-        exit 1
-    }
-    cd ..
-fi
-echo "OK"
-
-echo "-- [OPTIONAL] Ping dnsmasq.devbox to ensure that host is configured to resolve DNS throw dnsmasq container..."
-ping dnsmasq.devbox -c 1 || {
-    echo "[OPTIONAL] KO : fail to ping dnsmasq.devbox, configure name resolution to use dnsmasq container :"
-    docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' dnsmasq
-    exit 1;
-}
+echo "(see whoami/README.md to get started with traefik)"
