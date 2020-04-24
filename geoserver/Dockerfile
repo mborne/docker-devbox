@@ -1,4 +1,4 @@
-FROM tomcat:8.5-slim
+FROM tomcat:8.5-jdk8
 
 ARG version=2.16.1
 
