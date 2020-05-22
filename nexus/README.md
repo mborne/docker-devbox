@@ -8,9 +8,11 @@ Repository manager for maven and docker
 
 * Start nexus : `docker-compose up -d`
 
+* Retreive initial admin password : `docker exec -ti nexus cat /nexus-data/admin.password`
+
 * Open nexus : http://nexus.localhost
 
-* Connect with admin/admin123 and change password
+* Connect with admin and initial password
 
 * Create a docker-hosted hosted repository with http port 8082
 

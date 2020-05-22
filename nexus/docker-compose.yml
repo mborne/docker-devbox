@@ -4,12 +4,16 @@ services:
 
   nexus:
     container_name: nexus
-    image: sonatype/nexus3:3.19.1
+    image: sonatype/nexus3:3.23.0
     labels:
       - "traefik.enable=true"
+      # http://nexus.localhost
       - "traefik.http.routers.nexus.rule=Host(`nexus.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.nexus.service=nexus-service@docker"
       - "traefik.http.services.nexus-service.loadbalancer.server.port=8081"
+      # http://registry.localhost
       - "traefik.http.routers.registry.rule=Host(`registry.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.registry.service=registry-service@docker"
       - "traefik.http.services.registry-service.loadbalancer.server.port=8082"
     volumes:
       - nexus-data:/nexus-data
