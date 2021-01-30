@@ -11,8 +11,8 @@ services:
       - POSTGRES_USER=postgis
       - POSTGRES_PASSWORD=postgis
 
+
 networks:
   default:
-    external:
-      name: devbox
+    name: devbox
 

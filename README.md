@@ -17,19 +17,22 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 
 ## Usage
 
-> Note that a [start.sh](start.sh) performs most of this steps with some checks
+* Ensure that you have a correct docker daemon configuration (`/etc/docker/daemon.json`) :
 
-* Create a network named `devbox`
+  * Configure `bip` and `default-address-pools` to avoid IP overlaps on your LAN
+  * Configure `storage-driver` to "overlay2"
+  * ...
+
+> Note that you may have a look at least to [docker-bench-security](https://github.com/docker/docker-bench-security) to avoid main security issues.
+
+* Download git submodules
 
 ```bash
-docker network create -d bridge \
-    --gateway 192.168.150.1 \
-    --ip-range 192.168.150.128/25 \
-    --subnet 192.168.150.0/24 \
-    devbox
+git submodule init
+git submodule update
 ```
 
-* Run [traefik](traefik/README.md) ([whoami](whoami/README.md) provide a simple example to understand traefik)
+* Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand traefik.
 
 
 ## Stacks
@@ -71,7 +74,6 @@ docker network create -d bridge \
 |----------------------------------|-----------------------------------------------|
 | [gogs](gogs/README.md)           | GIT hosting                                   |
 | [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
-| [owncloud](owncloud/README.md)   | File hosting                                  |
 | [nextcloud](nextcloud/README.md) | File hosting                                  |
 
 ### Continuous integration

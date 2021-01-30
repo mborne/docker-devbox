@@ -5,7 +5,7 @@ services:
   # https://github.com/osixia/docker-openldap
   openldap:
     container_name: openldap
-    image: osixia/openldap:1.2.4
+    image: osixia/openldap:1.4.0
     environment:
       - LDAP_ORGANISATION=${LDAP_ORGANISATION}
       - LDAP_DOMAIN=${LDAP_DOMAIN}
@@ -21,7 +21,7 @@ services:
   # https://github.com/osixia/docker-phpldapadmin
   ldapadmin:
     container_name: ldapadmin
-    image: osixia/phpldapadmin:0.7.2
+    image: osixia/phpldapadmin:0.9.0
     environment:
       - PHPLDAPADMIN_LDAP_HOSTS=openldap
       - PHPLDAPADMIN_HTTPS=false
@@ -38,5 +38,5 @@ volumes:
 
 networks:
   default:
-    external:
-      name: devbox
+    name: devbox
+

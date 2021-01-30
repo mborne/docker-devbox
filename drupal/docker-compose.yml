@@ -4,7 +4,7 @@ services:
 
   drupal:
     container_name: drupal
-    image: drupal:8.8.4
+    image: drupal:9.0.11
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.drupal.rule=Host(`drupal.${HOST_HOSTNAME}`)"
@@ -27,5 +27,4 @@ volumes:
 
 networks:
   default:
-    external:
-      name: devbox
+    name: devbox

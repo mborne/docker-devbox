@@ -12,6 +12,5 @@ services:
 
 networks:
   default:
-    external:
-      name: devbox
+    name: devbox
 

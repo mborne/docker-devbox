@@ -23,8 +23,6 @@ volumes:
 
 networks:
   default:
-    external:
-      name: devbox
-
+    name: devbox
 
 
