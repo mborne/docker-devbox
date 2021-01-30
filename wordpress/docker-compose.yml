@@ -1,0 +1,42 @@
+version: "3.5"
+
+services:
+
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress
+    depends_on:
+      - db
+    volumes:
+      - wordpress-data:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: ${WORDPRESS_DB_USER}
+      WORDPRESS_DB_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      WORDPRESS_DB_NAME: wordpress
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wordpress.rule=Host(`wordpress.${HOST_HOSTNAME}`)"
+    restart: unless-stopped
+
+  db:
+    container_name: wordpress_db
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: ${WORDPRESS_DB_USER}
+      MYSQL_PASSWORD: ${WORDPRESS_DB_PASSWORD}
+    restart: unless-stopped
+
+volumes:
+  wordpress-data:
+    name: wordpress-data
+  db-data:
+    name: wordpress-db-data
+
+networks:
+  default:
+    name: devbox

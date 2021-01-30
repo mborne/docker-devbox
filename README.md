@@ -40,7 +40,7 @@ git submodule update
 ### Core services
 
 | Name                             | Description                                                                                 |
-|----------------------------------|---------------------------------------------------------------------------------------------|
+| -------------------------------- | ------------------------------------------------------------------------------------------- |
 | [traefik](traefik/README.md)     | Reverse proxy providing URLs according to labels (ex : `http://<service>.${HOST_HOSTNAME}`) |
 | [whoami](whoami/README.md)       | Trivial service to test and understand traefik                                              |
 | [portainer](portainer/README.md) | Docker web UI                                                                               |
@@ -48,14 +48,14 @@ git submodule update
 ## ELK
 
 | Name                                     | Description             |
-|------------------------------------------|-------------------------|
+| ---------------------------------------- | ----------------------- |
 | [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
 | [kibana](kibana/README.md)               | kibana                  |
 
 ### Spatial
 
 | Name                                                 | Description                                       |
-|------------------------------------------------------|---------------------------------------------------|
+| ---------------------------------------------------- | ------------------------------------------------- |
 | [postgis](postgis/README.md)                         | Store spatial data (tables with geometry columns) |
 | [geoserver](geoserver/README.md)                     | Render spatial data (WMS, WFS, WMTS)              |
 | [geonetwork](geonetwork/README.md) (CSW, CSW-T)      | Store metadata (CSW, CSW-T)                       |
@@ -64,14 +64,14 @@ git submodule update
 ### Authentication
 
 | Name                           | Description                  |
-|--------------------------------|------------------------------|
+| ------------------------------ | ---------------------------- |
 | [openldap](openldap/README.md) | LDAP server and admin UI     |
 | [keycloak](keycloak/README.md) | SSO identity server (OAuth2) |
 
 ### Storage
 
 | Name                             | Description                                   |
-|----------------------------------|-----------------------------------------------|
+| -------------------------------- | --------------------------------------------- |
 | [gogs](gogs/README.md)           | GIT hosting                                   |
 | [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
 | [nextcloud](nextcloud/README.md) | File hosting                                  |
@@ -79,14 +79,21 @@ git submodule update
 ### Continuous integration
 
 | Name                             | Description           |
-|----------------------------------|-----------------------|
+| -------------------------------- | --------------------- |
 | [jenkins](jenkins/README.md)     | Continous Integration |
 | [sonarqube](sonarqube/README.md) | Code quality          |
+
+### CMS
+
+| Name                             | Description |
+| -------------------------------- | ----------- |
+| [wordpress](wordpress/README.md) | CMS         |
+| [drupal](drupal/README.md)       | CMS         |
 
 ### Various
 
 | Name                           | Description                        |
-|--------------------------------|------------------------------------|
+| ------------------------------ | ---------------------------------- |
 | [mailhog](mailhog/README.md)   | Web and API based SMTP test server |
 | [rabbitmq](rabbitmq/README.md) | Message broker                     |
 | [drupal](drupal/README.md)     | CMS                                |
