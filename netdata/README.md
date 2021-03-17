@@ -4,6 +4,6 @@
 
 ## Usage
 
-* Start 2 instances : `docker-compose up -d`
+* Start instance : `NETDATA_NAME=${HOSTNAME} docker-compose up -d`
 * Open http://netdata.localhost or http://localhost:19999
 

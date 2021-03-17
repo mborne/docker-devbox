@@ -1,6 +1,7 @@
 version: '3'
 services:
   netdata:
+    hostname: ${NETDATA_NAME}
     image: netdata/netdata
     container_name: netdata
     ports:
