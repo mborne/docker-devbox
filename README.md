@@ -97,6 +97,7 @@ git submodule update
 | [mailhog](mailhog/README.md)   | Web and API based SMTP test server |
 | [rabbitmq](rabbitmq/README.md) | Message broker                     |
 | [drupal](drupal/README.md)     | CMS                                |
+| [netdata](netdata/README.md)   | Monitoring                         |
 
 ## License
 

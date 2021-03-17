@@ -4,7 +4,8 @@ services:
 
   jenkins:
     container_name: jenkins
-    image: jenkins/jenkins:lts
+    image: mborne/jenkins:lts
+    build: https://github.com/mborne/docker-jenkins.git
     environment:
       - TZ=Europe/Paris
     labels:
@@ -12,6 +13,7 @@ services:
       - "traefik.http.routers.jenkins.rule=Host(`jenkins.${HOST_HOSTNAME}`)"
     volumes:
       - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
 
 volumes:
