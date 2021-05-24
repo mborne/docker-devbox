@@ -63,10 +63,11 @@ git submodule update
 
 ### Authentication
 
-| Name                           | Description                  |
-| ------------------------------ | ---------------------------- |
-| [openldap](openldap/README.md) | LDAP server and admin UI     |
-| [keycloak](keycloak/README.md) | SSO identity server (OAuth2) |
+| Name                               | Description              |
+| ---------------------------------- | ------------------------ |
+| [openldap](openldap/README.md)     | LDAP server and admin UI |
+| [keycloak](keycloak/README.md)     | Identity provider        |
+| [fusionauth](fusionauth/README.md) | Identity provider        |
 
 ### Storage
 
