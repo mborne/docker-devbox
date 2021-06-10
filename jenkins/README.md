@@ -2,7 +2,9 @@
 
 ## Description
 
-Docker container with jenkins
+Docker container running jenkins with docker in docker.
+
+WARNING : `/var/run/docker.sock` is mounted and [jenkins acquires full docker control on the docker host](https://github.com/mborne/docker-jenkins/blob/fefaab05473526f9fe25d2e8171fc9e812fe7c3e/docker-entrypoint.sh#L3-L13).
 
 ## Usage
 
