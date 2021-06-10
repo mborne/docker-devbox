@@ -6,7 +6,7 @@ This repository provides a framework to setup a **local dev environment** with d
 
 * [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
 * [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : http://kibana.localhost)
-* Containers run on the same network named `devbox` (`192.168.150.0/24`) to simplify communication between containers/stacks
+* Containers run on the same network named `devbox` to simplify communication between containers/stacks
 * Named volumes allows data persistence to ease the purge of running services
 
 It also provides a set of sample stacks (usual dependencies for my projects, sandbox, experiments, etc.)
