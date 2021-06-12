@@ -25,13 +25,6 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 
 > Note that you may have a look at least to [docker-bench-security](https://github.com/docker/docker-bench-security) to avoid main security issues.
 
-* Download git submodules
-
-```bash
-git submodule init
-git submodule update
-```
-
 * Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand traefik.
 
 
@@ -54,12 +47,12 @@ git submodule update
 
 ### Spatial
 
-| Name                                                 | Description                                       |
-| ---------------------------------------------------- | ------------------------------------------------- |
-| [postgis](postgis/README.md)                         | Store spatial data (tables with geometry columns) |
-| [geoserver](geoserver/README.md)                     | Render spatial data (WMS, WFS, WMTS)              |
-| [geonetwork](geonetwork/README.md) (CSW, CSW-T)      | Store metadata (CSW, CSW-T)                       |
-| [postgis-integration](postgis-integration/README.md) | Load opendata datasets in postgis                 |
+| Name                                                               | Description                                       |
+| ------------------------------------------------------------------ | ------------------------------------------------- |
+| [postgis](https://github.com/mborne/docker-postgis#docker-postgis) | Store spatial data (tables with geometry columns) |
+| [geoserver](geoserver/README.md)                                   | Render spatial data (WMS, WFS, WMTS)              |
+| [geonetwork](geonetwork/README.md) (CSW, CSW-T)                    | Store metadata (CSW, CSW-T)                       |
+| [postgis-integration](postgis-integration/README.md)               | Load opendata datasets in postgis                 |
 
 ### Authentication
 
