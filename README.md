@@ -92,6 +92,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 | [rabbitmq](rabbitmq/README.md) | Message broker                     |
 | [drupal](drupal/README.md)     | CMS                                |
 | [netdata](netdata/README.md)   | Monitoring                         |
+| [adminer](adminer/README.md)   | Database management                |
 
 ## License
 
