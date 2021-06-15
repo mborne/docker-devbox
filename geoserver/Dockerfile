@@ -1,6 +1,6 @@
 FROM tomcat:8.5-jdk8
 
-ARG version=2.16.1
+ARG version=2.19.1
 
 ENV GEOSERVER_DATA_DIR=/var/geoserver
 ENV geoserver.xframe.shouldSetPolicy=false

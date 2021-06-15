@@ -4,17 +4,17 @@ services:
 
   geoserver:
     container_name: geoserver
-    image: mborne/geoserver:2.16.1
+    image: mborne/geoserver:2.19.1
     build:
       context: .
       args:
-        version: '2.16.1'
+        version: '2.19.1'
     environment:
       - "CATALINA_OPTS=-Xms512m -Xmx512m"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.geoserver.rule=Host(`geoserver.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.geoserver.middlewares=cors@file"
+      #- "traefik.http.routers.geoserver.middlewares=cors@file"
     volumes:
       - geoserver-data:/var/geoserver
     restart: unless-stopped
