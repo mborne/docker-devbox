@@ -13,7 +13,9 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 
 ## Schema
 
-![Architecture schema](docs/devbox.png)
+<div style="text-align:center">
+<img src="docs/devbox.png" title="Architecture schema"/>
+</div>
 
 ## Usage
 
