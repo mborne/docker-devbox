@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+
+  mailer:
+    container_name: mailer
+    image: namshi/smtp:latest
+    ports:
+      - "127.0.0.1:25:25"
+    env_file:
+      - config.env
+    restart: unless-stopped
+
+networks:
+  default:
+    name: devbox

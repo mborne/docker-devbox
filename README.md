@@ -35,7 +35,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 ### Core services
 
 | Name                             | Description                                                                                 |
-| -------------------------------- | ------------------------------------------------------------------------------------------- |
+|----------------------------------|---------------------------------------------------------------------------------------------|
 | [traefik](traefik/README.md)     | Reverse proxy providing URLs according to labels (ex : `http://<service>.${HOST_HOSTNAME}`) |
 | [whoami](whoami/README.md)       | Trivial service to test and understand traefik                                              |
 | [portainer](portainer/README.md) | Docker web UI                                                                               |
@@ -43,14 +43,14 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 ## ELK
 
 | Name                                     | Description             |
-| ---------------------------------------- | ----------------------- |
+|------------------------------------------|-------------------------|
 | [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
 | [kibana](kibana/README.md)               | kibana                  |
 
 ### Spatial
 
 | Name                                                               | Description                                       |
-| ------------------------------------------------------------------ | ------------------------------------------------- |
+|--------------------------------------------------------------------|---------------------------------------------------|
 | [postgis](https://github.com/mborne/docker-postgis#docker-postgis) | Store spatial data (tables with geometry columns) |
 | [geoserver](geoserver/README.md)                                   | Render spatial data (WMS, WFS, WMTS)              |
 | [geonetwork](geonetwork/README.md) (CSW, CSW-T)                    | Store metadata (CSW, CSW-T)                       |
@@ -59,7 +59,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 ### Authentication
 
 | Name                               | Description              |
-| ---------------------------------- | ------------------------ |
+|------------------------------------|--------------------------|
 | [openldap](openldap/README.md)     | LDAP server and admin UI |
 | [keycloak](keycloak/README.md)     | Identity provider        |
 | [fusionauth](fusionauth/README.md) | Identity provider        |
@@ -67,7 +67,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 ### Storage
 
 | Name                             | Description                                   |
-| -------------------------------- | --------------------------------------------- |
+|----------------------------------|-----------------------------------------------|
 | [gogs](gogs/README.md)           | GIT hosting                                   |
 | [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
 | [nextcloud](nextcloud/README.md) | File hosting                                  |
@@ -75,22 +75,23 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 ### Continuous integration
 
 | Name                             | Description           |
-| -------------------------------- | --------------------- |
+|----------------------------------|-----------------------|
 | [jenkins](jenkins/README.md)     | Continous Integration |
 | [sonarqube](sonarqube/README.md) | Code quality          |
 
 ### CMS
 
 | Name                             | Description |
-| -------------------------------- | ----------- |
+|----------------------------------|-------------|
 | [wordpress](wordpress/README.md) | CMS         |
 | [drupal](drupal/README.md)       | CMS         |
 
 ### Various
 
 | Name                           | Description                        |
-| ------------------------------ | ---------------------------------- |
+|--------------------------------|------------------------------------|
 | [mailhog](mailhog/README.md)   | Web and API based SMTP test server |
+| [mailer](mailer/README.md)     | SMTP relay                         |
 | [rabbitmq](rabbitmq/README.md) | Message broker                     |
 | [drupal](drupal/README.md)     | CMS                                |
 | [netdata](netdata/README.md)   | Monitoring                         |
