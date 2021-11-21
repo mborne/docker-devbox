@@ -1,0 +1,45 @@
+version: "3.5"
+
+services:
+
+  matomo:
+    image: matomo:latest
+    container_name: matomo
+    depends_on:
+      - db
+    volumes:
+      - matomo-data:/var/www/html
+    environment:
+      MATOMO_DATABASE_HOST: db:3306
+      MATOMO_DATABASE_USERNAME: ${MATOMO_DATABASE_USERNAME}
+      MATOMO_DATABASE_PASSWORD: ${MATOMO_DATABASE_PASSWORD}
+      MATOMO_DATABASE_DBNAME: matomo
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.matomo.rule=Host(`matomo.${HOST_HOSTNAME}`)"
+    restart: unless-stopped
+
+  db:
+    container_name: matomo_db
+    image: mysql:5.7
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MATOMO_DATABASE_PASSWORD}
+      MYSQL_DATABASE: matomo
+      MYSQL_USER: ${MATOMO_DATABASE_USERNAME}
+      MYSQL_PASSWORD: ${MATOMO_DATABASE_PASSWORD}
+    restart: unless-stopped
+
+volumes:
+  matomo-data:
+    name: matomo-data
+  db-data:
+    name: matomo-db-data
+
+networks:
+  default:
+    name: devbox
+
+
+

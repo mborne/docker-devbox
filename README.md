@@ -96,6 +96,7 @@ It also provides a set of sample stacks (usual dependencies for my projects, san
 | [drupal](drupal/README.md)     | CMS                                |
 | [netdata](netdata/README.md)   | Monitoring                         |
 | [adminer](adminer/README.md)   | Database management                |
+| [matomo](matomo/README.md)     | Stats about visits                 |
 
 ## License
 
