@@ -5,7 +5,7 @@ services:
   postgis:
     container_name: postgis
     image: docker.pkg.github.com/mborne/docker-postgis/postgis:13.3-3.1
-    build: https://github.com/mborne/docker-postgis#13.3-3.1
+    build: https://github.com/mborne/docker-postgis.git#13.3-3.1
     ports:
       - "127.0.0.1:5432:5432"
     environment:
