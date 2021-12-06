@@ -1,11 +1,10 @@
-# kibana
+# Kibana
+
+## Description
+
+Docker container running [Kibana](https://www.elastic.co/kibana/) as a single node for dev purpose.
 
 ## Usage
 
-```bash
-#export ES_URL=http://es.other-machine.lan
-docker-compose up -d
-```
-
-Open http://kibana.localhost (traefik)
-
+* Start kibana : `docker-compose up -d`
+* Open http://kibana.localhost
