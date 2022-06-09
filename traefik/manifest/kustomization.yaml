@@ -12,9 +12,10 @@ resources:
   - definition-v1.yaml
   - service-account.yaml
   - rbac.yaml
+
+  - config-map.yaml
   - daemon-set.yaml
 
   - middleware-ipwhitelist.yaml
-  - middleware-redirect-https.yaml
 
   - ingress-dashboard.yaml
