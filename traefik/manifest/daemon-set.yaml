@@ -1,7 +1,7 @@
 kind: DaemonSet
 apiVersion: apps/v1
 metadata:
-  name: traefik-daemon-set
+  name: traefik
 spec:
   template:
     spec:
@@ -17,9 +17,6 @@ spec:
             - name: https
               containerPort: 443
               hostPort: 443
-            - name: admin
-              containerPort: 8080
-              hostPort: 8080
           securityContext:
             capabilities:
               drop:
@@ -27,9 +24,7 @@ spec:
               add:
                 - NET_BIND_SERVICE
           args:
-            # Enable the dashboard without requiring a password.
-            # Not recommended for production.
-            - --api.insecure
+            # Enable the dashboard
             - --api.dashboard
 
             # Specify that we want to use Traefik as an Ingress Controller.

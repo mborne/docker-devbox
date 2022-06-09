@@ -13,3 +13,8 @@ resources:
   - service-account.yaml
   - rbac.yaml
   - daemon-set.yaml
+
+  - middleware-ipwhitelist.yaml
+  - middleware-redirect-https.yaml
+
+  - ingress-dashboard.yaml
