@@ -6,5 +6,3 @@
 
 * Start 2 instances : `docker-compose up -d --scale whoami=2`
 * Open http://whoami.localhost and refresh
-
-
