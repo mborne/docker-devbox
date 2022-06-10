@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: traefik-config-static
+  namespace: default
+  labels:
+    app: traefik
+data:
+  traefik.yml: |
+    entryPoints:
+      web:
+        address: :80
+        http:
+          redirections:
+            entryPoint:
+              to: websecure
+              scheme: https
+      websecure:
+        address: ':443'
+        http:
+          tls: {}
+
+    providers:
+      kubernetesCRD: {}
+      kubernetesIngress: {}
+
+    api:
+      dashboard: true
+
+    # https://doc.traefik.io/traefik/observability/logs/#logs
+    log:
+      level: INFO
