@@ -1,10 +1,13 @@
 # kubernetes-dashboard
 
-## Usage
+## Usage with kustomize
 
 * Deploy [kubernetes-dashboard](https://github.com/kubernetes/dashboard/) with an [admin-user](manifest/admin-user.yaml):
 
-TODO
+```bash
+kubectl apply -k https://github.com/mborne/docker-devbox/kubernetes-dashboard/manifest
+```
+
 
 * Get admin-user token :
 
