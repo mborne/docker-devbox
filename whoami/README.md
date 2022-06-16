@@ -10,7 +10,10 @@
 ## Usage with kustomize
 
 ```bash
-kubectl apply -k https://github.com/mborne/docker-devbox/whoami/manifest
+# http://whoami.localhost
+kubectl apply -k https://github.com/mborne/docker-devbox/whoami/manifest/base
+# http://whoami.vagrantbox.dev
+kubectl apply -k https://github.com/mborne/docker-devbox/vagrantbox/manifest/devbox
 ```
 
-See [custom-domain/kustomization.yaml](custom-domain/kustomization.yaml) and [custom-domain/ingress-patch.json](custom-domain/ingress-patch.json) to customize hostname.
+See [manifest/vagrantbox/kustomization.yaml](./manifest/vagrantbox/kustomization.yaml) and [manifest/vagrantbox/ingress-patch.json](./manifest/vagrantbox/ingress-patch.json) to customize hostname.
