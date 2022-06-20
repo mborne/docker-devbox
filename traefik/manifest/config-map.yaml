@@ -3,8 +3,6 @@ kind: ConfigMap
 metadata:
   name: traefik-config-static
   namespace: default
-  labels:
-    app: traefik
 data:
   traefik.yml: |
     entryPoints:
