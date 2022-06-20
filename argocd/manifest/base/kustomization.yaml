@@ -11,9 +11,5 @@ resources:
   - https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
   - ingress.yaml
 
-configMapGenerator:
-- name: argocd-cmd-params-cm
-  behavior: merge
-  literals:
-  - 'server.insecure=false'
-
+patchesStrategicMerge:
+  - argocd-cmd-params-cm.yaml

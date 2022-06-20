@@ -15,6 +15,7 @@ Auto-configured reverse proxy according to container labels.
 ## Usage with kustomize
 
 ```bash
+# http://traefik.localhost (dashboard)
 kubectl apply -k https://github.com/mborne/docker-devbox/traefik/manifest
 ```
 

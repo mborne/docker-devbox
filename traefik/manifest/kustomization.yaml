@@ -30,3 +30,4 @@ resources:
   - middleware-ipwhitelist.yaml
 
   - ingress-dashboard.yaml
+
