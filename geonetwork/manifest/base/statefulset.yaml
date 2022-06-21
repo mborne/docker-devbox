@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: geonetwork
+spec:
+  selector:
+    matchLabels:
+      app: geonetwork
+  serviceName: "geonetwork"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: geonetwork
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+      - name: geonetwork
+        image: geonetwork:4.2.0
+        env:
+        - name: 'ES_HOST'
+          value: 'geonetwork-es-http'
+        - name: 'ES_PROTOCOL'
+          value: 'http'
+        - name: 'ES_USERNAME'
+          value: 'elastic'
+        - name: 'ES_PASSWORD'
+          valueFrom:
+            secretKeyRef:
+              name: geonetwork-es-elastic-user
+              key: elastic
+        ports:
+        - containerPort: 8080
+          name: geonetwork
+        volumeMounts:
+        - name: geonetwork-data
+          mountPath: /var/lib/geonetwork_data
+  volumeClaimTemplates:
+  - metadata:
+      name: geonetwork-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "local-path"
+      resources:
+        requests:
+          storage: 5Gi

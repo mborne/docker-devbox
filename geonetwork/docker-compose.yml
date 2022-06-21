@@ -4,7 +4,7 @@ services:
 
   geonetwork:
     container_name: geonetwork
-    image: geonetwork:4.0
+    image: geonetwork:4.2.0
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.geonetwork.rule=Host(`geonetwork.${HOST_HOSTNAME}`)"

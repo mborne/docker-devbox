@@ -10,3 +10,9 @@ Docker container running geonetwork (CSW, CSW-T)
 
 * Login with admin/admin
 
+## Usage with kustomize
+
+```bash
+# https://geonetwork.localhost/geonetwork/
+kubectl apply -k https://github.com/mborne/docker-devbox/geonetwork/manifest/base
+```

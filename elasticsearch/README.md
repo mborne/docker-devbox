@@ -9,6 +9,17 @@ Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) 
 * Start elasticsearch : `docker-compose up -d`
 * Open http://es.localhost or http://es.localhost/_cat/nodes?v&pretty
 
+## Usage with K8S
+
+See [www.elastic.co - Download Elastic Cloud on Kubernetes](https://www.elastic.co/fr/downloads/elastic-cloud-kubernetes) :
+
+```bash
+kubectl create -f https://download.elastic.co/downloads/eck/2.2.0/crds.yaml
+kubectl apply -f https://download.elastic.co/downloads/eck/2.2.0/operator.yaml
+```
+
+...and usage in [geonetwork/manifest/base/elasticsearch.yaml](../geonetwork/manifest/base/elasticsearch.yaml) / [geonetwork/manifest/base/statefulset.yaml](../geonetwork/manifest/base/statefulset.yaml)
+
 ## Troubleshooting
 
 ```bash

@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: geonetwork
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`geonetwork.localhost`)
+      kind: Rule
+      services:
+        - name: geonetwork
+          port: 8080
