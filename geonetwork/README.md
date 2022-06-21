@@ -12,6 +12,8 @@ Docker container running geonetwork (CSW, CSW-T)
 
 ## Usage with kustomize
 
+Requirements : [elasticsearch - CRD and Operator](../elasticsearch/README.md#usage-with-kubernetes)
+
 ```bash
 # https://geonetwork.localhost/geonetwork/
 kubectl apply -k https://github.com/mborne/docker-devbox/geonetwork/manifest/base
