@@ -27,6 +27,11 @@ createdb gis
 psql -d gis -c "CREATE EXTENSION postgis"
 ```
 
+## Usage with kustomize
+
+
+
+
 ## Tuning
 
 See :
