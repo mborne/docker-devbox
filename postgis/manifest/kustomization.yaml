@@ -10,4 +10,5 @@ resources:
   - namespace.yaml
   - service.yaml
   - postgis-pv.yaml
+  - secret.yaml
   - statefulset.yaml

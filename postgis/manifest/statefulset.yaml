@@ -19,11 +19,18 @@ spec:
       - name: postgis
         image: postgis/postgis:13-3.2
         env:
-        # TODO secret
         - name: POSTGRES_USER
-          value: postgis
+          valueFrom:
+            secretKeyRef:
+              name: postgis-secret
+              key: username
+              optional: false
         - name: POSTGRES_PASSWORD
-          value: postgis
+          valueFrom:
+            secretKeyRef:
+              name: postgis-secret
+              key: password
+              optional: false
         ports:
         - containerPort: 5432
           name: postgis
