@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: adminer
+spec:
+  rules:
+  - host: adminer.localhost
+    http:
+      paths:
+      - backend:
+          service:
+            name: adminer
+            port:
+              number: 8080
+        path: /
+        pathType: Exact

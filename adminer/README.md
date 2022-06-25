@@ -8,5 +8,8 @@ Docker container running [adminer](https://hub.docker.com/_/adminer/)
 
 * Open http://adminer.localhost/
 
-* Login to database
+* Login to database :
+
+![Login form](img/adminer-login.png)
+
 
