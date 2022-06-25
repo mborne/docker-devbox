@@ -1,6 +1,10 @@
 # Longhorn
 
-[Longhorn](https://longhorn.io/) is a cloud native distributed block storage for Kubernetes.
+[Longhorn](https://longhorn.io/) is a cloud native distributed block storage for Kubernetes :
+
+
+![Longhorn nodes](img/longhorn-nodes.png)
+
 
 ## System requirements
 
@@ -18,7 +22,7 @@ sudo systemctl status iscsid
 kubectl apply -k https://github.com/mborne/docker-devbox/longhorn/manifest
 ```
 
-* Edit number of replicates
+* Edit number of replicates if you don't have at least 3 nodes :
 
 ```bash
 kubectl -n longhorn-system edit cm/longhorn-storageclass
@@ -26,7 +30,7 @@ kubectl -n longhorn-system edit cm/longhorn-storageclass
 
 * Check pod status : `kubectl -n longhorn-system get pods`
 
-* Open UI : http://longhorn.localhost
+* Open UI : http://longhorn.localhost and check nodes.
 
 
 ## Usage in client application
