@@ -1,0 +1,49 @@
+
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgis
+spec:
+  serviceName: "postgis"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgis
+  template:
+    metadata:
+      labels:
+        app: postgis
+    spec:
+      containers:
+      - name: postgis
+        image: postgis/postgis:13-3.2
+        env:
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgis-secret
+              key: username
+              optional: false
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgis-secret
+              key: password
+              optional: false
+        ports:
+        - containerPort: 5432
+          name: postgis
+        volumeMounts:
+        - name: postgis-pvc
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: postgis-pvc
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: postgis-storage
+      resources:
+        requests:
+          storage: 20Gi
+
