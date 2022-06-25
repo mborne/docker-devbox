@@ -29,9 +29,18 @@ psql -d gis -c "CREATE EXTENSION postgis"
 
 ## Usage with kustomize
 
-**TODO**
+* Start postgis :
 
-Testing :
+```bash
+# To use local storage
+kubectl apply -k https://github.com/mborne/docker-devbox/postgis/manifest/local-storage/
+# To use longhorn storage
+kubectl apply -k https://github.com/mborne/docker-devbox/postgis/manifest/longhorn-storage/
+```
+
+* Wait until everything is started : `kubectl -n postgis get all`
+
+* Test access
 
 ```bash
 # forward port to pod
