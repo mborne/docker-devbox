@@ -28,10 +28,17 @@ kubectl apply -k https://github.com/mborne/docker-devbox/longhorn/manifest
 kubectl -n longhorn-system edit cm/longhorn-storageclass
 ```
 
-* Check pod status : `kubectl -n longhorn-system get pods`
+* Check pod status : `watch kubectl -n longhorn-system get pods -o wide`
 
 * Open UI : http://longhorn.localhost and check nodes.
 
+* [Ensure that you have only one default StorageClass](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/#changing-the-default-storageclass) :
+
+```bash
+kubectl get storageclass -o wide
+# for longhorn with K3S
+kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+```
 
 ## Usage in client application
 
