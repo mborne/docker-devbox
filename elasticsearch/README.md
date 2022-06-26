@@ -1,10 +1,8 @@
 # Elasticsearch
 
-## Description
+Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) for dev purpose.
 
-Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) as a single node for dev purpose.
-
-## Usage
+## Usage with docker-compose
 
 * Start elasticsearch : `docker-compose up -d`
 * Open http://es.localhost or http://es.localhost/_cat/nodes?v&pretty
@@ -23,7 +21,7 @@ kubectl apply -f https://download.elastic.co/downloads/eck/2.2.0/operator.yaml
 
 ...and usage in [geonetwork/manifest/base/elasticsearch.yaml](../geonetwork/manifest/base/elasticsearch.yaml) / [geonetwork/manifest/base/statefulset.yaml](../geonetwork/manifest/base/statefulset.yaml)
 
-## Resources
+## See also
 
 * [Install Elasticsearch with Docker](https://www.elastic.co/guide/en/elasticsearch/reference/7.15/docker.html#docker)
 * [How to disable ElasticSearch disk quota / watermark](https://techoverflow.net/2019/04/17/how-to-disable-elasticsearch-disk-quota-watermark/) : avoid read-only problems

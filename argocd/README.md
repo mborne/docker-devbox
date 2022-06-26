@@ -1,6 +1,6 @@
 
 
-# argocd
+# [Argo CD](https://argo-cd.readthedocs.io/en/stable/)
 
 ## Usage with kustomize
 

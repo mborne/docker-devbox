@@ -1,6 +1,6 @@
-# vault
+# Vault
 
-Docker container to test [archicorp vault](https://hub.docker.com/_/vault).
+Docker container to test [HashiCorp vault](https://hub.docker.com/_/vault).
 
 ## Usage
 
@@ -8,7 +8,7 @@ Docker container to test [archicorp vault](https://hub.docker.com/_/vault).
 
 * Open http://vault.localhost and configure vault
 
-* Configure client and perform some checks (see https://learn.hashicorp.com/vault?track=getting-started#getting-started)
+* Configure client and [perform some checks](https://learn.hashicorp.com/vault?track=getting-started#getting-started) :
 
 ```bash
 export VAULT_ADDR=http://vault.localhost

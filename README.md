@@ -1,102 +1,74 @@
 # mborne/docker-devbox
 
-This repository provides a framework to setup a **local dev environment** with docker.
+This repository provides stacks to setup a **local dev environment** with docker or [K3S](https://k3s.io/) for some of them.
 
-## Key points
+## Usage.
 
-* [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
-* [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : http://kibana.localhost)
-* Containers run on the same network named `devbox` to simplify communication between containers/stacks
-* Named volumes allows data persistence to ease the purge of running services
+Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand traefik.
 
-It also provides a set of sample stacks (usual dependencies for my projects, sandbox, experiments, etc.)
+See [notes about docker-compose](docs/docker-compose.md) for more details.
 
-## Schema
+## Stacks
 
-<div style="text-align:center">
-<img src="docs/devbox.png" title="Architecture schema"/>
-</div>
+### Load balancer
 
-## Usage
+* [traefik](traefik/README.md)
+* [whoami](whoami/README.md)
 
-* Ensure that you have a correct docker daemon configuration (`/etc/docker/daemon.json`) :
+### GUI
 
-  * Configure `bip` and `default-address-pools` to avoid IP overlaps on your LAN
-  * Configure `storage-driver` to "overlay2"
-  * ...
+* [kibana](kibana/README.md)
+* [adminer](adminer/README.md)
 
-> Note that you may have a look at least to [docker-bench-security](https://github.com/docker/docker-bench-security) to avoid main security issues.
+### Databases
 
-* Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand traefik.
-
-
-## Stacks
-
-### Core services
-
-| Name                             | Description                                                                                 |
-| -------------------------------- | ------------------------------------------------------------------------------------------- |
-| [traefik](traefik/README.md)     | Reverse proxy providing URLs according to labels (ex : `http://<service>.${HOST_HOSTNAME}`) |
-| [whoami](whoami/README.md)       | Trivial service to test and understand traefik                                              |
-| [portainer](portainer/README.md) | Docker web UI                                                                               |
-
-## ELK
-
-| Name                                     | Description             |
-| ---------------------------------------- | ----------------------- |
-| [elasticsearch](elasticsearch/README.md) | elasticsearch (2 nodes) |
-| [kibana](kibana/README.md)               | kibana                  |
-
-### Spatial
-
-| Name                                                 | Description                                       |
-| ---------------------------------------------------- | ------------------------------------------------- |
-| [postgis](postgis/README.md)                         | Store spatial data (tables with geometry columns) |
-| [geoserver](geoserver/README.md)                     | Render spatial data (WMS, WFS, WMTS)              |
-| [geonetwork](geonetwork/README.md) (CSW, CSW-T)      | Store metadata (CSW, CSW-T)                       |
-| [postgis-integration](postgis-integration/README.md) | Load opendata datasets in postgis                 |
-
-### Authentication
-
-| Name                               | Description              |
-| ---------------------------------- | ------------------------ |
-| [openldap](openldap/README.md)     | LDAP server and admin UI |
-| [keycloak](keycloak/README.md)     | Identity provider        |
-| [fusionauth](fusionauth/README.md) | Identity provider        |
+* [elasticsearch](elasticsearch/README.md)
+* [postgis](postgis/README.md)
 
 ### Storage
 
-| Name                             | Description                                   |
-| -------------------------------- | --------------------------------------------- |
-| [gogs](gogs/README.md)           | GIT hosting                                   |
-| [nexus](nexus/README.md)         | Artefact hosting (docker image, deb, rpm,...) |
-| [nextcloud](nextcloud/README.md) | File hosting                                  |
+* [nexus](nexus/README.md)
+* [nextcloud](nextcloud/README.md)
+* [longhorn](longhorn/README.md)
 
-### Continuous integration
+### Spatial services
 
-| Name                             | Description           |
-| -------------------------------- | --------------------- |
-| [jenkins](jenkins/README.md)     | Continous Integration |
-| [sonarqube](sonarqube/README.md) | Code quality          |
+* [geoserver (WMS, WFS, WMTS)](geoserver/README.md) 
+* [geonetwork (CSW, CSW-T)](geonetwork/README.md) 
+
+### CI/CD
+
+* [argocd](argocd/README.md)
+* [jenkins](jenkins/README.md)
+* [sonarqube](sonarqube/README.md)
 
 ### CMS
 
-| Name                             | Description |
-| -------------------------------- | ----------- |
-| [wordpress](wordpress/README.md) | CMS         |
-| [drupal](drupal/README.md)       | CMS         |
+* [wordpress](wordpress/README.md)
+* [drupal](drupal/README.md)
 
-### Various
+### Authentication
 
-| Name                           | Description                        |
-| ------------------------------ | ---------------------------------- |
-| [mailhog](mailhog/README.md)   | Web and API based SMTP test server |
-| [mailer](mailer/README.md)     | SMTP relay                         |
-| [rabbitmq](rabbitmq/README.md) | Message broker                     |
-| [drupal](drupal/README.md)     | CMS                                |
-| [netdata](netdata/README.md)   | Monitoring                         |
-| [adminer](adminer/README.md)   | Database management                |
-| [matomo](matomo/README.md)     | Stats about visits                 |
+* [openldap](openldap/README.md)
+* [keycloak](keycloak/README.md)
+
+### Secrets
+
+* [vault](vault/README.md)
+
+### Mailing
+
+* [mailhog](mailhog/README.md)
+* [mailer](mailer/README.md)
+
+### Monitoring
+
+* [matomo](matomo/README.md)
+* [netdata](netdata/README.md)
+
+### Messaging
+
+* [rabbitmq](rabbitmq/README.md)
 
 ## License
 

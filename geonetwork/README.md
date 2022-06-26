@@ -1,12 +1,12 @@
-# geonetwork
+# GeoNetwork (CSW, CSW-T)
 
-Docker container running geonetwork (CSW, CSW-T)
+Docker container running [GeoNetwork](https://geonetwork-opensource.org/).
 
-## Usage
+## Usage with docker-compose
 
 * Start geonetwork : `docker-compose up -d`
 
-* Open http://geonetwork.localhost/geonetwork/
+* Open [geonetwork.localhost](http://geonetwork.localhost/geonetwork/)
 
 * Login with admin/admin
 
