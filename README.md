@@ -8,7 +8,7 @@ Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) 
 
 See [notes about docker-compose](docs/docker-compose.md) for more details.
 
-## Stacks
+## Stacks
 
 ### Load balancer
 
@@ -66,7 +66,7 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 * [matomo](matomo/README.md)
 * [netdata](netdata/README.md)
 
-### Messaging
+### Messaging
 
 * [rabbitmq](rabbitmq/README.md)
 
