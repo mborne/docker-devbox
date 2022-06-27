@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: jenkins
+  namespace: jenkins
+spec:
+  entryPoints:
+    - web
+    - websecure
+  routes:
+    - match: Host(`jenkins.localhost`)
+      kind: Rule
+      services:
+        - name: jenkins
+          port: 8080
