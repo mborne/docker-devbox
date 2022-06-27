@@ -1,8 +1,8 @@
 # Note to forward localhost to traefik
 
-To access `traefik.localhost` with a remote host running docker or K3S :
+To access `traefik.localhost` & co. with a remote host running docker or K3S :
 
-## With redir
+## With redir
 
 ```bash
 # sudo apt-get install redir
