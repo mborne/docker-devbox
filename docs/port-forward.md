@@ -18,7 +18,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-ExecStart=redir --lport=443 --laddr=127.0.0.1 --caddr=192.168.50.201 --cport=443
+ExecStart=/usr/bin/redir --lport=443 --laddr=127.0.0.1 --caddr=192.168.50.201 --cport=443
 PIDFile=/run/vagrantbox-redir-https.pid
 
 [Install]
