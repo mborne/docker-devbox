@@ -2,9 +2,10 @@ apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: jenkins-pv
-  namespace: jenkins
+  labels:
+    type: local
 spec:
-  storageClassName: jenkins-pv
+  storageClassName: jenkins-storage
   accessModes:
   - ReadWriteOnce
   capacity:
