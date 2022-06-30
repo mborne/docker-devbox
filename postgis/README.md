@@ -32,9 +32,9 @@ psql -d gis -c "CREATE EXTENSION postgis"
 * Start postgis :
 
 ```bash
-# To use local storage
+# To use local storage
 kubectl apply -k https://github.com/mborne/docker-devbox/postgis/manifest/local-storage/
-# To use longhorn storage
+# To use longhorn storage
 kubectl apply -k https://github.com/mborne/docker-devbox/postgis/manifest/longhorn-storage/
 ```
 

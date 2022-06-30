@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: jenkins-pv
+  labels:
+    type: local
+spec:
+  storageClassName: jenkins-storage
+  accessModes:
+  - ReadWriteOnce
+  capacity:
+    storage: 20Gi
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /var/devbox/jenkins-data/
