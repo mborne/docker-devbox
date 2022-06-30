@@ -1,10 +1,8 @@
-# jenkins
+# Jenkins
 
 ## Description
 
-Docker container running jenkins with docker in docker.
-
-WARNING : `/var/run/docker.sock` is mounted and [jenkins acquires full docker control on the docker host](https://github.com/mborne/docker-jenkins/blob/fefaab05473526f9fe25d2e8171fc9e812fe7c3e/docker-entrypoint.sh#L3-L13).
+Docker container running [Jenkins](https://www.jenkins.io/).
 
 ## Usage with docker-compose
 
@@ -30,22 +28,15 @@ kubectl apply -k https://github.com/mborne/docker-devbox/jenkins/manifest/local-
 kubectl -n jenkins exec -ti pod/jenkins-0 -- /bin/cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-* 4) Install and configure Kubernetes cloud plugin :
+* 4) Install and configure [Kubernetes cloud plugin](https://plugins.jenkins.io/kubernetes/) :
+  * Kubernetes URL : https://kubernetes.default.svc.cluster.local
+  * Jenkins URL : http://jenkins.jenkins.svc.cluster.local:8080
 
-Kubernetes URL : https://kubernetes.default.svc.cluster.local
 
-
-## How to configure registry access throw global environment variables?
-
-| Variable                      | Description                                                  | Example                             |
-| ----------------------------- | ------------------------------------------------------------ | ----------------------------------- |
-| DOCKER_REGISTRY               | Hostname for docker registry                                 | `registry.${HOST_HOSTNAME}`         |
-| DOCKER_REGISTRY_URL           | URL for docker registry                                      | `https://registry.${HOST_HOSTNAME}` |
-| DOCKER_REGISTRY_CREDENTIAL_ID | Jenkins credential id to access registry (username/password) | `nexus_user`                        |
 
 ## See also
 
 * [www.jenkins.io - Installing / Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/) for helm instructions
-* [How to Setup Jenkins Build Agents on Kubernetes Pods](https://devopscube.com/jenkins-build-agents-kubernetes/)
-* [~jpetazzo/Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
-
+* [devopscube.com - How to Setup Jenkins Build Agents on Kubernetes Pods](https://devopscube.com/jenkins-build-agents-kubernetes/)
+* [jpetazzo.github.io - Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)
+* [akomljen.com - Set Up a Jenkins CI/CD Pipeline with Kubernetes](https://akomljen.com/set-up-a-jenkins-ci-cd-pipeline-with-kubernetes/)
