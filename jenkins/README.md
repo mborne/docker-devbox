@@ -22,14 +22,15 @@ WARNING : `/var/run/docker.sock` is mounted and [jenkins acquires full docker co
 kubectl apply -k https://github.com/mborne/docker-devbox/jenkins/manifest/local-storage
 ```
 
-* 2) Get initial admin password :
+* 2) Wait until jenkins is running : `kubectl -n jenkins get all -o wide`
+
+* 3) Get initial admin password :
 
 ```bash
-JENKINS_POD=$(kubectl -n jenkins get pods -l app=jenkins --no-headers -o custom-columns=":metadata.name")
-kubectl -n jenkins exec -ti $JENKINS_POD -- /bin/cat /var/jenkins_home/secrets/initialAdminPassword
+kubectl -n jenkins exec -ti pod/jenkins-0 -- /bin/cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-* 3) Install and configure Kubernetes cloud plugin :
+* 4) Install and configure Kubernetes cloud plugin :
 
 Kubernetes URL : https://kubernetes.default.svc.cluster.local
 
