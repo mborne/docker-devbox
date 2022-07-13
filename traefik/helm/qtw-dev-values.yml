@@ -1,0 +1,48 @@
+deployment:
+  initContainers:
+    # The "volume-permissions" init container is required if you run into permission issues.
+    # Related issue: https://github.com/containous/traefik/issues/6972
+    - name: volume-permissions
+      image: busybox:1.31.1
+      command: ["sh", "-c", "chmod -Rv 600 /data/*"]
+      volumeMounts:
+        - name: data
+          mountPath: /data
+
+# Enable persistence using Persistent Volume Claims
+# ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
+# After the pvc has been mounted, add the configs into traefik by using the `additionalArguments` list below, eg:
+# additionalArguments:
+# - "--certificatesresolvers.le.acme.storage=/data/acme.json"
+# It will persist TLS certificates.
+persistence:
+  enabled: true
+  name: data
+  #  existingClaim: ""
+  accessMode: ReadWriteOnce
+  size: 128Mi
+  # storageClass: ""
+  path: /data
+  annotations: {}
+  # subPath: "" # only mount a subpath of the Volume into the pod
+
+certResolvers:
+  letsencrypt:
+    # for challenge options cf. https://doc.traefik.io/traefik/https/acme/
+    email: admin@quadtreeworld.net
+    # dnsChallenge:
+    #   # also add the provider's required configuration under env
+    #   # or expand then from secrets/configmaps with envfrom
+    #   # cf. https://doc.traefik.io/traefik/https/acme/#providers
+    #   provider: digitalocean
+    #   # add futher options for the dns challenge as needed
+    #   # cf. https://doc.traefik.io/traefik/https/acme/#dnschallenge
+    #   delayBeforeCheck: 30
+    #   resolvers:
+    #     - 1.1.1.1
+    #     - 8.8.8.8
+    tlsChallenge: true
+    httpChallenge:
+      entryPoint: "web"
+    # match the path to persistence
+    storage: /data/acme.json

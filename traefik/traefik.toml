@@ -4,15 +4,67 @@
   watch = true
 
 [providers.file]
-  filename = "/etc/traefik/traefik.toml"
+  # includes /etc/traefik/traefik.toml and other dynamic files
+  directory = "/etc/traefik"
+  watch = true
+
+[entryPoints]
+  [entryPoints.web]
+    address = ":80"
+  # redirect http to https
+  #[entryPoints.web.http.redirections.entryPoint]
+  #  to = "websecure"
+  #  scheme = "https"
+  [entryPoints.websecure]
+    address = ":443"
 
 [http.middlewares]
+  #-------------------------------------------------------------------
+  # Middleware to redirect http to https
+  #-------------------------------------------------------------------
+  [http.middlewares.https-redirect.redirectscheme]
+    scheme = "https"
+
+  #-------------------------------------------------------------------
+  # Middleware to filter by IP
+  #-------------------------------------------------------------------
+  [http.middlewares.whitelist.ipWhiteList]
+    sourceRange = ["127.0.0.0/8", "192.168.0.0/16", "172.17.0.0/16", "10.0.0.0/8"]
+
+  #-------------------------------------------------------------------
+  # Middleware to add cors headers
+  #-------------------------------------------------------------------
   [http.middlewares.cors.headers]
     accessControlAllowMethods= ["GET", "OPTIONS", "PUT", "POST", "DELETE"]
-    accessControlAllowOrigin = "*"
+    accessControlAllowOriginList = "*"
+
+  #-------------------------------------------------------------------
+  # Middleware to add security headers
+  # (see https://securityheaders.com/)
+  #-------------------------------------------------------------------
+  [http.middlewares.security-headers.headers]
+    [http.middlewares.security-headers.headers.customResponseHeaders]
+      X-Frame-Options = "SAMEORIGIN"
+      Strict-Transport-Security = 'max-age=31536000;'
+      X-Content-Type-Options = "nosniff"
+      Referrer-Policy = "strict-origin"
+
+#-------------------------------------------------------------------
+# API and dashboard
+#-------------------------------------------------------------------
+[http.routers.traefik]
+  rule = "Host(`traefik.localhost`)"
+  service = "api@internal"
+    #tls = true
+    #middlewares = ["whitelist@file"]
 
 [api]
-  insecure = true
+  insecure = false
+  dashboard = true
+  debug = false
 
+#-------------------------------------------------------------------
+# Logs
+#-------------------------------------------------------------------
 [accessLog]
 
