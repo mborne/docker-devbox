@@ -60,7 +60,7 @@
 # API and dashboard
 #-------------------------------------------------------------------
 [http.routers.traefik]
-  rule = "Host(`traefik.localhost`)"
+  rule = "Host(`traefik.dev.localhost`)"
   service = "api@internal"
   tls = true
 
