@@ -9,6 +9,7 @@ services:
       - "127.0.0.1:80:80"
       - "127.0.0.1:443:443"
     volumes:
+      - ./certs:/certs:ro
       - ./traefik.toml:/etc/traefik/traefik.toml:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     userns_mode: 'host'

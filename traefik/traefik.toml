@@ -8,6 +8,13 @@
   directory = "/etc/traefik"
   watch = true
 
+#-------------------------------------------------------------------
+# Configure SSL certificates
+#-------------------------------------------------------------------
+[[tls.certificates]]
+    certFile = "/certs/default.pem"
+    keyFile  = "/certs/default-key.pem"
+
 [entryPoints]
   [entryPoints.web]
     address = ":80"

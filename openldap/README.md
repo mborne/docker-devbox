@@ -2,7 +2,7 @@
 
 ## Description
 
-Docker containers running openldap and phpldapadmin
+Containers running [osixia/openldap](https://github.com/osixia/docker-openldap#osixiaopenldap) and [osixia/docker-phpLDAPadmin](https://github.com/osixia/docker-phpLDAPadmin).
 
 ## Usage
 
@@ -12,7 +12,7 @@ Docker containers running openldap and phpldapadmin
 LDAP_DOMAIN=my-domain.com LDAP_ADMIN_PASSWORD=my-password docker-compose up -d
 ```
 
-* Open ldapadmin : http://ldapadmin.localhost
+* Open ldapadmin : https://ldapadmin.dev.localhost
 
 * Login with admin account
     * Login DN : `cn=admin,dc=my-domain,dc=com`
@@ -33,7 +33,7 @@ cn=somebody,ou=people,dc=my-domain,dc=com
 ```
 
 ```bash
-ldapsearch -H ldap://openldap.devbox -D "cn=admin,dc=my-domain,dc=com" -b "dc=my-domain,dc=com" -w "my-password" -s sub "(objectClass=*)"
+ldapsearch -H ldap://localhost:389 -D "cn=admin,dc=my-domain,dc=com" -b "dc=my-domain,dc=com" -w "my-password" -s sub "(objectClass=*)"
 ```
 
 ## Resources

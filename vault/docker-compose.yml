@@ -10,8 +10,8 @@ services:
       - ./vault.hcl:/vault/config/vault.hcl
       - vault-file:/vault/file
       - vault-logs:/vault/logs
-    ports:
-      - "127.0.0.1:8200:8200"
+    # ports:
+    #   - "127.0.0.1:8200:8200"
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.vault.rule=Host(`vault.${HOST_HOSTNAME}`)"

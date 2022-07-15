@@ -6,4 +6,4 @@ ingress:
   path: /
   pathType: Prefix
   hosts:
-    - netdata.localhost
+    - netdata.dev.localhost

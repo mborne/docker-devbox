@@ -17,6 +17,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.wordpress.rule=Host(`wordpress.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.wordpress.tls=true"
     restart: unless-stopped
 
   db:

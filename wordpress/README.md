@@ -6,4 +6,4 @@ Docker container running geoserver
 
 * Start wordpress : `docker-compose up -d`
 
-* Open http://wordpress.localhost/
+* Open https://wordpress.dev.localhost/
