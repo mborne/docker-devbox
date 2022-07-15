@@ -5,7 +5,6 @@ services:
   traefik:
     container_name: traefik
     image: traefik:v2.7
-    # Enables the web UI and tells Traefik to listen to docker
     ports:
       - "127.0.0.1:80:80"
       - "127.0.0.1:443:443"

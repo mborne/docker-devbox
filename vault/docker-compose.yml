@@ -7,7 +7,7 @@ services:
     image: vault:1.11.0
     command: server
     volumes:
-      #- ./config.json:/vault/config/local.json
+      - ./vault.hcl:/vault/config/vault.hcl
       - vault-file:/vault/file
       - vault-logs:/vault/logs
     ports:
@@ -15,7 +15,7 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.vault.rule=Host(`vault.${HOST_HOSTNAME}`)"
-    - "traefik.http.services.vault-service.loadbalancer.server.port=8200"
+    - "traefik.http.routers.vault.tls=true"
     cap_add:
     - IPC_LOCK
 

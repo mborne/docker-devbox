@@ -11,7 +11,7 @@ Docker container to test [HashiCorp vault](https://hub.docker.com/_/vault).
 * Configure client and [perform some checks](https://learn.hashicorp.com/vault?track=getting-started#getting-started) :
 
 ```bash
-export VAULT_ADDR=http://vault.localhost
+export VAULT_ADDR=https://vault.localhost
 
 # -- check server status
 vault status

@@ -12,9 +12,9 @@
   [entryPoints.web]
     address = ":80"
   # redirect http to https
-  #[entryPoints.web.http.redirections.entryPoint]
-  #  to = "websecure"
-  #  scheme = "https"
+  [entryPoints.web.http.redirections.entryPoint]
+    to = "websecure"
+    scheme = "https"
   [entryPoints.websecure]
     address = ":443"
 
@@ -55,8 +55,7 @@
 [http.routers.traefik]
   rule = "Host(`traefik.localhost`)"
   service = "api@internal"
-    #tls = true
-    #middlewares = ["whitelist@file"]
+  tls = true
 
 [api]
   insecure = false

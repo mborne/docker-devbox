@@ -7,6 +7,7 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.whoami.rule=Host(`whoami.${HOST_HOSTNAME}`)"
+    - "traefik.http.routers.whoami.tls=true"
     restart: unless-stopped
 
 networks:
