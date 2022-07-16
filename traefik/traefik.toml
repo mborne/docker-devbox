@@ -51,7 +51,8 @@
   #-------------------------------------------------------------------
   [http.middlewares.security-headers.headers]
     [http.middlewares.security-headers.headers.customResponseHeaders]
-      X-Frame-Options = "SAMEORIGIN"
+      # traefik pilot
+      #X-Frame-Options = "SAMEORIGIN"
       Strict-Transport-Security = 'max-age=31536000;'
       X-Content-Type-Options = "nosniff"
       Referrer-Policy = "strict-origin"
