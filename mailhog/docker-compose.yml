@@ -6,8 +6,10 @@ services:
     container_name: mailhog
     image: mailhog/mailhog:latest
     labels:
-      - "traefik.http.routers.mailhog.rule=Host(`mailhog.${HOST_HOSTNAME}`)"
-      - "traefik.http.services.mailhog-service.loadbalancer.server.port=8025"
+    - "traefik.enable=true"
+    - "traefik.http.routers.mailhog.rule=Host(`mailhog.${HOST_HOSTNAME}`)"
+    - "traefik.http.services.mailhog-service.loadbalancer.server.port=8025"
+    - "traefik.http.routers.mailhog.tls=true"
     restart: unless-stopped
 
 networks:
