@@ -30,7 +30,7 @@ kubectl -n longhorn-system edit cm/longhorn-storageclass
 
 * Check pod status : `watch kubectl -n longhorn-system get pods -o wide`
 
-* Open UI : http://longhorn.localhost and check nodes.
+* Open UI : https://longhorn.dev.localhost and check nodes.
 
 * [Ensure that you have only one default StorageClass](https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/#changing-the-default-storageclass) :
 
