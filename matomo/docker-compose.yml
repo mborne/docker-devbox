@@ -17,6 +17,7 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.matomo.rule=Host(`matomo.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.matomo.tls=true"
     restart: unless-stopped
 
   db:
