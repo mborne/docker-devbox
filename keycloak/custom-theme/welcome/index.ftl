@@ -16,7 +16,7 @@
 
 <body>
   <div class="container-fluid">
-    <h1>KeyCloak</h1>
+    <h1>DEVBOX</h1>
 
     <p class="alert alert-warning">
     WARNING : This is a test instance.
