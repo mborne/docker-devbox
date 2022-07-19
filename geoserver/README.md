@@ -5,12 +5,14 @@ Docker container running [GeoServer](https://geoserver.org/)
 
 ## Usage with docker-compose
 
+* Build GeoServer : `docker-compose build`
+
 * Start GeoServer : `docker-compose up -d`
 
-* Open http://geoserver.localhost/
+* Open https://geoserver.dev.localhost/
 
 * Login with admin/geoserver
 
-## See also
+## See also
 
 * [geoserver.org - geoserver-cloud](http://geoserver.org/geoserver-cloud/)
