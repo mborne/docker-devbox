@@ -6,11 +6,7 @@ Docker container running [Jenkins](https://www.jenkins.io/).
 
 ## Usage with docker-compose
 
-* Start jenkins : `docker-compose up -d`
-
-* Retrieve initial password `docker exec -ti jenkins cat /var/jenkins_home/secrets/initialAdminPassword`
-
-* Open http://jenkins.localhost
+See [github.com - mborne/docker-jenkins](https://github.com/mborne/docker-jenkins#docker-jenkins)
 
 ## Usage with kubernetes
 
