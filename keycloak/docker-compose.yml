@@ -13,12 +13,15 @@ services:
       - DB_PASSWORD=${POSTGRES_PASSWORD}
       - KEYCLOAK_WELCOME_THEME=custom
       - KEYCLOAK_DEFAULT_THEME=keycloak
+      - PROXY_ADDRESS_FORWARDING=true
     volumes:
       - keycloak-data:/opt/jboss/keycloak/standalone
       - ./custom-theme:/opt/jboss/keycloak/themes/custom:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.keycloak.rule=Host(`keycloak.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.keycloak.tls=true"
+      - "traefik.http.services.keycloak-service.loadbalancer.server.port=8080"
     restart: unless-stopped
 
 volumes:

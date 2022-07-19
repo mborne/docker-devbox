@@ -6,7 +6,7 @@ Docker container running [GeoNetwork](https://geonetwork-opensource.org/).
 
 * Start geonetwork : `docker-compose up -d`
 
-* Open [geonetwork.localhost](http://geonetwork.localhost/geonetwork/)
+* Open https://geonetwork.dev.localhost/geonetwork/
 
 * Login with admin/admin
 

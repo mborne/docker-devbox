@@ -4,7 +4,7 @@ services:
 
   es:
     container_name: es
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
     environment:
       - node.name=es
       - cluster.name=es-docker-single
@@ -20,6 +20,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.es.rule=Host(`es.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.es.tls=true"
+      - "traefik.http.services.es-service.loadbalancer.server.port=9200"
     volumes:
       - es-data:/usr/share/elasticsearch/data
     restart: unless-stopped

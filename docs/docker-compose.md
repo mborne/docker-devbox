@@ -3,7 +3,8 @@
 ## Key points
 
 * [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
-* [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : http://kibana.localhost)
+* [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : https://kibana.dev.localhost)
+* [mkcert](https://github.com/FiloSottile/mkcert#mkcert) is used to generate a wildcard certificate for `*.dev.localhost` with a locally trusted rootCA (`*.localhost`)
 * Containers run on the same network named `devbox` to simplify communication between containers/stacks
 * Named volumes allows data persistence to ease the purge of running services
 

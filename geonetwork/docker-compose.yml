@@ -8,8 +8,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.geonetwork.rule=Host(`geonetwork.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.geonetwork.tls=true"
     environment:
-      - DATA_DIR:/var/lib/geonetwork_data
+      - DATA_DIR=/var/lib/geonetwork_data
+      - ES_HOST=es
     volumes:
       - geonetwork-data:/var/lib/geonetwork_data
     restart: unless-stopped

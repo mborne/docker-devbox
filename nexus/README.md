@@ -2,32 +2,36 @@
 
 ## Description
 
-Repository manager for maven and docker
+Containers running [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/)
 
-## Usage
+## Usage with docker-compose
 
 * Start nexus : `docker-compose up -d`
 
 * Retreive initial admin password : `docker exec -ti nexus cat /nexus-data/admin.password`
 
-* Open nexus : http://nexus.localhost
+* Open nexus : https://nexus.dev.localhost/
 
-* Connect with admin and initial password
+* Connect with admin and initial password (`docker exec -ti nexus cat /nexus-data/admin.password`)
 
-* Create a docker-hosted hosted repository with http port 8082
+* Create a "docker (hosted)" repository with http port 8082
 
-* Test docker registry
+* Open https://registry.dev.localhost/v2/_catalog
+
+
+## Using docker registry
 
 ```bash
 # re-tag
-docker login registry.localhost
-docker tag hello-world:latest registry.localhost/hello-world:latest
+docker login registry.dev.localhost
+docker pull hello-world:latest
+docker tag hello-world:latest registry.dev.localhost/hello-world:latest
 # push
 docker pull hello-world:latest
-docker push registry.localhost/hello-world:latest
+docker push registry.dev.localhost/hello-world:latest
 ```
 
-Check http://registry.localhost/v2/_catalog and http://registry.localhost/v2/hello-world/tags/list
+Check https://registry.dev.localhost/v2/_catalog and https://registry.dev.localhost/v2/hello-world/tags/list
 
 
 

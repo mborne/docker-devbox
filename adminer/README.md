@@ -6,7 +6,7 @@ Docker container running [adminer](https://hub.docker.com/_/adminer/)
 
 * Start adminer : `docker-compose up -d`
 
-* Open http://adminer.localhost/
+* Open https://adminer.dev.localhost/
 
 * Login to database :
 

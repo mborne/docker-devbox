@@ -5,4 +5,4 @@ Docker container running [Kibana](https://www.elastic.co/kibana/) as a single no
 ## Usage with docker-compose
 
 * Start kibana : `docker-compose up -d`
-* Open http://kibana.localhost
+* Open https://kibana.dev.localhost

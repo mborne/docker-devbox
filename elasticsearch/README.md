@@ -5,7 +5,7 @@ Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) 
 ## Usage with docker-compose
 
 * Start elasticsearch : `docker-compose up -d`
-* Open http://es.localhost or http://es.localhost/_cat/nodes?v&pretty
+* Open https://es.dev.localhost or https://es.dev.localhost/_cat/nodes?v&pretty
 * See [ElasticSearch - debug with docker-compose](debug-compose.md)
 
 ## Usage with Kubernetes

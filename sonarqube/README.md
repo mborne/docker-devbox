@@ -7,7 +7,7 @@ Docker container running sonarqube
 ## Usage
 
 * Start : `docker-compose up -d`
-* Open http://sonarqube.localhost
+* Open https://sonarqube.dev.localhost
 * Login with default admin/admin account
 
 ## Notes about sonarqube
@@ -17,19 +17,9 @@ Docker container running sonarqube
 ```bash
 git clone https://github.com/IGNF/validator
 cd validator
+mvn clean package
 mvn sonar:sonar -Dsonar.java.binaries=$PWD/**/target/classes \
-    -Dsonar.host.url=http://sonarqube.localhost -Dsonar.login=$SONAR_TOKEN
-```
-
-### PHP
-
-```bash
-# install sonar-runner
-composer global require neuralys/sonar-runner
-# fix permission (think about finding another one)
-chmod +x ~/.config/composer/vendor/neuralys/sonar-runner/bin/sonar-runner
-# run
-~/.config/composer/vendor/neuralys/sonar-runner/bin/sonar-runner -Dsonar.projectKey=remote-git -Dsonar.language=php -Dsonar.sources=$PWD/src -Dsonar.host.url=http://sonarqube.localhost   -Dsonar.login=$SONAR_TOKEN
+    -Dsonar.host.url=http://localhost:9000 -Dsonar.login=$SONAR_TOKEN
 ```
 
 ## sonar-scanner under docker

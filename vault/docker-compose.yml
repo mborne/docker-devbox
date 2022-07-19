@@ -4,18 +4,21 @@ services:
 
   vault:
     container_name: vault
-    image: vault:1.3.2
-    command: server -config=/vault/config.json
+    image: vault:1.11.0
+    command: server
     volumes:
-      - ./config.json:/vault/config.json
+      - ./vault.hcl:/vault/config/vault.hcl
       - vault-file:/vault/file
       - vault-logs:/vault/logs
+    # ports:
+    #   - "127.0.0.1:8200:8200"
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.vault.rule=Host(`vault.${HOST_HOSTNAME}`)"
-    - "traefik.http.services.vault-service.loadbalancer.server.port=8200"
+    - "traefik.http.routers.vault.tls=true"
     cap_add:
     - IPC_LOCK
+
 
 volumes:
   vault-file:

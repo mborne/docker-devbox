@@ -5,5 +5,5 @@
 ## Usage
 
 * Start : `docker-compose up -d`
-* Open http://matomo.localhost and follow instructions
+* Open https://matomo.dev.localhost and follow instructions
 
