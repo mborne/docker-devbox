@@ -4,11 +4,11 @@ services:
 
   geoserver:
     container_name: geoserver
-    image: mborne/geoserver:2.19.2
+    image: mborne/geoserver:2.21.0
     build:
       context: .
       args:
-        version: '2.19.2'
+        version: '2.21.0'
     environment:
       - "CATALINA_OPTS=-Xms512m -Xmx512m"
     labels:
