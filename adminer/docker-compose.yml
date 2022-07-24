@@ -17,4 +17,5 @@ services:
 networks:
   default:
     name: devbox
+    external: true
 

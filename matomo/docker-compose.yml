@@ -41,6 +41,7 @@ volumes:
 networks:
   default:
     name: devbox
+    external: true
 
 
 
