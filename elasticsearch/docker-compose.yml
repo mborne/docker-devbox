@@ -4,11 +4,12 @@ services:
 
   es:
     container_name: es
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.5
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.3.2
     environment:
       - node.name=es
       - cluster.name=es-docker-single
       - discovery.type=single-node
+      - xpack.security.enabled=false
       - "ES_JAVA_OPTS=${ES_JAVA_OPTS}"
     ulimits:
       memlock:
