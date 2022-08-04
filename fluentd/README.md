@@ -1,6 +1,9 @@
 # Fluentd
 
 
+```
+docker run --log-driver=fluentd --log-opt tag="docker.{{.ID}}" ubuntu echo "Hello Fluentd!"
+```
 
 ## Reference
 

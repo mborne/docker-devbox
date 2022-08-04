@@ -10,8 +10,12 @@ services:
       - "127.0.0.1:443:443"
     volumes:
       - ./certs:/certs:ro
-      - ./traefik.toml:/etc/traefik/traefik.toml:ro
+      - ./config:/etc/traefik:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: fluentd
+      options:
+        tag: "docker.traefik"
     userns_mode: 'host'
     privileged: true
     restart: unless-stopped
