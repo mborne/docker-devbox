@@ -50,8 +50,8 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 
 ### Authentication
 
-* [openldap](openldap/README.md)
 * [keycloak](keycloak/README.md)
+* [openldap](openldap/README.md)
 
 ### Secrets
 
