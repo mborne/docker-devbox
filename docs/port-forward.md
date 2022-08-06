@@ -1,6 +1,6 @@
 # Note to forward localhost to traefik
 
-To access `traefik.localhost` & co. with a remote host running docker or K3S :
+To access `https://*.dev.localhost` URLs with a **remote host** running K3S :
 
 ## With redir
 

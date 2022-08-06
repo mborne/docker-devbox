@@ -2,7 +2,7 @@
 
 Docker container to test [HashiCorp vault](https://hub.docker.com/_/vault).
 
-## Usage
+## Usage with docker-compose
 
 * Start vault : `docker-compose up -d`
 

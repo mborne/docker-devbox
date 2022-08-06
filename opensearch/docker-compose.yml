@@ -1,4 +1,5 @@
-version: '3'
+version: '3.7'
+
 services:
   opensearch:
     image: opensearchproject/opensearch:latest
@@ -17,16 +18,17 @@ services:
         soft: -1
         hard: -1
       nofile:
-        soft: 65536 # maximum number of open files for the OpenSearch user, set to at least 65536 on modern systems
+        soft: 65536
         hard: 65536
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     ports:
       - 127.0.0.1:9200:9200
-      - 127.0.0.1:9600:9600 # required for Performance Analyzer
+       # required for Performance Analyzer
+      - 127.0.0.1:9600:9600
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.os.rule=Host(`os.dev.localhost`)"
+    - "traefik.http.routers.os.rule=Host(`os.${HOST_HOSTNAME}`)"
     - "traefik.http.routers.os.tls=true"
     restart: unless-stopped
 
@@ -42,7 +44,7 @@ services:
       - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.dev.localhost`)"
+    - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.${HOST_HOSTNAME}`)"
     - "traefik.http.routers.os-dashboard.tls=true"
     restart: unless-stopped
 

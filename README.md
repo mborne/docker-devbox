@@ -22,7 +22,8 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 
 ### Databases
 
-* [elasticsearch](elasticsearch/README.md)
+* [OpenSearch](opensearch/README.md)
+* [Elasticsearch](elasticsearch/README.md)
 * [postgis](postgis/README.md)
 
 ### Storage

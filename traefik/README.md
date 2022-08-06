@@ -1,10 +1,8 @@
 # Traefik
 
-## Description
+Container running [traefik proxy](https://doc.traefik.io/traefik/).
 
-Auto-configured reverse proxy according to container labels.
-
-## Usage with docker
+## Usage with docker-compose
 
 * Create certs for `*.dev.localhost` using [mkcerts](https://github.com/FiloSottile/mkcert#mkcert) :
 

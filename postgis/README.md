@@ -49,7 +49,7 @@ kubectl -n postgis port-forward --address 0.0.0.0 pod/postgis-0 5432:5432
 psql -h localhost -U postgis -l
 ```
 
-## Warning with kustomize
+## Warning with kustomize
 
 This is an experiment where local storage is used by default and adapted to a **single cluster node**. `/var/devbox/postgis-13` is created on a random node (see `kubectl -n postgis get pods -o wide`).
 

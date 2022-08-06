@@ -1,6 +1,6 @@
 # Elasticsearch
 
-Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) for dev purpose.
+Containers running [Elasticsearch](https://www.elastic.co/elasticsearch/) for **DEV purpose**.
 
 ## Usage with docker-compose
 
