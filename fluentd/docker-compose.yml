@@ -10,9 +10,10 @@ services:
     ports:
       - "127.0.0.1:24224:24224"
       - "127.0.0.1:24224:24224/udp"
-    # ensure it can start with global config
+    # ensure it can start with global fluentd logging
     logging:
       driver: syslog
+    restart: unless-stopped
 
 networks:
   default:

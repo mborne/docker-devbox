@@ -17,6 +17,7 @@ WARNING : Read [docker-compose.yml](docker-compose.yml) and note that security i
 
 ```bash
 sudo sysctl -w vm.max_map_count=262144
+# edit /etc/sysctl.conf to make it permanent
 ```
 
 * Start containers :
