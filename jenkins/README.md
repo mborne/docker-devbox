@@ -1,8 +1,6 @@
 # Jenkins
 
-## Description
-
-Docker container running [Jenkins](https://www.jenkins.io/).
+Container running [Jenkins](https://www.jenkins.io/).
 
 ## Usage with docker-compose
 
@@ -28,7 +26,18 @@ kubectl -n jenkins exec -ti pod/jenkins-0 -- /bin/cat /var/jenkins_home/secrets/
   * Kubernetes URL : https://kubernetes.default.svc.cluster.local
   * Jenkins URL : http://jenkins.jenkins.svc.cluster.local:8080
 
+## Usage with helm
 
+* 1) Add helm repo : `helm repo add jenkins https://charts.jenkins.io`
+* 2) Update helm repos : `helm repo update`
+* 3) Create jenkins namespace : `kubectl create namespace jenkins`
+* 4) Deploy with helm : `helm -n jenkins install -f helm/local-values.yml jenkins jenkins/jenkins` (**note that you may adapt [helm/local-values.yml](helm/local-values.yml)**)
+* 5) Follow helm instructions
+
+Notes :
+
+* Redeploy with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
+* Uninstall with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
 
 ## See also
 
