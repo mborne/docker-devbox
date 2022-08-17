@@ -34,13 +34,12 @@ helm repo add traefik https://helm.traefik.io/traefik
 
 helm repo update
 
-kubectl create namespace traefik-v2
+kubectl create namespace traefik-system
 
-helm -n traefik-v2 install traefik traefik/traefik
-# or 
-# helm -n traefik-v2 install traefik traefik/traefik -f traefik/helm/qtw-dev-values.yml
+helm -n traefik-system install traefik traefik/traefik
+# or
+# helm -n traefik-system install traefik traefik/traefik -f traefik/helm/qtw-dev-values.yml
 ```
-
 
 ## Reference
 

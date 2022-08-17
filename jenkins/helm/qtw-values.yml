@@ -1,0 +1,12 @@
+controller:
+  ingress:
+    enabled: true
+    # For Kubernetes v1.14+, use 'networking.k8s.io/v1beta1'
+    # For Kubernetes v1.19+, use 'networking.k8s.io/v1'
+    apiVersion: "networking.k8s.io/v1"
+    labels: {}
+    annotations:
+      kubernetes.io/ingress.class: traefik
+      traefik.ingress.kubernetes.io/router.tls: "true"
+      traefik.ingress.kubernetes.io/router.tls.certresolver: letsencrypt
+    hostName: jenkins.dev.quadtreeworld.net
