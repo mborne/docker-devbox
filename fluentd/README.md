@@ -27,14 +27,12 @@ Globaly adding the following properties in `/etc/docker/daemon.json` :
     "log-driver": "fluentd",
     "log-opts": {
         "fluentd-address": "localhost:24224",
-        "tag": "docker.{{.Name}}"
+        "tag": "docker.{{.Name}}.{{.ID}}"
     }
 }
 ```
 
-## TODO
-
-Find configure a parser like [fluent-plugin-parser-maybejson](https://github.com/ninadpage/fluent-plugin-parser-maybejson#fluent-plugin-parser-maybejson) supporting JSON or String for `log` entry.
+<!-- TODO : see fluentd-async? -->
 
 
 ## Reference

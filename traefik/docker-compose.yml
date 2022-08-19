@@ -13,10 +13,8 @@ services:
       - ./config:/etc/traefik:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     userns_mode: 'host'
+    # removes contraint to share network with traefik?
+    network_mode: 'host'
     privileged: true
     restart: unless-stopped
 
-networks:
-  default:
-    name: devbox
-    external: true

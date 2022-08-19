@@ -7,9 +7,12 @@ services:
     container_name: fluentd
     volumes:
       - ./conf:/fluentd/etc:ro
+      - /var/log:/var/log:ro
     ports:
       - "127.0.0.1:24224:24224"
       - "127.0.0.1:24224:24224/udp"
+    userns_mode: 'host'
+    privileged: true
     # ensure it can start with global fluentd logging
     logging:
       driver: syslog
