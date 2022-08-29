@@ -30,15 +30,23 @@ kubectl apply -k https://github.com/mborne/docker-devbox/traefik/manifest
 See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
 
 ```bash
+# add helm repository
 helm repo add traefik https://helm.traefik.io/traefik
-
+# update helm repositories
 helm repo update
-
+# create a namespace for traefik
 kubectl create namespace traefik-system
-
+# install traefik with helm
 helm -n traefik-system install traefik traefik/traefik
-# or
+# to use custom values :
 # helm -n traefik-system install traefik traefik/traefik -f traefik/helm/qtw-dev-values.yml
+```
+
+Dashboard access :
+
+```bash
+# http://localhost:9000/dashboard/#/
+kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000
 ```
 
 ## Reference
