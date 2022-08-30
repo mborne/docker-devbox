@@ -24,6 +24,7 @@ See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#t
 * Update helm repositories : `helm repo update`
 * Create a namespace for traefik : `kubectl create namespace traefik-system`
 * Deploy traefik with helm : `helm -n traefik-system install -f traefik/helm/local.yml traefik traefik/traefik`
+* Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
 * Get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
   
 Note :
