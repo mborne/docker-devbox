@@ -10,5 +10,12 @@
 
 ## Ressources
 
-* [K3S](https://k3s.io) is quite trivial to setup but you may have a look to [mborne/vagrantbox](https://github.com/mborne/vagrantbox) to create a local cluster with vagrant and ansible.
+* [K3S](https://k3s.io) is quite trivial to setup on a single node :
+
+```bash
+curl -sfL https://get.k3s.io | sh -s - --disable traefik --write-kubeconfig-mode 644 --flannel-iface enp0s8
+```
+
+* You may have a look to [mborne/vagrantbox](https://github.com/mborne/vagrantbox) to create a local cluster with vagrant and ansible.
+
 

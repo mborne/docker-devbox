@@ -12,6 +12,8 @@ spec:
       services:
         - name: api@internal
           kind: TraefikService
+      # middlewares:
+      #   - name: ipwhitelist-main
   tls:
     certResolver: letsencrypt
 

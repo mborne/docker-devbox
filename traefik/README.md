@@ -29,15 +29,10 @@ See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#t
 Note :
 
 * To enable [LetsEncrypt with HTTP challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge), see [helm/qtw-dev-values.yml](helm/qtw-dev-values.yml) and adapt it (**especially the email!**)
-
-## Usage with kustomize
-
-**WARNING : Mainly written to understand traefik some points in traefik. Prefer the use of the official helm chart**
-
-```bash
-# http://traefik.localhost (dashboard)
-kubectl apply -k https://github.com/mborne/docker-devbox/traefik/manifest
-```
+* See also the following sample to expose the dashboard with an IngressRoute :
+  * [manifest/middleware-ipwhitelist.yaml](manifest/middleware-ipwhitelist.yaml)
+  * [manifest/traefik-dashboard-http.yml](manifest/traefik-dashboard-http.yml)
+  * [manifest/traefik-dashboard-le.yml](manifest/traefik-dashboard-le.yml)
 
 ## Ressources
 
