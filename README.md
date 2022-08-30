@@ -1,8 +1,8 @@
 # mborne/docker-devbox
 
-This repository provides stacks to setup a **local dev environment** with docker or [K3S](https://k3s.io/) for some of them.
+This repository provides stacks to setup a **local dev environment** with [docker compose](docs/docker-compose.md) or [Kubernetes](docs/kubernetes.md) for some of them.
 
-## Usage.
+## Usage
 
 Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand traefik.
 

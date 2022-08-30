@@ -2,14 +2,11 @@
 
 Containers running [Elasticsearch](https://www.elastic.co/elasticsearch/) for **DEV purpose**.
 
+## System requirements
+
+* [max_map_count >= 262144](../docs/max_map_count.md)
+
 ## Usage with docker-compose
-
-* Increase the value of `max_map_count` on Docker host :
-
-```bash
-sudo sysctl -w vm.max_map_count=262144
-# edit /etc/sysctl.conf to make it permanent
-```
 
 * Start elasticsearch : `docker-compose up -d`
 * Open https://es.dev.localhost or https://es.dev.localhost/_cat/nodes?v&pretty

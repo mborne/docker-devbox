@@ -27,7 +27,7 @@ createdb gis
 psql -d gis -c "CREATE EXTENSION postgis"
 ```
 
-## Usage with kustomize
+## Usage with Kustomize
 
 * Start postgis :
 
@@ -48,6 +48,8 @@ kubectl -n postgis port-forward --address 0.0.0.0 pod/postgis-0 5432:5432
 # test
 psql -h localhost -U postgis -l
 ```
+
+Note : Internal hostname is `postgis.postgis.svc.cluster.local`.
 
 ## Warning with kustomize
 

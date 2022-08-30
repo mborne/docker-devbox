@@ -2,11 +2,11 @@
 
 ## Key points
 
-* [docker-compose](https://docs.docker.com/compose/) is used to define and start each service (ex : [kibana/docker-compose.yml](kibana/docker-compose.yml))
-* [traefik](https://hub.docker.com/_/traefik) provides nice URL for web services (ex : https://kibana.dev.localhost)
-* [mkcert](https://github.com/FiloSottile/mkcert#mkcert) is used to generate a wildcard certificate for `*.dev.localhost` with a locally trusted rootCA (`*.localhost`)
-* Containers run on the same network named `devbox` to simplify communication between containers/stacks
-* Named volumes allows data persistence to ease the purge of running services
+* [docker-compose](https://docs.docker.com/compose/) is used to start stacks.
+* [traefik](../traefik/README.md) is used to provide nice URL for web services (ex : https://kibana.dev.localhost)
+* [mkcert](https://github.com/FiloSottile/mkcert#mkcert) can be used to generate a wildcard certificate for `*.dev.localhost` with a locally trusted rootCA.
+* Containers run on the same network named `devbox` to simplify communication between containers/stacks.
+* Named volumes allows data persistence to ease the purge of running services.
 
 ## Schema
 
@@ -30,6 +30,10 @@ Most service ports are only exposed on `127.0.0.1` as docker overwrites `iptable
 
 ## Traefik as a service
 
-To ease IP filtering and avoid the requirement for the containers to share the traefik network, it is easier to install traefik as a service.
+To ease IP filtering and avoid the requirement for the containers to share the traefik network (*), it is easier to install traefik as a service.
 
 See [mborne/ansible-traefik](https://github.com/mborne/ansible-traefik#ansible-traefik) which illustrates traefik deployment as a systemd service.
+
+> (*) not sure of that as `network_mode: 'host'` in [traefik/docker-compose.yml](../traefik/docker-compose.yml) seams to do the job...
+
+

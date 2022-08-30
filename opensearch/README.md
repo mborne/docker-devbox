@@ -2,36 +2,41 @@
 
 Containers running [OpenSearch](https://opensearch.org/) for **DEV purpose**.
 
-## URL
+## System requirements
 
-| Name                 | URL                                                    |
-| -------------------- | ------------------------------------------------------ |
-| OpenSearch           | https://os.dev.localhost/ <br /> http://localhost:9200 |
-| OpenSearch Dashboard | https://os-dashboard.dev.localhost/                    |
+* [max_map_count >= 262144](../docs/max_map_count.md)
 
 ## Usage with docker-compose
 
-WARNING : Read [docker-compose.yml](docker-compose.yml) and note that security is disabled!
+WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security is disabled**!
 
-* Increase the value of `max_map_count` on Docker host :
-
-```bash
-sudo sysctl -w vm.max_map_count=262144
-# edit /etc/sysctl.conf to make it permanent
-```
-
-* Start containers :
-
-```bash
-docker compose up -d
-```
-
+* Start containers : `docker compose up -d`
 * Open https://os-dashboard.dev.localhost/
 
+## Usage with helm
+
+* Add helm chart : `helm repo add opensearch https://opensearch-project.github.io/helm-charts/`
+* Update helm repositories : `helm repo update`
+* Create namespace : `kubectl create namespace opensearch`
+* Install OpenSearch : 
+
+```bash
+# With default values
+helm -n opensearch install opensearch opensearch/opensearch
+# or to disable TLS and basic auth :
+#helm -n opensearch install -f helm/insecure.yml opensearch opensearch/opensearch
+```
+
+* Watch all cluster members come up : `kubectl get pods --namespace=opensearch -l app.kubernetes.io/component=opensearch-cluster-master -w`
+
+* Access from host : `kubectl -n opensearch port-forward service/opensearch-cluster-master 19200:9200`
+  * https://127.0.0.1:19200 using admin/admin with default values
+  * http://127.0.0.1:19200 with [helm/insecure.yml](helm/insecure.yml) values
 
 ## Ressources
 
 * [opensearch.org - Install OpenSearch / Docker](https://opensearch.org/docs/latest/opensearch/install/docker/)
+* [opensearch.org - Install OpenSearch using Helm](https://opensearch.org/docs/latest/opensearch/install/helm/#install-opensearch-using-helm)
 
 
 

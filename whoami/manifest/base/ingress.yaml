@@ -7,7 +7,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`whoami.localhost`)
+    - match: Host(`whoami.dev.localhost`)
       kind: Rule
       services:
         - name: whoami

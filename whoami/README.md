@@ -7,10 +7,10 @@
 * Start 2 instances : `docker-compose up -d --scale whoami=2`
 * Open https://whoami.dev.localhost and refresh
 
-## Usage with kustomize
+## Usage with Kustomize
 
 ```bash
-# http://whoami.localhost
+# http://whoami.dev.localhost
 kubectl apply -k https://github.com/mborne/docker-devbox/whoami/manifest/base
 # http://whoami.vagrantbox.dev
 kubectl apply -k https://github.com/mborne/docker-devbox/vagrantbox/manifest/devbox

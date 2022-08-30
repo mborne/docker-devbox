@@ -7,7 +7,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`geonetwork.localhost`)
+    - match: Host(`geonetwork.dev.localhost`)
       kind: Rule
       services:
         - name: geonetwork

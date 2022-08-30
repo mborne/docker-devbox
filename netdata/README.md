@@ -9,12 +9,13 @@
 
 ## Usage with Kubernetes
 
-See [learn.netdata.cloud - Deploy Kubernetes monitoring with Netdata](https://learn.netdata.cloud/docs/agent/packaging/installer/methods/kubernetes)
+See [learn.netdata.cloud - Deploy Kubernetes monitoring with Netdata](https://learn.netdata.cloud/docs/agent/packaging/installer/methods/kubernetes) :
 
-```bash
-helm repo add netdata https://netdata.github.io/helmchart/
-helm install -f netdata/helm/values.yaml netdata netdata/netdata
-```
+* Add helm repository : `helm repo add netdata https://netdata.github.io/helmchart/`
+* Update helm repositories : `helm repo update`
+* Create namespace : `kubectl create namespace netdata`
+* Update help repositories : `helm -n netdata install -f netdata/helm/values.yaml netdata netdata/netdata`
+
 
 
 

@@ -16,40 +16,30 @@ mkcert -cert-file certs/default.pem -key-file certs/default-key.pem *.dev.localh
 
 * Run [whoami](../whoami/README.md) to test traefik
 
+## Usage with helm
+
+See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
+
+* Add helm repository : `helm repo add traefik https://helm.traefik.io/traefik`
+* Update helm repositories : `helm repo update`
+* Create a namespace for traefik : `kubectl create namespace traefik-system`
+* Deploy traefik with helm : `helm -n traefik-system install -f traefik/helm/local.yml traefik traefik/traefik`
+* Get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
+  
+Note :
+
+* To enable [LetsEncrypt with HTTP challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge), see [helm/qtw-dev-values.yml](helm/qtw-dev-values.yml) and adapt it (**especially the email!**)
+
 ## Usage with kustomize
 
-**WARNING : Mainly written to understand traefik some points in traefik. Prefer the use the official helm chart [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik)**
+**WARNING : Mainly written to understand traefik some points in traefik. Prefer the use of the official helm chart**
 
 ```bash
 # http://traefik.localhost (dashboard)
 kubectl apply -k https://github.com/mborne/docker-devbox/traefik/manifest
 ```
 
-## Usage with helm
-
-See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
-
-```bash
-# add helm repository
-helm repo add traefik https://helm.traefik.io/traefik
-# update helm repositories
-helm repo update
-# create a namespace for traefik
-kubectl create namespace traefik-system
-# install traefik with helm
-helm -n traefik-system install traefik traefik/traefik
-# to use custom values :
-# helm -n traefik-system install traefik traefik/traefik -f traefik/helm/qtw-dev-values.yml
-```
-
-Dashboard access :
-
-```bash
-# http://localhost:9000/dashboard/#/
-kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000
-```
-
-## Reference
+## Ressources
 
 Docker :
 
