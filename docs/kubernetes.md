@@ -13,7 +13,13 @@
 * [K3S](https://k3s.io) is quite trivial to setup on a single node :
 
 ```bash
+# install K3S
 curl -sfL https://get.k3s.io | sh -s - --disable traefik --write-kubeconfig-mode 644 --flannel-iface enp0s8
+# configure kubectl
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+# check
+kubectl cluster-info
+kubectl get nodes
 ```
 
 * You may have a look to [mborne/vagrantbox](https://github.com/mborne/vagrantbox) to create a local cluster with vagrant and ansible.

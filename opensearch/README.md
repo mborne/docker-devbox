@@ -24,10 +24,10 @@ WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security
 # With default values
 helm -n opensearch install opensearch opensearch/opensearch
 # or to disable TLS and basic auth :
-#helm -n opensearch install -f helm/insecure.yml opensearch opensearch/opensearch
+#helm -n opensearch install -f opensearch/helm/insecure.yml opensearch opensearch/opensearch
 ```
 
-* Watch all cluster members come up : `kubectl get pods --namespace=opensearch -l app.kubernetes.io/component=opensearch-cluster-master -w`
+* Watch all cluster members come up : `kubectl -n opensearch get pods -w`
 
 * Access from host : `kubectl -n opensearch port-forward service/opensearch-cluster-master 19200:9200`
   * https://127.0.0.1:19200 using admin/admin with default values

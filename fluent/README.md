@@ -8,19 +8,19 @@ Container running [fluentd](https://www.fluentd.org/) to collect logs.
 
 ## Usage with docker-compose
 
+* Start containers :
+
 ```bash
 docker-compose up -d
 ```
 
-## Configure log driver
-
-With `docker run` :
+* To test with `docker run` :
 
 ```bash
 docker run --rm --log-driver=fluentd --log-opt tag="docker.echo.{{.ID}}" ubuntu echo '{"message":"hello world!"}'
 ```
 
-Globaly adding the following properties in `/etc/docker/daemon.json` :
+* To configure driver globally with `/etc/docker/daemon.json` :
 
 ```json
 {
@@ -34,6 +34,24 @@ Globaly adding the following properties in `/etc/docker/daemon.json` :
 
 <!-- TODO : see fluentd-async? -->
 
+## Usage with helm
+
+**WORK IN PROGRESS**
+
+* Add repository : `helm repo add fluent https://fluent.github.io/helm-charts`
+* Update helm repositories : `helm repo update`
+* Create namespace : `kubectl create namespace fluent-system`
+* Deploy fluent-bit :
+
+```bash
+helm -n fluent-system install -i fluent-bit fluent/fluent-bit
+# or
+helm -n fluent-system install -f fluent/helm/values-opensearch.yml fluent-bit fluent/fluent-bit
+```
+
+Note :
+
+* see [fluent-bit/values.yaml](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml)
 
 ## Reference
 
