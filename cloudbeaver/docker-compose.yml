@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
 
-  whoami:
+  cloudbeaver:
     image: dbeaver/cloudbeaver:latest
     volumes:
     - cloudbeaver-data:/opt/cloudbeaver/workspace
