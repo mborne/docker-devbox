@@ -1,0 +1,21 @@
+version: '3.5'
+
+services:
+
+  cloudbeaver:
+    image: dbeaver/cloudbeaver:latest
+    volumes:
+    - cloudbeaver-data:/opt/cloudbeaver/workspace
+    labels:
+    - "traefik.enable=true"
+    - "traefik.http.routers.cloudbeaver.rule=Host(`cloudbeaver.${HOST_HOSTNAME}`)"
+    - "traefik.http.services.cloudbeaver-service.loadbalancer.server.port=8978"
+    restart: unless-stopped
+
+volumes:
+  cloudbeaver-data:
+    name: cloudbeaver-data
+
+networks:
+  default:
+    name: devbox
