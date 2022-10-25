@@ -14,7 +14,9 @@
 
 ```bash
 # install K3S
-curl -sfL https://get.k3s.io | sh -s - --disable traefik --write-kubeconfig-mode 644 --flannel-iface enp0s8
+curl -sfL https://get.k3s.io | sh -s - --disable traefik --flannel-iface enp0s8
+# configure permission
+sudo setfacl -m "u:$USER:r" /etc/rancher/k3s/k3s.yaml
 # configure kubectl
 export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
 # check

@@ -32,8 +32,6 @@ docker run --rm --log-driver=fluentd --log-opt tag="docker.echo.{{.ID}}" ubuntu 
 }
 ```
 
-<!-- TODO : see fluentd-async? -->
-
 ## Usage with helm
 
 **WORK IN PROGRESS**

@@ -8,6 +8,7 @@ services:
     volumes:
       - ./conf:/fluentd/etc:ro
       - /var/log:/var/log:ro
+      - fluent-data:/data
     ports:
       - "127.0.0.1:24224:24224"
       - "127.0.0.1:24224:24224/udp"
@@ -17,6 +18,10 @@ services:
     logging:
       driver: syslog
     restart: unless-stopped
+
+volumes:
+  fluent-data:
+    name: fluent-data
 
 networks:
   default:

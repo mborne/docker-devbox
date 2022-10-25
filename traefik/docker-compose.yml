@@ -6,12 +6,13 @@ services:
     container_name: traefik
     image: traefik:v2.8
     ports:
-      - "127.0.0.1:80:80"
-      - "127.0.0.1:443:443"
+      - "80:80"
+      - "443:443"
     volumes:
       - ./certs:/certs:ro
       - ./config:/etc/traefik:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    # permission on /var/run/docker.sock
     userns_mode: 'host'
     # removes contraint to share network with traefik?
     network_mode: 'host'
