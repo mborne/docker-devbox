@@ -21,7 +21,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.es.rule=Host(`es.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.es.tls=true"
       - "traefik.http.services.es-service.loadbalancer.server.port=9200"
     volumes:
       - es-data:/usr/share/elasticsearch/data

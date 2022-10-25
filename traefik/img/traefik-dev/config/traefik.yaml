@@ -1,0 +1,41 @@
+# see https://docs.traefik.io/reference/static-configuration/file/
+providers:
+  docker:
+    exposedByDefault: false
+    watch: true
+  # includes /etc/traefik/traefik.toml and other dynamic files  
+  file:
+    directory: "/etc/traefik"
+    watch: true
+
+entryPoints:
+  web:
+    address: ":80"
+    # uncomment to redirect to https for all domains
+    # http:
+    #   redirections:
+    #     entryPoint:
+    #       to: "websecure"
+    #       scheme: "https"
+  websecure:
+    address: ":443"
+    http:
+      tls: {}
+
+
+api:
+  insecure: false
+  dashboard: true
+  debug: false
+
+pilot:
+  dashboard: false
+
+#-------------------------------------------------------------------
+# Logs
+#-------------------------------------------------------------------
+log:
+  format: "json"
+  
+accessLog:
+  format: "json"

@@ -20,7 +20,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.keycloak.rule=Host(`keycloak.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.keycloak.tls=true"
       - "traefik.http.services.keycloak-service.loadbalancer.server.port=8080"
     restart: unless-stopped
 

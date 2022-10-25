@@ -4,17 +4,17 @@ Container running [traefik proxy](https://doc.traefik.io/traefik/).
 
 ## Usage with docker-compose
 
-* Create certs for `*.dev.localhost` using [mkcerts](https://github.com/FiloSottile/mkcert#mkcert) :
+### Getting started
 
-```bash
-mkcert -cert-file certs/default.pem -key-file certs/default-key.pem *.dev.localhost dev.localhost localhost
-```
-
-* Start traefik : `docker-compose up -d`
-
-* See https://traefik.dev.localhost for web-ui
-
+* Build [mborne/traefik-dev](img/traefik-dev/README.md) image : `docker compose build --pull`
+* Start traefik : `docker compose up -d`
+* See http://traefik.dev.localhost for web-ui
 * Run [whoami](../whoami/README.md) to test traefik
+
+See also :
+
+* [Using mkcert to generate traefik certificates](mkcert.md)
+* [mborne/traefik-dev](img/traefik-dev/README.md) to customize traefik config using `docker compose exec traefik /bin/sh` and [vi](https://ryanstutorials.net/linuxtutorial/cheatsheetvi.php) editor.
 
 ## Usage with helm
 

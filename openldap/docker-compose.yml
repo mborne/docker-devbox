@@ -30,7 +30,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.ldapadmin.tls=true"
     restart: unless-stopped
 
 volumes:
