@@ -10,12 +10,10 @@ services:
       # https://nexus.dev.localhost
       - "traefik.http.routers.nexus.rule=Host(`nexus.${HOST_HOSTNAME}`)"
       - "traefik.http.routers.nexus.service=nexus-service@docker"
-      - "traefik.http.routers.nexus.tls=true"
       - "traefik.http.services.nexus-service.loadbalancer.server.port=8081"
       # https://registry.dev.localhost/v2/_catalog
       - "traefik.http.routers.registry.rule=Host(`registry.${HOST_HOSTNAME}`)"
       - "traefik.http.routers.registry.service=registry-service@docker"
-      - "traefik.http.routers.registry.tls=true"
       - "traefik.http.services.registry-service.loadbalancer.server.port=8082"
     volumes:
       - nexus-data:/nexus-data

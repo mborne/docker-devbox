@@ -22,7 +22,6 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.netdata.rule=Host(`netdata.${HOST_HOSTNAME}`)"
-    - "traefik.http.routers.netdata.tls=true"
     restart: unless-stopped
 
 volumes:

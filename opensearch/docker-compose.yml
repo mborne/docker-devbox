@@ -32,7 +32,6 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.os.rule=Host(`os.${HOST_HOSTNAME}`)"
-    - "traefik.http.routers.os.tls=true"
     restart: unless-stopped
 
   opensearch-dashboards:
@@ -51,7 +50,6 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.${HOST_HOSTNAME}`)"
-    - "traefik.http.routers.os-dashboard.tls=true"
     restart: unless-stopped
 
 volumes:

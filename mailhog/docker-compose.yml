@@ -9,7 +9,6 @@ services:
     - "traefik.enable=true"
     - "traefik.http.routers.mailhog.rule=Host(`mailhog.${HOST_HOSTNAME}`)"
     - "traefik.http.services.mailhog-service.loadbalancer.server.port=8025"
-    - "traefik.http.routers.mailhog.tls=true"
     restart: unless-stopped
 
 networks:

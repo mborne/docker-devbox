@@ -15,7 +15,6 @@ services:
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.vault.rule=Host(`vault.${HOST_HOSTNAME}`)"
-    - "traefik.http.routers.vault.tls=true"
     cap_add:
     - IPC_LOCK
 

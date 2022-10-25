@@ -13,7 +13,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=Host(`kibana.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.kibana.tls=true"
       - "traefik.http.services.kibana-service.loadbalancer.server.port=5601"
     restart: unless-stopped
 

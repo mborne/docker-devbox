@@ -8,7 +8,6 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${HOST_HOSTNAME}`)"
-      - "traefik.http.routers.nextcloud.tls=true"
     volumes:
       - files:/var/www/html
 
