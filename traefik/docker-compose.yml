@@ -4,18 +4,31 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik:v2.8
+    image: traefik-dev:latest
+    build: img/traefik-dev
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - HOST_HOSTNAME=${HOST_HOSTNAME}
     volumes:
-      - ./certs:/certs:ro
-      - ./config:/etc/traefik:ro
+      - traefik-certs:/certs:rw
+      - traefik-config:/etc/traefik:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     # permission on /var/run/docker.sock
     userns_mode: 'host'
-    # removes contraint to share network with traefik?
-    network_mode: 'host'
     privileged: true
+    # removes contraint to share network with traefik
+    network_mode: 'host'
     restart: unless-stopped
 
+volumes:
+  traefik-config:
+    name: traefik-config
+  traefik-certs:
+    name: traefik-certs
+
+networks:
+  default:
+    name: devbox
+    external: true

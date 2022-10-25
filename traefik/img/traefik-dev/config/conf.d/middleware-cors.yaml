@@ -1,0 +1,6 @@
+http:
+  middlewares:
+    cors:
+      headers:
+        accessControlAllowMethods: ["GET", "OPTIONS", "PUT", "POST", "DELETE"]
+        accessControlAllowOriginList: "*"
