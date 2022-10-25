@@ -14,7 +14,6 @@ podTemplate(containers: [
 ){
     node(POD_LABEL) {
         stage('Get a Maven project') {
-            //git 'https://github.com/IGNF/validator.git'
             container('maven') {
                 stage('Build a Maven project') {
                     git branch: 'master', url: 'https://github.com/IGNF/validator.git'

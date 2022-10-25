@@ -24,6 +24,8 @@
     scheme = "https"
   [entryPoints.websecure]
     address = ":443"
+  [entryPoints.websecure.http]
+    tls = true
 
 [http.middlewares]
   #-------------------------------------------------------------------
@@ -36,7 +38,7 @@
   # Middleware to filter by IP
   #-------------------------------------------------------------------
   [http.middlewares.whitelist.ipWhiteList]
-    sourceRange = ["127.0.0.0/8", "192.168.0.0/16", "172.17.0.0/16", "10.0.0.0/8"]
+    sourceRange = ["127.0.0.0/8", "192.168.0.0/16", "172.80.0.0/16", "172.90.0.0/16", "172.17.0.0/16", "10.0.0.0/8"]
 
   #-------------------------------------------------------------------
   # Middleware to add cors headers
@@ -63,7 +65,6 @@
 [http.routers.traefik]
   rule = "Host(`traefik.dev.localhost`)"
   service = "api@internal"
-  tls = true
 
 [api]
   insecure = false
@@ -76,5 +77,8 @@
 #-------------------------------------------------------------------
 # Logs
 #-------------------------------------------------------------------
+[log]
+  format = "json"
+  
 [accessLog]
-
+  format = "json"

@@ -7,7 +7,7 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`jenkins.localhost`)
+    - match: Host(`jenkins.dev.localhost`)
       kind: Rule
       services:
         - name: jenkins

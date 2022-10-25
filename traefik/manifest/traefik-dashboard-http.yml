@@ -5,13 +5,10 @@ metadata:
 spec:
   entryPoints:
     - web
-    - websecure
   routes:
     - match: Host(`traefik.dev.quadtreeworld.net`)
       kind: Rule
       services:
         - name: api@internal
           kind: TraefikService
-  tls:
-    certResolver: letsencrypt
 

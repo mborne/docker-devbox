@@ -4,7 +4,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.17.5
+    image: docker.elastic.co/kibana/kibana:8.3.2
     environment:
       - "SERVER_NAME=kibana.${HOST_HOSTNAME}"
       - "ELASTICSEARCH_HOSTS=${ES_URL}"

@@ -1,7 +1,5 @@
 # mailhog
 
-## Description
-
 Docker container running mailhog to test email sending from application
 
 ## Usage

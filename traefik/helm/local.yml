@@ -1,0 +1,6 @@
+# https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+
+ports:
+  websecure:
+    tls:
+      enabled: true

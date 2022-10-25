@@ -14,7 +14,7 @@ See [github.com - mborne/docker-jenkins](https://github.com/mborne/docker-jenkin
 kubectl apply -k https://github.com/mborne/docker-devbox/jenkins/manifest/local-storage
 ```
 
-* 2) Wait until jenkins is running : `kubectl -n jenkins get all -o wide`
+* 2) Wait until jenkins is running : `kubectl -n jenkins get pods -w`
 
 * 3) Get initial admin password :
 
@@ -22,9 +22,7 @@ kubectl apply -k https://github.com/mborne/docker-devbox/jenkins/manifest/local-
 kubectl -n jenkins exec -ti pod/jenkins-0 -- /bin/cat /var/jenkins_home/secrets/initialAdminPassword
 ```
 
-* 4) Install and configure [Kubernetes cloud plugin](https://plugins.jenkins.io/kubernetes/) :
-  * Kubernetes URL : https://kubernetes.default.svc.cluster.local
-  * Jenkins URL : http://jenkins.jenkins.svc.cluster.local:8080
+* 4) Open http://jenkins.dev.localhost
 
 ## Usage with helm
 
@@ -38,6 +36,15 @@ Notes :
 
 * Redeploy with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
 * Uninstall with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
+
+## Kubernetes cloud plugin
+
+* Install and configure [Kubernetes cloud plugin](https://plugins.jenkins.io/kubernetes/) :
+  * Kubernetes URL : https://kubernetes.default.svc.cluster.local
+  * Jenkins URL : http://jenkins.jenkins.svc.cluster.local:8080
+* See samples Jenkinsfile :
+  * [samples/kube-jnlp/Jenkinsfile](samples/kube-jnlp/Jenkinsfile)
+  * [samples/kube-validator/Jenkinsfile](samples/kube-validator/Jenkinsfile) with PVC for maven cache [samples/kube-validator/maven-repo-storage.yaml](samples/kube-validator/maven-repo-storage.yaml)
 
 ## See also
 

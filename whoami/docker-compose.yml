@@ -6,7 +6,7 @@ services:
     image: containous/whoami
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.whoami.rule=Host(`whoami.dev.localhost`)"
+    - "traefik.http.routers.whoami.rule=Host(`whoami.${HOST_HOSTNAME}`)"
     - "traefik.http.routers.whoami.tls=true"
     restart: unless-stopped
 

@@ -4,7 +4,7 @@ metadata:
   name: adminer
 spec:
   rules:
-  - host: adminer.localhost
+  - host: adminer.dev.localhost
     http:
       paths:
       - backend:

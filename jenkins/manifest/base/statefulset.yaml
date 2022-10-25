@@ -26,12 +26,8 @@ spec:
         ports:
         - containerPort: 8080
         volumeMounts:
-        - mountPath: "/var/jenkins_home"
-          name: jenkins-pv
-      volumes:
-        - name: jenkins-pv
-          persistentVolumeClaim:
-            claimName: jenkins-pvc
+        - name: jenkins-pvc
+          mountPath: "/var/jenkins_home"
   volumeClaimTemplates:
   - metadata:
       name: jenkins-pvc

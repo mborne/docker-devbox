@@ -6,10 +6,10 @@ metadata:
     type: local
 spec:
   storageClassName: jenkins-storage
-  accessModes:
-  - ReadWriteOnce
   capacity:
     storage: 20Gi
-  persistentVolumeReclaimPolicy: Retain
+  accessModes:
+    - ReadWriteOnce
+  #persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /var/devbox/jenkins-data/
+    path: "/var/devbox/jenkins-data/"

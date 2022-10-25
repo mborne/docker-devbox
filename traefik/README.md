@@ -1,10 +1,8 @@
 # Traefik
 
-## Description
+Container running [traefik proxy](https://doc.traefik.io/traefik/).
 
-Auto-configured reverse proxy according to container labels.
-
-## Usage with docker
+## Usage with docker-compose
 
 * Create certs for `*.dev.localhost` using [mkcerts](https://github.com/FiloSottile/mkcert#mkcert) :
 
@@ -18,32 +16,27 @@ mkcert -cert-file certs/default.pem -key-file certs/default-key.pem *.dev.localh
 
 * Run [whoami](../whoami/README.md) to test traefik
 
-## Usage with kustomize
-
-**WARNING : Mainly written to understand traefik some points in traefik. Prefer the use the official helm chart [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik)**
-
-```bash
-# http://traefik.localhost (dashboard)
-kubectl apply -k https://github.com/mborne/docker-devbox/traefik/manifest
-```
-
 ## Usage with helm
 
 See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
 
-```bash
-helm repo add traefik https://helm.traefik.io/traefik
+* Add helm repository : `helm repo add traefik https://helm.traefik.io/traefik`
+* Update helm repositories : `helm repo update`
+* Create a namespace for traefik : `kubectl create namespace traefik-system`
+* Deploy traefik with helm : `helm -n traefik-system install -f traefik/helm/local.yml traefik traefik/traefik`
+* Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
+* To get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
+* To get dashboard on http://traefik.dev.localhost : `kubectl -n traefik-system apply -f traefik/manifest/dashboard-local.yml`
+  
+Note :
 
-helm repo update
+* To enable [LetsEncrypt with HTTP challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge), see [helm/qtw-dev-values.yml](helm/qtw-dev-values.yml) and adapt it (**especially the email!**)
+* See also the following sample to expose the dashboard with an IngressRoute :
+  * [manifest/middleware-ipwhitelist.yaml](manifest/middleware-ipwhitelist.yaml)
+  * [manifest/traefik-dashboard-http.yml](manifest/traefik-dashboard-http.yml)
+  * [manifest/traefik-dashboard-le.yml](manifest/traefik-dashboard-le.yml)
 
-kubectl create namespace traefik-system
-
-helm -n traefik-system install traefik traefik/traefik
-# or
-# helm -n traefik-system install traefik traefik/traefik -f traefik/helm/qtw-dev-values.yml
-```
-
-## Reference
+## Ressources
 
 Docker :
 

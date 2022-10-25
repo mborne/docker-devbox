@@ -1,0 +1,19 @@
+# https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml
+
+config:
+  ## https://docs.fluentbit.io/manual/pipeline/outputs
+  outputs: |
+    [OUTPUT]
+        Name opensearch
+        Match kube.*
+        Host opensearch-cluster-master.opensearch.svc.cluster.local
+        Logstash_Format On
+        Retry_Limit False
+
+    [OUTPUT]
+        Name opensearch
+        Match host.*
+        Host opensearch-cluster-master.opensearch.svc.cluster.local
+        Logstash_Format On
+        Logstash_Prefix node
+        Retry_Limit False

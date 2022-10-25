@@ -28,7 +28,7 @@ kubectl apply -k https://github.com/mborne/docker-devbox/longhorn/manifest
 kubectl -n longhorn-system edit cm/longhorn-storageclass
 ```
 
-* Check pod status : `watch kubectl -n longhorn-system get pods -o wide`
+* Check pod status : `watch kubectl -n longhorn-system get pods -w`
 
 * Open UI : https://longhorn.dev.localhost and check nodes.
 

@@ -1,3 +1,5 @@
+# https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+
 deployment:
   initContainers:
     # The "volume-permissions" init container is required if you run into permission issues.

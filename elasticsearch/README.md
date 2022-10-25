@@ -1,12 +1,21 @@
 # Elasticsearch
 
-Docker container running [Elasticsearch](https://www.elastic.co/elasticsearch/) for dev purpose.
+Containers running [Elasticsearch](https://www.elastic.co/elasticsearch/) for **DEV purpose**.
+
+## System requirements
+
+* [max_map_count >= 262144](../docs/max_map_count.md)
 
 ## Usage with docker-compose
 
 * Start elasticsearch : `docker-compose up -d`
 * Open https://es.dev.localhost or https://es.dev.localhost/_cat/nodes?v&pretty
-* See [ElasticSearch - debug with docker-compose](debug-compose.md)
+
+* Disable disk quota / watermark
+
+```bash
+bash disable-quota.sh
+```
 
 ## Usage with Kubernetes
 

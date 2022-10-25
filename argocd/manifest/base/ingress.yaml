@@ -10,18 +10,17 @@ spec:
     - websecure
   routes:
     - kind: Rule
-      match: Host(`argocd.localhost`)
+      match: Host(`argocd.dev.localhost`)
       priority: 10
       services:
         - name: argocd-server
           port: 80
     - kind: Rule
-      match: Host(`argocd.localhost`) && Headers(`Content-Type`, `application/grpc`)
+      match: Host(`argocd.dev.localhost`) && Headers(`Content-Type`, `application/grpc`)
       priority: 11
       services:
         - name: argocd-server
           port: 80
           scheme: h2c
   # tls:
-  #   # certResolver: default
-  #   options: {}
+  #   certResolver: letsencrypt
