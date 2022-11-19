@@ -28,7 +28,8 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 
 ### Storage
 
-* [nexus](nexus/README.md)
+* [MinIO](minio/README.md)
+* [nexus](nexus/README.md) 
 * [nextcloud](nextcloud/README.md)
 * [longhorn](longhorn/README.md)
 

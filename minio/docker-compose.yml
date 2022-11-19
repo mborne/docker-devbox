@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  minio:
+    container_name: minio
+    image: minio/minio:latest
+    command: server --console-address ":9001" /data
+    # ports:
+    #   - "9000:9000"
+    #   - "9001:9001"
+    volumes:
+      - minio-data:/data
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_BROWSER_REDIRECT_URL: http://minio.${HOST_HOSTNAME}
+    labels:
+      - "traefik.enable=true"
+      # https://minio.dev.localhost
+      - "traefik.http.routers.minio.rule=Host(`minio.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.minio.service=minio-service@docker"
+      - "traefik.http.services.minio-service.loadbalancer.server.port=9001"
+      # https://minio-s3.dev.localhost
+      - "traefik.http.routers.minio-s3.rule=Host(`minio-s3.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.minio-s3.service=minio-s3-service@docker"
+      - "traefik.http.services.minio-s3-service.loadbalancer.server.port=9000"
+
+volumes:
+  minio-data:
+    name: minio-data
+
+networks:
+  default:
+    name: devbox
+    external: true

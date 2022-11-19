@@ -36,7 +36,7 @@ Note :
   * [manifest/traefik-dashboard-http.yml](manifest/traefik-dashboard-http.yml)
   * [manifest/traefik-dashboard-le.yml](manifest/traefik-dashboard-le.yml)
 
-## Ressources
+## Resources
 
 Docker :
 

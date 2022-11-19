@@ -60,7 +60,7 @@ spec:
 
 * [Container Storage Interface (CSI) drivers list](https://kubernetes-csi.github.io/docs/drivers.html)
 
-## Ressources
+## Resources
 
 * [Installing K3s with Longhorn and USB storage on Raspberry Pi](https://www.jericdy.com/blog/installing-k3s-with-longhorn-and-usb-storage-on-raspberry-pi)
 * [cloudolife.com - Helm install Rancher Labs Longhorn Cloud Native distributed block storage for Kubernetes](https://cloudolife.com/2020/10/03/Kubernetes-K8S/Helm/Helm-install-Rancher-Labs-Longhorn-Cloud-Native-distributed-block-storage-for-Kubernetes-K8S/)

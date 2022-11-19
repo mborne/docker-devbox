@@ -33,7 +33,7 @@ helm -n opensearch install opensearch opensearch/opensearch
   * https://127.0.0.1:19200 using admin/admin with default values
   * http://127.0.0.1:19200 with [helm/insecure.yml](helm/insecure.yml) values
 
-## Ressources
+## Resources
 
 * [opensearch.org - Install OpenSearch / Docker](https://opensearch.org/docs/latest/opensearch/install/docker/)
 * [opensearch.org - Install OpenSearch using Helm](https://opensearch.org/docs/latest/opensearch/install/helm/#install-opensearch-using-helm)
