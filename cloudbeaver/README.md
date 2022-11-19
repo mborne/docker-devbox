@@ -8,7 +8,7 @@ Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbe
 * Open https://cloudbeaver.dev.localhost/
 * Follow instructions
 
-## Ressources
+## Resources
 
 * [dbeaver/cloudbeaver - CloudBeaver Community](https://github.com/dbeaver/cloudbeaver#cloudbeaver-community)
 * [dbeaver/dbeaver - Desktop version](https://github.com/dbeaver/dbeaver#dbeaver)

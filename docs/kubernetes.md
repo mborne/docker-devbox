@@ -8,7 +8,7 @@
 * Get started with [whoami](../whoami/README.md)
 * **WORK IN PROGRESS** (I'm still a noob)
 
-## Ressources
+## Resources
 
 * [K3S](https://k3s.io) is quite trivial to setup on a single node :
 

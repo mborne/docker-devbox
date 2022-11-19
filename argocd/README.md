@@ -14,7 +14,7 @@
 
 This setup doesn't works where http_proxy and https_proxy is required on containers. See [github.com - Setting proxy in argocd server](https://github.com/argoproj/argo-cd/issues/2954#issuecomment-843260694) and helm chart.
 
-## Ressources
+## Resources
 
 * [argo-cd.readthedocs.io - Getting Started](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 * [argo-cd.readthedocs.io - Manage Argo CD Using Argo CD](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#manage-argo-cd-using-argo-cd) (example of kustomization)
