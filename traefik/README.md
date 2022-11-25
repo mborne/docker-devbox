@@ -27,7 +27,7 @@ See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#t
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
 * To get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
 * To get dashboard on http://traefik.dev.localhost : `kubectl -n traefik-system apply -f traefik/manifest/dashboard-local.yml`
-  
+
 Note :
 
 * To enable [LetsEncrypt with HTTP challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge), see [helm/qtw-dev-values.yml](helm/qtw-dev-values.yml) and adapt it (**especially the email!**)

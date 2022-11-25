@@ -14,6 +14,6 @@ spec:
           kind: TraefikService
       # middlewares:
       #   - name: ipwhitelist-main
-  tls:
-    certResolver: letsencrypt
+  # tls:
+  #   certResolver: letsencrypt
 
