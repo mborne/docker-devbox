@@ -1,7 +1,5 @@
 # mailer
 
-## Description
-
 STMP relay based on [namshi/smtp](https://hub.docker.com/r/namshi/smtp) image.
 
 ## Usage with docker-compose

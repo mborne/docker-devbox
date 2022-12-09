@@ -1,4 +1,4 @@
-# postgis
+# PostGIS
 
 Container running [postgis](https://registry.hub.docker.com/r/postgis/postgis/).
 

@@ -1,6 +1,6 @@
-# matomo
+# [Matomo](https://matomo.org/)
 
-[matomo](https://hub.docker.com/_/matomo) official image with MySQL database.
+Container running [matomo](https://hub.docker.com/_/matomo)'s official image with MySQL database.
 
 ## Usage
 

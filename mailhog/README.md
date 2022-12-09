@@ -1,4 +1,4 @@
-# mailhog
+# [MailHog](https://github.com/mailhog/MailHog#readme)
 
 Docker container running mailhog to test email sending from application
 

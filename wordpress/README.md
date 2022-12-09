@@ -1,6 +1,6 @@
-# wordpress
+# [WordPress](https://wordpress.com/fr/)
 
-Docker container running geoserver
+Docker container running the famous [WordPress](https://wordpress.com/) CMS.
 
 ## Usage
 

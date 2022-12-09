@@ -1,6 +1,6 @@
-# netdata
+# [Netdata](https://www.netdata.cloud/)
 
-[netdata/netdata](https://hub.docker.com/r/netdata/netdata) image monitoring performance and health.
+Container running [netdata/netdata](https://hub.docker.com/r/netdata/netdata) image.
 
 ## Usage with docker-compose
 

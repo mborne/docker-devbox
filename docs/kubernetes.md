@@ -3,7 +3,7 @@
 ## Key points
 
 * [Kustomize](https://kustomize.io/) and [helm](https://helm.sh/) are used to manage configuration
-* Deployments are mainly tested with [K3S](https://k3s.io) where default traefik setup is disabled.
+* Deployments are mainly tested with [K3S](https://k3s.io) where default traefik setup is disabled (see [mborne/k3s-deploy](https://github.com/mborne/k3s-deploy)).
 * [Traefik](../traefik/README.md) is used to provide nice URL
 * Get started with [whoami](../whoami/README.md)
 * **WORK IN PROGRESS** (I'm still a noob)
