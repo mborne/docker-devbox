@@ -12,7 +12,7 @@ sudo systemctl start iscsid && sudo systemctl enable iscsid
 sudo systemctl status iscsid
 ```
 
-## Usage with kustomize
+## Usage with Kubernetes
 
 * Deploy to k8s
 

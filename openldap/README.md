@@ -2,7 +2,7 @@
 
 Containers running [osixia/openldap](https://github.com/osixia/docker-openldap#osixiaopenldap) and [osixia/docker-phpLDAPadmin](https://github.com/osixia/docker-phpLDAPadmin).
 
-## Usage
+## Usage with docker
 
 * Start openldap
 

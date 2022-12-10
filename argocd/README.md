@@ -4,7 +4,7 @@
 
 Container running [Argo CD](https://argo-cd.readthedocs.io/en/stable/).
 
-## Usage with kustomize
+## Usage with Kubernetes
 
 * Create namespace : `kubectl create namespace argocd`
 * Deploy [Argo CD](https://argo-cd.readthedocs.io/en/stable/) : `kubectl -n argocd apply -k argocd/manifest/base`

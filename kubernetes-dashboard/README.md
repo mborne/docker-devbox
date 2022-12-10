@@ -1,6 +1,6 @@
 # kubernetes-dashboard
 
-## Usage with kustomize
+## Usage with Kubernetes
 
 * Deploy [kubernetes-dashboard](https://github.com/kubernetes/dashboard/) with an [admin-user](manifest/admin-user.yaml):
 

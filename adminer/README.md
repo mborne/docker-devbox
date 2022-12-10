@@ -7,7 +7,7 @@ Container running [adminer](https://hub.docker.com/_/adminer/).
 * Start adminer : `docker-compose up -d`
 * Open https://adminer.dev.localhost/
 
-## Usage with Kustomize
+## Usage with Kubernetes
 
 * Create namespace : `kubectl create namespace adminer`
 * Deploy adminer : `kubectl -n adminer apply -k adminer/manifest/base`

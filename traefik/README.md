@@ -14,7 +14,7 @@ See also :
 * [Using mkcert to generate traefik certificates](mkcert.md)
 * [mborne/traefik-dev](img/traefik-dev/README.md) to customize traefik config using `docker compose exec traefik /bin/sh` and [vi](https://ryanstutorials.net/linuxtutorial/cheatsheetvi.php) editor.
 
-## Usage with helm
+## Usage with Kubernetes
 
 See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
 

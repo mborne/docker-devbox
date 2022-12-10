@@ -7,7 +7,7 @@ Container running [containous/whoami](https://hub.docker.com/r/containous/whoami
 * Start 2 instances : `docker-compose up -d --scale whoami=2`
 * Open https://whoami.dev.localhost and refresh
 
-## Usage with Kustomize
+## Usage with Kubernetes
 
 ```bash
 # create namespace

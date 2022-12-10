@@ -27,7 +27,9 @@ createdb gis
 psql -d gis -c "CREATE EXTENSION postgis"
 ```
 
-## Usage with Kustomize
+## Usage with Kubernetes
+
+> **Warning:** This is an experiment with Kustomize where local storage is used by default and adapted to a **single cluster node**. `/var/devbox/postgis-13` is created on a random node (see `kubectl -n postgis get pods -o wide`).
 
 * Start postgis :
 
@@ -50,10 +52,6 @@ psql -h localhost -U postgis -l
 ```
 
 Note : Internal hostname is `postgis.postgis.svc.cluster.local`.
-
-## Warning with kustomize
-
-This is an experiment where local storage is used by default and adapted to a **single cluster node**. `/var/devbox/postgis-13` is created on a random node (see `kubectl -n postgis get pods -o wide`).
 
 ## See also
 

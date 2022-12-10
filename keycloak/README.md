@@ -2,7 +2,7 @@
 
 Container running [Keycloak](https://www.keycloak.org/).
 
-## Usage
+## Usage with docker
 
 * Start keycloak stack : `KEYCLOAK_ADMIN_PASSWORD=ChangeIt docker compose up -d`
 

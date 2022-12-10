@@ -36,7 +36,7 @@ docker run --rm --log-driver=fluentd --log-opt tag="docker.echo.{{.ID}}" ubuntu 
 }
 ```
 
-## Usage with helm
+## Usage with Kubernetes
 
 * Add repository : `helm repo add fluent https://fluent.github.io/helm-charts`
 * Update helm repositories : `helm repo update`

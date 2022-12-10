@@ -13,7 +13,7 @@ WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security
 * Start containers : `docker compose up -d`
 * Open https://os-dashboard.dev.localhost/
 
-## Usage with helm
+## Usage with Kubernetes
 
 * Add helm chart : `helm repo add opensearch https://opensearch-project.github.io/helm-charts/`
 * Update helm repositories : `helm repo update`

@@ -9,9 +9,9 @@ Container running [GeoNetwork](https://geonetwork-opensource.org/).
 * Open https://geonetwork.dev.localhost/geonetwork/
 * Login with admin/admin
 
-## Usage with Kustomize
+## Usage with Kubernetes
 
-* Install [CRD and Operator for Elasticsearch](../elasticsearch/README.md#usage-with-kubernetes)
+* Install [CRD and Operator for Elasticsearch](../elasticsearch/README.md#usage-with-kubernetes).
 * Create namespace : `kubectl create namespace geonetwork`
 * Deploy geonetwork : `kubectl -n geonetwork apply -k https://github.com/mborne/docker-devbox/geonetwork/manifest/base`
 * Open https://geonetwork.dev.localhost/geonetwork/
