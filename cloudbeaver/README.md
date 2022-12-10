@@ -1,4 +1,4 @@
-# cloudbeaver
+# CloudBeaver
 
 Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbeaver) official image.
 
