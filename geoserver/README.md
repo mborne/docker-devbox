@@ -1,11 +1,11 @@
 
-# GeoServer (WMS, WFS, WMTS)
+# GeoServer
 
-Docker container running [GeoServer](https://geoserver.org/)
+Container running [GeoServer](https://geoserver.org/) to serve spatial data (WMS, WFS, WMTS).
 
-## Usage with docker-compose
+## Usage with docker
 
-* Build GeoServer : `docker-compose build`
+* Build GeoServer : `docker-compose build` (see [Dockerfile](Dockerfile))
 
 * Start GeoServer : `docker-compose up -d`
 

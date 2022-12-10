@@ -1,8 +1,8 @@
 # SonarQube
 
-Container running [SonarQube](https://www.sonarqube.org/) official image.
+Container running [SonarQube](https://www.sonarqube.org/).
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start : `docker-compose up -d`
 * Open https://sonarqube.dev.localhost

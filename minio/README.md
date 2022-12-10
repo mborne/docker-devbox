@@ -2,7 +2,7 @@
 
 Container running [MinIO](https://min.io/) offering S3 compatible object storage.
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start containers : `MINIO_ROOT_PASSWORD=ChangeIt docker compose up -d`
 * Open https://minio.dev.localhost/

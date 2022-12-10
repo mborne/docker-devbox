@@ -1,8 +1,8 @@
 # adminer
 
-Docker container running [adminer](https://hub.docker.com/_/adminer/)
+Container running [adminer](https://hub.docker.com/_/adminer/).
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start adminer : `docker-compose up -d`
 * Open https://adminer.dev.localhost/

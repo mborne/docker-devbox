@@ -1,6 +1,8 @@
 
 
-# [Argo CD](https://argo-cd.readthedocs.io/en/stable/)
+# Argo CD
+
+Container running [Argo CD](https://argo-cd.readthedocs.io/en/stable/).
 
 ## Usage with kustomize
 

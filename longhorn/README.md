@@ -1,10 +1,8 @@
 # Longhorn
 
-[Longhorn](https://longhorn.io/) is a cloud native distributed block storage for Kubernetes :
-
+Container runner [Longhorn](https://longhorn.io/) which is a cloud native distributed block storage for Kubernetes :
 
 ![Longhorn nodes](img/longhorn-nodes.png)
-
 
 ## System requirements
 

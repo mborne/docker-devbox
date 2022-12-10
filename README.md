@@ -21,13 +21,14 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 | [traefik](traefik/README.md) | A reverse proxy/load balancer including **configuration discovery** mechanism | &#9745; | &#9745; |
 | [whoami](whoami/README.md)   | An helloworld to discover [traefik](traefik/README.md)                        | &#9745; | &#9745; |
 
-### CI/CD
+### CI/CD pipeline
 
 | Name                             | Description                                                                 | Docker  |   K8S   |
 | -------------------------------- | --------------------------------------------------------------------------- | :-----: | :-----: |
 | [Jenkins](jenkins/README.md)     | Open source automation server with hundred of plugins (ansible, jmeter,...) | &#9745; | &#9745; |
 | [ArgoCD](argocd/README.md)       | GitOps **continuous delivery** tool for **Kubernetes**                      |   NA    | &#9745; |
 | [SonarQube](sonarqube/README.md) | Centralisation of Code Quality and Code Security metrics                    | &#9745; | &#9744; |
+| [Vault](vault/README.md) | Secret storage and management server with an API | &#9745; | &#9744; |
 
 ### Authentication
 
@@ -35,12 +36,6 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 | ------------------------------ | --------------------------------------------------------------------- | :-----: | :-----: |
 | [Keycloak](keycloak/README.md) | Open Source Identity and Access Management providing (**OIDC, SAML**) | &#9745; | &#9744; |
 | [OpenLDAP](openldap/README.md) | Community developed **LDAP** software                                 | &#9745; | &#9744; |
-
-### Secrets
-
-| Name                     | Description                                      | Docker  |   K8S   |
-| ------------------------ | ------------------------------------------------ | :-----: | :-----: |
-| [Vault](vault/README.md) | Secret storage and management server with an API | &#9745; | &#9744; |
 
 ### Storage
 
@@ -64,7 +59,7 @@ See [notes about docker-compose](docs/docker-compose.md) for more details.
 | Name                                     | Description                                                                           | Docker  |   K8S   |
 | ---------------------------------------- | ------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [Elasticsearch](elasticsearch/README.md) | ELK - Log storage and indexation                                                      | &#9745; | &#9745; |
-| [Kibana](kibana/README.md)               | ELK - User Interface                                                                  | &#9745; | &#9745; |
+| [Kibana](kibana/README.md)               | ELK - User Interface                                                                  | &#9745; | &#9744; |
 | [OpenSearch](opensearch/README.md)       | Forked from [Elasticsearch](https://www.elastic.co/fr/elasticsearch/) by AWS          | &#9745; | &#9745; |
 | [Netdata](netdata/README.md)             | A monitoring tool with an easy setup                                                  | &#9745; | &#9744; |
 | [Fluend](fluentd/README.md)              | An attempt to configure [Fluend](https://www.fluentd.org/) to collect containers logs | &#9745; | &#9744; |

@@ -1,8 +1,8 @@
 # Kibana
 
-Docker container running [Kibana](https://www.elastic.co/kibana/) as a single node for dev purpose.
+Container running  [Kibana](https://www.elastic.co/kibana/) for **DEV purpose**.
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start kibana : `docker-compose up -d`
 * Open https://kibana.dev.localhost

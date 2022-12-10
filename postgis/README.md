@@ -1,8 +1,8 @@
 # PostGIS
 
-Container running [postgis](https://registry.hub.docker.com/r/postgis/postgis/).
+Container running [PostgreSQL with the spatial extension PostGIS](https://registry.hub.docker.com/r/postgis/postgis/).
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start postgis :
 

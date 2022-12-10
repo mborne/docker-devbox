@@ -1,14 +1,12 @@
 # Nexus
 
-## Description
+Containers running [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/).
 
-Containers running [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/)
-
-## Usage with docker-compose
+## Usage with docker
 
 * Start nexus : `docker-compose up -d`
 
-* Retreive initial admin password : `docker exec -ti nexus cat /nexus-data/admin.password`
+* Retrieve initial admin password : `docker exec -ti nexus cat /nexus-data/admin.password`
 
 * Open nexus : https://nexus.dev.localhost/
 
@@ -32,6 +30,4 @@ docker push registry.dev.localhost/hello-world:latest
 ```
 
 Check https://registry.dev.localhost/v2/_catalog and https://registry.dev.localhost/v2/hello-world/tags/list
-
-
 

@@ -2,9 +2,7 @@
 
 Container running [traefik proxy](https://doc.traefik.io/traefik/).
 
-## Usage with docker-compose
-
-### Getting started
+## Usage with docker
 
 * Build [mborne/traefik-dev](img/traefik-dev/README.md) image : `docker compose build --pull`
 * Start traefik : `docker compose up -d`

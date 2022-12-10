@@ -2,7 +2,7 @@
 
 Container running [Jenkins](https://www.jenkins.io/).
 
-## Usage with docker-compose
+## Usage with docker
 
 See [github.com - mborne/docker-jenkins](https://github.com/mborne/docker-jenkins#docker-jenkins)
 

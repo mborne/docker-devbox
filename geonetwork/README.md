@@ -1,8 +1,8 @@
 # GeoNetwork (CSW, CSW-T)
 
-Docker container running [GeoNetwork](https://geonetwork-opensource.org/).
+Container running [GeoNetwork](https://geonetwork-opensource.org/).
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start [Elasticsearch](../elasticsearch/README.md#usage-with-docker-compose)
 * Start geonetwork : `docker-compose up -d`

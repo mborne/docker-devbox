@@ -1,11 +1,18 @@
 # mailer
 
-STMP relay based on [namshi/smtp](https://hub.docker.com/r/namshi/smtp) image.
+Container running [namshi/smtp](https://hub.docker.com/r/namshi/smtp) which is a STMP relay.
 
-## Usage with docker-compose
+> **Warning:** See [namshi/smtp -tags](https://hub.docker.com/r/namshi/smtp/tags) currently displaying **Last pushed 3 years ago by namshi**.
 
-* 1) Create `config.env` file (see [config.env.dist](config.env.dist) or [namshi/smtp on dockerhub](https://hub.docker.com/r/namshi/smtp) )
-* 2) Start container : `docker-compose up -d`
+## Usage with docker
+
+* Create `config.env` file to provide `GMAIL_USER` and `GMAIL_PASSWORD`
+
+> See [config.env.dist](config.env.dist) or [namshi/smtp on dockerhub](https://hub.docker.com/r/namshi/smtp)
+
+* Start container : `docker-compose up -d`
+
+* Configure other tools to use `mailer:25` to send mails.
 
 ## Testing
 

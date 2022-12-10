@@ -6,7 +6,7 @@ Containers running [OpenSearch](https://opensearch.org/) for **DEV purpose**.
 
 * [max_map_count >= 262144](../docs/max_map_count.md)
 
-## Usage with docker-compose
+## Usage with docker
 
 WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security is disabled**!
 
