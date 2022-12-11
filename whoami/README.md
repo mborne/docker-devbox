@@ -1,6 +1,8 @@
 # whoami
 
-Container running [containous/whoami](https://hub.docker.com/r/containous/whoami/dockerfile) to discover [traefik](../traefik/README.md).
+Container running [containous/whoami](https://hub.docker.com/r/containous/whoami/dockerfile) to discover [traefik](../traefik/README.md) :
+
+![whoami-screenshot](docs/whoami-screenshot.png)
 
 ## Usage with docker
 
