@@ -8,7 +8,7 @@ Containers running [Elasticsearch](https://www.elastic.co/elasticsearch/) for **
 
 ## Usage with docker
 
-* Start elasticsearch : `docker-compose up -d`
+* Start elasticsearch : `docker compose up -d`
 * Open https://es.dev.localhost or https://es.dev.localhost/_cat/nodes?v&pretty
 
 * Disable disk quota / watermark

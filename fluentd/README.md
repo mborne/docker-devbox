@@ -15,7 +15,7 @@ Container running [fluentd](https://www.fluentd.org/) to collect logs.
 * Start containers :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 * To test with `docker run` :

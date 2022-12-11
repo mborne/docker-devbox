@@ -4,6 +4,6 @@ Container running [matomo](https://hub.docker.com/_/matomo)'s official image wit
 
 ## Usage with docker
 
-* Start : `docker-compose up -d`
+* Start : `docker compose up -d`
 * Open https://matomo.dev.localhost and follow instructions
 

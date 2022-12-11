@@ -4,7 +4,7 @@ Container running [HashiCorp vault](https://www.vaultproject.io/) for **DEV purp
 
 ## Usage with docker
 
-* Start vault : `docker-compose up -d`
+* Start vault : `docker compose up -d`
 
 * Open https://vault.dev.localhost and configure vault
 

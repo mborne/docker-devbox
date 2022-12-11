@@ -1,6 +1,6 @@
 # mborne/docker-devbox
 
-Provides stacks to setup a **container-based development environment** with [docker compose](docs/docker-compose.md) or [Kubernetes](docs/kubernetes.md) for some of them.
+Provides stacks to setup a **container-based development environment** with [Docker](docs/docker.md) or [Kubernetes](docs/kubernetes.md) for some of them.
 
 ## Motivation
 
@@ -10,7 +10,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand [how traefik works](https://doc.traefik.io/traefik/).
 
-See [notes about docker-compose](docs/docker-compose.md) for more details.
+See [Usage with docker](docs/docker.md) for more details.
 
 ## Stacks
 

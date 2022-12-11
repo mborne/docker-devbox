@@ -4,7 +4,7 @@ Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbe
 
 ## Usage with docker
 
-* Start cloudbeaver : `docker-compose up -d`
+* Start cloudbeaver : `docker compose up -d`
 * Open https://cloudbeaver.dev.localhost/
 * Follow instructions
 

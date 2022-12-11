@@ -9,7 +9,7 @@ Container running [PostgreSQL with the spatial extension PostGIS](https://regist
 ```bash
 export POSTGRES_USER=postgis
 export POSTGRES_PASSWORD=ChangeIt
-docker-compose up -d
+docker compose up -d
 ```
 
 * Configure psql (`~/.profile`) :

@@ -10,7 +10,7 @@ Container running [namshi/smtp](https://hub.docker.com/r/namshi/smtp) which is a
 
 > See [config.env.dist](config.env.dist) or [namshi/smtp on dockerhub](https://hub.docker.com/r/namshi/smtp)
 
-* Start container : `docker-compose up -d`
+* Start container : `docker compose up -d`
 
 * Configure other tools to use `mailer:25` to send mails.
 

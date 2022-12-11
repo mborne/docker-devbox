@@ -4,7 +4,7 @@ Containers running [sonatype/nexus3](https://hub.docker.com/r/sonatype/nexus3/).
 
 ## Usage with docker
 
-* Start nexus : `docker-compose up -d`
+* Start nexus : `docker compose up -d`
 
 * Retrieve initial admin password : `docker exec -ti nexus cat /nexus-data/admin.password`
 

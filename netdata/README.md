@@ -4,7 +4,7 @@ Container running [netdata/netdata](https://hub.docker.com/r/netdata/netdata) im
 
 ## Usage with docker
 
-* Start instance : `NETDATA_NAME=${HOSTNAME} docker-compose up -d`
+* Start instance : `NETDATA_NAME=${HOSTNAME} docker compose up -d`
 * Open https://netdata.dev.localhost or http://localhost:19999
 
 ## Usage with Kubernetes

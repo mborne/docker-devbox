@@ -4,6 +4,6 @@ Container running the famous [WordPress](https://wordpress.com/) CMS.
 
 ## Usage with docker
 
-* Start [WordPress](https://wordpress.com/) : `docker-compose up -d`
+* Start [WordPress](https://wordpress.com/) : `docker compose up -d`
 
 * Open https://wordpress.dev.localhost/

@@ -5,9 +5,9 @@ Container running [GeoServer](https://geoserver.org/) to serve spatial data (WMS
 
 ## Usage with docker
 
-* Build GeoServer : `docker-compose build` (see [Dockerfile](Dockerfile))
+* Build GeoServer : `docker compose build` (see [Dockerfile](Dockerfile))
 
-* Start GeoServer : `docker-compose up -d`
+* Start GeoServer : `docker compose up -d`
 
 * Open https://geoserver.dev.localhost/
 
