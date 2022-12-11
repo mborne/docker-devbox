@@ -1,10 +1,10 @@
-# [Vault](https://www.vaultproject.io/)
+# Vault
 
-Docker container to test [HashiCorp vault](https://hub.docker.com/_/vault).
+Container running [HashiCorp vault](https://www.vaultproject.io/) for **DEV purpose**.
 
-## Usage with docker-compose
+## Usage with docker
 
-* Start vault : `docker-compose up -d`
+* Start vault : `docker compose up -d`
 
 * Open https://vault.dev.localhost and configure vault
 

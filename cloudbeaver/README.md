@@ -1,10 +1,10 @@
-# cloudbeaver
+# CloudBeaver
 
-Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbeaver) official image.
+Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbeaver).
 
-## Usage with docker-compose
+## Usage with docker
 
-* Start cloudbeaver : `docker-compose up -d`
+* Start cloudbeaver : `docker compose up -d`
 * Open https://cloudbeaver.dev.localhost/
 * Follow instructions
 

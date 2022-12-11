@@ -1,6 +1,6 @@
 # kubernetes-dashboard
 
-## Usage with kustomize
+## Usage with Kubernetes
 
 * Deploy [kubernetes-dashboard](https://github.com/kubernetes/dashboard/) with an [admin-user](manifest/admin-user.yaml):
 
@@ -20,7 +20,7 @@ kubectl -n kubernetes-dashboard get secret \
 * Start `kubectl proxy`
 * Open http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
-## Reference
+## Resources
 
 * [kubernetes.io - Tableau de bord (Dashboard)](https://kubernetes.io/fr/docs/tasks/access-application-cluster/web-ui-dashboard/)
 * [github.com - kubernetes/dashboard](https://github.com/kubernetes/dashboard/)

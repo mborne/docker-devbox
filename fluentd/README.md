@@ -1,17 +1,21 @@
 # Fluentd
 
+**WORK IN PROGRESS**
+
 Container running [fluentd](https://www.fluentd.org/) to collect logs.
 
 ## Pre-requisite
 
 * [OpenSearch](../opensearch/README.md) ( see [fluentd/conf/fluent.conf](fluentd/conf/fluent.conf) )
 
-## Usage with docker-compose
+## Usage with docker
+
+* Read [conf/fluent.conf](conf/fluent.conf)
 
 * Start containers :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 * To test with `docker run` :
@@ -32,9 +36,7 @@ docker run --rm --log-driver=fluentd --log-opt tag="docker.echo.{{.ID}}" ubuntu 
 }
 ```
 
-## Usage with helm
-
-**WORK IN PROGRESS**
+## Usage with Kubernetes
 
 * Add repository : `helm repo add fluent https://fluent.github.io/helm-charts`
 * Update helm repositories : `helm repo update`
@@ -51,7 +53,7 @@ Note :
 
 * see [fluent-bit/values.yaml](https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml)
 
-## Reference
+## Resources
 
 * [docs.fluentd.org - container-deployment/docker-compose](https://docs.fluentd.org/container-deployment/docker-compose)
 * [www.fluentd.org - Docker Logging](https://www.fluentd.org/guides/recipes/docker-logging)

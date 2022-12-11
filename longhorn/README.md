@@ -1,10 +1,8 @@
 # Longhorn
 
-[Longhorn](https://longhorn.io/) is a cloud native distributed block storage for Kubernetes :
-
+Container runner [Longhorn](https://longhorn.io/) which is a cloud native distributed block storage for Kubernetes :
 
 ![Longhorn nodes](img/longhorn-nodes.png)
-
 
 ## System requirements
 
@@ -14,7 +12,7 @@ sudo systemctl start iscsid && sudo systemctl enable iscsid
 sudo systemctl status iscsid
 ```
 
-## Usage with kustomize
+## Usage with Kubernetes
 
 * Deploy to k8s
 

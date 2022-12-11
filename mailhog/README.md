@@ -1,10 +1,10 @@
-# [MailHog](https://github.com/mailhog/MailHog#readme)
+# MailHog
 
-Docker container running mailhog to test email sending from application
+Container running running [MailHog](https://github.com/mailhog/MailHog#readme) to test email sending from applications.
 
-## Usage
+## Usage with docker
 
-* Start postgis : `docker-compose up -d`
+* Start postgis : `docker compose up -d`
 
 * Send an email : `telnet mailhog.devbox 1025`
 
@@ -20,6 +20,6 @@ this is a test email
 quit
 ```
 
-* Open http://mailhog.localhost or http://mailhog.localhost/api/v2/messages
+* Open http://mailhog.dev.localhost or http://mailhog.dev.localhost/api/v2/messages
 
 ![Test email](doc/test-email.png)

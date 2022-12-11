@@ -2,29 +2,11 @@
 
 Container running [Jenkins](https://www.jenkins.io/).
 
-## Usage with docker-compose
+## Usage with docker
 
 See [github.com - mborne/docker-jenkins](https://github.com/mborne/docker-jenkins#docker-jenkins)
 
-## Usage with kubernetes
-
-* 1) Start jenkins
-
-```bash
-kubectl apply -k https://github.com/mborne/docker-devbox/jenkins/manifest/local-storage
-```
-
-* 2) Wait until jenkins is running : `kubectl -n jenkins get pods -w`
-
-* 3) Get initial admin password :
-
-```bash
-kubectl -n jenkins exec -ti pod/jenkins-0 -- /bin/cat /var/jenkins_home/secrets/initialAdminPassword
-```
-
-* 4) Open http://jenkins.dev.localhost
-
-## Usage with helm
+## Usage with Kubernetes
 
 * 1) Add helm repo : `helm repo add jenkins https://charts.jenkins.io`
 * 2) Update helm repos : `helm repo update`
@@ -48,6 +30,7 @@ Notes :
 
 ## See also
 
+* [Jenkins deployment with Kustomize](kustomize.md)
 * [www.jenkins.io - Installing / Kubernetes](https://www.jenkins.io/doc/book/installing/kubernetes/) for helm instructions
 * [devopscube.com - How to Setup Jenkins Build Agents on Kubernetes Pods](https://devopscube.com/jenkins-build-agents-kubernetes/)
 * [jpetazzo.github.io - Using Docker-in-Docker for your CI or testing environment? Think twice.](https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)

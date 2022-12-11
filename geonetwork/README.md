@@ -1,17 +1,17 @@
 # GeoNetwork (CSW, CSW-T)
 
-Docker container running [GeoNetwork](https://geonetwork-opensource.org/).
+Container running [GeoNetwork](https://geonetwork-opensource.org/).
 
-## Usage with docker-compose
+## Usage with docker
 
 * Start [Elasticsearch](../elasticsearch/README.md#usage-with-docker-compose)
-* Start geonetwork : `docker-compose up -d`
+* Start geonetwork : `docker compose up -d`
 * Open https://geonetwork.dev.localhost/geonetwork/
 * Login with admin/admin
 
-## Usage with Kustomize
+## Usage with Kubernetes
 
-* Install [CRD and Operator for Elasticsearch](../elasticsearch/README.md#usage-with-kubernetes)
+* Install [CRD and Operator for Elasticsearch](../elasticsearch/README.md#usage-with-kubernetes).
 * Create namespace : `kubectl create namespace geonetwork`
 * Deploy geonetwork : `kubectl -n geonetwork apply -k https://github.com/mborne/docker-devbox/geonetwork/manifest/base`
 * Open https://geonetwork.dev.localhost/geonetwork/

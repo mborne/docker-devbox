@@ -1,10 +1,10 @@
-# [Keycloak](https://www.keycloak.org/)
+# Keycloak
 
-## Usage
+Container running [Keycloak](https://www.keycloak.org/).
 
-* Start [postgis](../postgis/README.md) and `createdb keycloak`
+## Usage with docker
 
-* Start keycloak : `KEYCLOAK_ADMIN_PASSWORD=ChangeIt docker compose up -d`
+* Start keycloak stack : `KEYCLOAK_ADMIN_PASSWORD=ChangeIt docker compose up -d`
 
 * Open http://keycloak.dev.localhost
 

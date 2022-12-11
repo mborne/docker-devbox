@@ -1,14 +1,13 @@
 # whoami
 
-[containous/whoami](https://hub.docker.com/r/containous/whoami/dockerfile) image that outputs information about the machine it is deployed on (its IP address, host, and so on)
+Container running [containous/whoami](https://hub.docker.com/r/containous/whoami/dockerfile) to discover [traefik](../traefik/README.md).
 
-## Usage with docker-compose
+## Usage with docker
 
-* Start 2 instances : `docker-compose up -d --scale whoami=2`
+* Start 2 instances : `docker compose up -d --scale whoami=2`
 * Open https://whoami.dev.localhost and refresh
 
-## Usage with Kustomize
-
+## Usage with Kubernetes
 
 ```bash
 # create namespace

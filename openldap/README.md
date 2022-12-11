@@ -1,15 +1,13 @@
 # [OpenLDAP](https://www.openldap.org/)
 
-## Description
-
 Containers running [osixia/openldap](https://github.com/osixia/docker-openldap#osixiaopenldap) and [osixia/docker-phpLDAPadmin](https://github.com/osixia/docker-phpLDAPadmin).
 
-## Usage
+## Usage with docker
 
 * Start openldap
 
 ```bash
-LDAP_DOMAIN=my-domain.com LDAP_ADMIN_PASSWORD=my-password docker-compose up -d
+LDAP_DOMAIN=my-domain.com LDAP_ADMIN_PASSWORD=my-password docker compose up -d
 ```
 
 * Open ldapadmin : https://ldapadmin.dev.localhost

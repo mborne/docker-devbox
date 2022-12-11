@@ -1,13 +1,13 @@
 # adminer
 
-Docker container running [adminer](https://hub.docker.com/_/adminer/)
+Container running [adminer](https://hub.docker.com/_/adminer/).
 
-## Usage with docker-compose
+## Usage with docker
 
-* Start adminer : `docker-compose up -d`
+* Start adminer : `docker compose up -d`
 * Open https://adminer.dev.localhost/
 
-## Usage with Kustomize
+## Usage with Kubernetes
 
 * Create namespace : `kubectl create namespace adminer`
 * Deploy adminer : `kubectl -n adminer apply -k adminer/manifest/base`
