@@ -5,7 +5,7 @@ Container running [containous/whoami](https://hub.docker.com/r/containous/whoami
 ## Usage with docker
 
 * Start 2 instances : `docker compose up -d --scale whoami=2`
-* Open https://whoami.dev.localhost and refresh
+* Open [http://whoami.dev.localhost](http://whoami.dev.localhost) and refresh
 
 ## Usage with Kubernetes
 
