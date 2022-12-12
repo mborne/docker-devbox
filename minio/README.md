@@ -11,5 +11,7 @@ Container running [MinIO](https://min.io/) offering S3 compatible object storage
 ## Resources
 
 * [Using MinIO with rclone](rclone.md)
-* [www.sefidian.com - Deploy Standalone (Single Node) MinIO server using Docker Compose on Linux](http://www.sefidian.com/2022/04/08/deploy-standalone-minio-using-docker-compose/)
+* [Using MinIO S3 object storage in a PHP Symfony project](flysystem-bundle.md)
 * [www.jdecool.fr - Utiliser MinIO comme stockage de données objets en PHP](https://www.jdecool.fr/blog/2020/07/07/utiliser-minio-comme-stockage-de-donnees-objets-en-php.html)
+* [www.sefidian.com - Deploy Standalone (Single Node) MinIO server using Docker Compose on Linux](http://www.sefidian.com/2022/04/08/deploy-standalone-minio-using-docker-compose/)
+
