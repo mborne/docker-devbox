@@ -7,5 +7,5 @@
 
 ## Usage
 
-* Generate and install [mkcert](https://github.com/FiloSottile/mkcert#mkcert) root CA : `mkcert -install`
+* Generate and install rootCA : `mkcert -install`
 * Generate and add certs to traefik with helper script [mkcert/generate.sh](mkcert/generate.sh) : `bash mkcert/generate.sh`

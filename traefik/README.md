@@ -1,12 +1,14 @@
 # Traefik
 
-Container running [traefik proxy](https://doc.traefik.io/traefik/).
+Container running [traefik proxy](https://doc.traefik.io/traefik/) :
+
+![traefik-screenshot](docs/traefik-screenshot.png)
 
 ## Usage with docker
 
 * Build [mborne/traefik-dev](img/traefik-dev/README.md) image : `docker compose build --pull`
 * Start traefik : `docker compose up -d`
-* See http://traefik.dev.localhost for web-ui
+* See [http://traefik.dev.localhost](http://traefik.dev.localhost) for web-ui
 * Run [whoami](../whoami/README.md) to test traefik
 
 See also :

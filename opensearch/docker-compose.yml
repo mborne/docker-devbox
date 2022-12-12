@@ -31,7 +31,7 @@ services:
       driver: syslog
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.os.rule=Host(`os.${HOST_HOSTNAME}`)"
+    - "traefik.http.routers.os.rule=Host(`os.${DEVBOX_HOSTNAME}`)"
     restart: unless-stopped
 
   opensearch-dashboards:
@@ -49,7 +49,7 @@ services:
       driver: syslog
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.${HOST_HOSTNAME}`)"
+    - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.${DEVBOX_HOSTNAME}`)"
     restart: unless-stopped
 
 volumes:

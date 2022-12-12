@@ -13,15 +13,15 @@ services:
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-      MINIO_BROWSER_REDIRECT_URL: http://minio.${HOST_HOSTNAME}
+      MINIO_BROWSER_REDIRECT_URL: http://minio.${DEVBOX_HOSTNAME}
     labels:
       - "traefik.enable=true"
       # https://minio.dev.localhost
-      - "traefik.http.routers.minio.rule=Host(`minio.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.minio.rule=Host(`minio.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.routers.minio.service=minio-service@docker"
       - "traefik.http.services.minio-service.loadbalancer.server.port=9001"
       # https://minio-s3.dev.localhost
-      - "traefik.http.routers.minio-s3.rule=Host(`minio-s3.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.minio-s3.rule=Host(`minio-s3.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.routers.minio-s3.service=minio-s3-service@docker"
       - "traefik.http.services.minio-s3-service.loadbalancer.server.port=9000"
 

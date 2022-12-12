@@ -10,7 +10,7 @@ services:
     depends_on:
       - "db"
     environment:
-      - KC_HOSTNAME=keycloak.${HOST_HOSTNAME}
+      - KC_HOSTNAME=keycloak.${DEVBOX_HOSTNAME}
       - KEYCLOAK_ADMIN=${KEYCLOAK_ADMIN}
       - KEYCLOAK_ADMIN_PASSWORD=${KEYCLOAK_ADMIN_PASSWORD}
       - KC_DB=postgres
@@ -24,7 +24,7 @@ services:
     #   - keycloak-data:/opt/jboss/keycloak/standalone
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.keycloak.rule=Host(`keycloak.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.keycloak.rule=Host(`keycloak.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.services.keycloak-service.loadbalancer.server.port=8080"
     restart: unless-stopped
 

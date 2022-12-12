@@ -7,7 +7,7 @@ services:
     image: mailhog/mailhog:latest
     labels:
     - "traefik.enable=true"
-    - "traefik.http.routers.mailhog.rule=Host(`mailhog.${HOST_HOSTNAME}`)"
+    - "traefik.http.routers.mailhog.rule=Host(`mailhog.${DEVBOX_HOSTNAME}`)"
     - "traefik.http.services.mailhog-service.loadbalancer.server.port=8025"
     restart: unless-stopped
 
