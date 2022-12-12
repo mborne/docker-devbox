@@ -21,9 +21,11 @@
 ## Networking and service exposition
 
 * Applications are exposed **on nice URL** (ex : https://kibana.dev.localhost) with the reverse proxy [traefik](../traefik/README.md).
-* An helper script is provided to generate wildcard certificates for [traefik](../traefik/README.md) with [mkcert](https://github.com/FiloSottile/mkcert#mkcert) a wildcard certificate ([traefik/mkcert/generate.sh](../traefik/mkcert/generate.sh)) 
+* An environment variable `DEVBOX_HOSTNAME` allows to customize `dev.localhost`
+* An helper script is provided to generate wildcard certificates for [traefik](../traefik/README.md) with [mkcert](https://github.com/FiloSottile/mkcert#mkcert) a wildcard certificate ([traefik/mkcert/generate.sh](../traefik/mkcert/generate.sh)).
 * All stacks runs on the same network named `devbox` to simplify communication between containers/stacks.
 
+> `dev.localhost` is preferred to `localhost` as it allows wildcard certificate generation.
 
 ## Port mapping
 
