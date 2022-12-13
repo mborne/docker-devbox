@@ -8,16 +8,25 @@ See [github.com - mborne/docker-jenkins](https://github.com/mborne/docker-jenkin
 
 ## Usage with Kubernetes
 
-* 1) Add helm repo : `helm repo add jenkins https://charts.jenkins.io`
-* 2) Update helm repos : `helm repo update`
-* 3) Create jenkins namespace : `kubectl create namespace jenkins`
-* 4) Deploy with helm : `helm -n jenkins install -f helm/local-values.yml jenkins jenkins/jenkins` (**note that you may adapt [helm/local-values.yml](helm/local-values.yml)**)
-* 5) Follow helm instructions
+* Read [k8s-install.sh](k8s-install.sh) and run :
 
-Notes :
+```bash
+# To get jenkins on http://jenkins.dev.localhost
+bash k8s-install.sh
+# To get jenkins on http://jenkins.example.net
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
+```
 
-* Redeploy with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
-* Uninstall with helm : `helm -n jenkins upgrade -f helm/qtw-values.yml jenkins jenkins/jenkins`
+* Wait for pod to be ready : `kubectl -n jenkins get pod -w`
+
+* Follow helm instruction to get your 'admin' user password :
+
+```bash
+kubectl exec --namespace jenkins -it svc/jenkins -c jenkins -- /bin/cat /run/secrets/additional/chart-admin-password && echo
+```
+
+* Open http://jenkins.dev.localhost
+
 
 ## Kubernetes cloud plugin
 

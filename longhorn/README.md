@@ -60,8 +60,8 @@ kubectl -n longhorn-system edit cm/longhorn-storageclass
 ```bash
 # With K3S, you might see 2 default StorageClass : local-path, longhorn
 kubectl get storageclass -o wide
-# To ensure that longhorn is the default StorageClass :
-kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
+# To don't use longhorn as the default StorageClass :
+kubectl patch storageclass longhorn -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 ```
 
 ## Resources

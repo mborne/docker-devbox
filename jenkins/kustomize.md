@@ -2,7 +2,7 @@
 
 ## Motivation
 
-Kept as is a good example to write manifest. See for example [manifest/base/rbac.yaml](manifest/base/rbac.yaml) which illustrates `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding`.
+Kept as is a good example to write manifests. See for example [manifest/base/rbac.yaml](manifest/base/rbac.yaml) which illustrates `ServiceAccount`, `ClusterRole` and `ClusterRoleBinding`.
 
 
 ## Usage
