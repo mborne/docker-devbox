@@ -14,13 +14,13 @@ sudo systemctl status iscsid
 
 ## Usage with Kubernetes
 
-Read [k8s-deploy.sh](k8s-deploy.sh) and run :
+Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 # To get dashboard on http://longhorn.dev.localhost
-bash k8s-deploy.sh
+bash k8s-install.sh
 # To get dashboard on http://longhorn.example.net
-DEVBOX_HOSTNAME=example.net bash k8s-deploy.sh
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 
 * Check pod status : `kubectl -n longhorn-system get pods -w`

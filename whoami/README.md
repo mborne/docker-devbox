@@ -13,13 +13,13 @@ Container running [containous/whoami](https://hub.docker.com/r/containous/whoami
 
 ### Quickstart
 
-Read [k8s-deploy.sh](k8s-deploy.sh) and run :
+Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 # To get whoami on http://whoami.dev.localhost
-bash k8s-deploy.sh
+bash k8s-install.sh
 # To get whoami on http://whoami.example.net
-DEVBOX_HOSTNAME=example.net bash k8s-deploy.sh
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 
 ### Step by step
