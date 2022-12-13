@@ -18,7 +18,9 @@ See also :
 
 ## Usage with Kubernetes
 
-Quickstart :
+### Quickstart
+
+Read [k8s-deploy.sh](k8s-deploy.sh) and run :
 
 ```bash
 # To get dashboard on http://traefik.dev.localhost
@@ -27,7 +29,7 @@ bash k8s-deploy.sh
 DEVBOX_HOSTNAME=example.net bash k8s-deploy.sh
 ```
 
-Step by step :
+### Step by step
 
 * Add helm repository : `helm repo add traefik https://helm.traefik.io/traefik`
 * Update helm repositories : `helm repo update`

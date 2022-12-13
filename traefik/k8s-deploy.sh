@@ -8,7 +8,7 @@ helm repo add traefik https://helm.traefik.io/traefik
 # Update helm repositories
 helm repo update
 
-# Create traefik-system namespace if not exists
+# Create namespace traefik-system if not exists
 kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm

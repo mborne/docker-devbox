@@ -7,8 +7,9 @@ spec:
     - web
     - websecure
   routes:
-    - match: Host(`whoami.dev.quadtreeworld.net`)
+    - match: Host(`whoami.dev.localhost`)
       kind: Rule
       services:
         - name: whoami
           port: 80
+
