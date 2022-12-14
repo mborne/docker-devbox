@@ -9,9 +9,14 @@ Container running [adminer](https://hub.docker.com/_/adminer/).
 
 ## Usage with Kubernetes
 
-* Create namespace : `kubectl create namespace adminer`
-* Deploy adminer : `kubectl -n adminer apply -k adminer/manifest/base`
-* Open https://adminer.dev.localhost/
+Read [k8s-install.sh](k8s-install.sh) and run :
+
+```bash
+# To get adminer on http://adminer.dev.localhost
+bash k8s-install.sh
+# To get adminer on http://adminer.example.net
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
+```
 
 ## Login to database
 
