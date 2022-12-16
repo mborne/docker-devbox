@@ -14,13 +14,11 @@ Container running [traefik proxy](https://doc.traefik.io/traefik/) :
 See also :
 
 * [Using mkcert to generate traefik certificates](mkcert.md)
-* [mborne/traefik-dev](img/traefik-dev/README.md) to customize traefik config using `docker compose exec traefik /bin/sh` and [vi](https://ryanstutorials.net/linuxtutorial/cheatsheetvi.php) editor.
+* [mborne/traefik-dev](img/traefik-dev/README.md) to customize traefik config.
 
 ## Usage with Kubernetes
 
-### Quickstart
-
-Read [k8s-install.sh](k8s-install.sh) and run :
+* Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 # To get dashboard on http://traefik.dev.localhost
@@ -29,15 +27,8 @@ bash k8s-install.sh
 DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 
-### Step by step
-
-* Add helm repository : `helm repo add traefik https://helm.traefik.io/traefik`
-* Update helm repositories : `helm repo update`
-* Create a namespace for traefik : `kubectl create namespace traefik-system`
-* Deploy traefik with helm : `helm -n traefik-system upgrade --install -f helm/local.yml traefik traefik/traefik`
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
-* To get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
-* To get dashboard on http://traefik.dev.localhost : `kubectl -n traefik-system apply -f traefik/manifest/dashboard-local.yml`
+* Open dashboard on http://traefik.dev.localhost
 
 Note :
 

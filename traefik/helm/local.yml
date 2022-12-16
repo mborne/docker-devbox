@@ -1,4 +1,7 @@
-# https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+#------------------------------------------------------------------------------------------
+# helm values for local usage (self generated certificates)
+# see https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+#------------------------------------------------------------------------------------------
 
 ports:
   websecure:

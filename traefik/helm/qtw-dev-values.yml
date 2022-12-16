@@ -1,4 +1,9 @@
-# https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+#------------------------------------------------------------------------------------------
+# helm values to generate LetsEncrypt certificates using HTTP-01 
+# challenge (https://letsencrypt.org/docs/challenge-types/#http-01-challenge)
+#  
+# see https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
+#------------------------------------------------------------------------------------------
 
 deployment:
   initContainers:
@@ -11,12 +16,7 @@ deployment:
         - name: data
           mountPath: /data
 
-# Enable persistence using Persistent Volume Claims
-# ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
-# After the pvc has been mounted, add the configs into traefik by using the `additionalArguments` list below, eg:
-# additionalArguments:
-# - "--certificatesresolvers.le.acme.storage=/data/acme.json"
-# It will persist TLS certificates.
+# Enable persistence using Persistent Volume Claims to persist TLS certificates.
 persistence:
   enabled: true
   name: data
@@ -32,17 +32,6 @@ certResolvers:
   letsencrypt:
     # for challenge options cf. https://doc.traefik.io/traefik/https/acme/
     email: admin@quadtreeworld.net
-    # dnsChallenge:
-    #   # also add the provider's required configuration under env
-    #   # or expand then from secrets/configmaps with envfrom
-    #   # cf. https://doc.traefik.io/traefik/https/acme/#providers
-    #   provider: digitalocean
-    #   # add futher options for the dns challenge as needed
-    #   # cf. https://doc.traefik.io/traefik/https/acme/#dnschallenge
-    #   delayBeforeCheck: 30
-    #   resolvers:
-    #     - 1.1.1.1
-    #     - 8.8.8.8
     tlsChallenge: true
     httpChallenge:
       entryPoint: "web"
