@@ -22,6 +22,12 @@ See [Usage with docker](docs/docker.md) for more details.
 | [traefik](traefik/README.md) | A reverse proxy/load balancer including **configuration discovery** mechanism | &#9745; | &#9745; |
 | [whoami](whoami/README.md)   | An helloworld to discover [traefik](traefik/README.md)                        | &#9745; | &#9745; |
 
+### Container UI
+
+| Name                                                   | Description                          | Docker  |   K8S   |
+| ------------------------------------------------------ | ------------------------------------ | :-----: | :-----: |
+| [kubernetes-dashboard](kubernetes-dashboard/README.md) | Web-based UI for Kubernetes clusters | &#9745; | &#9745; |
+
 ### CI/CD pipeline
 
 | Name                             | Description                                                                 | Docker  |   K8S   |
@@ -29,7 +35,7 @@ See [Usage with docker](docs/docker.md) for more details.
 | [Jenkins](jenkins/README.md)     | Open source automation server with hundred of plugins (ansible, jmeter,...) | &#9745; | &#9745; |
 | [ArgoCD](argocd/README.md)       | GitOps **continuous delivery** tool for **Kubernetes**                      |   NA    | &#9745; |
 | [SonarQube](sonarqube/README.md) | Centralisation of Code Quality and Code Security metrics                    | &#9745; | &#9744; |
-| [Vault](vault/README.md) | Secret storage and management server with an API | &#9745; | &#9744; |
+| [Vault](vault/README.md)         | Secret storage and management server with an API                            | &#9745; | &#9744; |
 
 ### Authentication
 
