@@ -16,7 +16,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: geonetwork
-        image: geonetwork:4.2.0
+        image: geonetwork:4.2.2
         env:
         - name: 'ES_HOST'
           value: 'geonetwork-es-http'

@@ -7,7 +7,7 @@ services:
     image: sonarqube:lts
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${DEVBOX_HOSTNAME}`)"
     ports:
       - "127.0.0.1:9000:9000"
     volumes:

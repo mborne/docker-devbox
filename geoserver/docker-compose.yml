@@ -13,7 +13,7 @@ services:
       - "CATALINA_OPTS=-Xms512m -Xmx512m"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.geoserver.rule=Host(`geoserver.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.geoserver.rule=Host(`geoserver.${DEVBOX_HOSTNAME}`)"
       #- "traefik.http.routers.geoserver.middlewares=cors@file"
     volumes:
       - geoserver-data:/var/geoserver

@@ -1,12 +1,14 @@
 # Traefik
 
-Container running [traefik proxy](https://doc.traefik.io/traefik/).
+Container running [traefik proxy](https://doc.traefik.io/traefik/) :
+
+![traefik-screenshot](docs/traefik-screenshot.png)
 
 ## Usage with docker
 
 * Build [mborne/traefik-dev](img/traefik-dev/README.md) image : `docker compose build --pull`
 * Start traefik : `docker compose up -d`
-* See http://traefik.dev.localhost for web-ui
+* See [http://traefik.dev.localhost](http://traefik.dev.localhost) for web-ui
 * Run [whoami](../whoami/README.md) to test traefik
 
 See also :
@@ -16,12 +18,23 @@ See also :
 
 ## Usage with Kubernetes
 
-See [traefik/traefik-helm-chart](https://github.com/traefik/traefik-helm-chart#traefik) :
+### Quickstart
+
+Read [k8s-install.sh](k8s-install.sh) and run :
+
+```bash
+# To get dashboard on http://traefik.dev.localhost
+bash k8s-install.sh
+# To get dashboard on http://traefik.example.net
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
+```
+
+### Step by step
 
 * Add helm repository : `helm repo add traefik https://helm.traefik.io/traefik`
 * Update helm repositories : `helm repo update`
 * Create a namespace for traefik : `kubectl create namespace traefik-system`
-* Deploy traefik with helm : `helm -n traefik-system install -f traefik/helm/local.yml traefik traefik/traefik`
+* Deploy traefik with helm : `helm -n traefik-system upgrade --install -f helm/local.yml traefik traefik/traefik`
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
 * To get dashboard on http://localhost:9000/dashboard/#/ : `kubectl -n traefik-system port-forward $(kubectl -n traefik-system get pods -o name) 9000:9000`
 * To get dashboard on http://traefik.dev.localhost : `kubectl -n traefik-system apply -f traefik/manifest/dashboard-local.yml`

@@ -7,7 +7,7 @@ services:
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.nextcloud.rule=Host(`nextcloud.${DEVBOX_HOSTNAME}`)"
     volumes:
       - files:/var/www/html
 

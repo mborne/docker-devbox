@@ -29,7 +29,7 @@ services:
       - PHPLDAPADMIN_HTTPS=false
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.ldapadmin.rule=Host(`ldapadmin.${DEVBOX_HOSTNAME}`)"
     restart: unless-stopped
 
 volumes:

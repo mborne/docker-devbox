@@ -23,9 +23,9 @@ See [www.elastic.co - Download Elastic Cloud on Kubernetes](https://www.elastic.
 
 ```bash
 # elastic definitions
-kubectl create -f https://download.elastic.co/downloads/eck/2.2.0/crds.yaml
+kubectl create -f https://download.elastic.co/downloads/eck/2.5.0/crds.yaml
 # elastic operator
-kubectl apply -f https://download.elastic.co/downloads/eck/2.2.0/operator.yaml
+kubectl apply -f https://download.elastic.co/downloads/eck/2.5.0/operator.yaml
 ```
 
 ...and usage in [geonetwork/manifest/base/elasticsearch.yaml](../geonetwork/manifest/base/elasticsearch.yaml) / [geonetwork/manifest/base/statefulset.yaml](../geonetwork/manifest/base/statefulset.yaml)

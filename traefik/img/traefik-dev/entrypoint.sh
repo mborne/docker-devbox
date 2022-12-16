@@ -7,7 +7,7 @@ echo '
 # API and dashboard
 #-------------------------------------------------------------------
 [http.routers.traefik]
-  rule = "Host(`traefik.'${HOST_HOSTNAME}'`)"
+  rule = "Host(`traefik.'${DEVBOX_HOSTNAME}'`)"
   service = "api@internal"
   middlewares = "whitelist@file"
 ' > /etc/traefik/conf.d/dashboard.toml

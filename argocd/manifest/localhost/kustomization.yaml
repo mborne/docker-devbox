@@ -3,6 +3,4 @@ kind: Kustomization
 
 resources:
 - ../base
-
-patchesStrategicMerge:
 - ./ingress.yaml

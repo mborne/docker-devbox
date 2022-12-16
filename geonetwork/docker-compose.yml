@@ -4,20 +4,47 @@ services:
 
   geonetwork:
     container_name: geonetwork
-    image: geonetwork:4.2.0
+    image: geonetwork:4.2.2
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.geonetwork.rule=Host(`geonetwork.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.geonetwork.rule=Host(`geonetwork.${DEVBOX_HOSTNAME}`)"
     environment:
       - DATA_DIR=/var/lib/geonetwork_data
-      - ES_HOST=es
+      - ES_HOST=geonetwork_es
     volumes:
       - geonetwork-data:/var/lib/geonetwork_data
+    restart: unless-stopped
+
+  geonetwork-es:
+    container_name: geonetwork_es
+    # from https://github.com/geonetwork/core-geonetwork/tree/4.2.2/es#manual-installation
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.6.2
+    environment:
+      - node.name=geonetwork-es
+      - cluster.name=geonetwork-es-docker-single
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=${ES_JAVA_OPTS}"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    ports:
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.geonetwork-es.rule=Host(`geonetwork_es.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.geonetwork-es-service.loadbalancer.server.port=9200"
+    volumes:
+      - geonetwork-es-data:/usr/share/elasticsearch/data
     restart: unless-stopped
 
 volumes:
   geonetwork-data:
     name: geonetwork-data
+  geonetwork-es-data:
+    name: geonetwork-es-data
 
 networks:
   default:

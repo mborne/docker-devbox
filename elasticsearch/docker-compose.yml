@@ -20,7 +20,7 @@ services:
       - "127.0.0.1:9300:9300"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.es.rule=Host(`es.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.es.rule=Host(`es.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.services.es-service.loadbalancer.server.port=9200"
     volumes:
       - es-data:/usr/share/elasticsearch/data

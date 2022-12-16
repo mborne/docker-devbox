@@ -6,13 +6,13 @@ services:
     container_name: kibana
     image: docker.elastic.co/kibana/kibana:8.3.2
     environment:
-      - "SERVER_NAME=kibana.${HOST_HOSTNAME}"
+      - "SERVER_NAME=kibana.${DEVBOX_HOSTNAME}"
       - "ELASTICSEARCH_HOSTS=${ES_URL}"
     ports:
       - "127.0.0.1:5601:5601"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.kibana.rule=Host(`kibana.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.kibana.rule=Host(`kibana.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.services.kibana-service.loadbalancer.server.port=5601"
     restart: unless-stopped
 

@@ -16,7 +16,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wordpress.rule=Host(`wordpress.${HOST_HOSTNAME}`)"
+      - "traefik.http.routers.wordpress.rule=Host(`wordpress.${DEVBOX_HOSTNAME}`)"
     restart: unless-stopped
 
   db:
