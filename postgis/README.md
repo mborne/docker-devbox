@@ -55,13 +55,17 @@ Note : Internal hostname is `postgis.postgis.svc.cluster.local`.
 
 ## See also
 
-PostgreSQL operators like :
+For Kubernetes :
 
-* [zalando/postgres-operator](https://github.com/zalando/postgres-operator)
-* [CrunchyData/postgres-operator](https://github.com/CrunchyData/postgres-operator)
-* ...
+* [PostgreSQL packaged by Bitnami](https://github.com/bitnami/charts/tree/main/bitnami/postgresql/#postgresql-packaged-by-bitnami)
 
-Tuning :
+* PostgreSQL operators like :
+    * [zalando/postgres-operator](https://github.com/zalando/postgres-operator)
+    * [CrunchyData/postgres-operator](https://github.com/CrunchyData/postgres-operator)
+    * ...
+
+To tune PostgreSQL :
 
 * [pgtune.leopard.in.ua](http://pgtune.leopard.in.ua/)
 * [urator.cybertec.at](http://pgconfigurator.cybertec.at/)
+* [github.com - esgn/pgtuned](https://github.com/esgn/pgtuned#pgtuned--)
