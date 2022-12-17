@@ -1,0 +1,28 @@
+version: '3.9'
+
+services:
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce:latest
+    security_opt:
+      - no-new-privileges:true
+    # ports:
+    #   - 9000:9000
+    volumes:
+      - portainer-data:/data
+      - /etc/localtime:/etc/localtime:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portainer.rule=Host(`portainer.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.portainer-service.loadbalancer.server.port=9000"
+    restart: unless-stopped
+
+volumes:
+  portainer-data:
+    name: portainer-data
+
+networks:
+  default:
+    name: devbox
+    external: true

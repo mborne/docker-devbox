@@ -24,9 +24,10 @@ See [Usage with docker](docs/docker.md) for more details.
 
 ### Container UI
 
-| Name                                                   | Description                          | Docker  |   K8S   |
-| ------------------------------------------------------ | ------------------------------------ | :-----: | :-----: |
-| [kubernetes-dashboard](kubernetes-dashboard/README.md) | Web-based UI for Kubernetes clusters | &#9745; | &#9745; |
+| Name                                                   | Description                                          | Docker  |   K8S   |
+| ------------------------------------------------------ | ---------------------------------------------------- | :-----: | :-----: |
+| [kubernetes-dashboard](kubernetes-dashboard/README.md) | Web-based UI for Kubernetes clusters                 | &#9745; | &#9745; |
+| [portainer](portainer/README.md)                       | Web-based UI for Kubernetes, Docker, Swarm and Nomad | &#9745; | &#9744; |
 
 ### CI/CD pipeline
 
