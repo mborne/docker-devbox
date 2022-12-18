@@ -19,11 +19,11 @@ spec:
   - host: geonetwork.$DEVBOX_HOSTNAME
     http:
       paths:
-      - backend:
+      - pathType: Prefix
+        path: "/"
+        backend:
           service:
             name: geonetwork
             port:
               number: 8080
-        path: /
-        pathType: Prefix
 EOF

@@ -8,7 +8,7 @@ kubectl create namespace adminer --dry-run=client -o yaml | kubectl apply -f -
 # Deploy traefik with helm
 kubectl -n adminer apply -k manifest/base
 
-# Create IngressRoute with dynamic hostname
+# Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n adminer apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
