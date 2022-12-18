@@ -6,6 +6,6 @@ resources:
 
 patches:
 - target:
-    kind: IngressRoute
+    kind: Ingress
     name: whoami
   path: ingress-patch.json

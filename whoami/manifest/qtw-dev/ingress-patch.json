@@ -1,7 +1,7 @@
 [
     {
         "op": "replace",
-        "path": "/spec/routes/0/match",
-        "value": "Host(`whoami.dev.quadtreeworld.net`)"
+        "path": "/spec/rules/0/host",
+        "value": "whoami.dev.quadtreeworld.net"
     }
 ]

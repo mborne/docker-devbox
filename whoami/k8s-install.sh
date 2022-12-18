@@ -8,20 +8,22 @@ kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
 # Deploy traefik with helm
 kubectl -n whoami apply -k manifest/base
 
-# Create IngressRoute with dynamic hostname
+# Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n whoami apply -f -
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: whoami
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - match: Host(\`whoami.$DEVBOX_HOSTNAME\`)
-      kind: Rule
-      services:
-        - name: whoami
-          port: 80
+  rules:
+  - host: whoami.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: whoami
+            port:
+              number: 80
 EOF
