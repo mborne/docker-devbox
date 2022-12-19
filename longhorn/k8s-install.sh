@@ -8,7 +8,7 @@ kubectl create namespace longhorn-system --dry-run=client -o yaml | kubectl appl
 # Deploy longhorn
 kubectl -n longhorn-system apply -f https://raw.githubusercontent.com/longhorn/longhorn/v1.3.2/deploy/longhorn.yaml
 
-# Create IngressRoute with dynamic hostname
+# Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n longhorn-system apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
