@@ -9,6 +9,7 @@ kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 kubectl -n argocd apply -k manifest/base
 
 # Create IngressRoute with dynamic hostname
+# see https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#traefik-v22
 cat <<EOF | kubectl -n argocd apply -f -
 # https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ingressroute-crd
 apiVersion: traefik.containo.us/v1alpha1

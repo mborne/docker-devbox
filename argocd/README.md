@@ -29,3 +29,4 @@ If setting http_proxy and https_proxy is required to reach GIT repositories, **u
 
 * [argo-cd.readthedocs.io - Getting Started](https://argo-cd.readthedocs.io/en/stable/getting_started/)
 * [argo-cd.readthedocs.io - Manage Argo CD Using Argo CD](https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#manage-argo-cd-using-argo-cd) (example of kustomization)
+* [argo-cd.readthedocs.io - Operator Manual - Ingress Configuration](https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ingress-configuration)
