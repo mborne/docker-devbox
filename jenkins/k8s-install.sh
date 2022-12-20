@@ -19,18 +19,20 @@ helm -n jenkins upgrade --install jenkins jenkins/jenkins
 
 # Create IngressRoute with dynamic hostname
 cat <<EOF | kubectl -n jenkins apply -f -
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: jenkins
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - match: Host(\`jenkins.$DEVBOX_HOSTNAME\`)
-      kind: Rule
-      services:
-        - name: jenkins
-          port: 8080
+  rules:
+  - host: jenkins.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: jenkins
+            port:
+              number: 8080
 EOF
