@@ -8,6 +8,28 @@ Container running [MinIO](https://min.io/) offering S3 compatible object storage
 * Open https://minio.dev.localhost/
 * Use https://minio-s3.dev.localhost as an S3 endpoint
 
+## Usage with Kubernetes
+
+* Configure default admin password
+
+```bash
+export MINIO_ROOT_PASSWORD=ChangeIt
+```
+
+* Read [k8s-install.sh](k8s-install.sh) and run :
+
+```bash
+# To get dashboard on https://minio.dev.localhost
+bash k8s-install.sh
+# To get dashboard on https://minio.example.net
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
+```
+
+* Wait for pods to be ready : `kubectl -n minio-system get pods -w`
+* Open dashboard on https://minio.dev.localhost/minio
+
+
+
 ## Resources
 
 * [Using MinIO with rclone](rclone.md)
