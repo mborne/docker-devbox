@@ -14,7 +14,8 @@ kubectl create namespace minio-system --dry-run=client -o yaml | kubectl apply -
 
 # Deploy minio with helm
 helm -n minio-system upgrade --install minio bitnami/minio \
+  --set auth.rootPassword=$MINIO_ROOT_PASSWORD \
   --set ingress.enabled=true \
   --set ingress.hostname=minio.$DEVBOX_HOSTNAME \
-  --set auth.rootPassword=$MINIO_ROOT_PASSWORD
-
+  --set apiIngress.enabled=true \
+  --set apiIngress.hostname=minio-s3.$DEVBOX_HOSTNAME

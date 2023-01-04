@@ -29,6 +29,7 @@ DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 
 * Wait for pods to be ready : `kubectl -n minio-system get pods -w`
 * Open dashboard on https://minio.dev.localhost/minio
+* Use https://minio-s3.dev.localhost as an S3 endpoint
 
 ## Resources
 
