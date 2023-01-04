@@ -16,8 +16,8 @@ services:
       - traefik-config:/etc/traefik:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     # permission on /var/run/docker.sock
-    # userns_mode: 'host'
-    # privileged: true
+    privileged: true
+    userns_mode: 'host'
     # removes contraint to share network with traefik
     # network_mode: 'host'
     restart: unless-stopped
