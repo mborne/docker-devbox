@@ -4,7 +4,7 @@ services:
 
   vault:
     container_name: vault
-    image: vault:1.11.0
+    image: vault:1.12.2
     command: server
     volumes:
       - ./vault.hcl:/vault/config/vault.hcl
