@@ -6,7 +6,7 @@ services:
     container_name: mailer
     image: namshi/smtp:latest
     ports:
-      - "127.0.0.1:25:25"
+      - "${DEVBOX_PORT_PREFIX}25:25"
     env_file:
       - config.env
     restart: unless-stopped

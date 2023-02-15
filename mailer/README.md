@@ -1,6 +1,6 @@
 # mailer
 
-Container running [namshi/smtp](https://hub.docker.com/r/namshi/smtp) which is a STMP relay.
+Container running [namshi/smtp](https://hub.docker.com/r/namshi/smtp) which is a SMTP relay.
 
 > **Warning:** See [namshi/smtp -tags](https://hub.docker.com/r/namshi/smtp/tags) currently displaying **Last pushed 3 years ago by namshi**.
 

@@ -6,7 +6,7 @@ Container running [Kubernetes Dashboard](https://github.com/kubernetes/dashboard
 
 ## Usage with Kubernetes
 
-* Read [k8s-install.sh](k8s-install.sh) (note that only https is supported) and run :
+* Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 # To get kubernetes-dashboard on https://k8s-dashboard.dev.localhost

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ES_URL=${ES_URL:-https://es.dev.localhost}
+ES_URL=${ES_URL:-http://localhost:9200}
 
 echo ""
 curl -X PUT "${ES_URL}/_cluster/settings" -H 'Content-Type: application/json' -d'

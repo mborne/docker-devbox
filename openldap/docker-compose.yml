@@ -14,7 +14,7 @@ services:
       - LDAP_READONLY_USER_USERNAME=readonly
       - LDAP_READONLY_USER_PASSWORD=${LDAP_READONLY_USER_PASSWORD}
     ports:
-      - "127.0.0.1:389:389"
+      - "${DEVBOX_PORT_PREFIX}389:389"
     volumes:
       - ldap-data:/var/lib/ldap
       - ldap-config:/etc/ldap/slapd.d

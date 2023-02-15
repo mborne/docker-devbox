@@ -6,7 +6,7 @@ services:
     container_name: postgis
     image: postgis/postgis:13-3.2
     ports:
-      - "127.0.0.1:5432:5432"
+      - "${DEVBOX_PORT_PREFIX}5432:5432"
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}

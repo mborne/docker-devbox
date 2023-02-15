@@ -5,6 +5,8 @@ services:
   mailhog:
     container_name: mailhog
     image: mailhog/mailhog:latest
+    ports:
+    - 1025:1025
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.mailhog.rule=Host(`mailhog.${DEVBOX_HOSTNAME}`)"

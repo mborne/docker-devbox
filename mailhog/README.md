@@ -6,7 +6,7 @@ Container running running [MailHog](https://github.com/mailhog/MailHog#readme) t
 
 * Start postgis : `docker compose up -d`
 
-* Send an email : `telnet mailhog.devbox 1025`
+* Send an email : `telnet localhost 1025`
 
 ```bash
 HELO mailhog.devbox
