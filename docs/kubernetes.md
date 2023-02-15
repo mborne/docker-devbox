@@ -1,4 +1,4 @@
-# Notes about Kubernetes
+# Usage with Kubernetes
 
 ## Key points
 

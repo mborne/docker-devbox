@@ -11,7 +11,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 * Create a devbox network : `docker network create devbox`.
 * Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand [how traefik works](https://doc.traefik.io/traefik/).
 
-See [Usage with docker](docs/docker.md) for more details.
+See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kubernetes.md) for more details.
 
 ## Stacks
 
