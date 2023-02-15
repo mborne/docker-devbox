@@ -8,8 +8,8 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.sonarqube.rule=Host(`sonarqube.${DEVBOX_HOSTNAME}`)"
-    ports:
-      - "127.0.0.1:9000:9000"
+    # ports:
+    #   - "9000:9000"
     volumes:
       - sonarqube-data:/opt/sonarqube/data
     restart: unless-stopped

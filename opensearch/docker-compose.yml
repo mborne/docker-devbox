@@ -23,9 +23,9 @@ services:
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     ports:
-      - 127.0.0.1:9200:9200
+      - ${DEVBOX_PORT_PREFIX}9200:9200
        # required for Performance Analyzer
-      - 127.0.0.1:9600:9600
+      - ${DEVBOX_PORT_PREFIX}9600:9600
     # ensure it can start with global fluentd logging
     logging:
       driver: syslog
@@ -37,10 +37,6 @@ services:
   opensearch-dashboards:
     image: opensearchproject/opensearch-dashboards:latest
     container_name: opensearch-dashboards
-    # ports:
-    #   - 127.0.0.1:5601:5601
-    # expose:
-    #   - "5601"
     environment:
       - 'OPENSEARCH_HOSTS=["http://opensearch:9200"]'
       - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"

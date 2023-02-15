@@ -4,7 +4,6 @@ Container running [GeoNetwork](https://geonetwork-opensource.org/).
 
 ## Usage with docker
 
-* Start [Elasticsearch](../elasticsearch/README.md#usage-with-docker-compose)
 * Start geonetwork : `docker compose up -d`
 * Open https://geonetwork.dev.localhost/geonetwork/
 * Login with admin/admin

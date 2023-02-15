@@ -8,8 +8,6 @@ services:
     environment:
       - "SERVER_NAME=kibana.${DEVBOX_HOSTNAME}"
       - "ELASTICSEARCH_HOSTS=${ES_URL}"
-    ports:
-      - "127.0.0.1:5601:5601"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.kibana.rule=Host(`kibana.${DEVBOX_HOSTNAME}`)"

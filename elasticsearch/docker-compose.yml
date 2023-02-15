@@ -16,8 +16,8 @@ services:
         soft: -1
         hard: -1
     ports:
-      - "127.0.0.1:9200:9200"
-      - "127.0.0.1:9300:9300"
+      - "${DEVBOX_PORT_PREFIX}9200:9200"
+      - "${DEVBOX_PORT_PREFIX}9300:9300"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.es.rule=Host(`es.${DEVBOX_HOSTNAME}`)"
