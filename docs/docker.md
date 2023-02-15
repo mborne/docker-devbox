@@ -10,7 +10,7 @@
 ## Schema
 
 <div style="text-align:center">
-<img src="docker-compose-arch.png" title="Architecture schema"/>
+<img src="docker-compose-arch.drawio.png" title="Architecture schema"/>
 </div>
 
 ## Stacks management
@@ -29,11 +29,18 @@
 
 ## Port mapping
 
-Service ports (ex : 5342 for PostgreSQL) are only exposed on `127.0.0.1` for security consideration :
+By default, service ports (ex : 5342 for PostgreSQL) are only exposed on `127.0.0.1` for security consideration :
 
 * My IDP enables IPV6 with no descent firewall.
-* Docker overwrites `iptables` or [UFW](https://help.ubuntu.com/community/UFW) rules.
+* Docker overwrites `iptables` or [UFW](https://help.ubuntu.com/community/UFW) rules (so that is not trivial to configure a local firewall).
 
+Note that you can overwrite this behavior by defining `DEVBOX_PORT_PREFIX` before starting stacks :
+
+```bash
+export DEVBOX_PORT_PREFIX=""
+cd redis
+docker compose up -d
+```
 
 ## Docker configuration
 
