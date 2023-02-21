@@ -34,8 +34,16 @@ pilot:
 #-------------------------------------------------------------------
 # Logs
 #-------------------------------------------------------------------
-#log:
+
+# https://doc.traefik.io/traefik/observability/logs/
+# log:
 #  format: "json"
-  
-#accessLog:
+
+# https://doc.traefik.io/traefik/observability/access-logs/
+# accessLog:
 #  format: "json"
+
+
+# https://doc.traefik.io/traefik/observability/metrics/overview/
+metrics:
+  prometheus: {}
