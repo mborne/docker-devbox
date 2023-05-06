@@ -10,6 +10,7 @@ helm repo update
 kubectl create namespace nfs-system --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy nfs-system with helm
-# (persistence.storageClass=default)
+# https://artifacthub.io/packages/helm/kvaps/nfs-server-provisioner#configuration
 helm -n nfs-system upgrade --install nfs-server stable/nfs-server-provisioner \
-  --set persistence.enabled=true,persistence.size=200Gi
+  --set persistence.enabled=true,persistence.size=200Gi \
+  --set storageClass.name=nfs
