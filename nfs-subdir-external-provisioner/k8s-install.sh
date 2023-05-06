@@ -1,8 +1,10 @@
 #!/bin/bash
 
-NFS_SERVER_IP=${NFS_SERVER_IP:-nfs-server.nfs.svc.cluster.local}
+NFS_SERVER_IP=${NFS_SERVER_IP:-nfs-server.nfs-system.svc.cluster.local}
 NFS_PATH=${NFS_PATH:-/exports}
-echo "Install nfs-subdir-external-provisioner with NFS_SERVER_IP=${NFS_SERVER_IP} and NFS_PATH=${NFS_PATH}..."
+echo "Install nfs-subdir-external-provisioner with :"
+echo "- NFS_SERVER_IP=${NFS_SERVER_IP}"
+echo "- NFS_PATH=${NFS_PATH}"
 
 # Add helm repository
 helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/

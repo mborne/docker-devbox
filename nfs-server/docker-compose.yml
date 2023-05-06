@@ -4,7 +4,7 @@ services:
 
   server:
     container_name: nfs_server
-    image: k8s.gcr.io/volume-nfs:0.8
+    image: registry.k8s.io/volume-nfs:0.8
     privileged: true
     volumes:
       - nfs-data:/exports
