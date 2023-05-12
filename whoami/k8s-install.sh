@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 
 # Create namespace whoami if not exists
 kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
@@ -15,6 +16,7 @@ kind: Ingress
 metadata:
   name: whoami
 spec:
+  ingressClassName: ${DEVBOX_INGRESS}
   rules:
   - host: whoami.$DEVBOX_HOSTNAME
     http:
