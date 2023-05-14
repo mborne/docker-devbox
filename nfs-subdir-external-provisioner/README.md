@@ -4,13 +4,14 @@ Deploy [kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kube
 
 ## Parameters
 
+| Name          | Description          | Default                                 |
+|---------------|----------------------|-----------------------------------------|
 | NFS_SERVER_IP | IP of the NFS server | nfs-server.nfs-system.svc.cluster.local |
-| NFS_PATH | Path to the export | `/exports`  |
-
+| NFS_PATH      | Path to the export   | `/exports`                              |
 
 ## Usage with Kubernetes
 
-* Deploy [nfs-server](../nfs-server/README.md) or adapt the following variables to use an existing NFS server :
+* Deploy [nfs-server](../nfs-server/README.md) or adapt params to use an existing NFS server :
 
 ```bash
 export NFS_SERVER_IP=nfs-server.nfs-system.svc.cluster.local
