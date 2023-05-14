@@ -36,13 +36,14 @@ pilot:
 #-------------------------------------------------------------------
 
 # https://doc.traefik.io/traefik/observability/logs/
-# log:
-#  format: "json"
+log:
+  level: DEBUG
+  #format: "json"
 
 # https://doc.traefik.io/traefik/observability/access-logs/
-# accessLog:
-#  format: "json"
-
+accessLog:
+  format: CLF
+  #format: "json"
 
 # https://doc.traefik.io/traefik/observability/metrics/overview/
 metrics:

@@ -1,38 +1,34 @@
 # cert-manager
 
+Deploy [cert-manager](https://cert-manager.io/) with [bitnami's helm chart](https://bitnami.com/stack/cert-manager/helm) to generate TLS certificates.
+
 ## Usage with Kubernetes
 
-* Read [k8s-install.sh](k8s-install.sh) and run :
+Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# To get whoami on http://whoami.dev.localhost
 bash k8s-install.sh
 ```
 
-* Follow instructions :
-
->** Please be patient while the chart is being deployed **
->
-> In other to begin using certificates, you will need to set up Issuer or ClustersIssuer resources.
->
-> https://cert-manager.io/docs/configuration/
->
->To configure a new ingress to automatically provision certificates, you will find some information in the following link:
->
-> https://cert-manager.io/docs/usage/ingress/
+Follow instructions providing links to the documentation to configure [Issuers and ClusterIssuers](https://cert-manager.io/docs/concepts/issuer/) and [Ingress resources](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/#step-7---deploy-a-tls-ingress-resource).
 
 ## ClusterIssuer examples
 
-### mkcert CA
+### mkcert
 
-* Read [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) and run :
+For **DEV purpose**, see [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) to create a ["mkcert"](https://github.com/FiloSottile/mkcert) ClusterIssuer :
 
 ```bash
-# To get whoami on http://whoami.dev.localhost
 bash cluster-issuer/mkcert.sh
 ```
 
-* See [whoami/k8s-install.sh](../whoami/k8s-install.sh) example :
+### LetsEncrypt
+
+> Coming soon...
+
+## Ingress example
+
+See [whoami/k8s-install.sh](../whoami/k8s-install.sh) :
 
 ```yaml
 apiVersion: networking.k8s.io/v1
@@ -63,4 +59,5 @@ spec:
 
 ## Resources
 
-* [bitnami.com - CERT-MANAGER PACKAGED BY BITNAMI HELM CHARTS](https://bitnami.com/stack/cert-manager/helm)
+* [cert-manager - Documentation](https://cert-manager.io/docs/)
+* [bitnami.com - cert-manager packaged by Bitnami helm charts](https://bitnami.com/stack/cert-manager/helm)

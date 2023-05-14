@@ -17,10 +17,12 @@ See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kuberne
 
 ### Load balancer and reverse proxy
 
-| Name                         | Description                                                                   | Docker  |   K8S   |
-| ---------------------------- | ----------------------------------------------------------------------------- | :-----: | :-----: |
-| [traefik](traefik/README.md) | A reverse proxy/load balancer including **configuration discovery** mechanism | &#9745; | &#9745; |
-| [whoami](whoami/README.md)   | An helloworld to discover [traefik](traefik/README.md)                        | &#9745; | &#9745; |
+| Name                                                           | Description                                                                       | Docker  |   K8S   |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------- | :-----: | :-----: |
+| [traefik](traefik/README.md)                                   | A reverse proxy including **configuration discovery** mechanism                   | &#9745; | &#9745; |
+| [nginx-ingress-controller](nginx-ingress-controller/README.md) | A common alternative to [Traefik](traefik/README.md) for Kubernetes               |   NA    | &#9745; |
+| [whoami](whoami/README.md)                                     | An helloworld to test/discover load balancers                                     | &#9745; | &#9745; |
+| [cert-manager](cert-manager/README.md)                         | An helper to generate TLS certificates from various issuers including LetsEncrypt |   NA    | &#9745; |
 
 ### Container UI
 
@@ -47,20 +49,20 @@ See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kuberne
 
 ### Storage
 
-| Name                                                                         | Description                                                                                             | Docker  |                             K8S                              |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
-| [MinIO](minio/README.md)                                                     | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
-| [Nextcloud](nextcloud/README.md)                                             | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
-| [Nexus](nexus/README.md)                                                     | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
+| Name                             | Description                                                                                             | Docker  |                             K8S                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
+| [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
+| [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
+| [Nexus](nexus/README.md)         | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
 
 ### ReadWriteMany
 
-| Name                                                                         | Description                                                                                             | Docker  |                             K8S                              |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
-| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                          |   NA    |                           &#9745;                            |
-| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                                  |   NA    |                           &#9745;                            |
-| [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                              |   NA    |                           &#9745;                            |
-| [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md)     | &#9745; |                           &#9745;                            |
+| Name                                                                         | Description                                                                                         | Docker  |   K8S   |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | :-----: | :-----: |
+| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
+| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                              |   NA    | &#9745; |
+| [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                          |   NA    | &#9745; |
+| [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | &#9745; | &#9745; |
 
 ### Database
 
