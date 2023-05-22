@@ -26,7 +26,7 @@ data:
   tls.key: $MKCERT_CA_KEY
 EOF
 
-# Create Ingress with dynamic hostname
+# Create mkcert ClusterIssuer
 cat <<EOF | kubectl -n cert-manager apply -f -
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer

@@ -16,15 +16,30 @@ Follow instructions providing links to the documentation to configure [Issuers a
 
 ### mkcert
 
-For **DEV purpose**, see [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) to create a ["mkcert"](https://github.com/FiloSottile/mkcert) ClusterIssuer :
+See [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) to create a ["mkcert"](https://github.com/FiloSottile/mkcert) ClusterIssuer :
 
 ```bash
 bash cluster-issuer/mkcert.sh
 ```
 
-### LetsEncrypt
+### LetsEncrypt HTTP01
 
-> Coming soon...
+See [cluster-issuer/letsencrypt-http.sh](cluster-issuer/letsencrypt-http.sh) to create a ["letsencrypt-http" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/http01/) :
+
+```bash
+bash cluster-issuer/letsencrypt-http.sh <CONTACT_EMAIL>
+```
+
+### LetsEncrypt DNS01
+
+See [cluster-issuer/letsencrypt-cloudflare.sh](cluster-issuer/letsencrypt-cloudflare.sh) to create a ["letsencrypt-cloudflare" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/) :
+
+```bash
+export CLOUDFLARE_EMAIL=...
+export CLOUDFLARE_API_KEY=...
+bash cluster-issuer/letsencrypt-cloudflare.sh
+```
+
 
 ## Ingress example
 
@@ -56,6 +71,12 @@ spec:
     secretName: whoami-cert
 ```
 
+## Troubleshooting
+
+```bash
+# follow controller's logs
+kubectl -n cert-manager logs $(kubectl -n cert-manager get pods -l app.kubernetes.io/component=controller -o name) -f
+```
 
 ## Resources
 
