@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
 # Add helm repository
 helm repo add portainer https://portainer.github.io/k8s
@@ -20,7 +22,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: portainer
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
 spec:
+  ingressClassName: ${DEVBOX_INGRESS}
   rules:
   - host: portainer.$DEVBOX_HOSTNAME
     http:
@@ -32,4 +37,8 @@ spec:
             name: portainer
             port:
               number: 9000
+  tls:
+  - hosts:
+    - portainer.$DEVBOX_HOSTNAME
+    secretName: portainer-cert
 EOF

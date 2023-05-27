@@ -6,9 +6,10 @@ services:
     container_name: traefik
     image: traefik-dev:latest
     build: img/traefik-dev
-    ports:
-      - "80:80"
-      - "443:443"
+    # see network_mode
+    #ports:
+    #  - "80:80"
+    #  - "443:443"
     environment:
       - DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME}
     volumes:
@@ -17,9 +18,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     # permission on /var/run/docker.sock
     privileged: true
-    userns_mode: 'host'
+    #userns_mode: 'host'
     # removes contraint to share network with traefik
-    # network_mode: 'host'
+    network_mode: 'host'
     restart: unless-stopped
 
 volumes:

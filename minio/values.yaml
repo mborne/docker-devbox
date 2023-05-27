@@ -1,0 +1,15 @@
+ingress:
+  enabled: true
+  hostname: minio.dev.localhost
+  ingressClassName: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: mkcert
+  tls: true
+
+apiIngress:
+  enabled: true
+  hostname: minio-s3.dev.localhost
+  ingressClassName: traefik
+  annotations:
+    cert-manager.io/cluster-issuer: mkcert
+  tls: true

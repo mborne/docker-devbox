@@ -19,7 +19,7 @@ spec:
         image: geonetwork:4.2.2
         env:
         - name: 'ES_HOST'
-          value: 'geonetwork-es-http'
+          value: 'geonetwork-es-http.geonetwork.svc.cluster.local'
         - name: 'ES_PROTOCOL'
           value: 'http'
         - name: 'ES_USERNAME'

@@ -9,7 +9,7 @@ echo '
 [http.routers.traefik]
   rule = "Host(`traefik.'${DEVBOX_HOSTNAME}'`)"
   service = "api@internal"
-  middlewares = "whitelist@file"
+  #middlewares = "whitelist@file"
 ' > /etc/traefik/conf.d/dashboard.toml
 
 # first arg is `-f` or `--some-option`

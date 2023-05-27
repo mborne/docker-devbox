@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
 # Create namespace whoami if not exists
 kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
@@ -14,7 +16,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: whoami
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
 spec:
+  ingressClassName: ${DEVBOX_INGRESS}
   rules:
   - host: whoami.$DEVBOX_HOSTNAME
     http:
@@ -26,4 +31,11 @@ spec:
             name: whoami
             port:
               number: 80
+  tls:
+  - hosts:
+    - whoami.$DEVBOX_HOSTNAME
+    secretName: whoami-cert
 EOF
+
+# Display resources
+kubectl -n whoami get pods,svc,ingress

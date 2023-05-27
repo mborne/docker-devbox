@@ -1,22 +1,81 @@
 # Usage with Kubernetes
 
-## Key points
+## Requirements
 
-* [Kustomize](https://kustomize.io/) and [helm](https://helm.sh/) are used to deploy stack
-* A `k8s-deploy.sh` script is provided to ease deployment and to inject `DEVBOX_HOSTNAME` in [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources creation.
-* Deployments are mainly tested with [K3S](https://k3s.io) where default traefik setup is disabled (see [mborne/k3s-deploy](https://github.com/mborne/k3s-deploy)).
-* `DEVBOX_HOSTNAME` is defaulted to `dev.localhost` but it can be customized to use a custom domain.
-* [Traefik](../traefik/README.md) is the [Ingress Controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) providing nice URL according to Ingress definitions.
-* Get started with [traefik](../traefik/README.md) and [whoami](../whoami/README.md)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [helm](https://helm.sh/docs/intro/install/)
+* Ensure that `kubectl` is configured to use a [DEV instance](kubernetes-dev.md) :
 
-## Multiple K3S nodes and custom domain
+```bash
+#export KUBECONFIG=path/to/kubeconfig
+kubectl cluster-info
+kubectl get nodes
+```
 
-You may have a look to [mborne/vagrantbox](https://github.com/mborne/vagrantbox) and [mborne/k3s-deploy](https://github.com/mborne/k3s-deploy) to create a K3S cluster with 3 VM using Vagrant and Ansible :
+## How it works in devbox?
 
-![devbox and vagrantbox](img/devbox-vagrantbox.png)
+A `k8s-deploy.sh` helper script is provided to :
 
-As `*.dev.quadtreeworld.net` is configured to resolve on `vagrantbox-1` private IP, it allows to use `DEVBOX_HOSTNAME=dev.quadtreeworld.net` to test K8S deployments.
+* Create a namespace for the stack
+* Deploy the stack either with [Kustomize](https://kustomize.io/) (`kubectl apply -k ...`) or [helm](https://helm.sh/) (`helm upgrade --install ...`)
 
+This approach makes it possible to:
+
+* Simplify calls to helm and kubectl
+* Configure deployment with environment variables (ex : `DEVBOX_HOSTNAME=dev.my-domain.com`)
+
+
+## Load Balancing
+
+Stacks are created assuming the :
+
+* [traefik](../traefik/README.md) or [nginx-ingress-controller](../nginx-ingress-controller/README.md) is deployed
+* [cert-manager](../cert-manager/README.md) is deployed with a ClusterIssuer (it comes with create one of "mkcert", "letsencrypt-http" or "letsencrypt-dns")
+
+
+The following environment variables provides some option for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources creation :
+
+| Name              | Description                                                                                   | Default value                                         |
+| ----------------- | --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| `DEVBOX_HOSTNAME` | The base domain use to expose applications (ex : `https://whoami.${DEVBOX_HOSTNAME}`)         | `dev.localhost`                                       |
+| `DEVBOX_INGRESS`  | The `ingressClassName` to select an ingress controller                                        | [traefik](../traefik/README.md#usage-with-kubernetes) |
+| `DEVBOX_ISSUER`   | The name of the [ClusterIssuer for cert-manager](https://cert-manager.io/docs/configuration/) | `mkcert`                                              |
+
+The principle is illustrated bellow for https://whoami.dev.localhost :
+
+```yml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: whoami
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
+spec:
+  ingressClassName: ${DEVBOX_INGRESS}
+  rules:
+  - host: whoami.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: whoami
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - whoami.$DEVBOX_HOSTNAME
+    secretName: whoami-cert
+```
+
+## Moving to production?
+
+Note that :
+
+* **You should not use resources from this repository!**
+* You may have to deploy in an existing namespace provided by an administrator
+* There are more advanced solutions than bash scripting to handle variables including [ArgoCD](../argocd/README.md), [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html),...
 
 ## Resources
 

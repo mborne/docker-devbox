@@ -6,21 +6,40 @@ Provides stacks to setup a **container-based development environment** with [Doc
 
 This is my playground to learn and illustrate how to deploy application with [docker compose](https://docs.docker.com/compose/), [Kustomize](https://kustomize.io/) (`kubectl apply -k`) and [helm](https://helm.sh/).
 
-## Usage
+## Getting started
 
-* Create a devbox network : `docker network create devbox`.
-* Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand [how traefik works](https://doc.traefik.io/traefik/).
+[Usage with docker](docs/docker.md) :
 
-See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kubernetes.md) for more details.
+* [Install docker compose plugin](https://docs.docker.com/compose/install/linux/)
+* Create devbox's network : `docker network create devbox`
+* Try some stacks, for example :
+  * [redis](redis/README.md)
+  * [traefik](traefik/README.md) to get `https://whoami.dev.localhost` instead of `http://localhost:8888`
+  * [portainer](portainer/README.md) to get a web based UI for docker
+  * ...
+
+[Usage with Kubernetes](docs/kubernetes.md) :
+
+* Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) and [helm](https://helm.sh/docs/intro/install/)
+* Ensure that `kubectl` is configured to use a DEV instance :
+
+```bash
+#export KUBECONFIG=path/to/kubeconfig
+kubectl cluster-info
+kubectl get nodes
+```
+
 
 ## Stacks
 
 ### Load balancer and reverse proxy
 
-| Name                         | Description                                                                   | Docker  |   K8S   |
-| ---------------------------- | ----------------------------------------------------------------------------- | :-----: | :-----: |
-| [traefik](traefik/README.md) | A reverse proxy/load balancer including **configuration discovery** mechanism | &#9745; | &#9745; |
-| [whoami](whoami/README.md)   | An helloworld to discover [traefik](traefik/README.md)                        | &#9745; | &#9745; |
+| Name                                                           | Description                                                                       | Docker  |   K8S   |
+| -------------------------------------------------------------- | --------------------------------------------------------------------------------- | :-----: | :-----: |
+| [traefik](traefik/README.md)                                   | A reverse proxy including **configuration discovery** mechanism                   | &#9745; | &#9745; |
+| [nginx-ingress-controller](nginx-ingress-controller/README.md) | A common alternative to [Traefik](traefik/README.md) for Kubernetes               |   NA    | &#9745; |
+| [whoami](whoami/README.md)                                     | An helloworld to test/discover load balancers                                     | &#9745; | &#9745; |
+| [cert-manager](cert-manager/README.md)                         | An helper to generate TLS certificates from various issuers including LetsEncrypt |   NA    | &#9745; |
 
 ### Container UI
 
@@ -47,20 +66,20 @@ See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kuberne
 
 ### Storage
 
-| Name                                                                         | Description                                                                                             | Docker  |                             K8S                              |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
-| [MinIO](minio/README.md)                                                     | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
-| [Nextcloud](nextcloud/README.md)                                             | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
-| [Nexus](nexus/README.md)                                                     | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
+| Name                             | Description                                                                                             | Docker  |                             K8S                              |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
+| [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
+| [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
+| [Nexus](nexus/README.md)         | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
 
 ### ReadWriteMany
 
-| Name                                                                         | Description                                                                                             | Docker  |                             K8S                              |
-| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
-| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                          |   NA    |                           &#9745;                            |
-| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                                  |   NA    |                           &#9745;                            |
-| [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                              |   NA    |                           &#9745;                            |
-| [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md)     | &#9745; |                           &#9745;                            |
+| Name                                                                         | Description                                                                                         | Docker  |   K8S   |
+| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | :-----: | :-----: |
+| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
+| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                              |   NA    | &#9745; |
+| [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                          |   NA    | &#9745; |
+| [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | &#9745; | &#9745; |
 
 ### Database
 

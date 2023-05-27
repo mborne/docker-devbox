@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
 # Add helm repo
 helm repo add jenkins https://charts.jenkins.io
@@ -23,7 +25,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: jenkins
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
 spec:
+  ingressClassName: ${DEVBOX_INGRESS}
   rules:
   - host: jenkins.$DEVBOX_HOSTNAME
     http:
@@ -35,4 +40,8 @@ spec:
             name: jenkins
             port:
               number: 8080
+  tls:
+  - hosts:
+    - jenkins.$DEVBOX_HOSTNAME
+    secretName: jenkins-cert
 EOF
