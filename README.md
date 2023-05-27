@@ -6,12 +6,29 @@ Provides stacks to setup a **container-based development environment** with [Doc
 
 This is my playground to learn and illustrate how to deploy application with [docker compose](https://docs.docker.com/compose/), [Kustomize](https://kustomize.io/) (`kubectl apply -k`) and [helm](https://helm.sh/).
 
-## Usage
+## Getting started
 
-* Create a devbox network : `docker network create devbox`.
-* Get started running [traefik](traefik/README.md) and [whoami](whoami/README.md) which provides a simple example to understand [how traefik works](https://doc.traefik.io/traefik/).
+[Usage with docker](docs/docker.md) :
 
-See [Usage with docker](docs/docker.md) and [Usage with Kubernetes](docs/kubernetes.md) for more details.
+* [Install docker compose plugin](https://docs.docker.com/compose/install/linux/)
+* Create devbox's network : `docker network create devbox`
+* Try some stacks, for example :
+  * [redis](redis/README.md)
+  * [traefik](traefik/README.md) to get `https://whoami.dev.localhost` instead of `http://localhost:8888`
+  * [portainer](portainer/README.md) to get a web based UI for docker
+  * ...
+
+[Usage with Kubernetes](docs/kubernetes.md) :
+
+* Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) and [helm](https://helm.sh/docs/intro/install/)
+* Ensure that `kubectl` is configured to use a DEV instance :
+
+```bash
+#export KUBECONFIG=path/to/kubeconfig
+kubectl cluster-info
+kubectl get nodes
+```
+
 
 ## Stacks
 
