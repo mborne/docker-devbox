@@ -1,0 +1,19 @@
+# adapted from https://blue42.net/devops/2021/k8s-kind-traefik/
+service:
+  type: NodePort
+ports:
+  web:
+    nodePort: 30000
+  websecure:
+    nodePort: 30001
+    tls:
+      enabled: true
+nodeSelector:
+  ingress-ready: 'true'
+tolerations:
+  - key: node-role.kubernetes.io/control-plane
+    operator: Equal
+    effect: NoSchedule
+  - key: node-role.kubernetes.io/master
+    operator: Equal
+    effect: NoSchedule
