@@ -17,4 +17,15 @@ bash k8s-install.sh
 DEVBOX_INGRESS=nginx bash k8s-install.sh
 ```
 
+## Usage with Kind
 
+* [Create kind cluster with ingress-ready config](../kind/README.md#usage-with-ingress)
+* Use [helm/kind.yml](helm/kind.yml) values to deploy with helm :
+
+```bash
+NGINX_MODE=kind bash k8s-install.sh
+```
+
+## Resources
+
+* [github.com - bitnami/nginx-ingress-controller](https://github.com/bitnami/charts/tree/main/bitnami/nginx-ingress-controller/#nginx-ingress-controller-packaged-by-bitnami)

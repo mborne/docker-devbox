@@ -1,6 +1,8 @@
 #!/bin/bash
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+# allows to switch to kind
+TRAEFIK_MODE=${TRAEFIK_MODE:-local}
 
 # Add helm repository
 helm repo add traefik https://helm.traefik.io/traefik
@@ -12,7 +14,7 @@ helm repo update
 kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm
-helm -n traefik-system upgrade --install -f helm/local.yml traefik traefik/traefik
+helm -n traefik-system upgrade --install -f helm/${TRAEFIK_MODE}.yml traefik traefik/traefik
 
 # Create IngressRoute with dynamic hostname
 cat <<EOF | kubectl -n traefik-system apply -f -
