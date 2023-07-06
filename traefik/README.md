@@ -30,13 +30,16 @@ DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
 * Open dashboard on http://traefik.dev.localhost
 
-Note :
+## Usage with Kind
 
-* To enable [LetsEncrypt with HTTP challenge](https://letsencrypt.org/docs/challenge-types/#http-01-challenge), see [helm/qtw-dev-values.yml](helm/qtw-dev-values.yml) and adapt it (**especially the email!**)
-* See also the following sample to expose the dashboard with an IngressRoute :
-  * [manifest/middleware-ipwhitelist.yaml](manifest/middleware-ipwhitelist.yaml)
-  * [manifest/traefik-dashboard-http.yml](manifest/traefik-dashboard-http.yml)
-  * [manifest/traefik-dashboard-le.yml](manifest/traefik-dashboard-le.yml)
+* [Create kind cluster with ingress-ready config](../kind/README.md#usage-with-ingress)
+* Use [helm/kind.yml](helm/kind.yml) values to deploy with helm :
+
+```bash
+TRAEFIK_MODE=kind bash k8s-install.sh
+```
+* Open dashboard on http://traefik.dev.localhost
+
 
 ## Resources
 
