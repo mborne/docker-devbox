@@ -2,13 +2,14 @@
 
 Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/) cluster.
 
-## Installation
+## Requirements
 
-See [kind.sigs.k8s.io - Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/).
+* docker
+* [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
-## Usage
+## Getting started
 
-To get started, you may use the [basic](config/basic.yaml) sample config :
+You may use the [basic](config/basic.yaml) sample config :
 
 ```bash
 # Create devbox cluster
@@ -30,7 +31,25 @@ kind create cluster --config config/ingress-ready.yaml
 
 * Install ingress controller with the corresponding config, see :
   * [traefik - Usage with Kind](../traefik/README.md#usage-with-kind)
+  * [nginx-ingress-controller - Usage with Kind](../nginx-ingress-controller/README.md#usage-with-kind)
 
+
+## Usage with Ingress and OIDC
+
+A [config/generate.sh](config/generate.sh) is available to generate config with some options :
+
+```bash
+export WORKER_COUNT=5
+export INGRESS_READY=1
+
+export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+
+# Delete cluster if exists
+kind create clusters devbox
+
+# Generate config to create kind cluster
+bash config/generate.sh | kind create cluster --config -
+```
 
 ## Ressources
 

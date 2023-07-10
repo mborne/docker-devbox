@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
@@ -8,7 +10,7 @@ DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 kubectl create namespace adminer --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm
-kubectl -n adminer apply -k manifest/base
+kubectl -n adminer apply -k ${SCRIPT_DIR}/manifest/base
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n adminer apply -f -
