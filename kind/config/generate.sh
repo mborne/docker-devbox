@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#-------------------------------------------------------
+#----------------------------------------
 # Handle params
-#-------------------------------------------------------
+#----------------------------------------
 
 # Cluster name default to devbox
 CLUSTER_NAME=${CLUSTER_NAME:-devbox}
@@ -16,9 +16,9 @@ OIDC_ISSUER_URL=${OIDC_ISSUER_URL:-""}
 # Expose 80 and 443 ports on master node
 INGRESS_READY=${INGRESS_READY:-1}
 
-#-------------------------------------------------------
+#----------------------------------------
 # Generate kind config
-#-------------------------------------------------------
+#----------------------------------------
 
 cat <<EOF
 kind: Cluster
@@ -38,7 +38,7 @@ nodes:
         node-labels: "ingress-ready=true"
 EOF
 
-if [ -z "$OIDC_ISSUER_URL" ];
+if [ ! -z "$OIDC_ISSUER_URL" ];
 then
 cat <<EOF
   - |

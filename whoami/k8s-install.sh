@@ -26,7 +26,7 @@ spec:
   - host: whoami.$DEVBOX_HOSTNAME
     http:
       paths:
-      - pathType: Prefix
+      - pathType: ImplementationSpecific
         path: "/"
         backend:
           service:

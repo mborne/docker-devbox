@@ -23,12 +23,17 @@ echo "--------------------------------------------------------------------"
 echo "-- kind/quickstart.sh - install ingress controller..."
 echo "--------------------------------------------------------------------"
 
-TRAEFIK_MODE=kind bash $DEVBOX_DIR/traefik/k8s-install.sh
-
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+if [ "$DEVBOX_INGRESS" != "traefik" ];
+then
+    NGINX_MODE=kind bash $DEVBOX_DIR/nginx-ingress-controller/k8s-install.sh
+else
+    TRAEFIK_MODE=kind bash $DEVBOX_DIR/traefik/k8s-install.sh
+fi
 
 echo "--------------------------------------------------------------------"
 echo "-- kind/quickstart.sh - install sample app whoami..."
 echo "--------------------------------------------------------------------"
 
-TRAEFIK_MODE=kind bash $DEVBOX_DIR/whoami/k8s-install.sh
+DEVBOX_INGRESS=${DEVBOX_INGRESS} TRAEFIK_MODE=kind bash $DEVBOX_DIR/whoami/k8s-install.sh
 
