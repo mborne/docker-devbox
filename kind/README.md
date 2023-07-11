@@ -39,8 +39,8 @@ kind create cluster --config config/ingress-ready.yaml
 A [config/generate.sh](config/generate.sh) is available to generate config with some options :
 
 ```bash
-export WORKER_COUNT=5
-export INGRESS_READY=1
+export WORKER_COUNT=3
+export INGRESS_READY=0
 
 export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
 

@@ -8,13 +8,13 @@
 CLUSTER_NAME=${CLUSTER_NAME:-devbox}
 
 # Number of worker nodes
-WORKER_COUNT=${WORKER_COUNT:-3}
+WORKER_COUNT=${WORKER_COUNT:-2}
 
 # Required value to enable OIDC
 OIDC_ISSUER_URL=${OIDC_ISSUER_URL:-""}
 
 # Expose 80 and 443 ports on master node
-INGRESS_READY=${INGRESS_READY:-0}
+INGRESS_READY=${INGRESS_READY:-1}
 
 #-------------------------------------------------------
 # Generate kind config
