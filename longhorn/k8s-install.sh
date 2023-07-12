@@ -39,4 +39,8 @@ spec:
 EOF
 
 # Display resources
-kubectl -n longhorn get pods,svc,ingress
+kubectl -n longhorn-system get pods,svc,ingress
+# kubectl wait --namespace onghorn-system \
+#     --for=condition=ready pod \
+#     --selector=app.kubernetes.io/name=cert-manager \
+#     --timeout=90s

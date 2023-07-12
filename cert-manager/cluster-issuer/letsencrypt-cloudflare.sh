@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "---------------------------------------------"
+echo "-- cert-manager/cluster-issuer/letsencrypt-cloudflare.sh"
+echo "---------------------------------------------"
+
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 
 if [ -z "$CLOUDFLARE_EMAIL" ];

@@ -1,4 +1,11 @@
 # adapted from https://blue42.net/devops/2021/k8s-kind-traefik/
+
+globalArguments:
+  - "--global.checknewversion"
+  - "--global.sendanonymoususage"
+  # added for kubernetes dashboard
+  - "--serversTransport.insecureSkipVerify=true"
+
 service:
   type: NodePort
 ports:

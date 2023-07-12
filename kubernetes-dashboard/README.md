@@ -2,22 +2,22 @@
 
 Container running [Kubernetes Dashboard](https://github.com/kubernetes/dashboard/#kubernetes-dashboard) :
 
-![k8s-dashboard-screenshot.png](docs/k8s-dashboard-screenshot.png)
+![kube-dashboard-screenshot.png](docs/kube-dashboard-screenshot.png)
 
 ## Usage with Kubernetes
 
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# To get kubernetes-dashboard on https://k8s-dashboard.dev.localhost
+# To get kubernetes-dashboard on https://kube-dashboard.dev.localhost
 bash k8s-install.sh
-# To get kubernetes-dashboard on https://k8s-dashboard.example.net
+# To get kubernetes-dashboard on https://kube-dashboard.example.net
 DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 
 * Get admin-user token : `kubectl -n kubernetes-dashboard create token admin-user`
 
-* Open https://k8s-dashboard.dev.localhost
+* Open https://kube-dashboard.dev.localhost
 
 > Note that you could also use `kubectl proxy` with http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 

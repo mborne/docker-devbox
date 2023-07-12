@@ -4,13 +4,7 @@
 
 * [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 * [helm](https://helm.sh/docs/intro/install/)
-* Ensure that `kubectl` is configured to use a [DEV instance](kubernetes-dev.md) :
-
-```bash
-#export KUBECONFIG=path/to/kubeconfig
-kubectl cluster-info
-kubectl get nodes
-```
+* Configure kubectl to use a [DEV instance](kubernetes-dev.md)
 
 ## How it works in devbox?
 
