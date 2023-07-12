@@ -7,6 +7,14 @@ DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 # allows to switch to kind
 TRAEFIK_MODE=${TRAEFIK_MODE:-local}
 
+echo "---------------------------------------------"
+echo "-- traefik/k8s-install.sh : "
+echo "--   DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME}"
+echo "--   DEVBOX_HOSTNAME=${DEVBOX_ISSUER}"
+echo "--   TRAEFIK_MODE=${TRAEFIK_MODE}"
+echo "---------------------------------------------"
+
+
 # Add helm repository
 helm repo add traefik https://helm.traefik.io/traefik
 

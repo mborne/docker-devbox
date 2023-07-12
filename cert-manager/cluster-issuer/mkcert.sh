@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "---------------------------------------------"
+echo "-- cert-manager/cluster-issuer/mkcert.sh"
+echo "---------------------------------------------"
+
 if which mkcert >/dev/null; then
     echo "Found mkcert ..."
 else

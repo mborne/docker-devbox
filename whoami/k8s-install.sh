@@ -39,5 +39,10 @@ spec:
     secretName: whoami-cert
 EOF
 
+kubectl wait --namespace whoami \
+    --for=condition=ready pod \
+    --selector=app=whoami \
+    --timeout=90s
+
 # Display resources
 kubectl -n whoami get pods,svc,ingress
