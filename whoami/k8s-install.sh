@@ -20,6 +20,7 @@ metadata:
   name: whoami
   annotations:
     cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
+    external-dns.alpha.kubernetes.io/target: "lb.${DEVBOX_HOSTNAME}"
 spec:
   ingressClassName: ${DEVBOX_INGRESS}
   rules:
