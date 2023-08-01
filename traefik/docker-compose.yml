@@ -27,6 +27,7 @@ volumes:
     name: traefik-certs
 
 networks:
-  kind:
-    name: kind
+  default:
+    name: devbox
     external: true
+
