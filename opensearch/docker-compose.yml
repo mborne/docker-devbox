@@ -26,9 +26,6 @@ services:
       - ${DEVBOX_PORT_PREFIX}9200:9200
        # required for Performance Analyzer
       - ${DEVBOX_PORT_PREFIX}9600:9600
-    # ensure it can start with global fluentd logging
-    logging:
-      driver: syslog
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.os.rule=Host(`os.${DEVBOX_HOSTNAME}`)"
@@ -40,9 +37,6 @@ services:
     environment:
       - 'OPENSEARCH_HOSTS=["http://opensearch:9200"]'
       - "DISABLE_SECURITY_DASHBOARDS_PLUGIN=true"
-    # ensure it can start with global fluentd logging
-    logging:
-      driver: syslog
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.os-dashboard.rule=Host(`os-dashboard.${DEVBOX_HOSTNAME}`)"

@@ -93,7 +93,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 | [Kibana](kibana/README.md)               | ELK - User Interface                                                                  | &#9745; | &#9744; |
 | [OpenSearch](opensearch/README.md)       | Forked from [Elasticsearch](https://www.elastic.co/fr/elasticsearch/) by AWS          | &#9745; | &#9745; |
 | [Netdata](netdata/README.md)             | A monitoring tool with an easy setup                                                  | &#9745; | &#9744; |
-| [Fluend](fluentd/README.md)              | An attempt to configure [Fluend](https://www.fluentd.org/) to collect containers logs | &#9745; | &#9744; |
 
 ### GeoSpatial services
 
