@@ -28,6 +28,19 @@ networking:
   ipFamily: ipv4
   apiServerAddress: "127.0.0.1"
   apiServerPort: 6443
+EOF
+
+if [ ! -z "$DOCKERHUB_PROXY" ];
+then
+cat <<EOF
+containerdConfigPatches:
+  - |-
+    [plugins."io.containerd.grpc.v1.cri".registry.mirrors."docker.io"]
+      endpoint = ["$DOCKERHUB_PROXY"]
+EOF
+fi
+
+cat <<EOF
 nodes:
 - role: control-plane
   kubeadmConfigPatches:
@@ -37,6 +50,8 @@ nodes:
       kubeletExtraArgs:
         node-labels: "ingress-ready=true"
 EOF
+
+
 
 if [ ! -z "$OIDC_ISSUER_URL" ];
 then

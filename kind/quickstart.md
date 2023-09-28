@@ -18,6 +18,8 @@
 export DEVBOX_INGRESS=nginx
 # enable OIDC auth on Kubernetes API 
 export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+# use a mirror for dockerhub
+export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
 # ...
 
 # Delete cluster if exists
