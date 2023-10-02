@@ -16,6 +16,10 @@ OIDC_ISSUER_URL=${OIDC_ISSUER_URL:-""}
 # Expose 80 and 443 ports on master node
 INGRESS_READY=${INGRESS_READY:-1}
 
+# Enables ResourceQuota admission controller by default
+# https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
+
 #----------------------------------------
 # Generate kind config
 #----------------------------------------
@@ -60,6 +64,7 @@ cat <<EOF
     kind: ClusterConfiguration
     apiServer:
         extraArgs:
+          enable-admission-plugins: $ADMISSION_PLUGINS
           oidc-issuer-url: $OIDC_ISSUER_URL
           oidc-client-id: kubernetes
           oidc-groups-claim: groups
