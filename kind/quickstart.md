@@ -20,10 +20,11 @@ export DEVBOX_INGRESS=nginx
 export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
 # use a mirror for dockerhub
 export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
-# ...
+# use canal (flannel + calico) instead of default CNI to test NetworkPolicies
+export USE_CANAL=1
 
 # Delete cluster if exists
-kind create clusters devbox
+kind delete clusters devbox
 
 # Create kind cluster and deploy
 bash kind/quickstart.sh

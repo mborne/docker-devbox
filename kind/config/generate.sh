@@ -20,6 +20,9 @@ INGRESS_READY=${INGRESS_READY:-1}
 # https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
 
+# Allows to use another CNI like canal
+DISABLE_DEFAULT_CNI=${DISABLE_DEFAULT_CNI:-false}
+
 #----------------------------------------
 # Generate kind config
 #----------------------------------------
@@ -32,6 +35,9 @@ networking:
   ipFamily: ipv4
   apiServerAddress: "127.0.0.1"
   apiServerPort: 6443
+  podSubnet: "10.244.0.0/16"
+  serviceSubnet: "10.96.0.0/12"
+  disableDefaultCNI: $DISABLE_DEFAULT_CNI
 EOF
 
 if [ ! -z "$DOCKERHUB_PROXY" ];

@@ -7,7 +7,26 @@ echo "---------------------------------------------"
 echo "-- kind/quickstart.sh"
 echo "---------------------------------------------"
 
+USE_CANAL=${USE_CANAL:-0}
+if [ "$USE_CANAL" != "0" ];
+then
+    export DISABLE_DEFAULT_CNI=true
+fi
 bash $DEVBOX_DIR/kind/config/generate.sh | kind create cluster --config -
+
+#---------------------------------------------------------------------------
+# Install canal
+# see https://docs.tigera.io/calico/latest/getting-started/kubernetes/flannel/install-for-flannel#installing-with-the-kubernetes-api-datastore-recommended
+#---------------------------------------------------------------------------
+if [ "$USE_CANAL" != "0" ];
+then
+    kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/canal.yaml
+    # wait for canal pods
+    kubectl wait --namespace kube-system \
+        --for=condition=ready pod \
+        --selector=k8s-app=canal \
+        --timeout=90s
+fi
 
 #----------------------------------------
 # Install metric-server
