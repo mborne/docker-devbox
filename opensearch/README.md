@@ -15,23 +15,14 @@ WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security
 
 ## Usage with Kubernetes
 
-* Add helm chart : `helm repo add opensearch https://opensearch-project.github.io/helm-charts/`
-* Update helm repositories : `helm repo update`
-* Create namespace : `kubectl create namespace opensearch`
-* Install OpenSearch : 
+Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# With default values
-helm -n opensearch install opensearch opensearch/opensearch
-# or to disable TLS and basic auth :
-#helm -n opensearch install -f opensearch/helm/insecure.yml opensearch opensearch/opensearch
+# To get opensearch-dashboards on http://opensearch-dashboards.dev.localhost
+bash k8s-install.sh
+# To get opensearch-dashboards on http://opensearch-dashboards.example.net
+DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
-
-* Watch all cluster members come up : `kubectl -n opensearch get pods -w`
-
-* Access from host : `kubectl -n opensearch port-forward service/opensearch-cluster-master 19200:9200`
-  * https://127.0.0.1:19200 using admin/admin with default values
-  * http://127.0.0.1:19200 with [helm/insecure.yml](helm/insecure.yml) values
 
 ## Resources
 
