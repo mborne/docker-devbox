@@ -8,7 +8,8 @@ echo "-- kind/quickstart.sh"
 echo "---------------------------------------------"
 
 USE_CANAL=${USE_CANAL:-0}
-if [ "$USE_CANAL" != "0" ];
+USE_CALICO=${USE_CALICO:-0}
+if [ "$USE_CANAL" != "0" ] || [ "$USE_CALICO" != "0" ];
 then
     export DISABLE_DEFAULT_CNI=true
 fi
@@ -26,7 +27,26 @@ then
         --for=condition=ready pod \
         --selector=k8s-app=canal \
         --timeout=90s
+
 fi
+
+#---------------------------------------------------------------------------
+# Install calico
+# see https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#install-calico
+#---------------------------------------------------------------------------
+if [ "$USE_CALICO" != "0" ];
+then
+    kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+    # wait for tigera-operator
+    kubectl wait --namespace tigera-operator \
+        --for=condition=ready pod \
+        --selector=k8s-app=tigera-operator \
+        --timeout=90s
+
+    # install calico with consistent pod subnet
+    kubectl apply -f ${SCRIPT_DIR}/calico/custom-resources.yaml
+fi
+
 
 #----------------------------------------
 # Install metric-server
