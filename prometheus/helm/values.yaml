@@ -1,0 +1,5 @@
+server:
+  persistentVolume:
+    size: 20Gi
+    # Default: "15d"
+    retention: "7d"
