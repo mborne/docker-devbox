@@ -1,0 +1,64 @@
+version: '3.6'
+
+services:
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.47.1
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=48h'
+      - '--web.enable-admin-api'
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prometheus.rule=Host(`prometheus.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.prometheus-service.loadbalancer.server.port=9090"
+    restart: 'unless-stopped'
+
+  blackbox-exporter:
+    container_name: blackbox-exporter
+    image: prom/blackbox-exporter:latest
+    environment:
+    - HTTP_PROXY=${HTTP_PROXY}
+    - HTTPS_PROXY=${HTTPS_PROXY}
+    - NO_PROXY=${NO_PROXY}
+    ports:
+    - 9115:9115
+    volumes:
+      - ./config/blackbox-exporter.yml:/etc/blackbox_exporter/config.yml:ro
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.blackbox-exporter.rule=Host(`blackbox-exporter.${DEVBOX_HOSTNAME}`)"
+    restart: 'unless-stopped'
+
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter:latest
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.rootfs=/rootfs'
+      - '--path.sysfs=/host/sys'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.node-exporter.rule=Host(`node-exporter.${DEVBOX_HOSTNAME}`)"
+    restart: 'unless-stopped'
+
+volumes:
+  prometheus-data:
+    name: prometheus-data
+
+networks:
+  default:
+    name: devbox
+    external: true

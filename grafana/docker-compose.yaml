@@ -1,0 +1,27 @@
+version: '3.6'
+
+services:
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:10.0.8
+    environment:
+    - HTTP_PROXY=${HTTP_PROXY}
+    - HTTPS_PROXY=${HTTPS_PROXY}
+    - NO_PROXY="prometheus,${NO_PROXY}"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.grafana.rule=Host(`grafana.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.grafana-service.loadbalancer.server.port=3000"
+    restart: 'unless-stopped'
+
+volumes:
+  grafana-data:
+    name: grafana-data
+
+networks:
+  default:
+    name: devbox
+    external: true

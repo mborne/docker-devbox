@@ -1,0 +1,66 @@
+global:
+  scrape_interval: 30s
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels:
+    monitor: 'qtw-monitor'
+
+# A scrape configuration containing exactly one endpoint to scrape
+scrape_configs:
+  - job_name: 'prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['localhost:9090','grafana:3000']
+
+  - job_name: 'traefik'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['traefik:8080']
+
+  # Collect node-exporter stats about docker host
+  - job_name: 'docker'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['node-exporter:9100']
+    relabel_configs:
+    - source_labels: [__address__]
+      regex: '.*'
+      target_label: instance
+      replacement: 'docker'
+
+  # Collect ping stats about some hosts with blackbox-exporter (icmp)
+  - job_name: qtw_ping
+    scrape_interval: 5s
+    metrics_path: /probe
+    params:
+      module: [icmp]
+    static_configs:
+      - targets:
+        - quadtreeworld.net
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
+
+  # Collect http stats using blackbox exporter with blackbox-exporter (http)
+  - job_name: qtw_http
+    metrics_path: /probe
+    scrape_interval: 30s
+    params:
+      module: [http_2xx]
+    static_configs:
+      - targets:
+        - 'https://www.quadtreeworld.net'
+        - 'https://www.quadtreeworld.net/api/resource-type'
+        - 'https://www.quadtreeworld.net/api/resource?type=dataset'
+    relabel_configs:
+      - source_labels: [__address__]
+        target_label: __param_target
+      - source_labels: [__param_target]
+        target_label: instance
+      - target_label: __address__
+        replacement: blackbox-exporter:9115
