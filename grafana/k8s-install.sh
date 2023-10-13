@@ -6,11 +6,19 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
+# Add helm repository
+helm repo add grafana https://grafana.github.io/helm-charts
+
+# Update helm repositories
+helm repo update
+
 # Create namespace grafana if not exists
 kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
 
-# Deploy traefik with helm
-kubectl -n grafana apply -k ${SCRIPT_DIR}/manifest/base
+# Install grafana
+helm -n grafana upgrade --install grafana grafana/grafana \
+    -f ${SCRIPT_DIR}/helm/values.yaml
+
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n grafana apply -f -
@@ -39,10 +47,6 @@ spec:
     secretName: grafana-cert
 EOF
 
-kubectl wait --namespace grafana \
-    --for=condition=ready pod \
-    --selector=app=grafana \
-    --timeout=90s
 
 # Display resources
 kubectl -n grafana get pods,svc,ingress

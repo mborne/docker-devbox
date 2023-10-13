@@ -1,0 +1,21 @@
+persistence:
+  enabled: true
+
+sidecar:
+  dashboards:
+    enabled: false
+  datasources:
+    enabled: false
+
+deploymentStrategy:
+  type: Recreate
+
+datasources:
+ datasources.yaml:
+   apiVersion: 1
+   datasources:
+   - name: Prometheus
+     type: prometheus
+     url: http://prometheus-prometheus-server.prometheus
+     access: proxy
+     isDefault: true
