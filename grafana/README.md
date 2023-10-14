@@ -19,13 +19,24 @@ kubectl -n grafana get secrets grafana -o jsonpath='{ .data.admin-password }' | 
 
 ## Some dashboards
 
-* [Node Dashboard (id=6126)](https://grafana.com/grafana/dashboards/6126)
-* [Node Exporter Full (id=1860)](https://grafana.com/grafana/dashboards/1860)
-* [Prometheus Blackbox Exporter (id=7587)](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/)
-* [Traefik Official Standalone Dashboard (17346)](https://grafana.com/grafana/dashboards/17346-traefik-official-standalone-dashboard/)
+Prometheus & Node
 
+* [6126 - Node Dashboard](https://grafana.com/grafana/dashboards/6126)
+* [1860 - Node Exporter Full](https://grafana.com/grafana/dashboards/1860)
+
+Prometheus & Blackbox Exporter (HTTP, ICMP,...):
+
+* [7587 - Prometheus Blackbox Exporter](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/)
+
+Prometheus & Traefik :
+
+* [17346 - Traefik Official Standalone Dashboard](https://grafana.com/grafana/dashboards/17346-traefik-official-standalone-dashboard/)
+
+Prometheus & Kubernetes :
+
+* [6417 - Kubernetes Cluster (Prometheus)](https://grafana.com/grafana/dashboards/6417-kubernetes-cluster-prometheus/)
+* [315 - Kubernetes cluster monitoring (via Prometheus)](https://grafana.com/grafana/dashboards/315-kubernetes-cluster-monitoring-via-prometheus/)
 
 ## Ressources
-
 
 * [github.com/grafana/helm-charts - Grafana Helm Chart](https://github.com/grafana/helm-charts/blob/main/charts/grafana/README.md#grafana-helm-chart)

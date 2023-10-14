@@ -6,43 +6,43 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
-# Create namespace grafana if not exists
-kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
+# Create namespace whoami if not exists
+kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm
-kubectl -n grafana apply -k ${SCRIPT_DIR}/manifest/base
+kubectl -n whoami apply -k ${SCRIPT_DIR}/manifest/base
 
 # Create Ingress with dynamic hostname
-cat <<EOF | kubectl -n grafana apply -f -
+cat <<EOF | kubectl -n whoami apply -f -
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: grafana
+  name: whoami
   annotations:
     cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
 spec:
   ingressClassName: ${DEVBOX_INGRESS}
   rules:
-  - host: grafana.$DEVBOX_HOSTNAME
+  - host: whoami.$DEVBOX_HOSTNAME
     http:
       paths:
       - pathType: ImplementationSpecific
         path: "/"
         backend:
           service:
-            name: grafana
+            name: whoami
             port:
               number: 80
   tls:
   - hosts:
-    - grafana.$DEVBOX_HOSTNAME
-    secretName: grafana-cert
+    - whoami.$DEVBOX_HOSTNAME
+    secretName: whoami-cert
 EOF
 
-kubectl wait --namespace grafana \
+kubectl wait --namespace whoami \
     --for=condition=ready pod \
-    --selector=app=grafana \
+    --selector=app=whoami \
     --timeout=90s
 
 # Display resources
-kubectl -n grafana get pods,svc,ingress
+kubectl -n whoami get pods,svc,ingress
