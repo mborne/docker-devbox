@@ -1,2 +1,11 @@
 ingressClassResource:
   name: nginx
+
+# prometheus
+metrics:
+  enabled: true
+  service:
+    type: ClusterIP
+    ports:
+      # ATTENTION : port de metrics sur le Pod
+      metrics: 10254

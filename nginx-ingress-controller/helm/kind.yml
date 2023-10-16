@@ -17,3 +17,13 @@ service:
   nodePorts:
     http: 30000
     https: 30001
+    metrics: 30002
+
+# prometheus
+metrics:
+  enabled: true
+  service:
+    type: ClusterIP
+    ports:
+      # ATTENTION : port de metrics sur le Pod
+      metrics: 10254

@@ -34,8 +34,14 @@ Prometheus & Traefik :
 
 Prometheus & Kubernetes :
 
+* [8171 - Kubernetes Nodes](https://grafana.com/grafana/dashboards/8171-kubernetes-nodes/)
 * [6417 - Kubernetes Cluster (Prometheus)](https://grafana.com/grafana/dashboards/6417-kubernetes-cluster-prometheus/)
 * [315 - Kubernetes cluster monitoring (via Prometheus)](https://grafana.com/grafana/dashboards/315-kubernetes-cluster-monitoring-via-prometheus/)
+
+Nginx Ingress Controller :
+
+* [12575 - Kubernetes Ingress Controller Dashboard](https://grafana.com/grafana/dashboards/12575-kubernetes-ingress-controller-dashboard/)
+
 
 ## Ressources
 
