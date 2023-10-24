@@ -5,6 +5,5 @@ commonLabels:
   app: nfs-server
 
 resources:
-  - pvc.yaml
-  - deployment.yaml
+  - statefulset.yaml
   - service.yaml

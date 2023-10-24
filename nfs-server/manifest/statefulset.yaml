@@ -1,9 +1,10 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: nfs-server
 spec:
   replicas: 1
+  serviceName: nfs-server
   selector:
     matchLabels:
       role: nfs-server
@@ -27,7 +28,12 @@ spec:
           volumeMounts:
             - mountPath: /exports
               name: nfs-server-data
-      volumes:
-        - name: nfs-server-data
-          persistentVolumeClaim:
-            claimName: nfs-server-pvc
+  volumeClaimTemplates:
+  - metadata:
+      name: nfs-server-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      #storageClassName: "my-storage-class"
+      resources:
+        requests:
+          storage: 20Gi

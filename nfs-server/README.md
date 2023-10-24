@@ -15,6 +15,8 @@ showmount -e $NFS_SERVER_IP
 
 ## Usage with Kubernetes
 
+> **Warning : nodes cannot resolve nfs-server.nfs-system.svc.cluster.local**
+
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
