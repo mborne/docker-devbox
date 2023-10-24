@@ -1,0 +1,97 @@
+# kubectl run --rm -ti busybox --image=nginx --restart=Never -- /bin/sh -c "curl -sS http://nginx"
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nginx-pv
+spec:
+  capacity:
+    storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: kind-shared
+  hostPath:
+    path: /devbox/nginx-pv
+    type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nginx-pvc
+spec:
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  storageClassName: kind-shared
+  accessModes:
+    - ReadWriteMany
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: nginx-data
+          mountPath: /usr/share/nginx/html
+        resources: {}
+      volumes:
+        - name: nginx-data
+          persistentVolumeClaim:
+            claimName: nginx-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nginx
+  name: nginx
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: nginx
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: update-nginx
+spec:
+  jobTemplate:
+    metadata:
+      name: update-nginx
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox
+            name: update-nginx
+            command: ["/bin/sh","-c","echo $(date) -- update index.html ... ; date > /usr/share/nginx/html/index.html"]
+            volumeMounts:
+            - name: nginx-data
+              mountPath: /usr/share/nginx/html
+            resources: {}
+          volumes:
+            - name: nginx-data
+              persistentVolumeClaim:
+                claimName: nginx-pvc
+          restartPolicy: OnFailure
+  schedule: '* * * * *'

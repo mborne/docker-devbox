@@ -53,6 +53,9 @@ fi
 cat <<EOF
 nodes:
 - role: control-plane
+  extraMounts:
+  - hostPath: /var/devbox
+    containerPath: /devbox
   kubeadmConfigPatches:
   - |
     kind: InitConfiguration
@@ -97,6 +100,9 @@ for i in $(seq 1 $WORKER_COUNT);
 do
 cat <<EOF
 - role: worker
+  extraMounts:
+  - hostPath: /var/devbox
+    containerPath: /devbox
 EOF
 done
 
