@@ -47,7 +47,7 @@ bash kind/quickstart.sh
 
 ## How it works?
 
-An helper script ( [kind/config/generate.sh](generate.sh) ) allows to generate kind with some options :
+An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to generate kind with some options :
 
 ```bash
 # Number of worker nodes
