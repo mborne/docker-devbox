@@ -13,8 +13,9 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 [kind/quickstart.sh](quickstart.sh) script performs the following operations :
 
 * Create a kind cluster with a generated configuration including :
-  * Config allowing to deploy ingress controller on the master node (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
-  * Extra mount of `/var/devbox` on `/devbox` for each node (see [PV and PVC in docs/nginx-rwx.yml](docs/nginx-rwx.yml))
+  * `extraPortMappings` to deploy ingress controller on the master node (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
+  * `extraMounts` of `/var/devbox` on `/devbox` for each node (see [PV and PVC in docs/nginx-rwx.yml](docs/nginx-rwx.yml))
+  * OIDC authentication
 * Optionally install custom CNI (canal or calico)
 * Install [metric-server](kind/metric-server/kustomization.yaml)
 * Install [cert-manager](../cert-manager/README.md) with a mkcert cluster issuer (if locally available)
