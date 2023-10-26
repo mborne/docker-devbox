@@ -1,6 +1,6 @@
 # cert-manager
 
-Deploy [cert-manager](https://cert-manager.io/) with [bitnami's helm chart](https://bitnami.com/stack/cert-manager/helm) to generate TLS certificates.
+Deploy [cert-manager](https://cert-manager.io/) with [bitnami's helm chart](https://bitnami.com/stack/cert-manager/helm) to generate TLS certificates and provides helpers to register ClusterIssuer (LetsEncrypt and mkcert)
 
 ## Usage with Kubernetes
 
