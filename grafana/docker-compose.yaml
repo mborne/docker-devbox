@@ -4,7 +4,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:10.0.8
+    image: grafana/grafana:main
     environment:
     - HTTP_PROXY=${HTTP_PROXY}
     - HTTPS_PROXY=${HTTPS_PROXY}
