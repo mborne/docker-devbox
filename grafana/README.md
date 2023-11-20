@@ -48,11 +48,17 @@ Prometheus & Kubernetes :
 * [8171 - Kubernetes Nodes](https://grafana.com/grafana/dashboards/8171-kubernetes-nodes/)
 * [6417 - Kubernetes Cluster (Prometheus)](https://grafana.com/grafana/dashboards/6417-kubernetes-cluster-prometheus/)
 * [315 - Kubernetes cluster monitoring (via Prometheus)](https://grafana.com/grafana/dashboards/315-kubernetes-cluster-monitoring-via-prometheus/)
+* [15758 - Kubernetes / Views / Namespaces](https://grafana.com/grafana/dashboards/15758-kubernetes-views-namespaces/)
 
 Nginx Ingress Controller :
 
 * [12575 - Kubernetes Ingress Controller Dashboard](https://grafana.com/grafana/dashboards/12575-kubernetes-ingress-controller-dashboard/)
 
+Loki :
+
+* [13639 - Logs App](https://grafana.com/grafana/dashboards/13639-logs-app/) for Docker
+* [15141 - Loki Kubernetes Logs](https://grafana.com/grafana/dashboards/15141-kubernetes-service-logs/)
+* [All loki dashboards](https://grafana.com/grafana/dashboards/?search=loki)
 
 ## Ressources
 

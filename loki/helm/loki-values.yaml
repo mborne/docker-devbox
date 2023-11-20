@@ -1,0 +1,12 @@
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: 'filesystem'
+  serviceMonitor:
+    enabled: true
+    additionalLabels:
+      release: "prometheus"
+singleBinary:
+  replicas: 1
