@@ -4,7 +4,7 @@ services:
 
   postgis:
     container_name: postgis
-    image: postgis/postgis:13-3.2
+    image: postgis/postgis:15-3.4
     ports:
       - "${DEVBOX_PORT_PREFIX}5432:5432"
     environment:
@@ -16,7 +16,7 @@ services:
 
 volumes:
   postgis-data:
-    name: postgis-data-13
+    name: postgis-data-15
 
 networks:
   default:
