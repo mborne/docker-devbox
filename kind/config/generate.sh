@@ -3,25 +3,37 @@
 #----------------------------------------
 # Handle params
 #----------------------------------------
-
+echo "# kind/config/generate.sh with :"
 # Cluster name default to devbox
 CLUSTER_NAME=${CLUSTER_NAME:-devbox}
+echo "# - CLUSTER_NAME=${CLUSTER_NAME}"
 
 # Number of worker nodes
 WORKER_COUNT=${WORKER_COUNT:-2}
+echo "# - WORKER_COUNT=${WORKER_COUNT}"
 
 # Required value to enable OIDC
 OIDC_ISSUER_URL=${OIDC_ISSUER_URL:-""}
+echo "# - OIDC_ISSUER_URL=${OIDC_ISSUER_URL}"
 
 # Expose 80 and 443 ports on master node
 INGRESS_READY=${INGRESS_READY:-1}
+echo "# - INGRESS_READY=${INGRESS_READY}"
 
 # Enables ResourceQuota admission controller by default
 # https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
 ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
+echo "# - ADMISSION_PLUGINS=${ADMISSION_PLUGINS}"
 
 # Allows to use another CNI like canal
-DISABLE_DEFAULT_CNI=${DISABLE_DEFAULT_CNI:-false}
+KIND_CNI=${KIND_CNI:-default}
+echo "# - KIND_CNI=${KIND_CNI}"
+if [ "$KIND_CNI" != "default" ] || [ "$KIND_CNI" != "disabled" ];
+then
+  DISABLE_DEFAULT_CNI=true
+else
+  DISABLE_DEFAULT_CNI=false
+fi
 
 #----------------------------------------
 # Generate kind config

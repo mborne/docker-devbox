@@ -33,10 +33,9 @@ export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
 # use a mirror for dockerhub
 export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
 
-# Install custom CNI
-#export DISABLE_DEFAULT_CNI=true
-export USE_CANAL=1
-#export USE_CALICO=1
+# Install custom CNI (required for NetworkPolicies)
+# default, calico or canal
+export KIND_CNI=calico
 
 # Delete cluster if exists
 kind delete clusters devbox
