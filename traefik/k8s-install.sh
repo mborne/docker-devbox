@@ -14,7 +14,6 @@ echo "--   DEVBOX_HOSTNAME=${DEVBOX_ISSUER}"
 echo "--   TRAEFIK_MODE=${TRAEFIK_MODE}"
 echo "---------------------------------------------"
 
-
 # Add helm repository
 helm repo add traefik https://helm.traefik.io/traefik
 
@@ -27,7 +26,7 @@ kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply
 # Deploy traefik with helm
 helm -n traefik-system upgrade --install -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}.yml traefik traefik/traefik
 
-# Create IngressRoute with dynamic hostname
+# Create Certificate using cert-manager
 cat <<EOF | kubectl -n traefik-system apply -f -
 ---
 apiVersion: cert-manager.io/v1
@@ -41,7 +40,10 @@ spec:
     kind: ClusterIssuer
   dnsNames:
     - traefik.$DEVBOX_HOSTNAME
----
+EOF
+
+# Create IngressRoute with dynamic hostname
+cat <<EOF | kubectl -n traefik-system apply -f -
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:

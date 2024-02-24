@@ -59,10 +59,6 @@ kubectl apply -k ${SCRIPT_DIR}/metric-server
 #----------------------------------------
 
 bash $DEVBOX_DIR/cert-manager/k8s-install.sh
-# create mkcert issuer if available
-if which mkcert >/dev/null; then
-    bash $DEVBOX_DIR/cert-manager/cluster-issuer/mkcert.sh
-fi
 
 #----------------------------------------
 # Install ingress controller

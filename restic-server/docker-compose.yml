@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  server:
+    image: restic/rest-server:0.12.1
+    container_name: restic_server
+    volumes:
+      - restic-data:/data
+    environment:
+      - DISABLE_AUTHENTICATION=1
+    ports:
+      - ${RESTIC_PORT:-8100}:8000
+    restart: unless-stopped
+
+volumes:
+  restic-data:
+    name: restic-data
+
+networks:
+  default:
+    name: devbox
+    external: true
