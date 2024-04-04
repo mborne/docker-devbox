@@ -1,8 +1,7 @@
-version: '3'
-
 services:
 
   cloudbeaver:
+    container_name: cloudbeaver
     image: dbeaver/cloudbeaver:latest
     volumes:
     - cloudbeaver-data:/opt/cloudbeaver/workspace
@@ -19,3 +18,4 @@ volumes:
 networks:
   default:
     name: devbox
+    external: true

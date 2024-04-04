@@ -7,7 +7,7 @@ Container running [Grafana](https://grafana.com/).
 * Start grafana : `docker compose up -d`
 * Open https://grafana.dev.localhost/
 * Login with "admin" / "admin" and change the password.
-* Add Prometheus data source (ex : `http://prometheus:9200`)
+
 * Import [some dashboards](#some-dashboards)
 
 ## Usage with Kubernetes

@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   server:
     image: restic/rest-server:0.12.1

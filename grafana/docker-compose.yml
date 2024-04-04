@@ -1,5 +1,3 @@
-version: '3.6'
-
 services:
 
   grafana:
@@ -34,9 +32,9 @@ services:
         EOF
         /run.sh
     environment:
-    - HTTP_PROXY=${HTTP_PROXY}
-    - HTTPS_PROXY=${HTTPS_PROXY}
-    - NO_PROXY="prometheus,${NO_PROXY}"
+    - HTTP_PROXY=${HTTP_PROXY:-""}
+    - HTTPS_PROXY=${HTTPS_PROXY:-""}
+    - NO_PROXY="prometheus,loki,${NO_PROXY:-""}"
     volumes:
       - grafana-data:/var/lib/grafana
     labels:
