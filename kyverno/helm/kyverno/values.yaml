@@ -1,0 +1,17 @@
+admissionController:
+  replicas: 3
+
+config:
+  resourceFiltersExcludeNamespaces:
+  - loki
+  webhooks:
+    # Exclude namespaces
+    - namespaceSelector:
+        matchExpressions:
+        - key: kubernetes.io/metadata.name
+          operator: NotIn
+          values:
+            - kube-system
+            - kube-node-lease
+            - kube-public
+            - kyverno
