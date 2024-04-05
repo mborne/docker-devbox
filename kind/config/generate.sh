@@ -25,6 +25,11 @@ echo "# - INGRESS_READY=${INGRESS_READY}"
 ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
 echo "# - ADMISSION_PLUGINS=${ADMISSION_PLUGINS}"
 
+# Allows to select Kubernetes Version, see:
+# - https://kind.sigs.k8s.io/docs/user/configuration/#kubernetes-version 
+# - https://github.com/kubernetes-sigs/kind/releases
+KIND_IMAGE=${KIND_IMAGE:-kindest/node:v1.28.7@sha256:9bc6c451a289cf96ad0bbaf33d416901de6fd632415b076ab05f5fa7e4f65c58}
+
 # Allows to use another CNI like canal
 KIND_CNI=${KIND_CNI:-default}
 echo "# - KIND_CNI=${KIND_CNI}"
@@ -65,6 +70,7 @@ fi
 cat <<EOF
 nodes:
 - role: control-plane
+  image: ${KIND_IMAGE}
   extraMounts:
   - hostPath: /var/devbox
     containerPath: /devbox
@@ -112,6 +118,7 @@ for i in $(seq 1 $WORKER_COUNT);
 do
 cat <<EOF
 - role: worker
+  image: ${KIND_IMAGE}
   extraMounts:
   - hostPath: /var/devbox
     containerPath: /devbox
