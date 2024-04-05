@@ -14,9 +14,11 @@ helm repo update
 kubectl create namespace kyverno --dry-run=client -o yaml | kubectl apply -f -
 
 # Install kyverno
-helm -n kyverno upgrade --install kyverno kyverno/kyverno -f ${SCRIPT_DIR}/helm/kyverno/values.yaml
+helm -n kyverno upgrade --install kyverno kyverno/kyverno \
+    -f ${SCRIPT_DIR}/helm/kyverno/values.yaml
 
 # Install kyverno-policies (after due to CRDs)
-helm -n kyverno upgrade --install kyverno-policies kyverno/kyverno-policies
+helm -n kyverno upgrade --install kyverno-policies kyverno/kyverno-policies \
+    -f ${SCRIPT_DIR}/helm/kyverno-policies/values.yaml
 
 

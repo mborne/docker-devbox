@@ -1,17 +1,15 @@
 admissionController:
   replicas: 3
+  metricsService:
+    create: true
+    annotations:
+      prometheus.io/port: "8000"
+      prometheus.io/scrape: "true"
 
-config:
-  resourceFiltersExcludeNamespaces:
-  - loki
-  webhooks:
-    # Exclude namespaces
-    - namespaceSelector:
-        matchExpressions:
-        - key: kubernetes.io/metadata.name
-          operator: NotIn
-          values:
-            - kube-system
-            - kube-node-lease
-            - kube-public
-            - kyverno
+backgroundController:
+  replicas: 2
+cleanupController:
+  replicas: 2
+reportsController:
+  replicas: 2
+
