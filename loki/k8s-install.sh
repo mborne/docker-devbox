@@ -13,7 +13,7 @@ kubectl create namespace loki --dry-run=client -o yaml | kubectl apply -f -
 
 # Install grafana
 helm -n loki upgrade --install loki grafana/loki \
-    -f ${SCRIPT_DIR}/helm/loki-values.yaml
+    -f ${SCRIPT_DIR}/helm/loki/values.yaml
 
 # Install promtail
 helm -n loki upgrade --install promtail grafana/promtail
