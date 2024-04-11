@@ -1,6 +1,6 @@
 # Prometheus
 
-Container running [Prometheus](https://prometheus.io/).
+Containers running [Prometheus](https://prometheus.io/) and [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter?tab=readme-ov-file#blackbox-exporter).
 
 ## Usage with docker
 
@@ -37,7 +37,16 @@ kubectl --namespace prometheus port-forward $POD_NAME 9091
 
 ## Resources
 
+About prometheus :
+
 * [prometheus.io - docs - overview](https://prometheus.io/docs/introduction/overview/)
 * [prometheus-community.github.io - Prometheus Community Kubernetes Helm Charts](https://prometheus-community.github.io/helm-charts/)
+
+About prometheus blackbox exporter :
+
+* [medium.com - Monitor Kubernets Services/Endpoints with Prometheus Blackbox Exporter](https://medium.com/@lambdaEranga/monitor-kubernets-services-endpoints-with-prometheus-blackbox-exporter-a64e062c05d5)
+
+
+
 
 

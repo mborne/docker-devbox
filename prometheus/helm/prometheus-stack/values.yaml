@@ -1,0 +1,25 @@
+
+prometheus:
+  # https://medium.com/@lambdaEranga/monitor-kubernets-services-endpoints-with-prometheus-blackbox-exporter-a64e062c05d5
+  prometheusSpec:
+    serviceMonitorNamespaceSelector: {} # get service monitors on all namespaces
+    serviceMonitorSelectorNilUsesHelmValues: false
+    ruleSelectorNilUsesHelmValues: false
+    ruleNamespaceSelector: {}
+    serviceMonitorSelector: {} # get all existing service monitors
+
+# disabled for now (grafana side)
+alertmanager:
+  enabled: false
+
+# disabled for now (external grafana)
+grafana:
+  enabled: false
+  adminPassword: ChangeIt
+  additionalDataSources:
+  - name: Loki
+    type: loki
+    url: http://loki-gateway.loki
+    access: proxy
+    isDefault: false
+    editable: true
