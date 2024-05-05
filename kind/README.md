@@ -50,7 +50,7 @@ An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to gen
 
 ```bash
 # Number of worker nodes
-export WORKER_COUNT=3
+export WORKER_COUNT=5
 # Enable 80 and 443 port exposure 
 export INGRESS_READY=1
 # Enable
