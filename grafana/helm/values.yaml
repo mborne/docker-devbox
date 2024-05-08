@@ -3,9 +3,9 @@ persistence:
 
 sidecar:
   dashboards:
-    enabled: false
+    enabled: true
   datasources:
-    enabled: false
+    enabled: true
 
 deploymentStrategy:
   type: Recreate
@@ -25,3 +25,35 @@ datasources:
      access: proxy
      isDefault: false
      editable: true
+
+
+dashboardProviders:
+ dashboardproviders.yaml:
+   apiVersion: 1
+   providers:
+   - name: 'default'
+     orgId: 1
+     folder: ''
+     type: file
+     disableDeletion: false
+     editable: true
+     options:
+       path: /var/lib/grafana/dashboards/default
+
+dashboards:
+  default:
+    prometheus-stats:
+      gnetId: 2
+      revision: 2
+      datasource: Prometheus
+      editable: true
+    loki-logs:
+      gnetId: 15141
+      revision: 1
+      datasource: Loki
+      editable: true
+    blackbox-exporter:
+      gnetId: 7587
+      revision: 3
+      datasource: Prometheus
+      editable: true
