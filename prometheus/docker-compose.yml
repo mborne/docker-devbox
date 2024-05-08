@@ -23,9 +23,9 @@ services:
     container_name: blackbox-exporter
     image: prom/blackbox-exporter:latest
     environment:
-    - HTTP_PROXY=${HTTP_PROXY:-""}
-    - HTTPS_PROXY=${HTTPS_PROXY:-""}
-    - NO_PROXY=${NO_PROXY:-localhost}
+    - HTTP_PROXY=${HTTP_PROXY}
+    - HTTPS_PROXY=${HTTPS_PROXY}
+    - NO_PROXY=${NO_PROXY}
     ports:
     - 9115:9115
     volumes:

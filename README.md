@@ -23,7 +23,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) and [helm](https://helm.sh/docs/intro/install/)
 * Configure kubectl to use a [DEV instance](docs/kubernetes-dev.md)
 
-
 ## Stacks
 
 ### Load balancer and reverse proxy
@@ -89,7 +88,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 | Name                                     | Description                                                                  | Docker  |   K8S   |
 | ---------------------------------------- | ---------------------------------------------------------------------------- | :-----: | :-----: |
-| [Grafana](grafana/README.md)             | Grafana with Loki and Prometheus datasources                                 | &#9745; | &#9745; |
+| [Grafana](grafana/README.md)             | Grafana with Loki and Prometheus datasources and dashboards preconfigured    | &#9745; | &#9745; |
 | [Prometheus](prometheus/README.md)       | Grafana/Prometheus for system and monitoring                                 | &#9745; | &#9745; |
 | [Loki](loki/README.md)                   | Grafana/Loki with promtail to index logs                                     | &#9745; | &#9745; |
 | [Kibana](kibana/README.md)               | ELK - User Interface                                                         | &#9745; | &#9744; |

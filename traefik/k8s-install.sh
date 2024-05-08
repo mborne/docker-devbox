@@ -24,7 +24,8 @@ helm repo update
 kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm
-helm -n traefik-system upgrade --install -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}.yml traefik traefik/traefik
+helm -n traefik-system upgrade --install traefik traefik/traefik \
+  -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}/values.yml
 
 # Create Certificate using cert-manager
 cat <<EOF | kubectl -n traefik-system apply -f -
@@ -44,7 +45,7 @@ EOF
 
 # Create IngressRoute with dynamic hostname
 cat <<EOF | kubectl -n traefik-system apply -f -
-apiVersion: traefik.containo.us/v1alpha1
+apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: dashboard
@@ -61,3 +62,5 @@ spec:
   tls:
     secretName: traefik-tls
 EOF
+
+
