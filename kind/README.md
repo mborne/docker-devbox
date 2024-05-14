@@ -6,6 +6,8 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 
 * docker
 * [kind](https://kind.sigs.k8s.io/docs/user/quick-start/)
+* [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+* [helm](https://helm.sh/docs/intro/install/)
 * Free port 80 and 443
 
 ## Description
@@ -18,25 +20,31 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
   * OIDC authentication
 * Optionally install custom CNI (canal or calico)
 * Install [metric-server](kind/metric-server/kustomization.yaml)
+* Install [Prometheus](../prometheus/README.md), [Loki](../loki/README.md) and [Grafana](../grafana/README.md)
 * Install [cert-manager](../cert-manager/README.md) with a mkcert cluster issuer (if locally available)
 * Install [traefik](../traefik/README.md#usage-with-kind) or [nginx-ingress-controller](../nginx-ingress-controller/README.md#usage-with-kind) with kind compatible config
-* Install [whoami](../whoami/README.md#usage-with-kubernetes) sample app (https://whoami.dev.localhost)
-* Install [kubernetes-dashboard](../kubernetes-dashboard/README.md#usage-with-kubernetes) (https://kube-dashboard.dev.localhost)
+* Install [whoami](../whoami/README.md#usage-with-kubernetes) sample app
+* Install [kubernetes-dashboard](../kubernetes-dashboard/README.md#usage-with-kubernetes)
+
+## Parameters
+
+| Name                       | Description                                                                                                | Default value                   |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `KIND_CLUSTER_NAME`        | The name of the kind cluster                                                                               | `devbox`                        |
+| `KIND_WORKER_COUNT`        | The number of worker node                                                                                  | `3`                             |
+| `KIND_CNI`                 | Customize CNI using "default", "calico" or "canal" (note that default doesn't supports NetworkPolicies)    | `default`                       |
+| `KIND_ADMISSION_PLUGINS`   | Allows to customize admission plugins                                                                      | `NodeRestriction,ResourceQuota` |
+| `DEVBOX_INGRESS` (1)       | Allows to install either [traefik](../traefik/README.md) or [nginx](../nginx-ingress-controller/README.md) | `traefik`                       |
+| `KIND_INGRESS_READY`       | Allows to disable `extraPortMappings` on ports 80 and 443                                                  | `1`                             |
+| `DOCKERHUB_PROXY`          | Allows to use a mirror for DockerHub                                                                       | `""`                            |
+| `KIND_OIDC_ISSUER_URL` (2) | Allows to enable OIDC authentication                                                                       | `""`                            |
+
+> (1) Note that `k8s-install.sh` must use the same value.
+> (2) Do not add useless "/" (`${KIND_OIDC_ISSUER_URL}/.well-known/openid-configuration` must exists)
 
 ## Usage
 
 ```bash
-# use nginx-ingress-controller instead of traefik
-export DEVBOX_INGRESS=nginx
-# enable OIDC auth on Kubernetes API 
-export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
-# use a mirror for dockerhub
-export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
-
-# Install custom CNI (required for NetworkPolicies)
-# default, calico or canal
-export KIND_CNI=calico
-
 # Delete cluster if exists
 kind delete clusters devbox
 
@@ -50,11 +58,14 @@ An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to gen
 
 ```bash
 # Number of worker nodes
-export WORKER_COUNT=5
-# Enable 80 and 443 port exposure 
-export INGRESS_READY=1
-# Enable
-export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+export KIND_WORKER_COUNT=5
+# enable OIDC auth on Kubernetes API 
+export KIND_OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+# use a mirror for dockerhub
+export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
+# Install custom CNI (required for NetworkPolicies)
+# default, calico or canal
+export KIND_CNI=calico
 
 # Generate config to create kind cluster
 bash kind/config/generate.sh

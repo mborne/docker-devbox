@@ -20,7 +20,7 @@ For each stack supporting K8S deployment, a `k8s-deploy.sh` helper script is pro
 Stacks are created assuming the :
 
 * [traefik](../traefik/README.md) or [nginx-ingress-controller](../nginx-ingress-controller/README.md) is deployed
-* [cert-manager](../cert-manager/README.md) is deployed with a ClusterIssuer (it comes with create one of "mkcert", "letsencrypt-http" or "letsencrypt-dns")
+* [cert-manager](../cert-manager/README.md) is deployed with a ClusterIssuer (see helper scripts to create "mkcert", "letsencrypt-http" or "letsencrypt-dns")
 
 The following environment variables provides some option for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources creation :
 
@@ -65,9 +65,4 @@ Note that :
 * **You should not use resources from this repository!**
 * You may have to deploy in an existing namespace provided by an administrator
 * Instead of using bash scripts to handle variables, you may use tools like [ArgoCD](../argocd/README.md), [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html),...
-
-## Resources
-
-* [K3S](https://k3s.io) is quite trivial to setup on a single node
-
 

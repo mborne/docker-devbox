@@ -5,25 +5,25 @@
 #----------------------------------------
 echo "# kind/config/generate.sh with :"
 # Cluster name default to devbox
-CLUSTER_NAME=${CLUSTER_NAME:-devbox}
-echo "# - CLUSTER_NAME=${CLUSTER_NAME}"
+KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME:-devbox}
+echo "# - KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME}"
 
 # Number of worker nodes
-WORKER_COUNT=${WORKER_COUNT:-3}
-echo "# - WORKER_COUNT=${WORKER_COUNT}"
+KIND_WORKER_COUNT=${KIND_WORKER_COUNT:-3}
+echo "# - KIND_WORKER_COUNT=${KIND_WORKER_COUNT}"
 
 # Required value to enable OIDC
-OIDC_ISSUER_URL=${OIDC_ISSUER_URL:-""}
-echo "# - OIDC_ISSUER_URL=${OIDC_ISSUER_URL}"
+KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL:-""}
+echo "# - KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL}"
 
 # Expose 80 and 443 ports on master node
-INGRESS_READY=${INGRESS_READY:-1}
-echo "# - INGRESS_READY=${INGRESS_READY}"
+KIND_INGRESS_READY=${KIND_INGRESS_READY:-1}
+echo "# - KIND_INGRESS_READY=${KIND_INGRESS_READY}"
 
 # Enables ResourceQuota admission controller by default
 # https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
-ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
-echo "# - ADMISSION_PLUGINS=${ADMISSION_PLUGINS}"
+KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
+echo "# - KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS}"
 
 # Allows to select Kubernetes Version, see:
 # - https://kind.sigs.k8s.io/docs/user/configuration/#kubernetes-version 
@@ -47,7 +47,7 @@ fi
 cat <<EOF
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
-name: ${CLUSTER_NAME}
+name: ${KIND_CLUSTER_NAME}
 networking:
   ipFamily: ipv4
   apiServerAddress: "127.0.0.1"
@@ -84,15 +84,15 @@ EOF
 
 
 
-if [ ! -z "$OIDC_ISSUER_URL" ];
+if [ ! -z "$KIND_OIDC_ISSUER_URL" ];
 then
 cat <<EOF
   - |
     kind: ClusterConfiguration
     apiServer:
         extraArgs:
-          enable-admission-plugins: $ADMISSION_PLUGINS
-          oidc-issuer-url: $OIDC_ISSUER_URL
+          enable-admission-plugins: $KIND_ADMISSION_PLUGINS
+          oidc-issuer-url: $KIND_OIDC_ISSUER_URL
           oidc-client-id: kubernetes
           oidc-groups-claim: groups
           oidc-groups-prefix: "oidc:"
@@ -101,7 +101,7 @@ cat <<EOF
 EOF
 fi
 
-if [ "$INGRESS_READY" != "0" ];
+if [ "$KIND_INGRESS_READY" != "0" ];
 then
 cat <<EOF
   extraPortMappings:
@@ -114,7 +114,7 @@ cat <<EOF
 EOF
 fi
 
-for i in $(seq 1 $WORKER_COUNT);
+for i in $(seq 1 $KIND_WORKER_COUNT);
 do
 cat <<EOF
 - role: worker

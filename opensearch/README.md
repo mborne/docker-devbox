@@ -1,6 +1,6 @@
 # OpenSearch
 
-Containers running [OpenSearch](https://opensearch.org/) for **DEV purpose**.
+Containers running [OpenSearch](https://opensearch.org/) and [OpenSearch Dashboards](https://opensearch.org/docs/latest/dashboards/) for **DEV purpose**.
 
 ## System requirements
 
@@ -8,7 +8,7 @@ Containers running [OpenSearch](https://opensearch.org/) for **DEV purpose**.
 
 ## Usage with docker
 
-WARNING : Read [docker-compose.yml](docker-compose.yml) and note that **security is disabled**!
+**WARNING** : Read [docker-compose.yml](docker-compose.yml) and note that **security is disabled**!
 
 * Start containers : `docker compose up -d`
 * Open https://os-dashboard.dev.localhost/

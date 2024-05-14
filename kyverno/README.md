@@ -13,4 +13,3 @@ bash k8s-install.sh
 ## Ressources
 
 * [kyverno.io - Introduction](https://kyverno.io/docs/introduction/)
-* 

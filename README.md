@@ -55,7 +55,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 | Name                           | Description                                                           | Docker  |   K8S   |
 | ------------------------------ | --------------------------------------------------------------------- | :-----: | :-----: |
 | [Keycloak](keycloak/README.md) | Open Source Identity and Access Management providing (**OIDC, SAML**) | &#9745; | &#9744; |
-| [OpenLDAP](openldap/README.md) | Community developed **LDAP** software                                 | &#9745; | &#9744; |
+| [OpenLDAP](openldap/README.md) | OpenLDAP and phpLDAPadmin (**LDAP**)                                  | &#9745; | &#9744; |
 
 ### Storage
 

@@ -10,7 +10,7 @@ TRAEFIK_MODE=${TRAEFIK_MODE:-local}
 echo "---------------------------------------------"
 echo "-- traefik/k8s-install.sh : "
 echo "--   DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME}"
-echo "--   DEVBOX_HOSTNAME=${DEVBOX_ISSUER}"
+echo "--   DEVBOX_ISSUER=${DEVBOX_ISSUER}"
 echo "--   TRAEFIK_MODE=${TRAEFIK_MODE}"
 echo "---------------------------------------------"
 
