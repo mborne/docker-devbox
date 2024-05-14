@@ -1,4 +1,4 @@
-# Grafana
+# Loki
 
 Container running [Grafana Loki](https://grafana.com/docs/loki/latest/) and [Grafana Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/).
 

@@ -21,9 +21,9 @@ services:
     volumes:
       - opensearch-data:/usr/share/opensearch/data
     ports:
-      - ${DEVBOX_PORT_PREFIX}9200:9200
+      - 9200:9200
        # required for Performance Analyzer
-      - ${DEVBOX_PORT_PREFIX}9600:9600
+      - 9600:9600
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.os.rule=Host(`os.${DEVBOX_HOSTNAME}`)"

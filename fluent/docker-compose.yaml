@@ -1,0 +1,23 @@
+services:
+  fluentbit:
+    image: cr.fluentbit.io/fluent/fluent-bit:3.0.3-debug
+    volumes:
+      - ./config/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf:ro
+      # Input journald
+      - /var/log:/var/log:ro
+      - /run/log:/run/log:ro
+      # Input docker_events 
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 24224:24224
+      - 24224:24224/udp
+    logging:
+      driver: "journald"
+    userns_mode: host
+    restart: unless-stopped
+
+networks:
+  default:
+    name: devbox
+    external: true
+

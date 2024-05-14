@@ -8,15 +8,11 @@
 
 ## How it works in devbox?
 
-A `k8s-deploy.sh` helper script is provided to :
+For each stack supporting K8S deployment, a `k8s-deploy.sh` helper script is provided to :
 
 * Create a namespace for the stack
 * Deploy the stack either with [Kustomize](https://kustomize.io/) (`kubectl apply -k ...`) or [helm](https://helm.sh/) (`helm upgrade --install ...`)
-
-This approach makes it possible to:
-
-* Simplify calls to helm and kubectl
-* Configure deployment with environment variables (ex : `DEVBOX_HOSTNAME=dev.my-domain.com`)
+* Create Ingress resource(s) using "bash templating" to ease customization using environment variables (ex : `DEVBOX_HOSTNAME=dev.my-domain.com`)
 
 
 ## Load Balancing
@@ -25,7 +21,6 @@ Stacks are created assuming the :
 
 * [traefik](../traefik/README.md) or [nginx-ingress-controller](../nginx-ingress-controller/README.md) is deployed
 * [cert-manager](../cert-manager/README.md) is deployed with a ClusterIssuer (it comes with create one of "mkcert", "letsencrypt-http" or "letsencrypt-dns")
-
 
 The following environment variables provides some option for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources creation :
 
@@ -69,7 +64,7 @@ Note that :
 
 * **You should not use resources from this repository!**
 * You may have to deploy in an existing namespace provided by an administrator
-* There are more advanced solutions than bash scripting to handle variables including [ArgoCD](../argocd/README.md), [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html),...
+* Instead of using bash scripts to handle variables, you may use tools like [ArgoCD](../argocd/README.md), [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html),...
 
 ## Resources
 

@@ -1,0 +1,56 @@
+#service:
+  # enable scrapping (see serviceMonitor.selfMonitor.enabled)
+  # annotations:
+  #   prometheus.io/scrape: 'true'
+  #   prometheus.io/path: '/metrics'
+  #   prometheus.io/port: '9115'
+
+
+# https://github.com/prometheus/blackbox_exporter#permissions
+securityContext:
+  allowPrivilegeEscalation: true
+  capabilities:
+    drop: ["ALL"]
+    # Add NET_RAW to enable ICMP
+    add: ["NET_RAW"]
+
+# https://github.com/prometheus-community/helm-charts/issues/2360#issuecomment-1250227386
+podSecurityContext:
+  sysctls:
+  - name: net.ipv4.ping_group_range
+    value: "0 65536"
+
+config:
+  modules:
+    http_2xx:
+      prober: http
+      timeout: 5s
+      http:
+        valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+        follow_redirects: true
+        preferred_ip_protocol: "ip4"
+    icmp:
+      prober: icmp
+      icmp:
+        preferred_ip_protocol: ip4
+
+serviceMonitor:
+  # enable ServiceMonitor CRD
+  enabled: true
+  # selfMonitor:
+  #   enabled: true
+  targets:
+   - name: whoami
+     url: http://whoami.whoami.svc.cluster.local
+     labels:
+       app_name: whoami
+     interval: 5s
+     scrapeTimeout: 5s
+     module: http_2xx
+   - name: grafana-login
+     url: http://grafana.grafana.svc.cluster.local/login
+     labels:
+       app_name: grafana
+     interval: 5s
+     scrapeTimeout: 5s
+     module: http_2xx

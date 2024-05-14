@@ -3,40 +3,16 @@ services:
   grafana:
     container_name: grafana
     image: grafana/grafana:main
-    entrypoint:
-      - sh
-      - -euc
-      - |
-        mkdir -p /etc/grafana/provisioning/datasources
-        cat <<EOF > /etc/grafana/provisioning/datasources/ds.yaml
-        apiVersion: 1
-        datasources:
-        - name: Prometheus
-          type: prometheus
-          access: proxy
-          orgId: 1
-          url: http://prometheus:9090
-          basicAuth: false
-          isDefault: true
-          version: 1
-          editable: true
-        - name: Loki
-          type: loki
-          access: proxy
-          orgId: 1
-          url: http://loki:3100
-          basicAuth: false
-          isDefault: false
-          version: 1
-          editable: true
-        EOF
-        /run.sh
     environment:
-    - HTTP_PROXY=${HTTP_PROXY:-""}
-    - HTTPS_PROXY=${HTTPS_PROXY:-""}
-    - NO_PROXY="prometheus,loki,${NO_PROXY:-""}"
+    - GF_SECURITY_ADMIN_USER=admin
+    - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
+    - HTTP_PROXY=${HTTP_PROXY:-}
+    - HTTPS_PROXY=${HTTPS_PROXY:-}
+    - NO_PROXY="prometheus,loki,${NO_PROXY:-}"
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./config/datasources:/etc/grafana/provisioning/datasources:ro
+      - ./config/dashboards:/etc/grafana/provisioning/dashboards:ro
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.grafana.rule=Host(`grafana.${DEVBOX_HOSTNAME}`)"

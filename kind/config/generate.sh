@@ -9,7 +9,7 @@ CLUSTER_NAME=${CLUSTER_NAME:-devbox}
 echo "# - CLUSTER_NAME=${CLUSTER_NAME}"
 
 # Number of worker nodes
-WORKER_COUNT=${WORKER_COUNT:-2}
+WORKER_COUNT=${WORKER_COUNT:-3}
 echo "# - WORKER_COUNT=${WORKER_COUNT}"
 
 # Required value to enable OIDC

@@ -1,4 +1,4 @@
-# Kind with Ingress Controller and more...
+# Kind - Quickstart with Ingress Controller and more...
 
 Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/) cluster with Ingress, NetworkPolicy support (with canal or calico) and RWX PersistentVolume (with extraMounts).
 
@@ -46,11 +46,11 @@ bash kind/quickstart.sh
 
 ## How it works?
 
-An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to generate kind with some options :
+An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to generate [kind configuration](https://kind.sigs.k8s.io/docs/user/configuration/) with some options :
 
 ```bash
 # Number of worker nodes
-export WORKER_COUNT=3
+export WORKER_COUNT=5
 # Enable 80 and 443 port exposure 
 export INGRESS_READY=1
 # Enable

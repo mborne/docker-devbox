@@ -23,7 +23,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) and [helm](https://helm.sh/docs/intro/install/)
 * Configure kubectl to use a [DEV instance](docs/kubernetes-dev.md)
 
-
 ## Stacks
 
 ### Load balancer and reverse proxy
@@ -85,24 +84,29 @@ This is my playground to learn and illustrate how to deploy application with [do
 | [Redis](redis/README.md)             | [Redis](https://redis.io/) key-value database                                                        | &#9745; | &#9744; |
 
 
-### Logs and monitoring
+### Logging and monitoring
 
-| Name                                     | Description                                                                  | Docker  |   K8S   |
-| ---------------------------------------- | ---------------------------------------------------------------------------- | :-----: | :-----: |
-| [Grafana](grafana/README.md)             | Grafana with Loki and Prometheus datasources                                 | &#9745; | &#9745; |
-| [Prometheus](prometheus/README.md)       | Grafana/Prometheus for system and monitoring                                 | &#9745; | &#9745; |
-| [Loki](loki/README.md)                   | Grafana/Loki with promtail to index logs                                     | &#9745; | &#9745; |
-| [Kibana](kibana/README.md)               | ELK - User Interface                                                         | &#9745; | &#9744; |
-| [OpenSearch](opensearch/README.md)       | Forked from [Elasticsearch](https://www.elastic.co/fr/elasticsearch/) by AWS | &#9745; | &#9745; |
-| [Elasticsearch](elasticsearch/README.md) | ELK - Log storage and indexation                                             | &#9745; | &#9745; |
-| [Netdata](netdata/README.md)             | A monitoring tool with an easy setup                                         | &#9745; | &#9744; |
+Option 1 :
+
+| Name                               | Description                                                               | Docker  |   K8S   |
+| ---------------------------------- | ------------------------------------------------------------------------- | :-----: | :-----: |
+| [Grafana](grafana/README.md)       | Grafana with Loki and Prometheus datasources and dashboards preconfigured | &#9745; | &#9745; |
+| [Prometheus](prometheus/README.md) | Grafana/**Prometheus** for system and monitoring                          | &#9745; | &#9745; |
+| [Loki](loki/README.md)             | Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs     | &#9745; | &#9745; |
+
+Option 2 (variant of the famous ELK stack) :
+
+| Name                               | Description                                                                          | Docker  |   K8S   |
+| ---------------------------------- | ------------------------------------------------------------------------------------ | :-----: | :-----: |
+| [OpenSearch](opensearch/README.md) | Forked from [ElasticSearch](https://www.elastic.co/fr/elasticsearch/) by AWS         | &#9745; | &#9745; |
+| [fluent](fluent/README.md)         | [fluent-bit](https://docs.fluentbit.io/manual) sending containers logs to OpenSearch | &#9745; | &#9745; |
 
 ### GeoSpatial services
 
 | Name                               | Description                                                                                                                        | Docker  |   K8S   |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [GeoServer](geoserver/README.md)   | Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (**WMS, WMTS, WFS**)       | &#9745; | &#9745; |
-| [Geonetwork](geonetwork/README.md) | Catalog application to manage spatially referenced resources with [OGC](https://www.ogc.org/) compliant protocols (**CSW, CSW-T**) | &#9745; | &#9745; |
+| [GeoNetwork](geonetwork/README.md) | Catalog application to manage spatially referenced resources with [OGC](https://www.ogc.org/) compliant protocols (**CSW, CSW-T**) | &#9745; | &#9745; |
 
 ### Mailing
 

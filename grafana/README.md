@@ -1,13 +1,20 @@
 # Grafana
 
-Container running [Grafana](https://grafana.com/).
+Container running [Grafana](https://grafana.com/) with datasources and dashboards auto-provisionning for [Loki](../loki/README.md) and [Prometheus](../prometheus/README.md).
+
+## Parameters
+
+| Name                     | Description                   | Value        |
+| ------------------------ | ----------------------------- | ------------ |
+| `GRAFANA_ADMIN_PASSWORD` | Grafana `admin` user password | `"ChangeIt"` |
 
 ## Usage with docker
 
 * Start grafana : `docker compose up -d`
 * Open https://grafana.dev.localhost/
-* Login with "admin" / "admin" and change the password.
-
+* Login with "admin" / "ChangeIt"
+* See prometheus and loki datasources : https://grafana.dev.localhost/connections/datasources
+* See sample dashboards : https://grafana.dev.localhost/dashboards
 * Import [some dashboards](#some-dashboards)
 
 ## Usage with Kubernetes
@@ -35,9 +42,10 @@ Prometheus & Node
 * [6126 - Node Dashboard](https://grafana.com/grafana/dashboards/6126)
 * [1860 - Node Exporter Full](https://grafana.com/grafana/dashboards/1860)
 
-Prometheus & Blackbox Exporter (HTTP, ICMP,...):
+Prometheus & Blackbox Exporter :
 
 * [7587 - Prometheus Blackbox Exporter](https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/)
+* [13659 - Blackbox Exporter (HTTP prober)](https://grafana.com/grafana/dashboards/13659-blackbox-exporter-http-prober/)
 
 Prometheus & Traefik :
 

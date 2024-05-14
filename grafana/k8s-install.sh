@@ -6,6 +6,8 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
+GRAFANA_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-ChangeIt}
+
 # Add helm repository
 helm repo add grafana https://grafana.github.io/helm-charts
 
@@ -17,7 +19,8 @@ kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
 
 # Install grafana
 helm -n grafana upgrade --install grafana grafana/grafana \
-    -f ${SCRIPT_DIR}/helm/values.yaml
+    -f ${SCRIPT_DIR}/helm/values.yaml \
+    --set adminPassword=$GRAFANA_ADMIN_PASSWORD
 
 
 # Create Ingress with dynamic hostname

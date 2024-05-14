@@ -26,6 +26,13 @@ fi
 kubectl apply -k ${SCRIPT_DIR}/metric-server
 
 #----------------------------------------
+# Install monitoring
+#----------------------------------------
+bash $DEVBOX_DIR/loki/k8s-install.sh
+bash $DEVBOX_DIR/prometheus/k8s-install.sh
+bash $DEVBOX_DIR/grafana/k8s-install.sh
+
+#----------------------------------------
 # Install cert-manager
 #----------------------------------------
 bash $DEVBOX_DIR/cert-manager/k8s-install.sh
@@ -33,7 +40,6 @@ bash $DEVBOX_DIR/cert-manager/k8s-install.sh
 #----------------------------------------
 # Install ingress controller
 #----------------------------------------
-
 export DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 if [ "$DEVBOX_INGRESS" != "traefik" ];
 then
@@ -46,13 +52,11 @@ fi
 #----------------------------------------
 # Install dashboard
 #----------------------------------------
-
 bash $DEVBOX_DIR/kubernetes-dashboard/k8s-install.sh
 
 
 #----------------------------------------
 # Install whoami
 #----------------------------------------
-
 bash $DEVBOX_DIR/whoami/k8s-install.sh
 
