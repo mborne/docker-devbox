@@ -20,7 +20,7 @@
 
 ## Networking and service exposition
 
-* Applications are exposed **on nice URL** (ex : https://kibana.dev.localhost) with the reverse proxy [traefik](../traefik/README.md).
+* Applications are exposed **on nice URL** (ex : https://whoami.dev.localhost) with the reverse proxy [traefik](../traefik/README.md).
 * An environment variable `DEVBOX_HOSTNAME` allows to customize `dev.localhost`
 * An helper script is provided to generate wildcard certificates for [traefik](../traefik/README.md) with [mkcert](https://github.com/FiloSottile/mkcert#mkcert) a wildcard certificate ([traefik/mkcert/generate.sh](../traefik/mkcert/generate.sh)).
 * All stacks runs on the same network named `devbox` to simplify communication between containers/stacks.
@@ -80,7 +80,7 @@ Note that :
 
 Ansible playbooks :
 
-* [mborne/ansible-docker-ce](https://github.com/mborne/ansible-docker-ce#readme) to install docker community engine with Ansible and configure it according to [docker-bench-security](https://github.com/docker/docker-bench-security) recommandations (**Warning: Don't use this one at IGNF or ENSG**, contact me)
+* [mborne/ansible-docker-ce](https://github.com/mborne/ansible-docker-ce#readme) to install docker community engine with Ansible and configure it according to [docker-bench-security](https://github.com/docker/docker-bench-security) recommandations (**Warning: Don't use this one at IGNF**, contact me)
 * [mborne/ansible-traefik](https://github.com/mborne/ansible-traefik#ansible-traefik) to deploy traefik as systemd service with Ansible.
 
 

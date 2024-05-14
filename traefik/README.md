@@ -32,13 +32,15 @@ DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 
 ## Usage with Kind
 
-* [Create kind cluster with ingress-ready config](../kind/README.md#usage-with-ingress)
-* Use [helm/kind.yml](helm/kind.yml) values to deploy with helm :
+Use [kind/quickstart.sh](../kind/quickstart.sh) to install traefik **or** :
+
+* [Create kind cluster with ingress-ready config](../kind/README.md)
+* Deploy with helm using [helm/kind/values.yml](helm/kind/values.yml) with `TRAEFIK_MODE=kind` :
 
 ```bash
 TRAEFIK_MODE=kind bash k8s-install.sh
 ```
-* Open dashboard on http://traefik.dev.localhost
+* Open dashboard on https://traefik.dev.localhost/dashboard/#/
 
 
 ## Resources

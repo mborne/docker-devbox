@@ -17,13 +17,13 @@ KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL:-""}
 echo "# - KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL}"
 
 # Expose 80 and 443 ports on master node
-INGRESS_READY=${INGRESS_READY:-1}
-echo "# - INGRESS_READY=${INGRESS_READY}"
+KIND_INGRESS_READY=${KIND_INGRESS_READY:-1}
+echo "# - KIND_INGRESS_READY=${KIND_INGRESS_READY}"
 
 # Enables ResourceQuota admission controller by default
 # https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
-ADMISSION_PLUGINS=${ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
-echo "# - ADMISSION_PLUGINS=${ADMISSION_PLUGINS}"
+KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS:-NodeRestriction,ResourceQuota}
+echo "# - KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS}"
 
 # Allows to select Kubernetes Version, see:
 # - https://kind.sigs.k8s.io/docs/user/configuration/#kubernetes-version 
@@ -91,7 +91,7 @@ cat <<EOF
     kind: ClusterConfiguration
     apiServer:
         extraArgs:
-          enable-admission-plugins: $ADMISSION_PLUGINS
+          enable-admission-plugins: $KIND_ADMISSION_PLUGINS
           oidc-issuer-url: $KIND_OIDC_ISSUER_URL
           oidc-client-id: kubernetes
           oidc-groups-claim: groups
@@ -101,7 +101,7 @@ cat <<EOF
 EOF
 fi
 
-if [ "$INGRESS_READY" != "0" ];
+if [ "$KIND_INGRESS_READY" != "0" ];
 then
 cat <<EOF
   extraPortMappings:
