@@ -80,7 +80,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 | ------------------------------------ | ---------------------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [PostGIS](postgis/README.md)         | [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/) | &#9745; | &#9745; |
 | [CloudBeaver](cloudbeaver/README.md) | Server side version of [DBeaver](https://dbeaver.io/)                                                | &#9745; | &#9744; |
-| [adminer](adminer/README.md)         | Database management in a single PHP file                                                             | &#9745; | &#9745; |
 | [Redis](redis/README.md)             | [Redis](https://redis.io/) key-value database                                                        | &#9745; | &#9744; |
 
 
