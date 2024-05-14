@@ -23,13 +23,26 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 * Install [whoami](../whoami/README.md#usage-with-kubernetes) sample app (https://whoami.dev.localhost)
 * Install [kubernetes-dashboard](../kubernetes-dashboard/README.md#usage-with-kubernetes) (https://kube-dashboard.dev.localhost)
 
+## Parameters
+
+| Name                   | Description                                                                                                              | Default value |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------- |
+| `KIND_CLUSTER_NAME`    | The name of the kind cluster                                                                                             | `"devbox"`    |
+| `KIND_WORKER_COUNT`    | The number of worker node                                                                                                | `3`           |
+| `KIND_CNI`             | Customize CNI using "default", "calico" or "canal" (note that default doesn't supports NetworkPolicies)                  | `default`     |
+| `DEVBOX_INGRESS` (1)   | Customize ingress controller to install either [traefik](../traefik/README.md) or [nginx](../nginx-ingress-controller/)  | `traefik`     |
+| `KIND_OIDC_ISSUER_URL` | Optional - Allows to enable OIDC authentication | `""`          |
+
+> (1) Note that `k8s-install.sh` must use the same value!
+> (2) Do not add useless "/" (`${KIND_OIDC_ISSUER_URL}/.well-known/openid-configuration` must exists)
+
 ## Usage
 
 ```bash
 # use nginx-ingress-controller instead of traefik
 export DEVBOX_INGRESS=nginx
 # enable OIDC auth on Kubernetes API 
-export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+export KIND_OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
 # use a mirror for dockerhub
 export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
 
@@ -50,11 +63,11 @@ An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to gen
 
 ```bash
 # Number of worker nodes
-export WORKER_COUNT=5
+export KIND_WORKER_COUNT=5
 # Enable 80 and 443 port exposure 
 export INGRESS_READY=1
 # Enable
-export OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
+export KIND_OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
 
 # Generate config to create kind cluster
 bash kind/config/generate.sh
