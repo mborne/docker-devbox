@@ -2,7 +2,15 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+
 cd $SCRIPT_DIR
+
+#-------------------------------------------------------------------------
+# kyverno and kyverno-policies
+#-------------------------------------------------------------------------
 
 # Add helm repository
 helm repo add kyverno https://kyverno.github.io/kyverno/
@@ -22,3 +30,43 @@ helm -n kyverno upgrade --install kyverno-policies kyverno/kyverno-policies \
     -f ${SCRIPT_DIR}/helm/kyverno-policies/values.yaml
 
 
+#-------------------------------------------------------------------------
+# policy-reporter for kyverno
+#-------------------------------------------------------------------------
+
+# add helm repository
+helm repo add policy-reporter https://kyverno.github.io/policy-reporter
+
+# update helm repositories
+helm repo update
+
+# deploy in namespace kyverno-ui
+helm -n kyverno upgrade --install policy-reporter policy-reporter/policy-reporter \
+    --set metrics.enabled=true --set api.enabled=true --set ui.enabled=true
+
+# Create Ingress with dynamic hostname for policy-reporter-ui
+cat <<EOF | kubectl -n kyverno apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: policy-reporter-ui
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
+spec:
+  ingressClassName: ${DEVBOX_INGRESS}
+  rules:
+  - host: kyverno.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: policy-reporter-ui
+            port:
+              number: 8080
+  tls:
+  - hosts:
+    - kyverno.$DEVBOX_HOSTNAME
+    secretName: policy-reporter-ui-cert
+EOF

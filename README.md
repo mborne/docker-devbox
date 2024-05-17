@@ -100,6 +100,13 @@ Option 2 (variant of the famous ELK stack) :
 | [OpenSearch](opensearch/README.md) | Forked from [ElasticSearch](https://www.elastic.co/fr/elasticsearch/) by AWS         | &#9745; | &#9745; |
 | [fluent](fluent/README.md)         | [fluent-bit](https://docs.fluentbit.io/manual) sending containers logs to OpenSearch | &#9745; | &#9745; |
 
+### Security
+
+| Name                         | Description                                                      | Docker |   K8S   |
+| ---------------------------- | ---------------------------------------------------------------- | :----: | :-----: |
+| [kyverno](kyverno/README.md) | Kyverno with kyverno-policies and Policy Reporter (metrics & UI) |   NA   | &#9745; |
+
+
 ### GeoSpatial services
 
 | Name                               | Description                                                                                                                        | Docker  |   K8S   |
