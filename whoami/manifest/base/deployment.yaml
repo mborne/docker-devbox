@@ -15,6 +15,18 @@ spec:
     spec:
       containers:
         - name: whoami
-          image: traefik/whoami:v1.9
+          image: traefik/whoami:v1.10
+          args: ["--port=8000"]
           ports:
-            - containerPort: 80
+            - name: http
+              containerPort: 8000
+          securityContext:
+            allowPrivilegeEscalation: false
+            privileged: false
+            runAsUser: 1000
+            runAsNonRoot: true
+            capabilities:
+              drop:
+                - ALL
+            seccompProfile:
+              type: RuntimeDefault
