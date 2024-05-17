@@ -42,7 +42,7 @@ helm repo update
 
 # deploy in namespace kyverno-ui
 helm -n kyverno upgrade --install policy-reporter policy-reporter/policy-reporter \
-    --set metrics.enabled=true --set api.enabled=true --set ui.enabled=true
+    -f ${SCRIPT_DIR}/helm/policy-reporter/values.yaml
 
 # Create Ingress with dynamic hostname for policy-reporter-ui
 cat <<EOF | kubectl -n kyverno apply -f -

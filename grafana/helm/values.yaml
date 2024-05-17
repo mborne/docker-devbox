@@ -42,18 +42,32 @@ dashboardProviders:
 
 dashboards:
   default:
+    # https://grafana.com/grafana/dashboards/2-prometheus-stats/
     prometheus-stats:
       gnetId: 2
       revision: 2
       datasource: Prometheus
       editable: true
+    # https://grafana.com/grafana/dashboards/15141-kubernetes-service-logs/
     loki-logs:
       gnetId: 15141
       revision: 1
       datasource: Loki
       editable: true
+    # https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/
     blackbox-exporter:
       gnetId: 7587
       revision: 3
       datasource: Prometheus
       editable: true
+    # https://grafana.com/grafana/dashboards/13995-policyreport-details/
+    kyverno:
+      gnetId: 13995
+      revision: 5
+      datasource: Prometheus
+      editable: true
+
+# downloadDashboards:
+#   env:
+#     HTTP_PROXY: http://proxy:3128
+#     HTTPS_PROXY: http://proxy:3128

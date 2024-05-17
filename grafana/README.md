@@ -68,6 +68,12 @@ Loki :
 * [15141 - Loki Kubernetes Logs](https://grafana.com/grafana/dashboards/15141-kubernetes-service-logs/)
 * [All loki dashboards](https://grafana.com/grafana/dashboards/?search=loki)
 
+
+Kyverno :
+
+* [13995 - PolicyReport Details](https://grafana.com/grafana/dashboards/13995-policyreport-details/)
+
+
 ## Ressources
 
 * [github.com/grafana/helm-charts - Grafana Helm Chart](https://github.com/grafana/helm-charts/blob/main/charts/grafana/README.md#grafana-helm-chart)
