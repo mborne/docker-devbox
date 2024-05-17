@@ -9,7 +9,10 @@ echo "---------------------------------------------"
 
 bash $DEVBOX_DIR/kind/config/generate.sh > /tmp/kind-config.yml
 cat /tmp/kind-config.yml
-kind create cluster --config /tmp/kind-config.yml
+kind create cluster --config /tmp/kind-config.yml || {
+    echo "fail to create kind cluster"
+    exit 1 
+}
 
 #----------------------------------------
 # Install CNI
