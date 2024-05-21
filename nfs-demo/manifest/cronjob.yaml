@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nfs-demo-update
+spec:
+  jobTemplate:
+    metadata:
+      name: nfs-demo-update
+    spec:
+      template:
+        metadata:
+          labels:
+            component: backend
+        spec:
+          containers:
+          - image: busybox
+            name: update
+            command: ["/bin/sh","-c","echo $(date) -- update index.html ... ; date > /usr/share/nginx/html/index.html"]
+            volumeMounts:
+            - name: nfs-demo-data
+              mountPath: /usr/share/nginx/html
+          volumes:
+            - name: nfs-demo-data
+              persistentVolumeClaim:
+                claimName: nfs-demo-pvc
+          restartPolicy: OnFailure
+  schedule: '* * * * *'
+  successfulJobsHistoryLimit: 2

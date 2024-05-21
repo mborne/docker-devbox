@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nfs-demo
+  name: nfs-demo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nfs-demo
+  template:
+    metadata:
+      labels:
+        app: nfs-demo
+        component: server
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        volumeMounts:
+        - name: nfs-demo-data
+          mountPath: /usr/share/nginx/html
+      volumes:
+        - name: nfs-demo-data
+          persistentVolumeClaim:
+            claimName: nfs-demo-pvc

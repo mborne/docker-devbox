@@ -69,10 +69,11 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 | Name                                                                         | Description                                                                                         | Docker  |   K8S   |
 | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
-| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                              |   NA    | &#9745; |
 | [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                          |   NA    | &#9745; |
+| [nfs-demo](nfs-demo/README.md)                                               | Illustrates the use of a "nfs" storage class providing ReadWriteMany support                        |
 | [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | &#9745; | &#9745; |
+| [nfs-server-provisioner](nfs-server-provisioner/README.md)                   | Deploy a NFS server to provide `ReadWriteMany` volumes                                              |   NA    | &#9745; |
+| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
 
 ### Database
 

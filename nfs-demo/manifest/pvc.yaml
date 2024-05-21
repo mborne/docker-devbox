@@ -1,0 +1,14 @@
+# Claims a PersistentVolume using "nfs" storage class.
+# As a network file system, it can be mounted on Pods 
+# running on multiple nodes (ReadWriteMany)
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-demo-pvc
+spec:
+  storageClassName: "nfs"
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 100Mi

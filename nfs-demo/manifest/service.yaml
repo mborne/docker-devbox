@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: nfs-demo
+  name: nfs-demo
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: nfs-demo

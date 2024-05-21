@@ -16,12 +16,7 @@ kubectl get storageclass
 
 ## Alternatives
 
-### External DNS
-
-See [kubernetes-sigs/nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner#readme) :
-
-* [github.com/kubernetes-sigs - Kubernetes NFS Subdir External Provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner#kubernetes-nfs-subdir-external-provisioner)
-* [docs.ovh.com - Configuring multi-attach persistent volumes with OVHcloud NAS-HA](https://docs.ovh.com/gb/en/kubernetes/configuring-multi-attach-persistent-volumes-with-ovhcloud-nas-ha/)
+See [nfs-subdir-external-provisioner](../nfs-subdir-external-provisioner/README.md) to use an external NFS instance.
 
 ## Ressources
 
