@@ -10,11 +10,11 @@ helm repo add jenkins https://charts.jenkins.io
 # Update helm repos
 helm repo update
 
-# # Create namespace jenkins if not exists
-# kubectl create namespace jenkins --dry-run=client -o yaml | kubectl apply -f -
+# Create namespace jenkins if not exists
+kubectl create namespace jenkins --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy with helm
-helm -n jenkins upgrade --install --create-namespace jenkins jenkins/jenkins
+helm -n jenkins upgrade --install jenkins jenkins/jenkins
 
 # Create IngressRoute with dynamic hostname
 cat <<EOF | kubectl -n jenkins apply -f -
