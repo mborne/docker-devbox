@@ -42,10 +42,10 @@ dashboardProviders:
 
 dashboards:
   default:
-    # https://grafana.com/grafana/dashboards/2-prometheus-stats/
-    prometheus-stats:
-      gnetId: 2
-      revision: 2
+    # https://grafana.com/grafana/dashboards/1860-node-exporter-full/
+    prometheus-nodes:
+      gnetId: 1860
+      revision: 36
       datasource: Prometheus
       editable: true
     # https://grafana.com/grafana/dashboards/15141-kubernetes-service-logs/
@@ -58,6 +58,12 @@ dashboards:
     blackbox-exporter:
       gnetId: 7587
       revision: 3
+      datasource: Prometheus
+      editable: true
+    # https://grafana.com/grafana/dashboards/2-prometheus-stats/
+    prometheus-stats:
+      gnetId: 2
+      revision: 2
       datasource: Prometheus
       editable: true
     # https://grafana.com/grafana/dashboards/13995-policyreport-details/
