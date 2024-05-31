@@ -1,0 +1,43 @@
+# https://cloudnative-pg.io/documentation/current/samples/
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgis-cluster
+spec:
+  instances: 3
+  
+  imageName: ghcr.io/cloudnative-pg/postgis:15
+
+  postgresql:
+    # https://pgtune.leopard.in.ua/
+    parameters:
+      max_connections: "100"
+      shared_buffers: "256MB"
+      effective_cache_size: "768MB"
+      maintenance_work_mem: "128MB"
+      checkpoint_completion_target: "0.9"
+      wal_buffers: "7864kB"
+      default_statistics_target: "500"
+      random_page_cost: "1.1"
+      effective_io_concurrency: "200"
+      work_mem: "655kB"
+      huge_pages: "off"
+      min_wal_size: "4GB"
+      max_wal_size: "16GB"
+
+  resources:
+    requests:
+      memory: "1024Mi"
+      cpu: 1
+    limits:
+      memory: "1024Mi"
+      cpu: 1
+
+  # https://cloudnative-pg.io/documentation/current/bootstrap/
+  bootstrap:
+    initdb:
+      database: gis
+      postInitTemplateSQL:
+        - CREATE EXTENSION postgis;
+  storage:
+    size: 10Gi
