@@ -27,7 +27,6 @@ DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ## Resources
 
 * [opensearch.org - Install OpenSearch / Docker](https://opensearch.org/docs/latest/opensearch/install/docker/)
-* [opensearch.org - Install OpenSearch using Helm](https://opensearch.org/docs/latest/opensearch/install/helm/#install-opensearch-using-helm)
 
-
+* [bitnami/opensearch - parameters](https://github.com/bitnami/charts/tree/main/bitnami/opensearch/#parameters)
 

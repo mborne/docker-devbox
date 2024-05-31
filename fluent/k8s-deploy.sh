@@ -6,7 +6,8 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 kubectl create namespace fluent --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy fluent-bit with helm
-helm -n fluent upgrade --install fluent-bit oci://registry-1.docker.io/bitnamicharts/fluent-bit -f ${SCRIPT_DIR}/values.yaml
+helm -n fluent upgrade --install fluent-bit oci://registry-1.docker.io/bitnamicharts/fluent-bit \
+  -f ${SCRIPT_DIR}/helm/fluent-bit/values.yaml
 
 # Allow fluent-bit sa to retreive infos about containers
 cat <<EOF | kubectl apply -f -

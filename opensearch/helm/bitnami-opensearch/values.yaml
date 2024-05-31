@@ -1,0 +1,11 @@
+# https://github.com/bitnami/charts/tree/main/bitnami/opensearch/#parameters
+
+master:
+  resourcesPreset: medium
+
+dashboards:
+  enabled: true
+
+# https://github.com/bitnami/charts/tree/main/bitnami/opensearch/#default-kernel-settings
+sysctlImage:
+ enabled: false
