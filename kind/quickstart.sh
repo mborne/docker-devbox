@@ -31,9 +31,9 @@ kubectl apply -k ${SCRIPT_DIR}/metric-server
 #----------------------------------------
 # Install monitoring
 #----------------------------------------
-bash $DEVBOX_DIR/loki/k8s-install.sh
-bash $DEVBOX_DIR/prometheus/k8s-install.sh
-bash $DEVBOX_DIR/grafana/k8s-install.sh
+# bash $DEVBOX_DIR/loki/k8s-install.sh
+# bash $DEVBOX_DIR/prometheus/k8s-install.sh
+# bash $DEVBOX_DIR/grafana/k8s-install.sh
 
 #----------------------------------------
 # Install cert-manager

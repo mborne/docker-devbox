@@ -20,7 +20,6 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
   * OIDC authentication
 * Optionally install custom CNI (canal or calico)
 * Install [metric-server](kind/metric-server/kustomization.yaml)
-* Install [Prometheus](../prometheus/README.md), [Loki](../loki/README.md) and [Grafana](../grafana/README.md)
 * Install [cert-manager](../cert-manager/README.md) with a mkcert cluster issuer (if locally available)
 * Install [traefik](../traefik/README.md#usage-with-kind) or [nginx-ingress-controller](../nginx-ingress-controller/README.md#usage-with-kind) with kind compatible config
 * Install [whoami](../whoami/README.md#usage-with-kubernetes) sample app
