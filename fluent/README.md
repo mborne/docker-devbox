@@ -19,7 +19,7 @@ docker run --log-driver=journald --rm --name test_fluent -t ubuntu echo '{"conte
 docker run --log-driver=fluentd --rm --name test_fluent -t ubuntu echo '{"content":"Testing a JSON log message","label":"meuh"}'
 ```
 
-Note that you may also configure globally docker to log using journald with `/etc/docker/daemon.json` :
+* Note that **you may also configure globally docker to log using journald** in `/etc/docker/daemon.json` :
 
 ```json
 {
