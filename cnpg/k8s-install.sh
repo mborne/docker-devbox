@@ -11,4 +11,10 @@ helm upgrade --install cnpg \
   --create-namespace \
   cnpg/cloudnative-pg
 
+# Wait for cert-manager pods to be ready
+kubectl -n cert-manager wait \
+    --for=condition=ready pod \
+    --selector=app.kubernetes.io/name=cloudnative-pg \
+    --timeout=90s
+
 kubectl -n cnpg apply -f "${SCRIPT_DIR}/manifest/postgis-cluster.yaml"

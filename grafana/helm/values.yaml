@@ -72,6 +72,11 @@ dashboards:
       revision: 5
       datasource: Prometheus
       editable: true
+    # https://github.com/cloudnative-pg/grafana-dashboards/tree/main/charts/cluster
+    cloudnativepg:
+      url: https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/main/charts/cluster/grafana-dashboard.json
+      datasource: Prometheus
+      editable: true
 
 # downloadDashboards:
 #   env:

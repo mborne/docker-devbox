@@ -8,12 +8,12 @@ grafana:
 
 prometheus:
   prometheusSpec:
-    # https://medium.com/@lambdaEranga/monitor-kubernets-services-endpoints-with-prometheus-blackbox-exporter-a64e062c05d5
-    serviceMonitorNamespaceSelector: {} # get service monitors on all namespaces
-    serviceMonitorSelectorNilUsesHelmValues: false
+    # ServiceMonitor
     ruleSelectorNilUsesHelmValues: false
-    ruleNamespaceSelector: {}
-    serviceMonitorSelector: {} # get all existing service monitors
+    serviceMonitorSelectorNilUsesHelmValues: false
+    podMonitorSelectorNilUsesHelmValues: false
+    probeSelectorNilUsesHelmValues: false
+    scrapeConfigSelectorNilUsesHelmValues: false
     # keep annotations based scrapping
     # https://github.com/prometheus-operator/prometheus-operator/issues/1547#issuecomment-446711073
     additionalScrapeConfigs:

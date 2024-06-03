@@ -39,5 +39,10 @@ spec:
       database: gis
       postInitTemplateSQL:
         - CREATE EXTENSION postgis;
+
   storage:
     size: 10Gi
+
+  # https://cloudnative-pg.io/documentation/current/quickstart/#viewing-with-prometheus
+  monitoring:
+    enablePodMonitor: true
