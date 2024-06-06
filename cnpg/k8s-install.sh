@@ -12,7 +12,7 @@ helm upgrade --install cnpg \
   cnpg/cloudnative-pg
 
 # Wait for cert-manager pods to be ready
-kubectl -n cert-manager wait \
+kubectl -n cnpg wait \
     --for=condition=ready pod \
     --selector=app.kubernetes.io/name=cloudnative-pg \
     --timeout=90s
