@@ -1,0 +1,40 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: import-naturalearth
+  namespace: cnpg
+spec:
+  template:
+    spec:
+      containers:
+      - command: ["node","bin/import.js","naturalearth"]
+        image: ghcr.io/mborne/postgis-integration:master
+        name: postgis-integration
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [ALL]
+          #readOnlyRootFilesystem: true
+          runAsGroup: 1000
+          runAsNonRoot: true
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
+        env:
+          - name: PGHOST
+            value: "postgis-cluster-rw"
+          - name: PGPORT
+            value: "5432"
+          - name: PGDATABASE
+            value: "gis"
+          - name: PGUSER
+            valueFrom:
+              secretKeyRef:
+                name: postgis-cluster-app
+                key: user
+          - name: PGPASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: postgis-cluster-app
+                key: password
+      restartPolicy: Never
