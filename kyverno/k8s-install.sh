@@ -6,8 +6,6 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
 
-cd $SCRIPT_DIR
-
 #-------------------------------------------------------------------------
 # kyverno and kyverno-policies
 #-------------------------------------------------------------------------
@@ -23,12 +21,11 @@ kubectl create namespace kyverno --dry-run=client -o yaml | kubectl apply -f -
 
 # Install kyverno
 helm -n kyverno upgrade --install kyverno kyverno/kyverno \
-    -f ${SCRIPT_DIR}/helm/kyverno/values.yaml
+    -f "${SCRIPT_DIR}/helm/kyverno/values.yaml"
 
 # Install kyverno-policies (after due to CRDs)
 helm -n kyverno upgrade --install kyverno-policies kyverno/kyverno-policies \
-    -f ${SCRIPT_DIR}/helm/kyverno-policies/values.yaml
-
+    -f "${SCRIPT_DIR}/helm/kyverno-policies/values.yaml"
 
 #-------------------------------------------------------------------------
 # policy-reporter for kyverno
@@ -42,7 +39,7 @@ helm repo update
 
 # deploy in namespace kyverno-ui
 helm -n kyverno upgrade --install policy-reporter policy-reporter/policy-reporter \
-    -f ${SCRIPT_DIR}/helm/policy-reporter/values.yaml
+    -f "${SCRIPT_DIR}/helm/policy-reporter/values.yaml"
 
 # Create Ingress with dynamic hostname for policy-reporter-ui
 cat <<EOF | kubectl -n kyverno apply -f -

@@ -1,2 +1,13 @@
-validationFailureAction: Audit
 podSecurityStandard: restricted
+validationFailureAction: Audit
+
+# TODO split with values-audit.yaml and values-enforce.yaml as follow :
+#validationFailureAction: Enforce
+#validationFailureActionOverrides:
+#  all:
+#    - action: audit
+#      namespaces:
+#        - loki
+#        - fluent
+#        - traefik
+#        - nginx-system
