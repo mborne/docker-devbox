@@ -1,16 +1,15 @@
 services:
-  # https://docs.openwebui.com/getting-started/#installing-open-webui-with-bundled-ollama-support
+  # https://docs.openwebui.com/getting-started/
   open-webui:
-    #image: ghcr.io/open-webui/open-webui:cuda
-    image: ghcr.io/open-webui/open-webui:ollama
+    #image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:cuda
     container_name: open-webui
     ports:
     - 3000:8080
-    - 11434:11434
     environment:
     - WEBUI_AUTH=False
+    - OLLAMA_BASE_URL=http://ollama:11434
     volumes:
-    - ollama:/root/.ollama
     - open-webui:/app/backend/data
     deploy:
       resources:
@@ -25,6 +24,25 @@ services:
       - "traefik.http.routers.open-webui.rule=Host(`open-webui.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.routers.open-webui.service=open-webui-service@docker"
       - "traefik.http.services.open-webui-service.loadbalancer.server.port=8080"
+    restart: unless-stopped
+
+  # https://hub.docker.com/r/ollama/ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+    - 11434:11434
+    volumes:
+    - ollama:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    labels:
+      - "traefik.enable=true"
       # https://ollama.dev.localhost
       - "traefik.http.routers.ollama.rule=Host(`ollama.${DEVBOX_HOSTNAME}`)"
       - "traefik.http.routers.ollama.service=ollama-service@docker"

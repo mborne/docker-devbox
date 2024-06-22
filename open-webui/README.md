@@ -1,6 +1,6 @@
 # Open WebUI
 
-Containers running [Open WebUI](https://github.com/open-webui/open-webui?tab=readme-ov-file#open-webui-formerly-ollama-webui-) to get started with LLM locally.
+Containers running [Open WebUI](https://github.com/open-webui/open-webui?tab=readme-ov-file#open-webui-formerly-ollama-webui-) and [ollama](https://hub.docker.com/r/ollama/ollama) to get started with LLM locally.
 
 ## Usage with docker
 
@@ -13,6 +13,15 @@ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 * Start : `docker compose up -d`
 * Open https://open-webui.dev.localhost
 
+To use ollama API :
+
+```bash
+curl http://localhost:11434/api/generate -d '{
+  "model": "llama3",
+  "prompt": "Why is the sky blue?"
+}'
+```
+
 ## Resources
 
 * [Open WebUI - Getting Started](https://docs.openwebui.com/getting-started/)
@@ -22,11 +31,5 @@ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 * [hub.docker.com - ollama/ollama](https://hub.docker.com/r/ollama/ollama)
 * [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
 
-```bash
-curl http://localhost:11434/api/generate -d '{
-  "model": "llama3",
-  "prompt": "Why is the sky blue?"
-}'
-```
 
 
