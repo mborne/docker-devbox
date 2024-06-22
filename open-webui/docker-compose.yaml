@@ -1,0 +1,57 @@
+services:
+  # https://docs.openwebui.com/getting-started/#installing-open-webui-with-bundled-ollama-support
+  open-webui:
+    #image: ghcr.io/open-webui/open-webui:cuda
+    image: ghcr.io/open-webui/open-webui:ollama
+    container_name: open-webui
+    ports:
+    - 3000:8080
+    - 11434:11434
+    environment:
+    - WEBUI_AUTH=False
+    volumes:
+    - ollama:/root/.ollama
+    - open-webui:/app/backend/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    labels:
+      - "traefik.enable=true"
+      # https://open-webui.dev.localhost
+      - "traefik.http.routers.open-webui.rule=Host(`open-webui.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.open-webui.service=open-webui-service@docker"
+      - "traefik.http.services.open-webui-service.loadbalancer.server.port=8080"
+      # https://ollama.dev.localhost
+      - "traefik.http.routers.ollama.rule=Host(`ollama.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.ollama.service=ollama-service@docker"
+      - "traefik.http.services.ollama-service.loadbalancer.server.port=11434"
+    restart: unless-stopped
+
+  # https://docs.openwebui.com/pipelines/#-quick-start-with-docker
+  # https://ikasten.io/2024/06/03/getting-started-with-openwebui-pipelines/
+  # https://raw.githubusercontent.com/open-webui/pipelines/main/examples/filters/function_calling_filter_pipeline.py
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    container_name: pipelines
+    ports:
+    - 9099:9099
+    volumes:
+    - pipelines:/app/pipelines
+    restart: unless-stopped
+
+volumes:
+  ollama:
+    name: ollama
+  open-webui:
+    name: open-webui
+  pipelines:
+    name: pipelines
+
+networks:
+  default:
+    name: devbox
+    external: true
