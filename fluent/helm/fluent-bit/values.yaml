@@ -1,5 +1,20 @@
+# https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml
+
 daemonset:
   enabled: true
+
+#-------------------------------------
+# journald logs
+#-------------------------------------
+extraVolumes:
+  - name: runlog
+    hostPath:
+      path: /run/log
+
+extraVolumeMounts:
+  - name: runlog
+    mountPath: /run/log
+    readOnly: true
 
 config:
   ## https://docs.fluentbit.io/manual/pipeline/inputs
@@ -11,6 +26,12 @@ config:
         Tag kube.*
         Mem_Buf_Limit 5MB
         Skip_Long_Lines On
+    [INPUT]
+        Name            systemd
+        Tag             systemd.*
+        Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
+        Systemd_Filter  _SYSTEMD_UNIT=containerd.service
+
 
   ## https://docs.fluentbit.io/manual/pipeline/filters
   filters: |
@@ -50,7 +71,19 @@ config:
         Port               9200
         Suppress_Type_Name On
         Logstash_Format    On
-        Logstash_Prefix    logstash
+        Logstash_Prefix    containers
+        # HTTP_User          admin
+        # HTTP_Passwd        admin
+        # tls                On
+        # tls.verify         Off
+    [OUTPUT]
+        Name               opensearch
+        Match              systemd.*
+        Host               opensearch-cluster.opensearch
+        Port               9200
+        Suppress_Type_Name On
+        Logstash_Format    On
+        Logstash_Prefix    systemd
         # HTTP_User          admin
         # HTTP_Passwd        admin
         # tls                On
