@@ -9,6 +9,10 @@ services:
     environment:
     - WEBUI_AUTH=False
     - OLLAMA_BASE_URL=http://ollama:11434
+    - GLOBAL_LOG_LEVEL="DEBUG"
+    # add pipelines
+    - OPENAI_API_BASE_URL=https://api.openai.com/v1;http://pipelines:9099
+    - OPENAI_API_KEYS=${OPENAI_API_KEY};${PIPELINES_API_KEY}
     volumes:
     - open-webui:/app/backend/data
     deploy:
@@ -34,6 +38,7 @@ services:
     - 11434:11434
     volumes:
     - ollama:/root/.ollama
+    - ./models:/models:ro
     deploy:
       resources:
         reservations:
@@ -57,6 +62,8 @@ services:
     container_name: pipelines
     ports:
     - 9099:9099
+    environment:
+    - PIPELINES_API_KEY=${PIPELINES_API_KEY}
     volumes:
     - pipelines:/app/pipelines
     restart: unless-stopped
