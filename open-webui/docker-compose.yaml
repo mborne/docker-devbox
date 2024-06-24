@@ -1,0 +1,82 @@
+services:
+  # https://docs.openwebui.com/getting-started/
+  open-webui:
+    #image: ghcr.io/open-webui/open-webui:main
+    image: ghcr.io/open-webui/open-webui:cuda
+    container_name: open-webui
+    ports:
+    - 3000:8080
+    environment:
+    - WEBUI_AUTH=False
+    - OLLAMA_BASE_URL=http://ollama:11434
+    - GLOBAL_LOG_LEVEL="DEBUG"
+    # add pipelines
+    - OPENAI_API_BASE_URL=https://api.openai.com/v1;http://pipelines:9099
+    - OPENAI_API_KEYS=${OPENAI_API_KEY};${PIPELINES_API_KEY}
+    volumes:
+    - open-webui:/app/backend/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    labels:
+      - "traefik.enable=true"
+      # https://open-webui.dev.localhost
+      - "traefik.http.routers.open-webui.rule=Host(`open-webui.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.open-webui.service=open-webui-service@docker"
+      - "traefik.http.services.open-webui-service.loadbalancer.server.port=8080"
+    restart: unless-stopped
+
+  # https://hub.docker.com/r/ollama/ollama
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+    - 11434:11434
+    volumes:
+    - ollama:/root/.ollama
+    - ./models:/models:ro
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    labels:
+      - "traefik.enable=true"
+      # https://ollama.dev.localhost
+      - "traefik.http.routers.ollama.rule=Host(`ollama.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.ollama.service=ollama-service@docker"
+      - "traefik.http.services.ollama-service.loadbalancer.server.port=11434"
+    restart: unless-stopped
+
+  # https://docs.openwebui.com/pipelines/#-quick-start-with-docker
+  # https://ikasten.io/2024/06/03/getting-started-with-openwebui-pipelines/
+  # https://raw.githubusercontent.com/open-webui/pipelines/main/examples/filters/function_calling_filter_pipeline.py
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:main
+    container_name: pipelines
+    ports:
+    - 9099:9099
+    environment:
+    - PIPELINES_API_KEY=${PIPELINES_API_KEY}
+    volumes:
+    - pipelines:/app/pipelines
+    restart: unless-stopped
+
+volumes:
+  ollama:
+    name: ollama
+  open-webui:
+    name: open-webui
+  pipelines:
+    name: pipelines
+
+networks:
+  default:
+    name: devbox
+    external: true
