@@ -54,6 +54,12 @@ dashboards:
       revision: 1
       datasource: Loki
       editable: true
+    # https://grafana.com/grafana/dashboards/15758-kubernetes-views-namespaces/
+    kubernetes-views-namespaces:
+      gnetId: 15758
+      revision: 34
+      datasource: Prometheus
+      editable: true
     # https://grafana.com/grafana/dashboards/7587-prometheus-blackbox-exporter/
     blackbox-exporter:
       gnetId: 7587
