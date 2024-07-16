@@ -13,15 +13,18 @@ services:
     # add pipelines
     - OPENAI_API_BASE_URL=https://api.openai.com/v1;http://pipelines:9099
     - OPENAI_API_KEYS=${OPENAI_API_KEY};${PIPELINES_API_KEY}
+    - HTTP_PROXY
+    - HTTPS_PROXY
+    - NO_PROXY=ollama,pipelines,$NO_PROXY
     volumes:
     - open-webui:/app/backend/data
     deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            capabilities: ["gpu"]
-            count: all
+     resources:
+       reservations:
+         devices:
+         - driver: nvidia
+           capabilities: ["gpu"]
+           count: all
     labels:
       - "traefik.enable=true"
       # https://open-webui.dev.localhost
@@ -32,20 +35,27 @@ services:
 
   # https://hub.docker.com/r/ollama/ollama
   ollama:
-    image: ollama/ollama:latest
+    image: ollama/ollama:0.2.5
     container_name: ollama
     ports:
     - 11434:11434
     volumes:
     - ollama:/root/.ollama
     - ./models:/models:ro
+    # bypass userns-remap
+    userns_mode: 'host'
+    environment:
+    #- OLLAMA_DEBUG=1
+    - HTTP_PROXY
+    - HTTPS_PROXY
+    - NO_PROXY=127.0.0.1,localhost,0.0.0.0,ollama,$NO_PROXY
     deploy:
-      resources:
-        reservations:
-          devices:
-          - driver: nvidia
-            capabilities: ["gpu"]
-            count: all
+     resources:
+       reservations:
+         devices:
+         - driver: nvidia
+           capabilities: ["gpu"]
+           count: all
     labels:
       - "traefik.enable=true"
       # https://ollama.dev.localhost
