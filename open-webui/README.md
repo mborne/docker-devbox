@@ -35,7 +35,7 @@ curl http://localhost:11434/api/generate -d '{
 To create custom model from [OLLAMA Modelfile](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#customize-a-prompt), a sample [models/geoassistant](models/geoassistant/README.md) is available :
 
 ```bash
-docker compose exec ollama
+docker compose exec ollama /bin/bash
 ollama create geoassistant -f /models/geoassistant/Modelfile
 ollama run geoassistant
 # Do you know the most visited museums in Paris?
