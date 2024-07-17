@@ -8,7 +8,7 @@ services:
     - 3000:8080
     environment:
     - WEBUI_AUTH=False
-    - OLLAMA_BASE_URL=http://ollama:11434
+    - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
     - GLOBAL_LOG_LEVEL="DEBUG"
     # add pipelines
     - OPENAI_API_BASE_URL=https://api.openai.com/v1;http://pipelines:9099
@@ -33,37 +33,6 @@ services:
       - "traefik.http.services.open-webui-service.loadbalancer.server.port=8080"
     restart: unless-stopped
 
-  # https://hub.docker.com/r/ollama/ollama
-  ollama:
-    image: ollama/ollama:0.2.5
-    container_name: ollama
-    ports:
-    - 11434:11434
-    volumes:
-    - ollama:/root/.ollama
-    - ./models:/models:ro
-    # bypass userns-remap
-    userns_mode: 'host'
-    environment:
-    #- OLLAMA_DEBUG=1
-    - HTTP_PROXY
-    - HTTPS_PROXY
-    - NO_PROXY=127.0.0.1,localhost,0.0.0.0,ollama,$NO_PROXY
-    deploy:
-     resources:
-       reservations:
-         devices:
-         - driver: nvidia
-           capabilities: ["gpu"]
-           count: all
-    labels:
-      - "traefik.enable=true"
-      # https://ollama.dev.localhost
-      - "traefik.http.routers.ollama.rule=Host(`ollama.${DEVBOX_HOSTNAME}`)"
-      - "traefik.http.routers.ollama.service=ollama-service@docker"
-      - "traefik.http.services.ollama-service.loadbalancer.server.port=11434"
-    restart: unless-stopped
-
   # https://docs.openwebui.com/pipelines/#-quick-start-with-docker
   # https://ikasten.io/2024/06/03/getting-started-with-openwebui-pipelines/
   # https://raw.githubusercontent.com/open-webui/pipelines/main/examples/filters/function_calling_filter_pipeline.py
@@ -79,8 +48,6 @@ services:
     restart: unless-stopped
 
 volumes:
-  ollama:
-    name: ollama
   open-webui:
     name: open-webui
   pipelines:
