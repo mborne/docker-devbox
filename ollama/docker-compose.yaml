@@ -1,0 +1,38 @@
+services:
+  # https://hub.docker.com/r/ollama/ollama
+  ollama:
+    image: ollama/ollama:0.2.6
+    container_name: ollama
+    ports:
+    - 11434:11434
+    volumes:
+    - ollama:/root/.ollama
+    - ./models:/models:ro
+    environment:
+    #- OLLAMA_DEBUG=1
+    - HTTP_PROXY
+    - HTTPS_PROXY
+    - NO_PROXY=0.0.0.0,ollama,${NO_PROXY:-127.0.0.1,localhost}
+    deploy:
+     resources:
+       reservations:
+         devices:
+         - driver: nvidia
+           capabilities: ["gpu"]
+           count: all
+    labels:
+      - "traefik.enable=true"
+      # https://ollama.dev.localhost
+      - "traefik.http.routers.ollama.rule=Host(`ollama.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.ollama.service=ollama-service@docker"
+      - "traefik.http.services.ollama-service.loadbalancer.server.port=11434"
+    restart: unless-stopped
+
+volumes:
+  ollama:
+    name: ollama
+
+networks:
+  default:
+    name: devbox
+    external: true
