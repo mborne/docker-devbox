@@ -1,15 +1,13 @@
 services:
   # https://hub.docker.com/r/ollama/ollama
   ollama:
-    image: ollama/ollama:0.2.5
+    image: ollama/ollama:0.2.6
     container_name: ollama
     ports:
     - 11434:11434
     volumes:
     - ollama:/root/.ollama
     - ./models:/models:ro
-    # bypass userns-remap
-    userns_mode: 'host'
     environment:
     #- OLLAMA_DEBUG=1
     - HTTP_PROXY

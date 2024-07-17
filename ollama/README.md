@@ -52,3 +52,4 @@ ollama run geoassistant
 * [ollama](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#ollama)
 * [hub.docker.com - ollama/ollama](https://hub.docker.com/r/ollama/ollama)
 * [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
+* [mborne/toolbox - cuda-toolkit](https://github.com/mborne/toolbox/tree/master/cuda-toolkit#ressources)
