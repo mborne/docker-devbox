@@ -1,0 +1,20 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    ports:
+      - '${DEVBOX_PORT_PREFIX}5672:5672'
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    restart: unless-stopped
+
+volumes:
+  rabbitmq-data:
+    name: rabbitmq-data
+
+networks:
+  default:
+    name: devbox
+    external: true
+
+

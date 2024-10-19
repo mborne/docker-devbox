@@ -1,4 +1,4 @@
-FROM llama3:latest
+FROM llama3.1:latest
 PARAMETER temperature 0.8
 SYSTEM """
 You are a model trained to provide information about locations.

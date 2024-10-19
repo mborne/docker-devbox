@@ -17,7 +17,7 @@ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 docker compose exec ollama ollama pull llama3
 docker compose exec ollama ollama pull gemma2
 # interactive model
-docker compose exec ollama ollama run llama3
+docker compose exec ollama ollama run llama3.1
 ```
 
 * To use [Ollama API](https://github.com/ollama/ollama/blob/main/docs/api.md#api) :
@@ -33,7 +33,7 @@ curl http://localhost:11434/api/pull -d '{
 
 # use model
 curl http://localhost:11434/api/generate -d '{
-  "model": "llama3",
+  "model": "llama3.2",
   "prompt": "Why is the sky blue?"
 }'
 ```
