@@ -1,0 +1,28 @@
+service:
+  # -- if true, the Service doesn't allocate any IP
+  headless: false
+  # -- port exposed by the Service
+  #metricsPort: 80
+  # -- annotations added to the operator's service
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "80"
+    prometheus.io/path: "/metrics"
+
+
+nodeCollector:
+  # -- useNodeSelector determine if to use nodeSelector (by auto detecting node name) with node-collector scan job
+  useNodeSelector: false
+  # -- excludeNodes comma-separated node labels that the node-collector job should exclude from scanning (example kubernetes.io/arch=arm64,team=dev)
+  #excludeNodes: "agentpool=connect"
+
+# operator:
+#   httpProxy: "http://proxy:3128"
+#   httpsProxy: "http://proxy:3128"
+
+# trivy:
+#   dbRegistry: "public.ecr.aws"
+#   dbRepository: "aquasec/trivy-db"
+
+# policiesBundle:
+#   registry: public.ecr.aws
