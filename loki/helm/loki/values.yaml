@@ -4,3 +4,6 @@ minio:
 loki:
   auth_enabled: false
   useTestSchema: true
+
+chunksCache:
+  enabled: false

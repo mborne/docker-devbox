@@ -8,7 +8,7 @@ echo "---------------------------------------------"
 # Install canal
 # see https://docs.tigera.io/calico/latest/getting-started/kubernetes/flannel/install-for-flannel#installing-with-the-kubernetes-api-datastore-recommended
 #---------------------------------------------------------------------------
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/canal.yaml
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/canal.yaml
 
 # wait for canal pods
 kubectl wait --namespace kube-system \

@@ -24,6 +24,13 @@ kubectl logs -n trivy-system deployment/trivy-operator
 kubectl -n trivy-system port-forward svc/trivy-operator 5000:80
 ```
 
+### Chart versions
+
+```bash
+helm repo add aqua https://aquasecurity.github.io/helm-charts/
+helm repo update
+helm search repo aqua/trivy-operator -l | more
+```
 
 ## Resources
 

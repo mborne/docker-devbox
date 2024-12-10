@@ -78,9 +78,21 @@ dashboards:
       revision: 5
       datasource: Prometheus
       editable: true
+    # https://grafana.com/grafana/dashboards/17346-traefik-official-standalone-dashboard/
+    traefik-official:
+      gnetId: 17346
+      revision: 9
+      datasource: Prometheus
+      editable: true
     # https://github.com/cloudnative-pg/grafana-dashboards/tree/main/charts/cluster
     cloudnativepg:
       url: https://raw.githubusercontent.com/cloudnative-pg/grafana-dashboards/main/charts/cluster/grafana-dashboard.json
+      datasource: Prometheus
+      editable: true
+    # https://grafana.com/grafana/dashboards/16337-trivy-operator-vulnerabilities/
+    trivy-operator-vulnerabilities:
+      gnetId: 16337
+      revision: 13
       datasource: Prometheus
       editable: true
 

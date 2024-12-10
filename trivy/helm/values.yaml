@@ -1,14 +1,17 @@
 service:
-  # -- if true, the Service doesn't allocate any IP
   headless: false
-  # -- port exposed by the Service
-  #metricsPort: 80
-  # -- annotations added to the operator's service
-  annotations:
-    prometheus.io/scrape: "true"
-    prometheus.io/port: "80"
-    prometheus.io/path: "/metrics"
 
+excludeNamespaces: kube-system,kube-public
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8080"
+  prometheus.io/scheme: "http"
+  prometheus.io/path: "/metrics"
+
+# prometheus stack
+#serviceMonitor:
+#  enabled: true
 
 nodeCollector:
   # -- useNodeSelector determine if to use nodeSelector (by auto detecting node name) with node-collector scan job
@@ -20,9 +23,23 @@ nodeCollector:
 #   httpProxy: "http://proxy:3128"
 #   httpsProxy: "http://proxy:3128"
 
-# trivy:
-#   dbRegistry: "public.ecr.aws"
-#   dbRepository: "aquasec/trivy-db"
-
+trivy:
+  ignoreFile:
+    # zlib1g - will_no_fix
+    - CVE-2023-45853
+  ignoreUnfixed: true
+  # can be added to the VulnerabilityReport. Supported parameters: Description, Links, CVSS, Target, Class, PackagePath and PackageType
+  additionalVulnerabilityReportFields: "Target,PackagePath"
+# dbRegistry: "public.ecr.aws"
+# dbRepository: "aquasec/trivy-db"
 # policiesBundle:
 #   registry: public.ecr.aws
+  # -- Mirrored registries. There can be multiple registries with different keys.
+  # Make sure to quote registries containing dots
+  registry:
+    mirror: {}
+    # "docker.io": docker-mirror.example.com
+
+operator:
+  metricsVulnIdEnabled: true
+
