@@ -10,7 +10,7 @@ echo "---------------------------------------------"
 # Install calico
 # see https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#install-calico
 #---------------------------------------------------------------------------
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.1/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.29.1/manifests/tigera-operator.yaml
 # wait for tigera-operator
 kubectl wait --namespace tigera-operator \
     --for=condition=ready pod \

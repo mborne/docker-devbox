@@ -1,7 +1,8 @@
 # from https://gist.github.com/sanketsudake/a089e691286bf2189bfedf295222bd43
 
 resources:
-  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.6.3/components.yaml
+  # https://github.com/kubernetes-sigs/metrics-server/tags
+  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.2/components.yaml
 
 patches:
   - patch: |-
