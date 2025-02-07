@@ -10,11 +10,17 @@ echo "---------------------------------------------"
 echo "-- kubernetes-dashboard"
 echo "---------------------------------------------"
 
+helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+helm repo update
+
 # Create namespace kubernetes-dashboard if not exists
 kubectl create namespace kubernetes-dashboard --dry-run=client -o yaml | kubectl apply -f -
 
-# Deploy traefik with helm
-kubectl -n kubernetes-dashboard apply -k ${SCRIPT_DIR}/manifest/base
+# Install kubernetes-dashboard
+helm -n kubernetes-dashboard upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
+
+# Create admin-user ServiceAccount
+kubectl -n kubernetes-dashboard apply -k ${SCRIPT_DIR}/manifest/sa-admin-user.yaml
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n kubernetes-dashboard apply -f -
@@ -30,24 +36,24 @@ metadata:
 spec:
   ingressClassName: ${DEVBOX_INGRESS}
   rules:
-  - host: kube-dashboard.$DEVBOX_HOSTNAME
+  - host: dashboard.$DEVBOX_HOSTNAME
     http:
       paths:
       - pathType: ImplementationSpecific
         path: "/"
         backend:
           service:
-            name: kubernetes-dashboard
+            name: kubernetes-dashboard-kong-proxy
             port:
               number: 443
   tls:
   - hosts:
-    - kube-dashboard.$DEVBOX_HOSTNAME
+    - dashboard.$DEVBOX_HOSTNAME
     secretName: kube-dashboard-cert
 EOF
 
 
-# Display resources
-kubectl -n kubernetes-dashboard get pods,svc,ingress
+# # Display resources
+# kubectl -n kubernetes-dashboard get pods,svc,ingress
 
 
