@@ -49,7 +49,14 @@ ollama run geoassistant
 
 ## Ressources
 
-* [ollama](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#ollama)
+* [github.com - ollama/ollama](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#ollama)
 * [hub.docker.com - ollama/ollama](https://hub.docker.com/r/ollama/ollama)
 * [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
 * [mborne/toolbox - cuda-toolkit](https://github.com/mborne/toolbox/tree/master/cuda-toolkit#ressources)
+
+Clients :
+
+* [Open WebUI - Starting With Ollama](https://docs.openwebui.com/getting-started/quick-start/starting-with-ollama/) / [mborne/docker-devbox - open-webui](../open-webui/README.md)
+* [langchain - OllamaChat (Python)](https://python.langchain.com/docs/integrations/chat/ollama/) / [langchain - OllamaChat (JS)](https://js.langchain.com/docs/integrations/chat/ollama/)
+
+
