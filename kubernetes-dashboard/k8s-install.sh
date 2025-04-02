@@ -20,7 +20,7 @@ kubectl create namespace kubernetes-dashboard --dry-run=client -o yaml | kubectl
 helm -n kubernetes-dashboard upgrade --install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
 
 # Create admin-user ServiceAccount
-kubectl -n kubernetes-dashboard apply -k ${SCRIPT_DIR}/manifest/sa-admin-user.yaml
+kubectl -n kubernetes-dashboard apply -f "${SCRIPT_DIR}/manifest/sa-admin-user.yaml"
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n kubernetes-dashboard apply -f -
