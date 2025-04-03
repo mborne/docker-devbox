@@ -18,9 +18,9 @@ Containers running [OpenSearch](https://opensearch.org/) and [OpenSearch Dashboa
 Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# To get opensearch-dashboards on http://opensearch-dashboards.dev.localhost
+# To get opensearch-dashboards on http://os-dashboard.dev.localhost
 bash k8s-install.sh
-# To get opensearch-dashboards on http://opensearch-dashboards.example.net
+# To get opensearch-dashboards on http://os-dashboard.example.net
 DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 

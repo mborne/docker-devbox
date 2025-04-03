@@ -29,6 +29,13 @@ docker run --log-driver=fluentd --rm --name test_fluent -t ubuntu echo '{"conten
 
 (`systemctl daemon-reload && systemctl restart docker`)
 
+## Usage with Kubernetes
+
+* Read [k8s-install.sh](k8s-install.sh) and run :
+
+```bash
+bash k8s-install.sh
+```
 
 ## Ressources
 

@@ -54,14 +54,6 @@ config:
         Name                modify
         Match               kube.*
         Copy                kubernetes_pod_name host
-    [FILTER]
-        Name                modify
-        Match               kube.*
-        Rename              message short_message
-    [FILTER]
-        Name                modify
-        Match               kube.*
-        Add     log         "none"
 
   outputs: |
     [OUTPUT]
@@ -71,11 +63,13 @@ config:
         Port               9200
         Suppress_Type_Name On
         Logstash_Format    On
-        Logstash_Prefix    containers
-        # HTTP_User          admin
-        # HTTP_Passwd        admin
-        # tls                On
-        # tls.verify         Off
+        Logstash_Prefix    devbox-containers
+        Trace_Error        On
+        Replace_Dots       On
+        # HTTP_User        admin
+        # HTTP_Passwd      admin
+        # tls              On
+        # tls.verify       Off
     [OUTPUT]
         Name               opensearch
         Match              systemd.*
@@ -83,11 +77,13 @@ config:
         Port               9200
         Suppress_Type_Name On
         Logstash_Format    On
-        Logstash_Prefix    systemd
-        # HTTP_User          admin
-        # HTTP_Passwd        admin
-        # tls                On
-        # tls.verify         Off
+        Logstash_Prefix    devbox-systemd
+        Trace_Error        On
+        Replace_Dots       On
+        # HTTP_User        admin
+        # HTTP_Passwd      admin
+        # tls              On
+        # tls.verify       Off
 
 
 tolerations:

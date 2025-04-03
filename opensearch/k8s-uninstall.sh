@@ -7,5 +7,6 @@ helm -n opensearch uninstall opensearch-cluster
 kubectl -n opensearch delete ingress opensearch
 kubectl -n opensearch delete ingress opensearch-dashboard
 
-kubectl -n opensearch delete $(kubectl -n opensearch get pvc -o name)
+# Remove PVC
+kubectl  -n opensearch get pvc -o name | xargs kubectl -n opensearch delete
 
