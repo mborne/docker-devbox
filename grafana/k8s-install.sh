@@ -17,10 +17,23 @@ helm repo update
 # Create namespace grafana if not exists
 kubectl create namespace grafana --dry-run=client -o yaml | kubectl apply -f -
 
+
+HELM_OPTS=""
+if [ ! -z "$HTTP_PROXY" ];
+then
+  HELM_OPTS="${HELM_OPTS} --set downloadDashboards.env.HTTP_PROXY=$HTTP_PROXY"
+fi
+if [ ! -z "$HTTPS_PROXY" ];
+then
+  HELM_OPTS="${HELM_OPTS} --set downloadDashboards.env.HTTPS_PROXY=$HTTPS_PROXY"
+fi
+
 # Install grafana
 helm -n grafana upgrade --install grafana grafana/grafana \
-    -f ${SCRIPT_DIR}/helm/values.yaml \
+    -f ${SCRIPT_DIR}/helm/values.yaml $HELM_OPTS \
     --set adminPassword=$GRAFANA_ADMIN_PASSWORD
+
+
 
 
 # Create Ingress with dynamic hostname
