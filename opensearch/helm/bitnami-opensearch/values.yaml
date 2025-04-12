@@ -1,7 +1,7 @@
 # https://github.com/bitnami/charts/tree/main/bitnami/opensearch/#parameters
 
 master:
-  resourcesPreset: medium
+  resourcesPreset: small
 
 dashboards:
   enabled: true

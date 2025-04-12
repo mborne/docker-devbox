@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-fluent-nginx
+  name: demo-fluent-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-fluent-nginx
+  template:
+    metadata:
+      labels:
+        app: demo-fluent-nginx
+      annotations:
+        fluentbit.io/parser: nginx
+    spec:
+      containers:
+      - image: nginx:latest
+        name: nginx
+        ports:
+        - name: http
+          containerPort: 80
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: demo-fluent-nginx
+  name: demo-fluent-nginx
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: http
+  selector:
+    app: demo-fluent-nginx
