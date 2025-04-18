@@ -25,9 +25,12 @@ kubectl wait --for condition=established --timeout=60s crd/clusterissuers.cert-m
 kubectl wait --for condition=established --timeout=60s crd/issuers.cert-manager.io
 kubectl wait --for condition=established --timeout=60s crd/certificates.cert-manager.io
 
+# Create self-signed cluster issuer
+bash "$SCRIPT_DIR/cluster-issuer/selfsigned.sh"
+
 # Create mkcert issuer if available
 if which mkcert >/dev/null; then
-  bash $SCRIPT_DIR/cluster-issuer/mkcert.sh
+  bash "$SCRIPT_DIR/cluster-issuer/mkcert.sh"
 else
   echo "mkcert not found, skip ClusterIssuer creation"
 fi

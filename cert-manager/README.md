@@ -14,11 +14,32 @@ Follow instructions providing links to the documentation to configure [Issuers a
 
 ## ClusterIssuer examples
 
+
+
+### mkcert
+
+See [cluster-issuer/selfsigned.sh](cluster-issuer/selfsigned.sh) which create a "selfsigned" ClusterIssuer :
+
+```bash
+# invoked by k8s-install.sh
+bash cluster-issuer/selfsigned.sh
+```
+
+```bash
+#  Get CA cert as ~devbox-selfsigned-ca.pem :
+kubectl -n cert-manager get secret devbox-selfsigned-ca \
+  -o jsonpath='{.data.ca\.crt}' | base64 -d  > ~/devbox-selfsigned-ca.pem
+
+# Display infos :
+cat ~/devbox-selfsigned-ca.pem | openssl x509 -text -noout
+```
+
 ### mkcert
 
 See [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) to create a ["mkcert"](https://github.com/FiloSottile/mkcert) ClusterIssuer :
 
 ```bash
+# invoked by k8s-install.sh if mkcert is available
 bash cluster-issuer/mkcert.sh
 ```
 
@@ -82,3 +103,4 @@ kubectl -n cert-manager logs $(kubectl -n cert-manager get pods -l app.kubernete
 
 * [cert-manager - Documentation](https://cert-manager.io/docs/)
 * [bitnami.com - cert-manager packaged by Bitnami helm charts](https://bitnami.com/stack/cert-manager/helm)
+* [cert-manager.io - Bootstrapping CA Issuers](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers)
