@@ -4,19 +4,22 @@ echo "---------------------------------------------"
 echo "-- cert-manager/cluster-issuer/mkcert.sh"
 echo "---------------------------------------------"
 
-if which mkcert >/dev/null; then
-    echo "Found mkcert ..."
-else
-    echo "mkcert not found, see :"
-    echo "- https://github.com/FiloSottile/mkcert#mkcert and follow instruction"
-    echo "- or https://github.com/FiloSottile/mkcert/releases/latest to get binary file"
-    exit 1
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v mkcert &> /dev/null; then
+  echo "mkcert not found, see :"
+  echo "- https://github.com/FiloSottile/mkcert#mkcert and follow instruction"
+  echo "- or https://github.com/FiloSottile/mkcert/releases/latest to get binary file"
+  exit 1
 fi
 
 # see https://cert-manager.io/docs/configuration/ca/
 MKCERT_CAROOT=$(mkcert -CAROOT)
-MKCERT_CA_CRT=$(cat $MKCERT_CAROOT/rootCA.pem | base64 -w0)
-MKCERT_CA_KEY=$(cat $MKCERT_CAROOT/rootCA-key.pem | base64 -w0)
+MKCERT_CA_CRT=$(cat "$MKCERT_CAROOT/rootCA.pem" | base64 -w0)
+MKCERT_CA_KEY=$(cat "$MKCERT_CAROOT/rootCA-key.pem" | base64 -w0)
 
 echo "Create secret mkcert-ca from $MKCERT_CAROOT/rootCA.pem and $MKCERT_CAROOT/rootCA-key.pem..."
 cat <<EOF | kubectl -n cert-manager apply -f -

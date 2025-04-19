@@ -56,7 +56,7 @@ spec:
 The "selfsigned" ClusterIssuer is adapted from [cert-manager.io - Bootstrapping CA Issuers](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers).
 
 * See [cluster-issuer/selfsigned.yml](cluster-issuer/selfsigned.yml).
-* To retrieve the corresponding PEM certificate to import it in a dev browser :
+* Retrieve the corresponding PEM certificate :
 
 ```bash
 #  Get CA cert as ~/devbox-selfsigned-ca.pem :
@@ -66,6 +66,8 @@ kubectl -n cert-manager get secret devbox-selfsigned-ca \
 # Display infos :
 cat ~/devbox-selfsigned-ca.pem | openssl x509 -text -noout
 ```
+
+* Note that you may import the "devbox-selfsigned-ca.pem" file as a trusted CA in a DEV browser.
 
 ### mkcert
 

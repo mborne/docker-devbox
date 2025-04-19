@@ -4,6 +4,11 @@ echo "------------------------------------------------------------"
 echo "-- cert-manager/cluster-issuer/letsencrypt-cloudflare.sh"
 echo "------------------------------------------------------------"
 
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 
 if [ -z "$CLOUDFLARE_EMAIL" ];
