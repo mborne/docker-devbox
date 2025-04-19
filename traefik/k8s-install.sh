@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 # allows to switch to kind
 TRAEFIK_MODE=${TRAEFIK_MODE:-local}
 
