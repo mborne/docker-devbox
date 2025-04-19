@@ -6,6 +6,16 @@ echo "---------------------------------------------"
 echo "-- cert-manager/k8s-install.sh"
 echo "---------------------------------------------"
 
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 # Create namespace cert-manager if not exists
 kubectl create namespace cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
@@ -25,12 +35,5 @@ kubectl wait --for condition=established --timeout=60s crd/clusterissuers.cert-m
 kubectl wait --for condition=established --timeout=60s crd/issuers.cert-manager.io
 kubectl wait --for condition=established --timeout=60s crd/certificates.cert-manager.io
 
-# Create self-signed cluster issuer
-bash "$SCRIPT_DIR/cluster-issuer/selfsigned.sh"
-
-# Create mkcert issuer if available
-if which mkcert >/dev/null; then
-  bash "$SCRIPT_DIR/cluster-issuer/mkcert.sh"
-else
-  echo "mkcert not found, skip ClusterIssuer creation"
-fi
+# Create selfsigned ClusterIssuer
+kubectl -n cert-manager apply -f "$SCRIPT_DIR/cluster-issuer/selfsigned.yml"
