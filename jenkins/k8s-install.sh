@@ -2,7 +2,7 @@
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 # Add helm repo
 helm repo add jenkins https://charts.jenkins.io

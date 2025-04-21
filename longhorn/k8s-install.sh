@@ -2,7 +2,7 @@
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 # Create namespace traefik-system if not exists
 kubectl create namespace longhorn-system --dry-run=client -o yaml | kubectl apply -f -

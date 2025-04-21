@@ -95,6 +95,12 @@ dashboards:
       revision: 13
       datasource: Prometheus
       editable: true
+    # https://grafana.com/grafana/dashboards/13922-certificates-expiration-x509-certificate-exporter/
+    x509-certificate-exporter:
+      gnetId: 13922
+      revision: 4
+      datasource: Prometheus
+      editable: true
 
 # downloadDashboards:
 #   env:

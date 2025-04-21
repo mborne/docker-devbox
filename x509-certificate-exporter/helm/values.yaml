@@ -1,0 +1,10 @@
+secretsExporter:
+  podAnnotations:
+    prometheus.io/port: "9793"
+    prometheus.io/scrape: "true"
+service:
+  create: false
+prometheusServiceMonitor:
+  create: false
+prometheusRules:
+  create: false

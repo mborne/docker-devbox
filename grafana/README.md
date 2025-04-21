@@ -68,10 +68,13 @@ Loki :
 * [15141 - Loki Kubernetes Logs](https://grafana.com/grafana/dashboards/15141-kubernetes-service-logs/)
 * [All loki dashboards](https://grafana.com/grafana/dashboards/?search=loki)
 
-
 Kyverno :
 
 * [13995 - PolicyReport Details](https://grafana.com/grafana/dashboards/13995-policyreport-details/)
+
+[x509-certificate-exporter](../x509-certificate-exporter/README.md) :
+
+* [13922 - Certificates Expiration (X509 Certificate Exporter)](https://grafana.com/grafana/dashboards/13922-certificates-expiration-x509-certificate-exporter/)
 
 
 ## Ressources

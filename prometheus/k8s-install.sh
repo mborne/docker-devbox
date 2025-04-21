@@ -4,7 +4,7 @@ SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 # Add helm repository
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts

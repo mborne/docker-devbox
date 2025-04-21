@@ -87,11 +87,12 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 Option 1 :
 
-| Name                               | Description                                                               | Docker  |   K8S   |
-| ---------------------------------- | ------------------------------------------------------------------------- | :-----: | :-----: |
-| [Grafana](grafana/README.md)       | Grafana with Loki and Prometheus datasources and dashboards preconfigured | &#9745; | &#9745; |
-| [Prometheus](prometheus/README.md) | Grafana/**Prometheus** for system and monitoring                          | &#9745; | &#9745; |
-| [Loki](loki/README.md)             | Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs     | &#9745; | &#9745; |
+| Name                                                             | Description                                                               | Docker  |   K8S   |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | :-----: | :-----: |
+| [Grafana](grafana/README.md)                                     | Grafana with Loki and Prometheus datasources and dashboards preconfigured | &#9745; | &#9745; |
+| [Prometheus](prometheus/README.md)                               | Grafana/**Prometheus** for system and monitoring                          | &#9745; | &#9745; |
+| [Loki](loki/README.md)                                           | Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs     | &#9745; | &#9745; |
+| [x509-certificate-exporter](x509-certificate-exporter/README.md) | Prometheus exportor to monitor TLS certicates                             | &#9744; | &#9745; |
 
 Option 2 (variant of the famous ELK stack) :
 

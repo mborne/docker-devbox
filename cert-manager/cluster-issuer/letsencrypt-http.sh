@@ -1,8 +1,13 @@
 #!/bin/bash
 
-echo "---------------------------------------------"
+echo "------------------------------------------------------------"
 echo "-- cert-manager/cluster-issuer/letsencrypt-http.sh"
-echo "---------------------------------------------"
+echo "------------------------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
 
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 

@@ -2,7 +2,7 @@
 
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-mkcert}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 # Add helm repository
 helm repo add portainer https://portainer.github.io/k8s
