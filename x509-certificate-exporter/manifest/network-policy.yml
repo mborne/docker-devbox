@@ -40,6 +40,8 @@ spec:
     - port: 53
       protocol: TCP
 ---
+# WARNING : kind specific
+# kubectl get endpoints kubernetes
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -51,17 +53,7 @@ spec:
   egress:
   - to:
     - ipBlock:
-        cidr: 10.96.0.1/32
-    ports:
-    - protocol: TCP
-      port: 443
-  # kind dirty fix
-  # kubectl get endpoints kubernetes
-  # NAME         ENDPOINTS
-  # kubernetes   172.18.0.5:6443
-  - to:
-    - ipBlock:
-        cidr: 172.0.0.0/8
+        cidr: 172.16.0.0/12
     ports:
     - protocol: TCP
       port: 6443
