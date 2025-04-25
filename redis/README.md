@@ -9,6 +9,8 @@ Container running [redis](https://redis.io/).
 * Test with embedded redis-cli : `docker exec -ti redis redis-cli`
 
 ```
+127.0.0.1:6379> AUTH ChangeIt
+OK
 127.0.0.1:6379> ping
 PONG
 127.0.0.1:6379> set mykey somevalue
@@ -19,12 +21,24 @@ OK
 ```
 
 
+## Usage with Kubernetes
+
+* Read [k8s-install.sh](k8s-install.sh) and run :
+
+```bash
+REDIS_PASSWORD=ChangeIt bash k8s-install.sh
+```
+
+* Check pod status : `kubectl -n redis get pods`
+* Test with embedded client : `kubectl -n redis exec -ti redis-master-0 -- redis-cli`
+
+
 ## Resources
 
 * [redis.io - Documentation](https://redis.io/docs/) which includes [Getting started with Redis](https://redis.io/docs/getting-started/)
 * [redis.io - Commands](https://redis.io/commands/)
 * [geshan.com.np - Using Redis with docker and docker-compose for local development a step-by-step tutorial](https://geshan.com.np/blog/2022/01/redis-docker/)
-
+* [github.com - bitnami/redis](https://github.com/bitnami/charts/tree/main/bitnami/redis#bitnami-package-for-redisr)
 
 Client usage with PHP :
 

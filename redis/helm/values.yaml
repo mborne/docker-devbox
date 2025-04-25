@@ -1,0 +1,31 @@
+# https://github.com/bitnami/charts/tree/main/bitnami/redis
+auth:
+  enabled: true
+  password: ChangeIt
+architecture: standalone
+networkPolicy:
+  enabled: false
+persistence:
+  enabled: true
+  size: 1Gi
+master:
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  podSecurityContext:
+    enabled: true
+    fsGroup: 33
+  containerSecurityContext:
+    enabled: true
+    runAsNonRoot: true
+    runAsUser: 33
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+      - ALL
+
