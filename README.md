@@ -41,6 +41,13 @@ This is my playground to learn and illustrate how to deploy application with [do
 | [kubernetes-dashboard](kubernetes-dashboard/README.md) | Web-based UI for Kubernetes clusters                 | &#9745; | &#9745; |
 | [portainer](portainer/README.md)                       | Web-based UI for Kubernetes, Docker, Swarm and Nomad | &#9745; | &#9745; |
 
+### LLM
+
+| Name                               | Description                                                                                                                            | Docker  |   K8S   |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
+| [ollama](ollama/README.md)         | [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use [open LLM models](https://ollama.com/search) | &#9745; | &#9744; |
+| [open-webui](open-webui/README.md) | Web-based UI (ChatGPT-like) pre-configured to use [ollama/README.md](ollama/README.md)                                                 | &#9745; | &#9744; |
+
 ### CI/CD pipeline
 
 | Name                             | Description                                                                 | Docker  |   K8S   |
@@ -48,29 +55,29 @@ This is my playground to learn and illustrate how to deploy application with [do
 | [Jenkins](jenkins/README.md)     | Open source automation server with hundred of plugins (ansible, jmeter,...) | &#9745; | &#9745; |
 | [ArgoCD](argocd/README.md)       | GitOps **continuous delivery** tool for **Kubernetes**                      |   NA    | &#9745; |
 | [SonarQube](sonarqube/README.md) | Centralisation of Code Quality and Code Security metrics                    | &#9745; | &#9744; |
-| [Vault](vault/README.md)         | Secret storage and management server with an API                            | &#9745; | &#9744; |
 
 ### Authentication
+
+> See also [dex](https://github.com/dexidp/dex#readme) and [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
 
 | Name                           | Description                                                           | Docker  |   K8S   |
 | ------------------------------ | --------------------------------------------------------------------- | :-----: | :-----: |
 | [Keycloak](keycloak/README.md) | Open Source Identity and Access Management providing (**OIDC, SAML**) | &#9745; | &#9744; |
-| [OpenLDAP](openldap/README.md) | OpenLDAP and phpLDAPadmin (**LDAP**)                                  | &#9745; | &#9744; |
+
 
 ### Storage
 
-| Name                             | Description                                                                                             | Docker  |                             K8S                              |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
-| [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
-| [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
-| [Nexus](nexus/README.md)         | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
+| Name                             | Description                                                    | Docker  |   K8S   |
+| -------------------------------- | -------------------------------------------------------------- | :-----: | :-----: |
+| [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API               | &#9745; | &#9745; |
+| [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...) | &#9745; | &#9744; |
 
 ### ReadWriteMany
 
 | Name                                                                         | Description                                                                                         | Docker  |   K8S   |
 | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                          |   NA    | &#9745; |
-| [nfs-demo](nfs-demo/README.md)                                               | Illustrates the use of a "nfs" storage class providing ReadWriteMany support                        |
+| [nfs-demo](nfs-demo/README.md)                                               | Illustrates the use of a "nfs" storage class providing `ReadWriteMany` support                      |   NA    | &#9745; |
 | [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | &#9745; | &#9745; |
 | [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
 
@@ -110,10 +117,9 @@ Option 2 (variant of the famous ELK stack) :
 
 ### GeoSpatial services
 
-| Name                               | Description                                                                                                                        | Docker  |   K8S   |
-| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [GeoServer](geoserver/README.md)   | Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (**WMS, WMTS, WFS**)       | &#9745; | &#9745; |
-| [GeoNetwork](geonetwork/README.md) | Catalog application to manage spatially referenced resources with [OGC](https://www.ogc.org/) compliant protocols (**CSW, CSW-T**) | &#9745; | &#9745; |
+| Name                             | Description                                                                                                                  | Docker  |   K8S   |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
+| [GeoServer](geoserver/README.md) | Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (**WMS, WMTS, WFS**) | &#9745; | &#9745; |
 
 ### Mailing
 
