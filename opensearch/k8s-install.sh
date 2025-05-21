@@ -20,6 +20,11 @@ kubectl create namespace opensearch --dry-run=client -o yaml | kubectl apply -f 
 helm -n opensearch upgrade --install opensearch-cluster opensearch/opensearch --version=2.34.0 \
   -f "${SCRIPT_DIR}/helm/opensearch/values.yaml"
 
+# Deploy opensearch-dashboard
+# CHART_VERSION=2.30.0 -> APP_VERSION=2.19.2
+helm -n opensearch upgrade --install opensearch-dashboards opensearch/opensearch-dashboards --version=2.30.0 \
+  -f "${SCRIPT_DIR}/helm/opensearch-dashboards/values.yaml"
+
 # Create Ingress with dynamic hostname for opensearch
 cat <<EOF | kubectl -n opensearch apply -f -
 apiVersion: networking.k8s.io/v1
@@ -66,7 +71,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: opensearch-cluster-dashboards
+            name: opensearch-dashboards
             port:
               number: 5601
   tls:

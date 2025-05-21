@@ -1,5 +1,5 @@
 # see config discovery.type: single-node
-singleNode: false
+singleNode: true
 
 config:
   opensearch.yml: |
@@ -10,14 +10,25 @@ config:
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # Implicitly done if ".singleNode" is set to "true".
-    # discovery.type: single-node
+    discovery.type: single-node
+    # https://stackoverflow.com/a/72789668/28740388
     # bootstrap.memory_lock: true
+
+
+# note : default requests.memory < Xms512m is a bit strange...
+resources:
+  requests:
+    cpu: "1000m"
+    memory: "1024Mi"
+  limits:
+    #cpu: "8000m"
+    memory: "1024Mi"
+
+opensearchJavaOpts: "-Xmx512M -Xms512M"
 
 extraEnvs:
   # - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
   #   value: 'ItWouldB3CoolToGenerateThis!'
-  - name: OPENSEARCH_JAVA_OPTS
-    value: '-Xms512m -Xmx512m'
   - name: DISABLE_INSTALL_DEMO_CONFIG
     value: 'true'
   - name: DISABLE_SECURITY_PLUGIN
