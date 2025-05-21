@@ -10,6 +10,7 @@ Containers running [Ollama](https://hub.docker.com/r/ollama/ollama)
 docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 ```
 
+* Start : `docker compose up -d`
 * To use Ollama CLI :
 
 ```bash
@@ -52,7 +53,7 @@ ollama run geoassistant
 * [github.com - ollama/ollama](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#ollama)
 * [hub.docker.com - ollama/ollama](https://hub.docker.com/r/ollama/ollama)
 * [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
-* [mborne/toolbox - cuda-toolkit](https://github.com/mborne/toolbox/tree/master/cuda-toolkit#ressources)
+* [mborne.github.io/outils/cuda-toolkit](https://mborne.github.io/outils/cuda-toolkit) (*french*)
 
 Clients :
 

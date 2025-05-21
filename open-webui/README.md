@@ -21,7 +21,7 @@ docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 ## Resources
 
 * [Open WebUI - Getting Started](https://docs.openwebui.com/getting-started/)
-* [mborne/toolbox - cuda-toolkit](https://github.com/mborne/toolbox/tree/master/cuda-toolkit#ressources)
+* [mborne.github.io/outils/cuda-toolkit](https://mborne.github.io/outils/cuda-toolkit) (*french*)
 * [Pipelines](https://docs.openwebui.com/pipelines) :
   * https://docs.openwebui.com/pipelines/#-quick-start-with-docker
   * https://ikasten.io/2024/06/03/getting-started-with-openwebui-pipelines/
