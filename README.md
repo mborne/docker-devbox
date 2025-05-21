@@ -63,7 +63,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 | -------------------------------- | ------------------------------------------------------------------------------------------------------- | :-----: | :----------------------------------------------------------: |
 | [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API                                                        | &#9745; | [&#9744;](https://github.com/mborne/docker-devbox/issues/25) |
 | [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...)                                          | &#9745; |                           &#9744;                            |
-| [Nexus](nexus/README.md)         | [Nexus Repository Manager](https://help.sonatype.com/repomanager3) to manage binaries & build artifacts | &#9745; |                           &#9744;                            |
 
 ### ReadWriteMany
 
