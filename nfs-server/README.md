@@ -2,6 +2,11 @@
 
 Container running NFS server (`registry.k8s.io/volume-nfs:0.8`) for debug purpose.
 
+## Alternatives
+
+* [Setup an NFS server with nfs-kernel-server](https://documentation.ubuntu.com/server/how-to/networking/install-nfs/index.html) (see [github.com - mborne/ansible-nfs-server](https://github.com/mborne/ansible-nfs-server#readme)).
+* SaaS solutions ([Google Filestore](https://cloud.google.com/filestore), [OVHcloud NAS-HA](https://www.ovhcloud.com/en/storage-solutions/nas-ha/),...)
+
 ## Usage with docker
 
 ```bash

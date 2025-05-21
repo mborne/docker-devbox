@@ -1,6 +1,6 @@
 # CloudBeaver
 
-Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbeaver).
+Container running [CloudBeaver Community Edition](https://github.com/dbeaver/cloudbeaver/tree/devel#readme) which is the server side version of [DBeaver](https://dbeaver.io/).
 
 ## Usage with docker
 
@@ -10,6 +10,7 @@ Container running [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbe
 
 ## Resources
 
+* [dbeaver/cloudbeaver](https://hub.docker.com/r/dbeaver/cloudbeaver)
 * [dbeaver/cloudbeaver - CloudBeaver Community](https://github.com/dbeaver/cloudbeaver#cloudbeaver-community)
 * [dbeaver/dbeaver - Desktop version](https://github.com/dbeaver/dbeaver#dbeaver)
 

@@ -27,113 +27,86 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 ### Load balancer and reverse proxy
 
-| Name                                                           | Description                                                                       | Docker  |   K8S   |
-| -------------------------------------------------------------- | --------------------------------------------------------------------------------- | :-----: | :-----: |
-| [traefik](traefik/README.md)                                   | A reverse proxy including **configuration discovery** mechanism                   | &#9745; | &#9745; |
-| [nginx-ingress-controller](nginx-ingress-controller/README.md) | A common alternative to [Traefik](traefik/README.md) for Kubernetes               |   NA    | &#9745; |
-| [whoami](whoami/README.md)                                     | An helloworld to test/discover load balancers                                     | &#9745; | &#9745; |
-| [cert-manager](cert-manager/README.md)                         | An helper to generate TLS certificates from various issuers including LetsEncrypt |   NA    | &#9745; |
+* [traefik](traefik/README.md) : A reverse proxy including **configuration discovery** mechanism.
+* [nginx-ingress-controller](nginx-ingress-controller/README.md) : A common alternative to [Traefik](traefik/README.md) (**K8S only**).
+* [whoami](whoami/README.md) : An helloworld app to test [traefik](traefik/README.md) or [nginx-ingress-controller](nginx-ingress-controller/README.md).
+* [cert-manager](cert-manager/README.md) :  An helper to generate TLS certificates from various issuers including LetsEncrypt (**K8S only**)
 
 ### Container UI
 
-| Name                                                   | Description                                          | Docker  |   K8S   |
-| ------------------------------------------------------ | ---------------------------------------------------- | :-----: | :-----: |
-| [kubernetes-dashboard](kubernetes-dashboard/README.md) | Web-based UI for Kubernetes clusters                 | &#9745; | &#9745; |
-| [portainer](portainer/README.md)                       | Web-based UI for Kubernetes, Docker, Swarm and Nomad | &#9745; | &#9745; |
+* [kubernetes-dashboard](kubernetes-dashboard/README.md) : Web-based UI for Kubernetes.
+* [portainer](portainer/README.md) : Web-based UI for Kubernetes, Docker, Swarm and Nomad.
 
 ### LLM
 
-| Name                               | Description                                                                                                                            | Docker  |   K8S   |
-| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [ollama](ollama/README.md)         | [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use [open LLM models](https://ollama.com/search) | &#9745; | &#9744; |
-| [open-webui](open-webui/README.md) | Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md)                                                                             | &#9745; | &#9744; |
+* [ollama](ollama/README.md) : [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use locally [open LLM models](https://ollama.com/search).
+* [open-webui](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md).
 
 ### CI/CD pipeline
 
-| Name                             | Description                                                                 | Docker  |   K8S   |
-| -------------------------------- | --------------------------------------------------------------------------- | :-----: | :-----: |
-| [Jenkins](jenkins/README.md)     | Open source automation server with hundred of plugins (ansible, jmeter,...) | &#9745; | &#9745; |
-| [ArgoCD](argocd/README.md)       | GitOps **continuous delivery** tool for **Kubernetes**                      |   NA    | &#9745; |
-| [SonarQube](sonarqube/README.md) | Centralisation of Code Quality and Code Security metrics                    | &#9745; | &#9744; |
+* [ArgoCD](argocd/README.md) : GitOps **continuous delivery** tool for **Kubernetes**.
+* [Jenkins](jenkins/README.md) : Open source automation server with hundred of plugins (ansible, jmeter,...).
+
+### Data pipeline orchestration
+
+> See also [www.zenml.io - Orchestration Showdown: Dagster vs Prefect vs Airflow](https://www.zenml.io/blog/orchestration-showdown-dagster-vs-prefect-vs-airflow)
+
+* [prefect](prefect/README.md) (docker only for now)
 
 ### Authentication
 
 > See also [dex](https://github.com/dexidp/dex#readme) and [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
 
-| Name                           | Description                                                           | Docker  |   K8S   |
-| ------------------------------ | --------------------------------------------------------------------- | :-----: | :-----: |
-| [Keycloak](keycloak/README.md) | Open Source Identity and Access Management providing (**OIDC, SAML**) | &#9745; | &#9744; |
-
+* [Keycloak](keycloak/README.md) : Open Source Identity and Access Management providing **OIDC and SAML** implementation (**K8S not implemented**)
 
 ### Storage
 
-| Name                             | Description                                                    | Docker  |   K8S   |
-| -------------------------------- | -------------------------------------------------------------- | :-----: | :-----: |
-| [MinIO](minio/README.md)         | **Object storage** with an **S3** compatible API               | &#9745; | &#9745; |
-| [Nextcloud](nextcloud/README.md) | Open collaborative platform (file storage, talk, calendar,...) | &#9745; | &#9744; |
-
-### ReadWriteMany
-
-| Name                                                                         | Description                                                                                         | Docker  |   K8S   |
-| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | Use existing NFS server to provide `ReadWriteMany` volumes                                          |   NA    | &#9745; |
-| [nfs-demo](nfs-demo/README.md)                                               | Illustrates the use of a "nfs" storage class providing `ReadWriteMany` support                      |   NA    | &#9745; |
-| [nfs-server](nfs-server/README.md)                                           | **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) | &#9745; | &#9745; |
-| [Longhorn](longhorn/README.md)                                               | **Distributed block storage** for Kubernetes providing `ReadWriteMany` volumes                      |   NA    | &#9745; |
-
+* [MinIO](minio/README.md) : **Object storage** with an **S3** compatible API.
+* [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only)
+* [restic-server](restic-server/README.md) : [Rest Server](https://github.com/restic/rest-server#readme) to **push [restic](https://restic.net/) backups over HTTPS** (warning : incomplete and not well documented)
+* [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) : Provides `ReadWriteMany` volumes using existing NFS server.
+    * [nfs-demo](nfs-demo/README.md) : Illustrates the use of a "nfs" storage class providing `ReadWriteMany` support.
+    * [nfs-server](nfs-server/README.md) : **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md).
+ 
 ### Database
 
-| Name                                 | Description                                                                                          | Docker  |   K8S   |
-| ------------------------------------ | ---------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [PostGIS](postgis/README.md)         | [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/) | &#9745; | &#9745; |
-| [CloudBeaver](cloudbeaver/README.md) | Server side version of [DBeaver](https://dbeaver.io/)                                                | &#9745; | &#9744; |
-| [Redis](redis/README.md)             | [Redis](https://redis.io/) key-value database                                                        | &#9745; | &#9745; |
-
+* [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/).
+* [Redis](redis/README.md)
+* [CloudBeaver](cloudbeaver/README.md) : Web-based UI for SQL databases (**docker only**)
 
 ### Logging and monitoring
 
 Option 1 :
 
-| Name                                                             | Description                                                               | Docker  |   K8S   |
-| ---------------------------------------------------------------- | ------------------------------------------------------------------------- | :-----: | :-----: |
-| [Grafana](grafana/README.md)                                     | Grafana with Loki and Prometheus datasources and dashboards preconfigured | &#9745; | &#9745; |
-| [Prometheus](prometheus/README.md)                               | Grafana/**Prometheus** for system and monitoring                          | &#9745; | &#9745; |
-| [Loki](loki/README.md)                                           | Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs     | &#9745; | &#9745; |
-| [x509-certificate-exporter](x509-certificate-exporter/README.md) | Prometheus exportor to monitor TLS certicates                             | &#9744; | &#9745; |
+* [Grafana](grafana/README.md) : Grafana with Loki and Prometheus datasources and dashboards preconfigured.
+* [Prometheus](prometheus/README.md) : Grafana/**Prometheus** for system and monitoring.
+* [Loki](loki/README.md) : Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs.
+* [x509-certificate-exporter](x509-certificate-exporter/README.md) : Prometheus exportor to monitor TLS certicates (**K8S only**)
 
 Option 2 (variant of the famous ELK stack) :
 
-| Name                               | Description                                                                          | Docker  |   K8S   |
-| ---------------------------------- | ------------------------------------------------------------------------------------ | :-----: | :-----: |
-| [OpenSearch](opensearch/README.md) | Forked from [ElasticSearch](https://www.elastic.co/fr/elasticsearch/) by AWS         | &#9745; | &#9745; |
-| [fluent](fluent/README.md)         | [fluent-bit](https://docs.fluentbit.io/manual) sending containers logs to OpenSearch | &#9745; | &#9745; |
+* [OpenSearch](opensearch/README.md) : [OpenSearch and OpenSearch Dashboards](https://docs.opensearch.org/docs/latest/about/) (fork from [ElasticSearch](https://www.elastic.co/fr/elasticsearch/) and [Kibana](https://www.elastic.co/fr/kibana) by AWS).
+* [fluent](fluent/README.md) : [fluent-bit](https://docs.fluentbit.io/manual) sending containers and systemd logs to [OpenSearch](opensearch/README.md).
 
 ### Security
 
-| Name                         | Description                                                      | Docker |   K8S   |
-| ---------------------------- | ---------------------------------------------------------------- | :----: | :-----: |
-| [kyverno](kyverno/README.md) | Kyverno with kyverno-policies and Policy Reporter (metrics & UI) |   NA   | &#9745; |
-
+* [kyverno](kyverno/README.md) : [kyverno](https://artifacthub.io/packages/helm/kyverno/kyverno) with [kyverno-policies](https://artifacthub.io/packages/helm/kyverno/kyverno-policies) and [Policy Reporter](https://kyverno.github.io/policy-reporter/) (metrics & UI).
+* [trivy](trivy/README.md) : [trivy-operator from Aqua Security](https://github.com/aquasecurity/trivy-operator#readme) (K8S only)
+* [SonarQube](sonarqube/README.md) : Centralisation of Code Quality and Code Security metrics.
 
 ### GeoSpatial services
 
-| Name                             | Description                                                                                                                  | Docker  |   K8S   |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [GeoServer](geoserver/README.md) | Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (**WMS, WMTS, WFS**) | &#9745; | &#9745; |
+* [GeoServer](geoserver/README.md) : Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (WMS, WMTS, WFS) (**docker only**)
 
 ### Mailing
 
-| Name                         | Description                                                                                                         | Docker  |   K8S   |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
-| [MailHog](mailhog/README.md) | SMTP testing server providing with an API to retrieve emails                                                        | &#9745; | &#9744; |
-| [mailer](mailer/README.md)   | SMTP relay based on [namshi/smtp](https://hub.docker.com/r/namshi/smtp) image to send emails using a google account | &#9745; | &#9744; |
+* [MailHog](mailhog/README.md) : **SMTP testing server** providing with an API to retrieve emails (docker only)
+* [mailer](mailer/README.md) : SMTP relay based on [namshi/smtp](https://hub.docker.com/r/namshi/smtp) image to **send emails using a google account** (docker only)
 
 ### Miscellaneous
 
-| Name                             | Description                                            | Docker  |   K8S   |
-| -------------------------------- | ------------------------------------------------------ | :-----: | :-----: |
-| [Wordpress](wordpress/README.md) | The famous [WordPress](https://wordpress.com/) **CMS** | &#9745; | &#9744; |
-| [Matomo](matomo/README.md)       | "Google Analytics alternative"                         | &#9745; | &#9744; |
+* [Wordpress](wordpress/README.md) (docker only)
+* [Matomo](matomo/README.md) : "Google Analytics alternative" (docker only)
 
 ## License
 
