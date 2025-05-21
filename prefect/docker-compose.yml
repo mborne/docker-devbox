@@ -1,0 +1,22 @@
+services:
+  prefect-server:
+    image: prefecthq/prefect:3-latest
+    ports:
+      - "4200:4200"
+    command: ["prefect","server","start","--host","0.0.0.0"]
+    volumes:
+      - prefect-data:/root/.prefect
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.prefect.rule=Host(`prefect.${DEVBOX_HOSTNAME}`)"
+    restart: unless-stopped
+
+volumes:
+  prefect-data:
+    name: prefect-data
+
+networks:
+  default:
+    name: devbox
+    external: true
+
