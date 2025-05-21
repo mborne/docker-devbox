@@ -14,10 +14,11 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 
 [kind/quickstart.sh](quickstart.sh) script performs the following operations :
 
-* Create a kind cluster with a generated configuration including :
-  * `extraPortMappings` to deploy ingress controller on the master node (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
+* Create a **kind cluster with a generated configuration** including :
+  * `extraPortMappings` to **allow the deployment of an ingress controller on the master node** (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
+  * The use of a **mirror for DockerHub** (optional, but **IMPORTANT** : see [Docker Hub pull usage and limits](https://docs.docker.com/docker-hub/usage/pulls/))
   * `extraMounts` of `/var/devbox` on `/devbox` for each node (see [PV and PVC in docs/nginx-rwx.yml](docs/nginx-rwx.yml))
-  * OIDC authentication
+  * OIDC authentication (optional, to test [kubectl with kubelogin](https://github.com/int128/kubelogin#readme) for example)
 * Optionally install custom CNI (canal or calico)
 * Install [metric-server](kind/metric-server/kustomization.yaml)
 * Install [cert-manager](../cert-manager/README.md) with a mkcert cluster issuer (if locally available)
@@ -35,7 +36,7 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 | `KIND_ADMISSION_PLUGINS`   | Allows to customize admission plugins                                                                      | `NodeRestriction,ResourceQuota` |
 | `DEVBOX_INGRESS` (1)       | Allows to install either [traefik](../traefik/README.md) or [nginx](../nginx-ingress-controller/README.md) | `traefik`                       |
 | `KIND_INGRESS_READY`       | Allows to disable `extraPortMappings` on ports 80 and 443                                                  | `1`                             |
-| `DOCKERHUB_PROXY`          | Allows to use a mirror for DockerHub                                                                       | `""`                            |
+| `DOCKERHUB_PROXY`          | Allows to use a mirror for DockerHub.                                                                      | `""`                            |
 | `KIND_OIDC_ISSUER_URL` (2) | Allows to enable OIDC authentication                                                                       | `""`                            |
 
 > (1) Note that `k8s-install.sh` must use the same value.
@@ -60,7 +61,7 @@ An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to gen
 export KIND_WORKER_COUNT=5
 # enable OIDC auth on Kubernetes API 
 export KIND_OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
-# use a mirror for dockerhub
+# use a mirror for dockerhub (WARNING : ADAPT TO USE YOURS!)
 export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
 # Install custom CNI (required for NetworkPolicies)
 # default, calico or canal
