@@ -1,6 +1,6 @@
 # Traefik
 
-Container running [traefik proxy](https://doc.traefik.io/traefik/) :
+Container running [traefik proxy](https://doc.traefik.io/traefik/) **for DEV purpose** :
 
 ![traefik-screenshot](docs/traefik-screenshot.png)
 
@@ -21,10 +21,8 @@ See also :
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# To get dashboard on http://traefik.dev.localhost
+# To get dashboard on https://traefik.dev.localhost/dashboard/
 bash k8s-install.sh
-# To get dashboard on http://traefik.example.net
-DEVBOX_HOSTNAME=example.net bash k8s-install.sh
 ```
 
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`

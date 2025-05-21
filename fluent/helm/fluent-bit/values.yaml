@@ -59,7 +59,7 @@ config:
     [OUTPUT]
         Name               opensearch
         Match              kube.*
-        Host               opensearch-cluster.opensearch
+        Host               opensearch-cluster-master.opensearch
         Port               9200
         Suppress_Type_Name On
         Logstash_Format    On
@@ -73,7 +73,7 @@ config:
     [OUTPUT]
         Name               opensearch
         Match              systemd.*
-        Host               opensearch-cluster.opensearch
+        Host               opensearch-cluster-master.opensearch
         Port               9200
         Suppress_Type_Name On
         Logstash_Format    On

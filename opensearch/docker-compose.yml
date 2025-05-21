@@ -7,8 +7,8 @@ services:
       - node.name=opensearch-node
       - discovery.seed_hosts=opensearch-node
       - cluster.initial_master_nodes=opensearch-node
-      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
       - bootstrap.memory_lock=true
+      - "OPENSEARCH_JAVA_OPTS=-Xms512m -Xmx512m"
       - "DISABLE_INSTALL_DEMO_CONFIG=true"
       - "DISABLE_SECURITY_PLUGIN=true"
     ulimits:
