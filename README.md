@@ -21,7 +21,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 [Usage with Kubernetes](docs/kubernetes.md) :
 
 * Install [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl) and [helm](https://helm.sh/docs/intro/install/)
-* Configure kubectl to use a [DEV instance](docs/kubernetes-dev.md)
+* Configure kubectl to use a [DEV instance](docs/kubernetes-dev.md) (see [kind/README.md - quickstart.sh](kind/README.md))
 
 ## Stacks
 
