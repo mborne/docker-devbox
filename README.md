@@ -46,7 +46,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 | Name                               | Description                                                                                                                            | Docker  |   K8S   |
 | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [ollama](ollama/README.md)         | [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use [open LLM models](https://ollama.com/search) | &#9745; | &#9744; |
-| [open-webui](open-webui/README.md) | Web-based UI (ChatGPT-like) pre-configured to use [ollama/README.md](ollama/README.md)                                                 | &#9745; | &#9744; |
+| [open-webui](open-webui/README.md) | Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md)                                                                             | &#9745; | &#9744; |
 
 ### CI/CD pipeline
 
