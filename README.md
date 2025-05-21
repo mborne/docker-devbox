@@ -113,7 +113,6 @@ Option 2 (variant of the famous ELK stack) :
 | Name                               | Description                                                                                                                        | Docker  |   K8S   |
 | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | :-----: | :-----: |
 | [GeoServer](geoserver/README.md)   | Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (**WMS, WMTS, WFS**)       | &#9745; | &#9745; |
-| [GeoNetwork](geonetwork/README.md) | Catalog application to manage spatially referenced resources with [OGC](https://www.ogc.org/) compliant protocols (**CSW, CSW-T**) | &#9745; | &#9745; |
 
 ### Mailing
 
