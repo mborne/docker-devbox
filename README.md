@@ -4,7 +4,7 @@ Provides stacks to setup a **container-based development environment** with [Doc
 
 ## Motivation
 
-This is my playground to learn and illustrate how to deploy application with [docker compose](https://docs.docker.com/compose/), [Kustomize](https://kustomize.io/) (`kubectl apply -k`) and [helm](https://helm.sh/).
+This is my playground to learn and illustrate how to deploy application with [docker compose](https://docs.docker.com/compose/) and [helm](https://helm.sh/).
 
 ## Getting started
 
