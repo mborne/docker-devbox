@@ -1,17 +1,11 @@
 #!/bin/bash
 
-SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+# Uninstall whoami
+helm -n whoami uninstall whoami
 
-DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
-DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
+kubectl -n whoami delete ingress/whoami
 
-# Create namespace whoami if not exists
-kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
-
-# Deploy traefik with helm
-helm -n whoami upgrade --install whoami oci://ghcr.io/mborne/helm-charts/whoami \
-  --set replicaCount=${WHOAMI_REPLICA_COUNT:-2}
+# Remove ingress
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n whoami apply -f -
