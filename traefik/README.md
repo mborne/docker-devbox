@@ -21,8 +21,8 @@ See also :
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
-# To get dashboard on https://traefik.dev.localhost/dashboard/
-bash k8s-install.sh
+# To get dashboard on https://traefik.dev.localhost/dashboard/#/
+bash traefik/k8s-install.sh
 ```
 
 * Wait for pods to be ready : `kubectl -n traefik-system get pods -w`
@@ -30,15 +30,15 @@ bash k8s-install.sh
 
 ## Usage with Kind
 
-Use [kind/quickstart.sh](../kind/quickstart.sh) to install traefik **or** :
+Use [kind/quickstart.sh](../kind/quickstart.sh) to install traefik **OR** :
 
 * [Create kind cluster with ingress-ready config](../kind/README.md)
 * Deploy with helm using [helm/kind/values.yml](helm/kind/values.yml) with `TRAEFIK_MODE=kind` :
 
 ```bash
-TRAEFIK_MODE=kind bash k8s-install.sh
+# To get dashboard on https://traefik.dev.localhost/dashboard/#/
+TRAEFIK_MODE=kind bash traefik/k8s-install.sh
 ```
-* Open dashboard on https://traefik.dev.localhost/dashboard/#/
 
 
 ## Resources
