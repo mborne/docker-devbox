@@ -2,9 +2,15 @@
 
 Container running running [MailHog](https://github.com/mailhog/MailHog#readme) to test email sending from applications.
 
+## Alternative
+
+> **WARNING** : [Mailhog is no longer maintained](https://github.com/mailhog/MailHog/issues/442#issuecomment-1493415258)
+
+* [Mailpit](../mailpit/README.md)
+
 ## Usage with docker
 
-* Start postgis : `docker compose up -d`
+* Start mailhog : `docker compose up -d`
 
 * Send an email : `telnet localhost 1025`
 
