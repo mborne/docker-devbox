@@ -1,7 +1,24 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 NFS_SERVER_IP=${NFS_SERVER_IP:-nfs-server.nfs-system.svc.cluster.local}
 NFS_PATH=${NFS_PATH:-/exports}
+
+echo "---------------------------------------------"
+echo "-- nfs-subdir-external-provisioner"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 echo "Install nfs-subdir-external-provisioner with :"
 echo "- NFS_SERVER_IP=${NFS_SERVER_IP}"
 echo "- NFS_PATH=${NFS_PATH}"

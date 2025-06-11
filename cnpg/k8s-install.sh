@@ -1,5 +1,20 @@
 #!/bin/bash
 
+echo "---------------------------------------------"
+echo "-- cnpg/k8s-install.sh"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
+
 helm repo add cnpg https://cloudnative-pg.github.io/charts
 
 helm repo update

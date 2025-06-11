@@ -2,6 +2,21 @@
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
+echo "---------------------------------------------"
+echo "-- loki/k8s-install.sh"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
+
 # Add helm repository
 helm repo add grafana https://grafana.github.io/helm-charts
 

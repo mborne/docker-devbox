@@ -1,6 +1,20 @@
-#/bin/bash
+#!/bin/bash
 
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
+echo "---------------------------------------------"
+echo "-- fluent"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
 
 # Create namespace fluent if not exists
 kubectl create namespace fluent --dry-run=client -o yaml | kubectl apply -f -

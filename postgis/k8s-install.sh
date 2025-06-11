@@ -2,6 +2,20 @@
 
 SERVICE_TYPE=${SERVICE_TYPE:-ClusterIp}
 
+echo "---------------------------------------------"
+echo "-- postgis"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 # Create namespace postgis if not exists
 kubectl create namespace postgis --dry-run=client -o yaml | kubectl apply -f -
 

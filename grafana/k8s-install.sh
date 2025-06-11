@@ -8,6 +8,20 @@ DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 GRAFANA_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-ChangeIt}
 
+echo "---------------------------------------------"
+echo "-- grafana"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 # Add helm repository
 helm repo add grafana https://grafana.github.io/helm-charts
 

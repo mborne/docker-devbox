@@ -9,6 +9,16 @@ echo "---------------------------------------------"
 echo "-- nginx-ingress-controller"
 echo "---------------------------------------------"
 
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 # Create namespace nginx-system if not exists
 kubectl create namespace nginx-system --dry-run=client -o yaml | kubectl apply -f -
 

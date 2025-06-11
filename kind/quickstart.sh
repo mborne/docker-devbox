@@ -12,6 +12,16 @@ if ! command -v kind &> /dev/null; then
   exit 1
 fi
 
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 #----------------------------------------------------------------------------------
 # Generate kind config according to env vars
 #----------------------------------------------------------------------------------

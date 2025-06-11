@@ -10,6 +10,16 @@ echo "---------------------------------------------"
 echo "-- kubernetes-dashboard"
 echo "---------------------------------------------"
 
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
 helm repo update
 

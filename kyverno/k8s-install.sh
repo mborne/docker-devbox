@@ -6,6 +6,21 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
+echo "---------------------------------------------"
+echo "-- kyverno/k8s-install.sh"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
+
 #-------------------------------------------------------------------------
 # kyverno and kyverno-policies
 #-------------------------------------------------------------------------

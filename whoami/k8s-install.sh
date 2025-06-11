@@ -6,6 +6,20 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
+echo "---------------------------------------------"
+echo "-- whoami"
+echo "---------------------------------------------"
+
+if ! command -v kubectl &> /dev/null; then
+  echo "kubectl is required."
+  exit 1
+fi
+
+if ! command -v helm &> /dev/null; then
+  echo "helm is required."
+  exit 1
+fi
+
 # Create namespace whoami if not exists
 kubectl create namespace whoami --dry-run=client -o yaml | kubectl apply -f -
 
