@@ -1,0 +1,334 @@
+## Common parameters
+# -- partially overrides common.names.name
+nameOverride: ""
+# -- fully override common.names.fullname
+fullnameOverride: "prefect-worker"
+# -- fully override common.names.namespace
+namespaceOverride: ""
+# -- labels to add to all deployed objects
+commonLabels: {}
+# -- annotations to add to all deployed objects
+commonAnnotations: {}
+
+## Deployment Configuration
+worker:
+  autoscaling:
+    # -- enable autoscaling for the worker
+    enabled: false
+    # -- minimum number of replicas to scale down to
+    minReplicas: 1
+    # -- maximum number of replicas to scale up to
+    maxReplicas: 1
+    # -- target CPU utilization percentage for scaling the worker
+    targetCPUUtilizationPercentage: 80
+    # -- target memory utilization percentage for scaling the worker
+    targetMemoryUtilizationPercentage: 80
+
+  # -- unique cluster identifier, if none is provided this value will be inferred at time of helm install
+  clusterUid: ""
+
+  initContainer:
+    # -- the resource specifications for the sync-base-job-template initContainer
+    # Defaults to the resources defined for the worker container
+    resources: {}
+      # -- the requested resources for the sync-base-job-template initContainer
+      # requests:
+      #   memory: 256Mi
+      #   cpu: 100m
+      # -- the requested limits for the sync-base-job-template initContainer
+      # limits:
+      #   memory: 1Gi
+      #   cpu: 1000m
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+    # -- security context for the sync-base-job-template initContainer
+    containerSecurityContext:
+      # -- set init containers' security context runAsUser
+      runAsUser: 1001
+      # -- set init containers' security context runAsNonRoot
+      runAsNonRoot: true
+      # -- set init containers' security context readOnlyRootFilesystem
+      readOnlyRootFilesystem: true
+      # -- set init containers' security context allowPrivilegeEscalation
+      allowPrivilegeEscalation: false
+      # -- set init container's security context capabilities
+      capabilities: {}
+    # -- additional sidecar containers
+    extraContainers: []
+
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-s-dns-policy
+  # -- optional dns policy for worker deployment
+  dnsPolicy: ""
+
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/#pod-dns-config
+  dnsConfig:
+    # -- optional list of IP addresses that will be used as dns servers for the Pod
+    nameservers: []
+    # -- optional list of dns search domains for hostname lookup in the Pod
+    searches: []
+    # -- optional list of dns options for the Pod
+    options: []
+    # - name: ndots
+    #   value: "2"
+
+  image:
+    # -- worker image repository
+    repository: prefecthq/prefect
+    ## prefect tag is pinned to the latest available image tag at packaging time.  Update the value here to
+    ## override pinned tag
+    # -- prefect image tag (immutable tags are recommended)
+    prefectTag: 3.4.6-python3.11-kubernetes
+    # -- worker image pull policy
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    # -- worker image pull secrets
+    pullSecrets: []
+    # -- enable worker image debug mode
+    debug: false
+
+  ## general configuration of the worker
+  config:
+    # -- the work pool that your started worker will poll.
+    workPool: ""
+    # -- one or more work queue names for the worker to pull from. if not provided, the worker will pull from all work queues in the work pool
+    workQueues: []
+    # -- how often the worker will query for runs
+    queryInterval: 5
+    # -- when querying for runs, how many seconds in the future can they be scheduled
+    prefetchSeconds: 10
+    # -- connect using HTTP/2 if the server supports it (experimental)
+    http2: true
+    ## You can set the worker type here.
+    ## The default image includes only the type "kubernetes".
+    ## Custom workers must be properly registered with the prefect cli.
+    ## See the guide here: https://docs.prefect.io/2.11.3/guides/deployment/developing-a-new-worker-type/
+    # -- specify the worker type
+    type: kubernetes
+    ## one of 'always', 'if-not-present', 'never', 'prompt'
+    # --  install policy to use workers from Prefect integration packages.
+    installPolicy: prompt
+    # -- the name to give to the started worker. If not provided, a unique name will be generated.
+    name: null
+    # -- maximum number of flow runs to start simultaneously (default: unlimited)
+    limit: null
+
+    ##  If unspecified, Prefect will use the default base job template for the given worker type. If the work pool already exists, this will be ignored.
+    ## e.g.:
+    ## baseJobTemplate:
+    ##   configuration: |
+    ##    {
+    ##      "variables": {
+    ##        ...
+    ##      },
+    ##      "job_configuration": {
+    ##        ...
+    ##      }
+    ##    }
+    ## OR
+    ## baseJobTemplate:
+    ##   existingConfigMapName: "my-existing-config-map"
+    baseJobTemplate:
+      # -- the name of an existing ConfigMap containing a base job template. NOTE - the key must be 'baseJobTemplate.json'
+      existingConfigMapName: ""
+      # -- JSON formatted base job template. If data is provided here, the chart will generate a configmap and mount it to the worker pod
+      configuration: null
+      # -- optionally override the default name of the generated configmap
+      # name: ""
+
+  ## connection settings
+  # -- one of 'cloud', 'selfManagedCloud', or 'selfHostedServer'
+  apiConfig: cloud
+
+  cloudApiConfig:
+    # -- prefect account ID
+    accountId: ""
+    # -- prefect workspace ID
+    workspaceId: ""
+
+    apiKeySecret:
+      # -- prefect API secret name
+      name: prefect-api-key
+      # -- prefect API secret key
+      key: key
+
+    # -- prefect cloud API url; the full URL is constructed as https://cloudUrl/accounts/accountId/workspaces/workspaceId
+    cloudUrl: https://api.prefect.cloud/api
+
+  selfManagedCloudApiConfig:
+    # -- prefect API url (PREFECT_API_URL)
+    apiUrl: ""
+    # -- prefect account ID
+    accountId: ""
+    # -- prefect workspace ID
+    workspaceId: ""
+
+    apiKeySecret:
+      # -- prefect API secret name
+      name: prefect-api-key
+      # -- prefect API secret key
+      key: key
+
+    # -- Cloud API url for PREFECT_CLOUD_API_URL
+    # -- This is used in self managed cloud instances to congfigure events and logs over websockets
+    cloudApiUrl: ""
+
+  selfHostedServerApiConfig:
+    # If the prefect server is located external to this cluster, set a fully qualified domain name as the apiUrl
+    # If the prefect server pod is deployed to this cluster, use the cluster DNS endpoint: http://<prefect-server-service-name>.<namespace>.svc.cluster.local:<prefect-server-port>/api
+    # -- prefect API url (PREFECT_API_URL)
+    apiUrl: ""
+
+    # ref: https://docs.prefect.io/v3/develop/settings-and-profiles#security-settings
+    basicAuth:
+      # -- enable basic auth for the worker, for an administrator/password combination. must be enabled on the server as well
+      enabled: false
+      # -- basic auth credentials in the format admin:<your-password> (no brackets)
+      authString: "admin:pass"
+      # -- name of existing secret containing basic auth credentials. takes precedence over authString. must contain a key `auth-string` with the value of the auth string
+      existingSecret: ""
+
+  # -- the number of old ReplicaSets to retain to allow rollback
+  revisionHistoryLimit: 10
+
+  # -- number of worker replicas to deploy
+  replicaCount: 1
+
+  resources:
+    # -- the requested resources for the worker container
+    requests:
+      memory: 256Mi
+      cpu: 100m
+    # -- the requested limits for the worker container
+    limits:
+      memory: 1Gi
+      cpu: 1000m
+
+  # ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+  livenessProbe:
+    enabled: false
+    config:
+      # -- The number of seconds to wait before starting the first probe.
+      initialDelaySeconds: 10
+      # -- The number of seconds to wait between consecutive probes.
+      periodSeconds: 10
+      # -- The number of seconds to wait for a probe response before considering it as failed.
+      timeoutSeconds: 5
+      # -- The number of consecutive failures allowed before considering the probe as failed.
+      failureThreshold: 3
+      # -- The minimum consecutive successes required to consider the probe successful.
+      successThreshold: 1
+
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  podSecurityContext:
+    # -- set worker pod's security context runAsUser
+    runAsUser: 1001
+    # -- set worker pod's security context runAsNonRoot
+    runAsNonRoot: true
+    # -- set worker pod's security context fsGroup
+    fsGroup: 1001
+    # -- set worker pod's seccomp profile
+    seccompProfile:
+      type: RuntimeDefault
+      # -- in case of Localhost value in seccompProfile.type, set seccompProfile.localhostProfile value below
+      # localhostProfile: /my-path.json
+
+  # ref: https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/#priorityclass
+  # -- priority class name to use for the worker pods; if the priority class is empty or doesn't exist, the worker pods are scheduled without a priority class
+  priorityClassName: ""
+
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  containerSecurityContext:
+    # -- set worker containers' security context runAsUser
+    runAsUser: 1001
+    # -- set worker containers' security context runAsNonRoot
+    runAsNonRoot: true
+    # -- set worker containers' security context readOnlyRootFilesystem
+    readOnlyRootFilesystem: true
+    # -- set worker containers' security context allowPrivilegeEscalation
+    allowPrivilegeEscalation: false
+    # -- set worker container's security context capabilities
+    capabilities: {}
+
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  # -- extra labels for worker pod
+  podLabels: {}
+
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  # -- extra annotations for worker pod
+  podAnnotations: {}
+
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  # -- affinity for worker pods assignment
+  affinity: {}
+
+  ## ref: https://kubernetes.io/docs/user-guide/node-selection/
+  # -- node labels for worker pods assignment
+  nodeSelector: {}
+
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  # -- tolerations for worker pods assignment
+  tolerations: []
+
+  ## List of extra env vars
+  ## e.g:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  # -- array with extra environment variables to add to worker nodes
+  extraEnvVars: []
+
+  # -- name of existing ConfigMap containing extra env vars to add to worker nodes (deprecated, use extraEnvVarsCMs)
+  extraEnvVarsCM: ""
+
+  # -- names of existing ConfigMaps containing extra env vars to add to worker nodes
+  extraEnvVarsCMs: []
+
+  # -- name of existing Secret containing extra env vars to add to worker nodes (deprecated, use extraEnvVarsSecrets)
+  extraEnvVarsSecret: ""
+
+  # -- names of existing Secrets containing extra env vars to add to worker nodes
+  extraEnvVarsSecrets: []
+
+  # -- additional sidecar containers
+  extraContainers: []
+
+  # -- array with extra volumes for the worker pod
+  extraVolumes: []
+
+  # -- array with extra volumeMounts for the worker pod
+  extraVolumeMounts: []
+
+  # -- array with extra Arguments for the worker container to start with
+  extraArgs: []
+
+## ServiceAccount configuration
+serviceAccount:
+  # -- specifies whether a ServiceAccount should be created
+  create: true
+  # -- the name of the ServiceAccount to use. if not set and create is true, a name is generated using the common.names.fullname template
+  name: ""
+  # -- additional service account annotations (evaluated as a template)
+  annotations: {}
+
+## Role configuration
+role:
+  # -- specifies whether a Role should be created
+  create: true
+  ## List of extra role permissions
+  ## e.g:
+  ## extraPermissions:
+  ##  - apiGroups: [""]
+  ##    resources: ["pods", "services"]
+  ##    verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  # -- array with extra permissions to add to the worker role
+  extraPermissions: []
+
+## RoleBinding configuration
+rolebinding:
+  # -- specifies whether a RoleBinding should be created
+  create: true
+
