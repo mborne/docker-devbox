@@ -4,7 +4,7 @@ Container running [Prefect](https://hub.docker.com/r/prefecthq/prefect) server.
 
 ## Usage with docker
 
-* Start containers : `docker compose up -d`
+* Start containers : `docker compose up -d --build`
 * Open https://prefect.dev.localhost/
 
 ## Resources

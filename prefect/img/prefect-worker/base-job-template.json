@@ -101,7 +101,7 @@
         "items": {
           "type": "string"
         },
-        "defaults": [
+        "default": [
           "/worker-data:/worker-data"
         ]
       },
