@@ -1,9 +1,15 @@
 services:
-  prefect-server:
+  server:
     image: prefecthq/prefect:3-latest
+    container_name: prefect_server
     ports:
       - "4200:4200"
     command: ["prefect","server","start","--host","0.0.0.0"]
+    environment:
+      - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://prefect:${PREFECT_POSTGRES_PASSWORD}@db:5432/prefect
+    depends_on:
+      db:
+        condition: service_healthy
     volumes:
       - prefect-data:/root/.prefect
     labels:
@@ -11,9 +17,43 @@ services:
       - "traefik.http.routers.prefect.rule=Host(`prefect.${DEVBOX_HOSTNAME}`)"
     restart: unless-stopped
 
+  db:
+    image: postgres:17-alpine
+    container_name: prefect_db
+    environment:
+      - POSTGRES_USER=prefect
+      - POSTGRES_PASSWORD=${PREFECT_POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prefect"]
+    volumes:
+      - prefect-db:/var/lib/postgresql/data
+    restart: unless-stopped
+  
+  # register and start devbox-default-pool with customized base-job-template to start containers
+  # on the "devbox" network.
+  work-pool:
+    image: prefect-worker:3-latest
+    build: img/prefect-worker
+    container_name: prefect_work_pool
+    command: ["prefect","worker","start","--pool","devbox-default-pool","--type","docker","--base-job-template","/config/base-job-template.json"]
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    depends_on:
+      server:
+        condition: service_started
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - worker-data:/worker-data
+    restart: unless-stopped
+
 volumes:
   prefect-data:
     name: prefect-data
+  prefect-db:
+    name: prefect-db
+  worker-data:
+    name: prefect-worker-data
 
 networks:
   default:

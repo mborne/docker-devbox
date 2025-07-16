@@ -1,0 +1,12 @@
+worker:
+
+  config:
+    workPool: "devbox-default-pool"
+
+  apiConfig: selfHostedServer
+
+  selfHostedServerApiConfig:
+    apiUrl: "http://prefect-server:4200/api"
+
+  livenessProbe:
+    enabled: true
