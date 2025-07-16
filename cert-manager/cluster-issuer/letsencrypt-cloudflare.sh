@@ -27,10 +27,10 @@ cat <<EOF | kubectl -n cert-manager apply -f -
 apiVersion: v1
 kind: Secret
 metadata:
-  name: cloudflare-api-key
+  name: cloudflare-api-token-secret
 type: Opaque
 stringData:
-  api-key: ${CLOUDFLARE_API_KEY}
+  api-token: ${CLOUDFLARE_API_TOKEN}
 EOF
 
 # Create mkcert ClusterIssuer
@@ -48,8 +48,7 @@ spec:
     solvers:
     - dns01:
         cloudflare:
-          email: ${CLOUDFLARE_EMAIL}
-          apiKeySecretRef:
-            name: cloudflare-api-key
-            key: api-key
+          apiTokenSecretRef:
+            name: cloudflare-api-token-secret
+            key: api-token
 EOF
