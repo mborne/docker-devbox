@@ -39,5 +39,6 @@ bash k8s-install.sh
 
 ## Ressources
 
+* [github.com - fluent/helm-charts - Fluent Helm Charts](https://github.com/fluent/helm-charts#readme)
 * [logz.io - Fluentd vs. Fluent Bit: Side by Side Comparison](https://logz.io/blog/fluentd-vs-fluent-bit/)
 * See also [Loki](../loki/README.md)

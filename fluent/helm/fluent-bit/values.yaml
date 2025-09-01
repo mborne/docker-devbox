@@ -1,5 +1,8 @@
 # https://github.com/fluent/helm-charts/blob/main/charts/fluent-bit/values.yaml
 
+image:
+  tag: 4.0.8-debug
+
 daemonset:
   enabled: true
 
@@ -17,6 +20,7 @@ extraVolumeMounts:
     readOnly: true
 
 config:
+
   ## https://docs.fluentbit.io/manual/pipeline/inputs
   inputs: |
     [INPUT]
@@ -32,9 +36,13 @@ config:
         Systemd_Filter  _SYSTEMD_UNIT=kubelet.service
         Systemd_Filter  _SYSTEMD_UNIT=containerd.service
 
-
   ## https://docs.fluentbit.io/manual/pipeline/filters
   filters: |
+    [FILTER]
+        Name                grep
+        Match               systemd.*
+        Exclude             MESSAGE /.*TaskExit event in podsandbox handler container_id.*/
+        Exclude             MESSAGE /.*container event discarded.*/
     [FILTER]
         Name                kubernetes
         Match               kube.*
@@ -43,6 +51,10 @@ config:
         Kube_Tag_Prefix     kube.var.log.containers.
         K8S-Logging.Parser  On
         K8S-Logging.Exclude On
+    [FILTER]
+        Name                grep
+        Match               kube.*
+        Exclude             $kubernetes['namespace_name'] kubernetes-dashboard
     [FILTER]
         Name                nest
         Match               kube.*

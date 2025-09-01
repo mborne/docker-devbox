@@ -19,26 +19,15 @@ fi
 # Create namespace fluent if not exists
 kubectl create namespace fluent --dry-run=client -o yaml | kubectl apply -f -
 
+# Add fluent repo
+helm repo add fluent https://fluent.github.io/helm-charts
+
+# Update repos
+helm repo update
+
 # Deploy fluent-bit with helm
-helm -n fluent upgrade --install fluent-bit oci://registry-1.docker.io/bitnamicharts/fluent-bit \
+helm -n fluent upgrade --install fluent-bit fluent/fluent-bit \
   -f ${SCRIPT_DIR}/helm/fluent-bit/values.yaml
-
-# Allow fluent-bit sa to retreive infos about containers
-cat <<EOF | kubectl apply -f -
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: fluent-bit-read
-subjects:
-- kind: ServiceAccount
-  name: fluent-bit
-  namespace: fluent
-roleRef:
-  kind: ClusterRole
-  name: view
-  apiGroup: rbac.authorization.k8s.io
-EOF
-
 
 
 
