@@ -1,6 +1,14 @@
 #!/bin/bash
 
+kubectl -n minio delete ingress minio-api
+kubectl -n minio delete ingress minio-console
+
 helm -n minio delete minio
-kubectl delete namespace minio
+helm -n minio-operator delete operator
+
+
+
+
+
 
 

@@ -23,23 +23,74 @@ if ! command -v helm &> /dev/null; then
 fi
 
 # Add helm repository
-helm repo add bitnami https://charts.bitnami.com/bitnami
+helm repo add minio-operator https://operator.min.io
 
 # Update helm repositories
 helm repo update
 
+# Install minio-operator
+helm upgrade --install \
+  --namespace minio-operator \
+  --create-namespace \
+  operator minio-operator/operator
+
 # Create namespace minio if not exists
 kubectl create namespace minio --dry-run=client -o yaml | kubectl apply -f -
 
-# Deploy minio with helm
-helm -n minio upgrade --install minio bitnami/minio -f ${SCRIPT_DIR}/helm/minio/values.yaml \
-  --set auth.rootPassword=$MINIO_ROOT_PASSWORD \
-  --set ingress.hostname=minio.$DEVBOX_HOSTNAME \
-  --set ingress.ingressClassName=$DEVBOX_INGRESS \
-  --set ingress.annotations."cert-manager\.io\/cluster-issuer"=${DEVBOX_ISSUER} \
-  --set apiIngress.hostname=minio-s3.$DEVBOX_HOSTNAME \
-  --set apiIngress.ingressClassName=$DEVBOX_INGRESS \
-  --set apiIngress.annotations."cert-manager\.io\/cluster-issuer"=${DEVBOX_ISSUER}
+helm -n minio upgrade --install minio minio-operator/tenant -f ${SCRIPT_DIR}/helm/minio/values.yaml \
+  --set tenant.configSecret.secretKey="$MINIO_ROOT_PASSWORD" \
+  --set tenant.env[0].value="https://minio.$DEVBOX_HOSTNAME"
 
-# Display resources
-kubectl -n minio get pods,svc,ingress
+# Create Ingress with dynamic hostname
+cat <<EOF | kubectl -n minio apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-console
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
+spec:
+  ingressClassName: ${DEVBOX_INGRESS}
+  rules:
+  - host: minio.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: minio-console
+            port:
+              number: 9090
+  tls:
+  - hosts:
+    - minio.$DEVBOX_HOSTNAME
+    secretName: minio-console-cert
+EOF
+
+
+cat <<EOF | kubectl -n minio apply -f -
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: minio-s3
+  annotations:
+    cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
+spec:
+  ingressClassName: ${DEVBOX_INGRESS}
+  rules:
+  - host: minio-s3.$DEVBOX_HOSTNAME
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: minio
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - minio-s3.$DEVBOX_HOSTNAME
+    secretName: minio-s3-cert
+EOF

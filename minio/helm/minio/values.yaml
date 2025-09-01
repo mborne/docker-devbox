@@ -1,15 +1,10 @@
-ingress:
-  enabled: true
-  hostname: minio.dev.localhost
-  ingressClassName: traefik
-  annotations:
-    cert-manager.io/cluster-issuer: mkcert
-  tls: true
-
-apiIngress:
-  enabled: true
-  hostname: minio-s3.dev.localhost
-  ingressClassName: traefik
-  annotations:
-    cert-manager.io/cluster-issuer: mkcert
-  tls: true
+tenant:
+  name: minio
+  certificate:
+    requestAutoCert: false
+  configSecret:
+    accessKey: admin
+    secretKey: ChangeIt # replaced by MINIO_ROOT_PASSWORD
+  env:
+  - name: MINIO_BROWSER_REDIRECT_URL
+    value:  https://minio.dev.localhost

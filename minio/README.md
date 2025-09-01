@@ -10,8 +10,6 @@ Container running [MinIO](https://min.io/) offering S3 compatible object storage
 
 ## Usage with Kubernetes
 
-> Based on [Bitnami Object Storage based on MinIO® helm charts](https://bitnami.com/stack/minio/helm)
-
 * Configure default admin password
 
 ```bash
@@ -39,7 +37,7 @@ Docker :
 
 Kubernetes :
 
-* [github.com - bitnami/charts - MinIO](https://github.com/bitnami/charts/tree/main/bitnami/minio/#readme)
+* [docs.min.io - MinIO - Deploy Operator With Helm](https://docs.min.io/community/minio-object-store/operations/deployments/k8s-deploy-operator-helm-on-kubernetes.html#)
 
 Client usage :
 
