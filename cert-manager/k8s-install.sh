@@ -20,9 +20,12 @@ fi
 kubectl create namespace cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy cert-manager with helm
-helm -n cert-manager upgrade --install cert-manager \
-  oci://registry-1.docker.io/bitnamicharts/cert-manager \
-  --set installCRDs=true
+helm install \
+  cert-manager oci://quay.io/jetstack/charts/cert-manager \
+  --version v1.18.2 \
+  --namespace cert-manager \
+  --create-namespace \
+  --set crds.enabled=true
 
 # Wait for cert-manager pods to be ready
 kubectl -n cert-manager wait \

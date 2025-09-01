@@ -115,5 +115,5 @@ kubectl -n cert-manager logs $(kubectl -n cert-manager get pods -l app.kubernete
 ## Resources
 
 * [cert-manager - Documentation](https://cert-manager.io/docs/)
-* [bitnami.com - cert-manager packaged by Bitnami helm charts](https://bitnami.com/stack/cert-manager/helm)
+* [cert-manager.io - installation - helm](https://cert-manager.io/docs/installation/helm/)
 * [cert-manager.io - Bootstrapping CA Issuers](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers)

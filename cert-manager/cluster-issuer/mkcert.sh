@@ -16,8 +16,19 @@ if ! command -v mkcert &> /dev/null; then
   exit 1
 fi
 
+
 # see https://cert-manager.io/docs/configuration/ca/
 MKCERT_CAROOT=$(mkcert -CAROOT)
+if [ ! -e "$MKCERT_CAROOT/rootCA.pem" ];
+then
+  echo "$MKCERT_CAROOT/rootCA.pem not found"
+  exit 1
+fi
+if [ ! -e "$MKCERT_CAROOT/rootCA-key.pem" ];
+then
+  echo "$MKCERT_CAROOT/rootCA-key.pem not found"
+  exit 1
+fi
 MKCERT_CA_CRT=$(cat "$MKCERT_CAROOT/rootCA.pem" | base64 -w0)
 MKCERT_CA_KEY=$(cat "$MKCERT_CAROOT/rootCA-key.pem" | base64 -w0)
 
