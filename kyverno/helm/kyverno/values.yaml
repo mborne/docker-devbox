@@ -12,14 +12,3 @@ cleanupController:
   replicas: 2
 reportsController:
   replicas: 2
-
-config:
-  webhooks:
-    - namespaceSelector:
-        matchExpressions:
-        - key: kubernetes.io/metadata.name
-          operator: NotIn
-          values:
-            - kube-system
-            - kube-public
-            - kube-node-lease

@@ -1,6 +1,13 @@
 metrics:
   enabled: true
 
+# -- Filter Report resources to process
+reportFilter:
+  namespaces:
+    exclude:
+      - kube-system
+      - prometheus
+
 service:
   annotations:
     prometheus.io/scrape: "true"
