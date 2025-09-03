@@ -22,8 +22,18 @@ fi
 # Create namespace nginx-system if not exists
 kubectl create namespace nginx-system --dry-run=client -o yaml | kubectl apply -f -
 
+helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+
+helm repo update
+
+# helm search repo ingress-nginx
+# NAME                            CHART VERSION   APP VERSION
+# ingress-nginx/ingress-nginx     4.13.2          1.13.2
+
 # Deploy traefik with helm
 helm -n nginx-system upgrade --install nginx \
-  oci://registry-1.docker.io/bitnamicharts/nginx-ingress-controller \
-  -f ${SCRIPT_DIR}/helm/${NGINX_MODE}.yml
+  ingress-nginx/ingress-nginx --version 4.13.2 \
+  -f "${SCRIPT_DIR}/helm/${NGINX_MODE}.yml"
 
+
+  

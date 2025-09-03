@@ -1,29 +1,36 @@
-ingressClassResource:
-  name: nginx
+controller:
+  ingressClass: nginx
 
-nodeSelector:
-  ingress-ready: "true"
+  # config:
+  #   ssl-redirect: "true"
+  #   server-tokens: "false"
+  
+  nodeSelector:
+    ingress-ready: "true"
 
-tolerations:
-  - key: node-role.kubernetes.io/control-plane
-    operator: Equal
-    effect: NoSchedule
-  - key: node-role.kubernetes.io/master
-    operator: Equal
-    effect: NoSchedule
+  tolerations:
+    - key: node-role.kubernetes.io/control-plane
+      operator: Equal
+      effect: NoSchedule
+    - key: node-role.kubernetes.io/master
+      operator: Equal
+      effect: NoSchedule
 
-service:
-  type: NodePort
-  nodePorts:
-    http: 30000
-    https: 30001
-    metrics: 30002
-
-# prometheus
-metrics:
-  enabled: true
   service:
-    type: ClusterIP
+    type: NodePort
+    #allocateLoadBalancerNodePorts: true
     ports:
-      # ATTENTION : port de metrics sur le Pod
-      metrics: 10254
+      http: 80
+      https: 443
+    nodePorts:
+      http: 30000
+      https: 30001
+
+  metrics:
+    enabled: true
+    service:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "10254"
+        prometheus.io/path: "/metrics"
+        prometheus.io/scheme: "http"

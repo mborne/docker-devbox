@@ -1,8 +1,14 @@
 # nginx-ingress-controller
 
-Deploy [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/) using [bitnami's helm chart](https://bitnami.com/stack/nginx-ingress-controller/helm).
+Deploy [NGINX Ingress Controller](https://docs.nginx.com/nginx-ingress-controller/).
+
+## Usage with Docker
+
+Not implemented. See [Traefik](../traefik/README.md) or [jwilder/nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy).
 
 ## Usage with Kubernetes
+
+> **WARNING** : A service of type LoadBalancer will be created and a public IP will be claimed. See [Usage with Kind](#usage-with-kind) to deploy a NodePort service with local port mapping.
 
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
@@ -28,4 +34,5 @@ NGINX_MODE=kind bash k8s-install.sh
 
 ## Resources
 
-* [github.com - bitnami/nginx-ingress-controller](https://github.com/bitnami/charts/tree/main/bitnami/nginx-ingress-controller/#nginx-ingress-controller-packaged-by-bitnami)
+* [kubernetes.github.io - Ingress-Nginx Controller](https://kubernetes.github.io/ingress-nginx)
+* [kubernetes.github.io - ingress-nginx - Installation Guide / QuickStart](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
