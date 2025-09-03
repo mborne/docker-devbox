@@ -18,6 +18,8 @@ See also :
 
 ## Usage with Kubernetes
 
+> **WARNING** : A service of type LoadBalancer will be created and a public IP will be claimed. See [Usage with Kind](#usage-with-kind) to deploy a NodePort service with local port mapping.
+
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
