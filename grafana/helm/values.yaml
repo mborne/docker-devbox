@@ -10,6 +10,9 @@ sidecar:
 deploymentStrategy:
   type: Recreate
 
+initChownData:
+  enabled: false
+
 datasources:
  datasources.yaml:
    apiVersion: 1
@@ -99,6 +102,12 @@ dashboards:
     x509-certificate-exporter:
       gnetId: 13922
       revision: 4
+      datasource: Prometheus
+      editable: true
+    # https://grafana.com/grafana/dashboards/14314-kubernetes-nginx-ingress-controller-nextgen-devops-nirvana/
+    nginx-ingress-controller:
+      gnetId: 14314
+      revision: 2
       datasource: Prometheus
       editable: true
 
