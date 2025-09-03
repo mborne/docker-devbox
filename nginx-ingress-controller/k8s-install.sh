@@ -35,5 +35,9 @@ helm -n nginx-system upgrade --install nginx \
   ingress-nginx/ingress-nginx --version 4.13.2 \
   -f "${SCRIPT_DIR}/helm/${NGINX_MODE}.yml"
 
-
-  
+# Wait for pods
+echo "wait for nginx Pods..."
+kubectl -n nginx-system wait \
+    --for=condition=ready pod \
+    --selector=app.kubernetes.io/name=ingress-nginx \
+    --timeout=90s
