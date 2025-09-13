@@ -4,6 +4,13 @@ minio:
 loki:
   auth_enabled: false
   useTestSchema: true
+  compactor:
+    retention_enabled: true
+    compaction_interval: 10m
+    retention_delete_delay: 2h
+    retention_delete_worker_count: 150
+  limits_config:
+    retention_period: 2160h  # 90 days
 
 chunksCache:
   enabled: false

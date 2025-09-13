@@ -23,12 +23,18 @@ helm repo add grafana https://grafana.github.io/helm-charts
 # Update helm repositories
 helm repo update
 
+# helm search repo grafana/loki
+# NAME                            CHART VERSION   APP VERSION
+# grafana/loki                    6.38.0          3.5.3
+LOKI_CHART_VERSION=6.38.0
+
 # Create namespace loki if not exists
 kubectl create namespace loki --dry-run=client -o yaml | kubectl apply -f -
 
 # Install grafana
-helm -n loki upgrade --install loki grafana/loki \
-    -f ${SCRIPT_DIR}/helm/loki/values.yaml
+helm -n loki upgrade --install loki \
+  grafana/loki --version=$LOKI_CHART_VERSION \
+  -f ${SCRIPT_DIR}/helm/loki/values.yaml
 
 # Install promtail
 helm -n loki upgrade --install promtail grafana/promtail
