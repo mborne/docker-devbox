@@ -10,7 +10,7 @@ config:
 
     # Setting network.host to a non-loopback address enables the annoying bootstrap checks. "Single-node" mode disables them again.
     # Implicitly done if ".singleNode" is set to "true".
-    discovery.type: single-node
+    # discovery.type: single-node
     # https://stackoverflow.com/a/72789668/28740388
     # bootstrap.memory_lock: true
 
@@ -25,6 +25,18 @@ resources:
     memory: "1024Mi"
 
 opensearchJavaOpts: "-Xmx512M -Xms512M"
+
+securityContext:
+  capabilities:
+    drop:
+      - ALL
+  # readOnlyRootFilesystem: true
+  allowPrivilegeEscalation: false
+  runAsNonRoot: true
+  runAsUser: 1000
+
+persistence:
+  enableInitChown: false
 
 extraEnvs:
   # - name: OPENSEARCH_INITIAL_ADMIN_PASSWORD
