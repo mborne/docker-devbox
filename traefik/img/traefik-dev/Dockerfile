@@ -1,4 +1,4 @@
-FROM traefik:v2.11
+FROM traefik:v3.5.2
 
 RUN mkdir -p /etc/traefik
 COPY config /etc/traefik/.
