@@ -5,17 +5,15 @@ services:
     image: ghcr.io/open-webui/open-webui:cuda
     container_name: open-webui
     ports:
-    - 3000:8080
+    - 8080:8080
     environment:
     - WEBUI_AUTH=False
     - OLLAMA_BASE_URL=${OLLAMA_BASE_URL}
     - GLOBAL_LOG_LEVEL="DEBUG"
     # add pipelines
-    - OPENAI_API_BASE_URL=https://api.openai.com/v1;http://pipelines:9099
-    - OPENAI_API_KEYS=${OPENAI_API_KEY};${PIPELINES_API_KEY}
     - HTTP_PROXY
     - HTTPS_PROXY
-    - NO_PROXY=ollama,pipelines,$NO_PROXY
+    - NO_PROXY=ollama,${NO_PROXY:-localhost}
     volumes:
     - open-webui:/app/backend/data
     deploy:
@@ -33,25 +31,9 @@ services:
       - "traefik.http.services.open-webui-service.loadbalancer.server.port=8080"
     restart: unless-stopped
 
-  # https://docs.openwebui.com/pipelines/#-quick-start-with-docker
-  # https://ikasten.io/2024/06/03/getting-started-with-openwebui-pipelines/
-  # https://raw.githubusercontent.com/open-webui/pipelines/main/examples/filters/function_calling_filter_pipeline.py
-  pipelines:
-    image: ghcr.io/open-webui/pipelines:main
-    container_name: pipelines
-    ports:
-    - 9099:9099
-    environment:
-    - PIPELINES_API_KEY=${PIPELINES_API_KEY}
-    volumes:
-    - pipelines:/app/pipelines
-    restart: unless-stopped
-
 volumes:
   open-webui:
     name: open-webui
-  pipelines:
-    name: pipelines
 
 networks:
   default:
