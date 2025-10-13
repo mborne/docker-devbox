@@ -8,7 +8,7 @@ Some usage examples in Python to discover its features.
 
 ## Examples
 
-* [db.py](db.py) provides redis client instance as "r"
+* [db.py](db.py) handles parameters and provides redis client instance as "r"
 * [01-string.py](01-string.py) - [String](https://redis.io/docs/latest/develop/data-types/strings/) - `SET`, `GET`, `SETNX`, `INCR`, `EXPIRE`
 
 ```bash
