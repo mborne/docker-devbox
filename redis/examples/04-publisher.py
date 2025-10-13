@@ -1,6 +1,5 @@
-import time
 from db import r
 
 while True:
-    msg = input("Message à publier : ")
+    msg = input("Input message : ")
     r.publish("news", msg)

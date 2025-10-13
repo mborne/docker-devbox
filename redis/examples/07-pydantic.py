@@ -11,42 +11,41 @@ class User(BaseModel):
     tags: List[str] = Field(default_factory=list)
 
 def save_user(user: User):
-    """Sauvegarde un utilisateur en JSON."""
+    """Store user in JSON."""
     r.execute_command("JSON.SET", f"user:{user.id}", "$", user.model_dump_json())
 
 def get_user(user_id: str) -> User:
-    """Récupère un utilisateur et le reconstruit en objet Pydantic."""
+    """Retrieve and fetch user."""
     json_str = r.execute_command("JSON.GET", f"user:{user_id}")
     return User.model_validate_json(json_str)
 
 def update_age(user_id: str, new_age: int):
-    """Met à jour un champ spécifique dans le JSON."""
+    """Update a specific field."""
     r.execute_command("JSON.SET", f"user:{user_id}", "$.age", new_age)
 
 def delete_user(user_id: str):
-    """Supprime la clé."""
+    """Remove user"""
     r.delete(f"user:{user_id}")
 
 
 alice = User(id="1", name="Alice", age=30, email="alice@example.com", tags=["admin", "beta"])
 save_user(alice)
-print("✅ Utilisateur 1 enregistré")
+print("✅ Stored user 1")
 
 robert = User.model_validate_json('{"id":"2","name":"Robert","age":40,"email":"robert@example.com","tags":["alpha"]}')
 save_user(robert)
-print("✅ Utilisateur 2 enregistré")
+print("✅ Stored user 2")
 
 u1 = get_user("1")
-print("👤 Rechargé depuis Redis :", u1)
-print("Nom :", u1.name, "| Âge :", u1.age)
+print("👤 User 1 from Redis :", u1)
+print("Name :", u1.name, "| Age :", u1.age)
 
 u2 = get_user("2")
-print("👤 Rechargé depuis Redis :", u2)
-print("Nom :", u2.name, "| Âge :", u2.age)
+print("👤 User 2 from Redis :", u2)
 
 update_age("1", 31)
-print("🧓 Âge mis à jour :", get_user("1").age)
+print("🧓 Updated age for user 1 :", get_user("1").age)
 
 delete_user("1")
-print("🚮 Existe encore ?", r.exists("user:1"))
+print("🚮 user:1 exists ?", r.exists("user:1"))
 

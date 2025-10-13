@@ -3,11 +3,13 @@
 from db import r
 
 r.hset("user:1", mapping={"username": "jdoe", "birth_date": "1984-01-01"})
+
+# has visite counter expired?
 active = False
 if r.hget("user:1","visite") is not None:
     active = True
-
 print("Active : ", active)
+
 r.hincrby("user:1", "visite", 1)
 r.hexpire("user:1", 5, "visite")
 

@@ -4,13 +4,13 @@ Container running [redis](https://redis.io/).
 
 ## Usage with docker
 
-* Start : `REDIS_PASSWORD=ChangeIt docker compose up -d`
+* Start : `docker compose up -d`
 * Note that redis is exposed on port 6379
 * Test with embedded redis-cli : `docker exec -ti redis redis-cli`
 
-```
-127.0.0.1:6379> AUTH ChangeIt
-OK
+```bash
+#127.0.0.1:6379> AUTH ChangeIt
+#OK
 127.0.0.1:6379> ping
 PONG
 127.0.0.1:6379> set mykey somevalue
@@ -38,7 +38,10 @@ REDIS_PASSWORD=ChangeIt bash k8s-install.sh
 * [redis.io - Documentation](https://redis.io/docs/) which includes [Getting started with Redis](https://redis.io/docs/getting-started/)
 * [redis.io - Commands](https://redis.io/commands/)
 * [geshan.com.np - Using Redis with docker and docker-compose for local development a step-by-step tutorial](https://geshan.com.np/blog/2022/01/redis-docker/)
-* [github.com - bitnami/redis](https://github.com/bitnami/charts/tree/main/bitnami/redis#bitnami-package-for-redisr)
+
+Client usage with Python :
+
+* [redis/examples](examples/README.md)
 
 Client usage with PHP :
 
