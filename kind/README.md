@@ -61,8 +61,9 @@ An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to gen
 export KIND_WORKER_COUNT=5
 # enable OIDC auth on Kubernetes API 
 export KIND_OIDC_ISSUER_URL=https://keycloak.quadtreeworld.net/realms/master
-# use a mirror for dockerhub (WARNING : ADAPT TO USE YOURS!)
-export DOCKERHUB_PROXY=https://docker-mirror.quadtreeworld.net
+# IMPORTANT : Use a mirror for DockerHub (ex : mirror.gcr.io from Google)
+# see also : https://docs.docker.com/docker-hub/image-library/mirror/#run-a-registry-as-a-pull-through-cache
+export DOCKERHUB_PROXY=https://mirror.gcr.io
 # Install custom CNI (required for NetworkPolicies)
 # default, calico or canal
 export KIND_CNI=calico
