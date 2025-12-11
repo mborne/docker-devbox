@@ -30,7 +30,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: "mkcert"
 spec:
-  ingressClassName: nginx
+  ingressClassName: traefik
   rules:
   - host: whoami.dev.localhost
     http:

@@ -40,7 +40,6 @@ metadata:
   name: kubernetes-dashboard
   annotations:
     cert-manager.io/cluster-issuer: "${DEVBOX_ISSUER}"
-    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     traefik.ingress.kubernetes.io/service.serversscheme: https
     traefik.ingress.kubernetes.io/router.tls: "true"
 spec:

@@ -19,7 +19,7 @@ For each stack supporting K8S deployment, a `k8s-deploy.sh` helper script is pro
 
 Stacks are created assuming the :
 
-* [traefik](../traefik/README.md) or [nginx-ingress-controller](../nginx-ingress-controller/README.md) is deployed
+* [traefik](../traefik/README.md) is deployed
 * [cert-manager](../cert-manager/README.md) is deployed with a ClusterIssuer (see helper scripts to create "mkcert", "letsencrypt-http" or "letsencrypt-dns")
 
 The following environment variables provides some option for [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) resources creation :

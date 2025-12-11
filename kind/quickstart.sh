@@ -60,11 +60,11 @@ bash "${DEVBOX_DIR}/cert-manager/k8s-install.sh"
 # Install ingress controller
 #----------------------------------------------------------------------------------
 export DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
-if [ "$DEVBOX_INGRESS" != "traefik" ];
+if [ "$DEVBOX_INGRESS" == "traefik" ];
 then
-    NGINX_MODE=kind bash "${DEVBOX_DIR}/nginx-ingress-controller/k8s-install.sh"
-else
     TRAEFIK_MODE=kind bash "${DEVBOX_DIR}/traefik/k8s-install.sh"
+else
+    echo "skip traefik installation (DEVBOX_INGRESS=${DEVBOX_INGRESS})"
 fi
 
 #----------------------------------------------------------------------------------
