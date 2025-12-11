@@ -101,7 +101,6 @@ Option 2 (variant of the famous ELK stack) :
 ### Mailing
 
 * [Mailpit](mailpit/README.md) : Email & SMTP testing tool with API for developers (docker only)
-* [MailHog](mailhog/README.md) : **SMTP testing server** providing with an API to retrieve emails ([no ](https://github.com/mailhog/MailHog/issues/442#issuecomment-1493415258))
 * [mailer](mailer/README.md) : SMTP relay based on [namshi/smtp](https://hub.docker.com/r/namshi/smtp) image to **send emails using a google account** (docker only)
 
 ### Miscellaneous
