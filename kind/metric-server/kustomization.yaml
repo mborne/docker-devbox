@@ -2,7 +2,7 @@
 
 resources:
   # https://github.com/kubernetes-sigs/metrics-server/tags
-  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.7.2/components.yaml
+  - https://github.com/kubernetes-sigs/metrics-server/releases/download/v0.8.0/components.yaml
 
 patches:
   - patch: |-

@@ -28,17 +28,18 @@ echo "# - KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS}"
 # Allows to select Kubernetes Version, see:
 # - https://kind.sigs.k8s.io/docs/user/configuration/#kubernetes-version 
 # - https://github.com/kubernetes-sigs/kind/releases
-KIND_IMAGE=${KIND_IMAGE:-kindest/node:v1.32.8@sha256:abd489f042d2b644e2d033f5c2d900bc707798d075e8186cb65e3f1367a9d5a1}
+KIND_IMAGE=${KIND_IMAGE:-kindest/node:v1.33.4@sha256:25a6018e48dfcaee478f4a59af81157a437f15e6e140bf103f85a2e7cd0cbbf2}
 
 # Allows to use another CNI like canal
 KIND_CNI=${KIND_CNI:-default}
 echo "# - KIND_CNI=${KIND_CNI}"
-if [ "$KIND_CNI" != "default" ] || [ "$KIND_CNI" != "disabled" ];
+if [ "$KIND_CNI" != "default" ] && [ "$KIND_CNI" != "disabled" ];
 then
-  DISABLE_DEFAULT_CNI=true
+  DISABLE_DEFAULT_CNI=1
 else
-  DISABLE_DEFAULT_CNI=false
+  DISABLE_DEFAULT_CNI=0
 fi
+echo "# - DISABLE_DEFAULT_CNI=${DISABLE_DEFAULT_CNI}"
 
 #----------------------------------------
 # Generate kind config
@@ -52,10 +53,15 @@ networking:
   ipFamily: ipv4
   apiServerAddress: "127.0.0.1"
   apiServerPort: 6443
+EOF
+if [ $DISABLE_DEFAULT_CNI == 1 ];
+then
+cat <<EOF
   podSubnet: "10.244.0.0/16"
   serviceSubnet: "10.96.0.0/12"
-  disableDefaultCNI: $DISABLE_DEFAULT_CNI
+  disableDefaultCNI: true
 EOF
+fi
 
 if [ ! -z "$DOCKERHUB_PROXY" ];
 then

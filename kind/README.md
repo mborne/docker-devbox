@@ -72,7 +72,6 @@ export KIND_CNI=calico
 bash kind/config/generate.sh
 ```
 
-
 ## Ressources
 
 * [kind.sigs.k8s.io - Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start/)
@@ -80,5 +79,3 @@ bash kind/config/generate.sh
     * [config/ingress-ready.yaml](config/ingress-ready.yaml)
     * [traefik - Usage with Kind](../traefik/README.md#usage-with-kind)
     * [nginx-ingress-controller - Usage with Kind](../nginx-ingress-controller/README.md#usage-with-kind)
-* [kind.sigs.k8s.io - Installing MetalLB using default manifests](https://kind.sigs.k8s.io/docs/user/loadbalancer/#installing-metallb-using-default-manifests)
-  * See [metallb-install.sh](metallb-install.sh) where a ".0/24" subnet is required for kind
