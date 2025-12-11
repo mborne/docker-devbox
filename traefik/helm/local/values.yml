@@ -3,9 +3,7 @@
 # see https://github.com/traefik/traefik-helm-chart/blob/master/traefik/values.yaml
 #------------------------------------------------------------------------------------------
 
-globalArguments:
-  - "--global.checknewversion"
-  - "--global.sendanonymoususage"
+additionalArguments:
   # added for kubernetes dashboard
   - "--serversTransport.insecureSkipVerify=true"
 

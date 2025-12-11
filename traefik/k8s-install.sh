@@ -24,8 +24,11 @@ helm repo update
 kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy traefik with helm
+# helm search repo traefik/traefik
+CHART_VERSION=37.4.0 # APP_VERSION=v3.6.2
 helm -n traefik-system upgrade --install traefik traefik/traefik \
-  -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}/values.yml
+  -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}/values.yml \
+  --version $CHART_VERSION
 
 # Create Certificate using cert-manager
 cat <<EOF | kubectl -n traefik-system apply -f -
