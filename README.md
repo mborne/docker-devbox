@@ -106,7 +106,6 @@ Option 2 (variant of the famous ELK stack) :
 
 ### Miscellaneous
 
-* [Wordpress](wordpress/README.md) (docker only)
 * [Matomo](matomo/README.md) : "Google Analytics alternative" (docker only)
 
 ## License
