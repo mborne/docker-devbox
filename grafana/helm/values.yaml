@@ -104,12 +104,7 @@ dashboards:
       revision: 4
       datasource: Prometheus
       editable: true
-    # https://grafana.com/grafana/dashboards/14314-kubernetes-nginx-ingress-controller-nextgen-devops-nirvana/
-    nginx-ingress-controller:
-      gnetId: 14314
-      revision: 2
-      datasource: Prometheus
-      editable: true
+
 
 # downloadDashboards:
 #   env:

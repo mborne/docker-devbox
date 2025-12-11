@@ -28,8 +28,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 ### Load balancer and reverse proxy
 
 * [traefik](traefik/README.md) : A reverse proxy including **configuration discovery** mechanism.
-* [nginx-ingress-controller](nginx-ingress-controller/README.md) : A common alternative to [Traefik](traefik/README.md) (**K8S only**).
-* [whoami](whoami/README.md) : An helloworld app to test [traefik](traefik/README.md) or [nginx-ingress-controller](nginx-ingress-controller/README.md).
+* [whoami](whoami/README.md) : An helloworld app to test [traefik](traefik/README.md).
 * [cert-manager](cert-manager/README.md) :  An helper to generate TLS certificates from various issuers including LetsEncrypt (**K8S only**)
 
 ### Container UI

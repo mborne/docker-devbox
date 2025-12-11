@@ -58,10 +58,6 @@ Prometheus & Kubernetes :
 * [315 - Kubernetes cluster monitoring (via Prometheus)](https://grafana.com/grafana/dashboards/315-kubernetes-cluster-monitoring-via-prometheus/)
 * [15758 - Kubernetes / Views / Namespaces](https://grafana.com/grafana/dashboards/15758-kubernetes-views-namespaces/)
 
-Nginx Ingress Controller :
-
-* [12575 - Kubernetes Ingress Controller Dashboard](https://grafana.com/grafana/dashboards/12575-kubernetes-ingress-controller-dashboard/)
-
 Loki :
 
 * [13639 - Logs App](https://grafana.com/grafana/dashboards/13639-logs-app/) for Docker
