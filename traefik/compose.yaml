@@ -2,16 +2,19 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik-dev:latest
-    build: img/traefik-dev
+    image: traefik:v3.6.4
     ports:
      - "80:80"
      - "443:443"
     environment:
       - DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.dashboard.rule=Host(`traefik.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.dashboard.service=api@internal"
     volumes:
       - traefik-certs:/certs:rw
-      - traefik-config:/etc/traefik:rw
+      - ./config:/etc/traefik:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
     privileged: true
     # bypass userns-remap
@@ -19,8 +22,6 @@ services:
     restart: unless-stopped
 
 volumes:
-  traefik-config:
-    name: traefik-config
   traefik-certs:
     name: traefik-certs
 

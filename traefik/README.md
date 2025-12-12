@@ -6,7 +6,6 @@ Container running [traefik proxy](https://doc.traefik.io/traefik/) **for DEV pur
 
 ## Usage with docker
 
-* Build [mborne/traefik-dev](img/traefik-dev/README.md) image : `docker compose build --pull`
 * Start traefik : `docker compose up -d`
 * See [http://traefik.dev.localhost](http://traefik.dev.localhost) for web-ui
 * Run [whoami](../whoami/README.md) to test traefik
@@ -14,7 +13,6 @@ Container running [traefik proxy](https://doc.traefik.io/traefik/) **for DEV pur
 See also :
 
 * [Using mkcert to generate traefik certificates](mkcert.md)
-* [mborne/traefik-dev](img/traefik-dev/README.md) to customize traefik config.
 
 ## Usage with Kubernetes
 
