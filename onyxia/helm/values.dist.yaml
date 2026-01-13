@@ -1,0 +1,413 @@
+ingress:
+  enabled: false
+  # The name of the Ingress Class associated with this ingress
+  ingressClassName: ""
+  annotations:
+    {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+route:
+  enabled: false
+  annotations: {} # route.openshift.io/termination: "reencrypt"
+  host: chart-example.local
+  tls:
+    termination: edge
+    # key:
+    # certificate:
+    # caCertificate:
+    # destinationCACertificate:
+  wildcardPolicy: None
+
+web:
+  name: web
+  replicaCount: 1
+  image:
+    repository: inseefrlab/onyxia-web
+    tag: 4.57.3
+    pullPolicy: IfNotPresent
+
+  ## Pod priority settings
+  ## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+  ##
+  priorityClassName: ""
+
+  podLabels: {}
+  podSecurityContext: {} # fsGroup: 2000
+  securityContext:
+    {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  containerPort: 8080
+  service:
+    type: ClusterIP
+    port: 80
+  resources:
+    #limits:
+    requests:
+      cpu: 200m
+      memory: 128Mi
+  extraVolumes: []
+  extraVolumeMounts: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  env:
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+  livenessProbe:
+    enabled: true
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  readinessProbe:
+    enabled: true
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  startupProbe:
+    enabled: false
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+api:
+  name: api
+  replicaCount: 1
+  image:
+    repository: inseefrlab/onyxia-api
+    tag: v4.11.0
+    pullPolicy: IfNotPresent
+  contextPath: /api
+
+  hostAliases: []
+
+  imagePullSecrets: []
+
+  ## Pod priority settings
+  ## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+  ##
+  priorityClassName: ""
+
+  podLabels: {}
+  podSecurityContext: {} # fsGroup: 2000
+  securityContext:
+    {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  containerPort: 8080
+  service:
+    type: ClusterIP
+    port: 80
+  resources:
+    #limits:
+    requests:
+      cpu: 1
+      memory: 1Gi
+  extraVolumes: []
+  extraVolumeMounts: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+  env: #authentication.mode: "openidconnect"
+  regions:
+    #[
+    #   {
+
+  #     "regionId": "kub",
+  #     "type": "KUBERNETES",
+  #     "namespace-prefix": "user-",
+  #     "publish-domain": "fakedomain.kub.example.com",
+  #     "cloudshell": {
+  #       "catalogId": "inseefrlab-helm-charts-datascience",
+  #       "packageName": "cloudshell"
+  #     }
+  #   }
+  # ]
+  catalogs:
+    # [
+    #   {
+    #     "id": "inseefrlab-helm-charts-datascience",
+    #     "name": "Inseefrlab datascience",
+    #     "description": "Services for datascientists. https://github.com/InseeFrLab/helm-charts-datascience",
+    #     "maintainer": "innovation@insee.fr",
+    #     "location": "https://inseefrlab.github.io/helm-charts-datascience",
+    #     "status": "PROD",
+    #     "type": "helm",
+    #   }
+    # ]
+  userProfile:
+    # See https://docs.onyxia.sh/admin-doc/catalog-of-services/customize-your-charts/declarative-user-profile
+    enabled: false
+    rootPath: /userProfile/
+    subPathDefault: default
+    subPathRole: role
+    default:
+      # profileSchema: |
+      #   {
+      #     "type": "object",
+      #     "properties": {
+      #       "generalInfo": {
+      #         "type": "object",
+      #         "description": "General profile information",
+      #         "properties": {
+      #           "firstName": {
+      #             "type": "string",
+      #             "title": "First name",
+      #             "x-onyxia": {
+      #               "overwriteDefaultWith": "{{user.decodedIdToken.given_name}}"
+      #             },
+      #             "description": "Your first name"
+      #           },
+      #           "familyName": {
+      #             "type": "string",
+      #             "title": "Family name",
+      #             "x-onyxia": {
+      #               "overwriteDefaultWith": "{{user.decodedIdToken.family_name}}"
+      #             },
+      #             "description": "Your family name"
+      #           },
+      #           "email": {
+      #             "type": "string",
+      #             "title": "Email",
+      #             "x-onyxia": {
+      #               "overwriteDefaultWith": "{{user.decodedIdToken.email}}"
+      #             },
+      #             "description": "Your email address"
+      #           }
+      #         }
+      #       },
+      #       "git": {
+      #         "type": "object",
+      #         "description": "Git configuration",
+      #         "properties": {
+      #           "username": {
+      #             "type": "string",
+      #             "title": "Git username",
+      #             "x-onyxia": {
+      #               "overwriteDefaultWith": "{{git.name}}"
+      #             },
+      #             "description": "Your username for git operations (e.g. git commit, git push)"
+      #           },
+      #           "email": {
+      #             "type": "string",
+      #             "title": "Git email",
+      #             "description": "Your username for git operations (e.g. git commit, git push)",
+      #             "x-onyxia": {
+      #               "overwriteDefaultWith": "{{git.email}}"
+      #             }
+      #           }
+      #         }
+      #       }
+      #     }
+      #   }
+    roles:
+      #- roleName: datascientist
+      #  profileSchema: |
+      #    ...
+  schemas:
+    enabled: false
+    rootPath: /schemas/
+    subPathDefault: default
+    subPathRole: role
+    roles:
+      #  - roleName: datascientist
+      #    files:
+      #      - relativePath: nodeSelector.json
+      #        content: |
+      #  {
+      #    "$schema": "http://json-schema.org/draft-07/schema#",
+      #    "title": "Node Selector",
+      #    "type": "object",
+      #    "properties": {
+      #      "disktype": {
+      #        "description": "The type of disk",
+      #        "type": "string",
+      #        "enum": ["ssd", "hdd"]
+      #      },
+      #      "gpu": {
+      #        "description": "The type of GPU",
+      #        "type": "string",
+      #        "enum": ["A2", "H100"]
+      #      }
+      #    },
+      #    "additionalProperties": false
+      #  }
+    files:
+      []
+      # - relativePath: nodeSelector.json
+      #   content: |
+      #  {
+      #    "$schema": "http://json-schema.org/draft-07/schema#",
+      #    "title": "Node Selector",
+      #    "type": "object",
+      #    "properties": {
+      #      "disktype": {
+      #        "description": "The type of disk",
+      #        "type": "string",
+      #        "enum": ["ssd", "hdd"]
+      #      }
+      #    },
+      #    "additionalProperties": false
+      #  }
+  livenessProbe:
+    enabled: true
+    path: /public/healthcheck
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  readinessProbe:
+    enabled: true
+    path: /public/healthcheck
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  startupProbe:
+    enabled: false
+    path: /public/healthcheck
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # If true, the created service account is bound to a ClusterRole (default : cluster-admin) ;
+    # if false, it is instead bound to the admin Role, and thus scoped to the namespace
+    clusterAdmin: false
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: # Boolean to indicate whether the service account token must be injected into the pod or not. It can be deactivated if Onyxia doesn't use it.
+
+    automountServiceAccountToken: true
+
+onboarding:
+  enabled: false
+  name: onboarding
+  replicaCount: 1
+  image:
+    repository: inseefrlab/onyxia-onboarding
+    tag: "0.1.10"
+    pullPolicy: IfNotPresent
+
+  hostAliases: []
+
+  imagePullSecrets: []
+
+  ## Pod priority settings
+  ## ref: https://kubernetes.io/docs/concepts/configuration/pod-priority-preemption/
+  ##
+  priorityClassName: ""
+
+  podLabels: {}
+  podSecurityContext: {} # fsGroup: 2000
+  securityContext:
+    {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+  containerPort: 8080
+  service:
+    type: ClusterIP
+    port: 80
+  resources:
+    #limits:
+    requests:
+      cpu: 200m
+      memory: 128Mi
+  extraVolumes: []
+  extraVolumeMounts: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+  env: {}
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Automatically mount a ServiceAccount's API credentials?
+    automount: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+  clusterRole:
+    create: true
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+    rules:
+      - apiGroups: [ "" ]
+        resources: [ "namespaces" ]
+        verbs: [ "create", "patch" ]
+      - apiGroups: [ "" ]
+        resources: [ "resourcequotas" ]
+        verbs: [ "get", "create", "update" ]
+
+  clusterRoleBinding:
+    # If true, a ClusterRoleBinding will be created
+    create: true
+    # Optional: override the name of the ClusterRoleBinding (default is the Helm fullname)
+    name: ""
+    # Required if clusterRole.create is false. Must point to an existing ClusterRole name.
+    clusterRoleName: ""
+
+  livenessProbe:
+    enabled: true
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  readinessProbe:
+    enabled: true
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+  startupProbe:
+    enabled: false
+    path: /
+    failureThreshold: 3
+    periodSeconds: 10
+    successThreshold: 1
+    timeoutSeconds: 1
+

@@ -1,0 +1,59 @@
+ingress:
+  enabled: true
+  className: traefik
+  hosts:
+    - host: onyxia.dev.localhost
+
+# https://gitlab.ifca.es/eosc-siesta/onyxia/onyxia-values/-/blob/main/onyxia-values.yaml?ref_type=heads
+
+api:
+  env:
+    authentication.mode: "openidconnect"
+    oidc.issuer-uri: "https://keycloak.quadtreeworld.net/realms/master"
+    oidc.clientID: "onyxia"
+    admin.enabled: true
+    oidc.username-claim: "sub"
+    security.cors.allowed_origins: "http://localhost:5173, https://onyxia.dev.localhost, http://onyxia.dev.localhost"
+  regions: [
+    {
+      "id": "kub",
+      "name": "Kubernetes (in-cluster)",
+      "description": "The in-cluster Kubernetes region.",
+      "onyxiaAPI": {
+        "baseURL": "http://onyxia.dev.localhost/api"
+      },
+      "services": {
+        "type": "KUBERNETES",
+        "allowNamespaceCreation": true,
+        # "namespaceLabels": {
+        #   "zone": "prod"
+        # },
+        # "namespaceAnotations": {
+        #   "zone": "prod"
+        # },
+        "singleNamespace": false,
+        "userNamespace": true,
+        "namespacePrefix": "user-",
+        "usernamePrefix": "oidc-",
+        "groupNamespacePrefix": "projet-",
+        # "authenticationMode": "serviceAccount",
+        "namespaceAnnotationsDynamic": {
+          "enabled": true,
+          "userAttributes": ["sub", "email"]
+        },
+        "expose": {
+          "domain": "lab.localhost",
+          "ingressClassName": "traefik",
+          "ingress": true,
+          "route": false,
+          "certManager": {
+            "useCertManager": false,
+            "certManagerClusterIssuer": ""
+          }
+        },
+        "auth": {
+         "type": "openidconnect"
+        }
+      }
+    }
+  ]
