@@ -1,0 +1,16 @@
+---
+# requestedScopes: ["openid", "profile", "email", "groups"]
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-cm
+data:
+  url: https://argocd.dev.localhost
+  oidc.config: |
+    name: Keycloak
+    issuer: https://keycloak.quadtreeworld.net/realms/master
+    clientID: argocd
+    clientSecret: $oidc.keycloak.clientSecret
+    refreshTokenThreshold: 2m
+    requestedScopes: ["openid"]
+    

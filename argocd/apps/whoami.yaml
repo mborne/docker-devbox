@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: whoami
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    chart: whoami
+    repoURL: ghcr.io/mborne/helm-charts  # note: the oci:// syntax is not included.
+    targetRevision: 0.2.0
+    helm:
+      # helm show values oci://ghcr.io/mborne/helm-charts/whoami
+      values: |
+        replicaCount: 3
+        ingress:
+          enabled: true
+          className: "traefik"
+          annotations:
+            cert-manager.io/cluster-issuer: selfsigned
+          hosts:
+            - host: whoami.dev.localhost
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls:
+           - secretName: whoami-tls
+             hosts:
+               - whoami.dev.localhost
+  destination:
+    name: "in-cluster"
+    namespace: whoami
+
