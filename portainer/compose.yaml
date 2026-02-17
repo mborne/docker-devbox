@@ -6,10 +6,15 @@ services:
       - no-new-privileges:true
     # ports:
     #   - 9000:9000
+    environment:
+      - HTTP_PROXY
+      - HTTPS_PROXY
     volumes:
       - portainer-data:/data
       - /etc/localtime:/etc/localtime:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    # bypass userns-remap
+    userns_mode: 'host'
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.portainer.rule=Host(`portainer.${DEVBOX_HOSTNAME}`)"
