@@ -10,7 +10,7 @@ Containers running [OpenSearch](https://opensearch.org/) and [OpenSearch Dashboa
 
 ## Usage with docker
 
-**WARNING** : Read [docker-compose.yml](docker-compose.yml) and note that **security is disabled**!
+**WARNING** : Read [compose.yaml](compose.yaml) and note that **security is disabled**!
 
 * Start containers : `docker compose up -d`
 * Open https://os-dashboard.dev.localhost/

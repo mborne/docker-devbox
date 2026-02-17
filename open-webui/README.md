@@ -8,7 +8,7 @@ Container running [Open WebUI](https://github.com/open-webui/open-webui?tab=read
 
 ## Usage with docker
 
-* Ensure that GPU support is enabled in docker (or adapt [docker-compose.yaml](docker-compose.yaml)) :
+* Ensure that GPU support is enabled in docker (or adapt [compose.yaml](compose.yaml)) :
 
 ```bash
 docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark

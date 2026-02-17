@@ -4,7 +4,7 @@ Container running [fluent-bit](https://docs.fluentbit.io/manual/installation/doc
 
 ## Usage with docker
 
-* Read [docker-compose.yaml](docker-compose.yaml) and [config/fluent-bit.conf](config/fluent-bit.conf)
+* Read [compose.yaml](compose.yaml) and [config/fluent-bit.conf](config/fluent-bit.conf)
 * Ensure that [openseach](../opensearch/README.md) is running
 * Start fluent-bit : `docker compose up -d`
 * [Configure logging driver](https://docs.docker.com/config/containers/logging/configure/) to use either **journald or fluentd driver**

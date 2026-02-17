@@ -56,7 +56,7 @@ docker compose up -d
 
 To ease **IP whitelisting** and **avoid the requirement to share the same network** between traefik and exposed containers, note that **traefik can be installed as a systemd service**.
 
-An alternative consists in using `network_mode: 'host'` on [traefik/docker-compose.yml](../traefik/docker-compose.yml).
+An alternative consists in using `network_mode: 'host'` on [traefik/compose.yaml](../traefik/compose.yaml).
 
 In both cases :
 
