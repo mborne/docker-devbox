@@ -1,0 +1,40 @@
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: pvc-smb
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: smb
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: demo-smb
+  name: demo-smb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-smb
+  template:
+    metadata:
+      labels:
+        app: demo-smb
+    spec:
+      containers:
+      - image: ghcr.io/mborne/terminal:latest
+        name: terminal
+        resources: {}
+        volumeMounts:
+        - mountPath: /data
+          name: data
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: pvc-smb

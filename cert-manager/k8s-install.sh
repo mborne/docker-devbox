@@ -19,10 +19,13 @@ fi
 # Create namespace cert-manager if not exists
 kubectl create namespace cert-manager --dry-run=client -o yaml | kubectl apply -f -
 
+# see https://artifacthub.io/packages/helm/cert-manager/cert-manager
+CERT_MANAGER_VERSION=1.19.3
+
 # Deploy cert-manager with helm
-helm install \
+helm upgrade --install \
   cert-manager oci://quay.io/jetstack/charts/cert-manager \
-  --version v1.18.2 \
+  --version $CERT_MANAGER_VERSION \
   --namespace cert-manager \
   --create-namespace \
   --set crds.enabled=true

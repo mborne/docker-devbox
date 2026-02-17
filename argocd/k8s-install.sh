@@ -1,6 +1,10 @@
 #!/bin/bash
 
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+
 DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
+DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
+DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
 echo "---------------------------------------------"
 echo "-- argocd/k8s-install.sh"
@@ -20,33 +24,34 @@ fi
 kubectl create namespace argocd --dry-run=client -o yaml | kubectl apply -f -
 
 # Deploy ArgoCD with Kustomize
-kubectl -n argocd apply -k manifest/base
+# https://argo-cd.readthedocs.io/en/stable/getting_started/
+kubectl -n argocd apply --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 # Create IngressRoute with dynamic hostname
-# see https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#traefik-v22
+# adapted from https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ssl-passthrough-with-cert-manager-and-lets-encrypt
 cat <<EOF | kubectl -n argocd apply -f -
-# https://argo-cd.readthedocs.io/en/stable/operator-manual/ingress/#ingressroute-crd
-apiVersion: traefik.containo.us/v1alpha1
-kind: IngressRoute
+apiVersion: networking.k8s.io/v1
+kind: Ingress
 metadata:
   name: argocd-server
   namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: ${DEVBOX_ISSUER}
 spec:
-  entryPoints:
-    - web
-    - websecure
-  routes:
-    - kind: Rule
-      match: Host(\`argocd.$DEVBOX_HOSTNAME\`)
-      priority: 10
-      services:
-        - name: argocd-server
-          port: 80
-    - kind: Rule
-      match: Host(\`argocd.$DEVBOX_HOSTNAME\`) && Headers(\`Content-Type\`, \`application/grpc\`)
-      priority: 11
-      services:
-        - name: argocd-server
-          port: 80
-          scheme: h2c
+  ingressClassName: ${DEVBOX_INGRESS}
+  rules:
+  - host: argocd.${DEVBOX_HOSTNAME}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: argocd-server
+            port:
+              name: https
+  tls:
+  - hosts:
+    - argocd.${DEVBOX_HOSTNAME}
+    secretName: argocd-server-tls # as expected by argocd-server
 EOF
