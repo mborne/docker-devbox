@@ -1,0 +1,18 @@
+# https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#applications
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: game-2048
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    repoURL: https://github.com/mborne/k8s-exemples.git
+    targetRevision: master
+    path: game-2048/manifest/devbox
+  destination:
+    name: "in-cluster"
+    namespace: game-2048
