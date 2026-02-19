@@ -31,10 +31,11 @@ This is my playground to learn and illustrate how to deploy application with [do
 * [whoami](whoami/README.md) : An helloworld app to test [traefik](traefik/README.md).
 * [cert-manager](cert-manager/README.md) :  An helper to generate TLS certificates from various issuers including LetsEncrypt (**K8S only**)
 
-### Container UI
+### Web UI
 
-* [kubernetes-dashboard](kubernetes-dashboard/README.md) : Web-based UI for Kubernetes.
 * [portainer](portainer/README.md) : Web-based UI for Kubernetes, Docker, Swarm and Nomad.
+* [headlamp](headlamp/README.md) : Web-based UI for Kubernetes
+* [kubernetes-dashboard](kubernetes-dashboard/README.md) : Web-based UI for Kubernetes (**retired**)
 
 ### LLM
 
