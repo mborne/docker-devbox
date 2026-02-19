@@ -22,6 +22,13 @@ kubectl -n headlamp create token admin-user
 
 * Open https://dashboard.dev.localhost
 
+## OIDC
+
+!!!warning "Currently not working with my Keycloak instance..."
+    - `/clusters/main/me` is OK (email and groups)
+    - `/clusters/main/healthz` falls on "401 Unauthorized" with no logs even with cluster-admin permission for all authenticated users...
+
+See [Headlamp - OIDC debug notes...](OIDC-DEBUG.md) (another motivation to learn Go to add logs ;))
 
 ## Debug
 
@@ -30,7 +37,7 @@ kubectl -n headlamp create token admin-user
 bash headlamp/helm/values.sh
 
 # get helm values
-helm -n headlamp get  values headlamp
+helm -n headlamp get values headlamp
 ```
 
 ## Resources

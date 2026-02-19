@@ -6,9 +6,10 @@ DEVBOX_HOSTNAME=${DEVBOX_HOSTNAME:-dev.localhost}
 DEVBOX_INGRESS=${DEVBOX_INGRESS:-traefik}
 DEVBOX_ISSUER=${DEVBOX_ISSUER:-selfsigned}
 
+HEADLAMP_VERSION=0.40.0
 
 echo "---------------------------------------------"
-echo "-- headlamp"
+echo "-- headlamp (version=${HEADLAMP_VERSION})"
 echo "---------------------------------------------"
 
 if ! command -v kubectl &> /dev/null; then
@@ -37,8 +38,7 @@ kubectl create clusterrolebinding admin-user-crb --clusterrole=cluster-admin \
 
 # install headlamp in a dedicated namespace
 bash ${SCRIPT_DIR}/helm/values.sh | helm -n headlamp upgrade --install headlamp headlamp/headlamp \
-  --version=0.40.0 -f -
-
+  --version=${HEADLAMP_VERSION} -f -
 
 # Create Ingress with dynamic hostname
 cat <<EOF | kubectl -n headlamp apply -f -
@@ -63,6 +63,8 @@ spec:
               number: 80
   tls:
   - hosts:
-    - headlamp.$DEVBOX_HOSTNAME
+    - dashboard.$DEVBOX_HOSTNAME
     secretName: headlamp-cert
 EOF
+
+
