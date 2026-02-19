@@ -1,22 +1,91 @@
 # cert-manager
 
-Deploy [cert-manager](https://cert-manager.io/) with [bitnami's helm chart](https://bitnami.com/stack/cert-manager/helm) to generate TLS certificates and provides helpers to create [some ClusterIssuers](#some-clusterissuers).
+Deploy [cert-manager](https://cert-manager.io/) and provides helpers to create [some ClusterIssuers](#some-clusterissuers) :
+
+- [selfsigned](#selfsigned) : the default value for `DEVBOX_ISSUER`, **automatically created by the install script**.
+- [mkcert](#mkcert) (not the default one as it might be dangerous, [see mkcert - #377](https://github.com/FiloSottile/mkcert/issues/377))
+- [letsencrypt-http](#letsencrypt-http) (email required)
+- [letsencrypt-cloudflare](#letsencrypt-cloudflare) (cloudflare managed DNS required)
 
 ## Usage with Kubernetes
 
-Read [k8s-install.sh](k8s-install.sh) and run :
+- Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 bash k8s-install.sh
 ```
 
-Note that the following ClusterIssuer are automatically created by this script :
+- Ensure that the [selfsigned](#selfsigned) is created :
 
-* [selfsigned](#selfsigned)
-* [mkcert](#mkcert) (if mkcert is installed on your machine)
+```bash
+kubectl get clusterissuers
+```
 
+## Configure the devbox ClusterIssuer
 
-You can follow instructions providing links to the documentation to configure [Issuers and ClusterIssuers](https://cert-manager.io/docs/concepts/issuer/) and [Ingress resources](https://cert-manager.io/docs/tutorials/acme/nginx-ingress/#step-7---deploy-a-tls-ingress-resource).
+If you want to use the [selfsigned](#selfsigned) ClusterIssuer, see the doc bellow to extract and import the corresponding CA in your browser.
+
+It you want to use another ClusterCluster bellow like [letsencrypt-http](#letsencrypt-http), configure the corresponding environment variable `DEVBOX_ISSUER=letsencrypt-http` before using `k8s-install.sh` scripts.
+
+## Available ClusterIssuers
+
+### selfsigned
+
+> adapted from [cert-manager.io - Bootstrapping CA Issuers](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers).
+
+* See [cluster-issuer/selfsigned.yml](cluster-issuer/selfsigned.yml).
+* Retrieve the corresponding PEM certificate :
+
+```bash
+#  Get CA cert as ~/devbox-selfsigned-ca.pem :
+kubectl -n cert-manager get secret devbox-selfsigned-ca \
+  -o jsonpath='{.data.ca\.crt}' | base64 -d  > devbox-selfsigned-ca.pem
+
+# Display infos :
+cat devbox-selfsigned-ca.pem | openssl x509 -text -noout
+```
+
+* Note that you may import the "devbox-selfsigned-ca.pem" file as a trusted CA in a DEV browser.
+
+### mkcert
+
+The [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) helper script allows to :
+
+- Import `${MKCERT_CAROOT}/rootCA.pem` and `${MKCERT_CAROOT}/rootCA-key.pem` as a secret `mkcert-ca` in the "cert-manager" namespace.
+- Create the corresponding "mkcert" ClusterIssuer
+
+Ensure that [mkcert](https://github.com/FiloSottile/mkcert) is available with an initialized rootCA (`mkcert -install`) and run :
+
+```bash
+# invoked by k8s-install.sh if mkcert is available
+bash cluster-issuer/mkcert.sh
+```
+
+### letsencrypt-http
+
+To create the ["letsencrypt-http" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/http01/), read [cluster-issuer/letsencrypt-http.sh](cluster-issuer/letsencrypt-http.sh) and run :
+
+```bash
+bash cluster-issuer/letsencrypt-http.sh <CONTACT_EMAIL>
+```
+
+!!!info "How it works?"
+    See [letsencrypt.org - LetsEncrypt HTTP01](https://letsencrypt.org/fr/docs/challenge-types/#challenge-http-01)
+
+### letsencrypt-cloudflare
+
+To create a ["letsencrypt-cloudflare" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/), read [cluster-issuer/letsencrypt-cloudflare.sh](cluster-issuer/letsencrypt-cloudflare.sh) and run :
+
+```bash
+export CLOUDFLARE_EMAIL=...
+# see https://dash.cloudflare.com/profile/api-tokens
+export CLOUDFLARE_API_TOKEN=...
+bash cluster-issuer/letsencrypt-cloudflare.sh
+```
+
+!!!info "How it works?"
+    See [letsencrypt.org - LetsEncrypt DNS01](https://letsencrypt.org/fr/docs/challenge-types/#challenge-dns-01) and note the [Cloudflare API](https://developers.cloudflare.com/api/) is called to configure the required TXT records.
+
 
 ## Ingress example
 
@@ -49,61 +118,6 @@ spec:
     secretName: whoami-cert
 ```
 
-## Some ClusterIssuers
-
-### selfsigned
-
-The "selfsigned" ClusterIssuer is adapted from [cert-manager.io - Bootstrapping CA Issuers](https://cert-manager.io/docs/configuration/selfsigned/#bootstrapping-ca-issuers).
-
-* See [cluster-issuer/selfsigned.yml](cluster-issuer/selfsigned.yml).
-* Retrieve the corresponding PEM certificate :
-
-```bash
-#  Get CA cert as ~/devbox-selfsigned-ca.pem :
-kubectl -n cert-manager get secret devbox-selfsigned-ca \
-  -o jsonpath='{.data.ca\.crt}' | base64 -d  > ~/devbox-selfsigned-ca.pem
-
-# Display infos :
-cat ~/devbox-selfsigned-ca.pem | openssl x509 -text -noout
-```
-
-* Note that you may import the "devbox-selfsigned-ca.pem" file as a trusted CA in a DEV browser.
-
-### mkcert
-
-The [cluster-issuer/mkcert.sh](cluster-issuer/mkcert.sh) helper script allows to :
-
-- Import `${MKCERT_CAROOT}/rootCA.pem` and `${MKCERT_CAROOT}/rootCA-key.pem` as a secret `mkcert-ca` in the "cert-manager" namespace.
-- Create the corresponding "mkcert" ClusterIssuer
-
-Ensure that [mkcert](https://github.com/FiloSottile/mkcert) is available with an initialized rootCA (`mkcert -install`) and run :
-
-```bash
-# invoked by k8s-install.sh if mkcert is available
-bash cluster-issuer/mkcert.sh
-```
-
-### letsencrypt-http
-
-[cluster-issuer/letsencrypt-http.sh](cluster-issuer/letsencrypt-http.sh) helpers to create a ["letsencrypt-http" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/http01/) :
-
-```bash
-bash cluster-issuer/letsencrypt-http.sh <CONTACT_EMAIL>
-```
-
-It relies on [letsencrypt.org - LetsEncrypt HTTP01](https://letsencrypt.org/fr/docs/challenge-types/#challenge-http-01) challenge to generate certificates.
-
-### letsencrypt-cloudflare
-
-The [cluster-issuer/letsencrypt-cloudflare.sh](cluster-issuer/letsencrypt-cloudflare.sh) helper script allows to create a ["letsencrypt-cloudflare" ClusterIssuer](https://cert-manager.io/docs/configuration/acme/dns01/cloudflare/) :
-
-```bash
-export CLOUDFLARE_EMAIL=...
-export CLOUDFLARE_API_TOKEN=...
-bash cluster-issuer/letsencrypt-cloudflare.sh
-```
-
-It relies on the [letsencrypt.org - LetsEncrypt DNS01](https://letsencrypt.org/fr/docs/challenge-types/#challenge-dns-01) challenge to generate certificates, using the [Cloudflare API](https://developers.cloudflare.com/api/) to configure the required TXT records.
 
 ## Troubleshooting
 
