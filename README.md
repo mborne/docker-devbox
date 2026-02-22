@@ -61,9 +61,9 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 ### Storage
 
-* [MinIO](minio/README.md) : **Object storage** with an **S3** compatible API.
-* [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only)
-* [restic-server](restic-server/README.md) : [Rest Server](https://github.com/restic/rest-server#readme) to **push [restic](https://restic.net/) backups over HTTPS** (warning : incomplete and not well documented)
+* [s3-dev](s3-dev/README.md) : **S3** compatible API based on [rclone serve s3](https://rclone.org/commands/rclone_serve_s3/).
+* [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only).
+* [restic-server](restic-server/README.md) : [Rest Server](https://github.com/restic/rest-server#readme) to **push [restic](https://restic.net/) backups over HTTPS** (warning : incomplete and not well documented).
 * [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) : Provides `ReadWriteMany` volumes using existing NFS server.
     * [nfs-demo](nfs-demo/README.md) : Illustrates the use of a "nfs" storage class providing `ReadWriteMany` support.
     * [nfs-server](nfs-server/README.md) : **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md).

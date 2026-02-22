@@ -1,6 +1,6 @@
-# Using MinIO S3 object storage in a PHP Symfony project
+# Using S3 object storage in a PHP Symfony project
 
-This page explains how to configure [flysystem-bundle](https://github.com/thephpleague/flysystem-bundle) use [Flysystem](https://flysystem.thephpleague.com/docs/) to ease migration from a local / NFS storage to an S3 object storage.
+This page explains how to configure [flysystem-bundle](https://github.com/thephpleague/flysystem-bundle) use [Flysystem](https://flysystem.thephpleague.com/docs/) to ease migration from a local to an S3 object storage.
 
 ## Dependencies
 
@@ -40,9 +40,9 @@ flysystem:
 with the following content in `.env` :
 
 ```yaml
-S3_ENDPOINT=https://minio-s3.dev.localhost
-S3_ACCESS_KEY=ToBeConfigured
-S3_SECRET_KEY=ToBeConfigured
+S3_ENDPOINT=http://s3.dev.localhost
+S3_ACCESS_KEY=s3_dev_key_id
+S3_SECRET_KEY=ChangeItToAStrongKey
 
 S3_BUCKET_DATA=qtw-data
 ```
@@ -66,7 +66,7 @@ flysystem:
 
 Use dependency injection with `FilesystemOperator $defaultStorage` and `FilesystemOperator $dataStorage`.
 
-For example in a controller displaying markdown  (https://www.quadtreeworld.net/data/) :
+For example in a controller displaying markdown :
 
 ```php
 <?php
@@ -82,8 +82,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Exploration du système de fichier dataStorage avec
- * rendu des markdown.
+ * Sample file explorer
  */
 class DataController extends AbstractController
 {
@@ -99,6 +98,7 @@ class DataController extends AbstractController
         }
 
         if ($dataStorage->directoryExists($path)) {
+            // display directory content
             $items = $dataStorage->listContents($path);
 
             return $this->render('data/list.html.twig', [
@@ -106,6 +106,7 @@ class DataController extends AbstractController
                 'items' => $items,
             ]);
         } elseif (Strings::endsWith($path, '.md')) {
+            // render markdown
             $markdownContent = $dataStorage->read($path);
             $parsedown = new \Parsedown();
             $content = $parsedown->text($markdownContent);
@@ -116,6 +117,7 @@ class DataController extends AbstractController
                 'content' => $content,
             ]);
         } else {
+            // stream file
             $stream = $dataStorage->readStream($path);
             $response = new StreamedResponse();
             $response->headers->set('Content-Type', ''.$dataStorage->mimeType($path));
@@ -136,4 +138,4 @@ class DataController extends AbstractController
 
 ## Resources
 
-* [Utiliser MinIO comme stockage de données objets en PHP](https://www.jdecool.fr/blog/2020/07/07/utiliser-minio-comme-stockage-de-donnees-objets-en-php.html)
+* [www.jdecool.fr - Utiliser MinIO comme stockage de données objets en PHP](https://www.jdecool.fr/blog/2020/07/07/utiliser-minio-comme-stockage-de-donnees-objets-en-php.html)

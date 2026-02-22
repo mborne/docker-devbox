@@ -1,0 +1,23 @@
+services:
+  s3-dev:
+    image: rclone/rclone:latest
+    command: serve s3 --addr :9000 --auth-key $S3_DEV_ACCESS_KEY_ID,$S3_DEV_SECRET_ACCESS_KEY /data
+    container_name: s3-dev
+    # ports:
+    #   - "9000:9000"
+    volumes:
+      - s3-data:/data
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.s3-dev.rule=Host(`s3.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.s3-dev.loadbalancer.server.port=9000"
+    restart: unless-stopped
+
+volumes:
+  s3-data:
+    name: s3-dev-data
+
+networks:
+  default:
+    name: devbox
+    external: true
