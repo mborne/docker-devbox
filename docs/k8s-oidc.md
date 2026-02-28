@@ -70,7 +70,8 @@ See `Client / Mappers / Add mapper (by configuration) / Audience`, then :
 <details>
 	<summary>Show screenshot</summary>
 
-	![screenshot](img/keycloak-audience-kubernetes.png)
+![screenshot](img/keycloak-audience-kubernetes.png)
+
 </details>
 
 
