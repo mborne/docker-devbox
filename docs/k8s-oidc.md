@@ -68,10 +68,9 @@ See `Client / Mappers / Add mapper (by configuration) / Audience`, then :
 - Check "Add to ID token"
 
 <details>
-	<summary>Show screenshot</summary>
+<summary>Show screenshot</summary>
 
-![screenshot](img/keycloak-audience-kubernetes.png)
-
+<img alt="screenshot" src="./img/keycloak-audience-kubernetes.png" />
 </details>
 
 
