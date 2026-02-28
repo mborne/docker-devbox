@@ -1,9 +1,16 @@
 #!/bin/bash
 
-#----------------------------------------
-# Handle params
-#----------------------------------------
+#-----------------------------------------------------------
+# This script generates a kind cluster configuration file 
+# based on environment variables.
+#-----------------------------------------------------------
+
 echo "# kind/config/generate.sh with :"
+
+#-------------------------------------------
+# General cluster configuration
+#-------------------------------------------
+
 # Cluster name default to devbox
 KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME:-devbox}
 echo "# - KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME}"
@@ -12,9 +19,33 @@ echo "# - KIND_CLUSTER_NAME=${KIND_CLUSTER_NAME}"
 KIND_WORKER_COUNT=${KIND_WORKER_COUNT:-3}
 echo "# - KIND_WORKER_COUNT=${KIND_WORKER_COUNT}"
 
-# Required value to enable OIDC
+#-------------------------------------------
+# OIDC configuration
+#-------------------------------------------
+
+# URL of the OIDC provider, if empty OIDC will be disabled
 KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL:-""}
 echo "# - KIND_OIDC_ISSUER_URL=${KIND_OIDC_ISSUER_URL}"
+
+# Required value used to check audience in OIDC token
+KIND_OIDC_CLIENT_ID=${KIND_OIDC_CLIENT_ID:-"kubernetes"}
+echo "# - KIND_OIDC_CLIENT_ID=${KIND_OIDC_CLIENT_ID}"
+
+# Name of the claim in OIDC token to use as username
+KIND_OIDC_USERNAME_CLAIM=${KIND_OIDC_USERNAME_CLAIM:-"email"}
+echo "# - KIND_OIDC_USERNAME_CLAIM=${KIND_OIDC_USERNAME_CLAIM}"
+
+# Prefix to add to username from OIDC token, to avoid conflicts with Kubernetes usernames
+KIND_OIDC_USERNAME_PREFIX=${KIND_OIDC_USERNAME_PREFIX:-"oidc:"}
+echo "# - KIND_OIDC_USERNAME_PREFIX=${KIND_OIDC_USERNAME_PREFIX}"
+
+# Name of the claim in OIDC token to use as groups
+KIND_GROUPS_CLAIM=${KIND_GROUPS_CLAIM:-"groups"}
+echo "# - KIND_GROUPS_CLAIM=${KIND_GROUPS_CLAIM}"
+
+# Prefix to add to group names from OIDC token, to avoid conflicts with Kubernetes groups
+KIND_OIDC_GROUPS_PREFIX=${KIND_OIDC_GROUPS_PREFIX:-"oidc:"}
+echo "# - KIND_OIDC_GROUPS_PREFIX=${KIND_OIDC_GROUPS_PREFIX}"
 
 # Expose 80 and 443 ports on master node
 KIND_INGRESS_READY=${KIND_INGRESS_READY:-1}
@@ -88,8 +119,6 @@ nodes:
         node-labels: "ingress-ready=true"
 EOF
 
-
-
 if [ ! -z "$KIND_OIDC_ISSUER_URL" ];
 then
 cat <<EOF
@@ -99,11 +128,11 @@ cat <<EOF
         extraArgs:
           enable-admission-plugins: $KIND_ADMISSION_PLUGINS
           oidc-issuer-url: $KIND_OIDC_ISSUER_URL
-          oidc-client-id: kubernetes
-          oidc-groups-claim: groups
-          oidc-groups-prefix: "oidc:"
-          oidc-username-claim: email
-          oidc-username-prefix: "oidc:"
+          oidc-client-id: "$KIND_OIDC_CLIENT_ID"
+          oidc-groups-claim: "$KIND_GROUPS_CLAIM"
+          oidc-groups-prefix: "$KIND_OIDC_GROUPS_PREFIX"
+          oidc-username-claim: "$KIND_OIDC_USERNAME_CLAIM"
+          oidc-username-prefix: "$KIND_OIDC_USERNAME_PREFIX"
 EOF
 fi
 

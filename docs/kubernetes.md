@@ -58,11 +58,16 @@ spec:
     secretName: whoami-cert
 ```
 
+## OIDC support
+
+See [Kubernetes with OIDC authentication](k8s-oidc.md) and note that you can try the [Headlamp](../headlamp/README.md) dashboard with OIDC support.
+
 ## Moving to production?
 
-Note that :
-
-* **You should not use resources from this repository!**
-* You may have to deploy in an existing namespace provided by an administrator
-* Instead of using bash scripts to handle variables, you may use tools like [ArgoCD](../argocd/README.md), [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html),...
+* **You should not use resources from this repository!** (copy and adapt what you need!)
+* You may have to deploy in an existing namespace provided by a cluster admin.
+* Instead of using bash scripts to handle variables, you may use tools like :
+    * Terraform / OpenTofu (see [helm provider](https://registry.terraform.io/providers/hashicorp/helm/latest/docs) and [template_file](https://registry.terraform.io/providers/hashicorp/template/latest/docs/data-sources/file) to generate helm values)
+    * [ArgoCD](../argocd/README.md) (see examples in [mborne/docker-devbox - argocd/apps](https://github.com/mborne/docker-devbox/tree/master/argocd/apps))
+    * [GitLab-CI](https://docs.gitlab.com/ee/user/clusters/agent/ci_cd_workflow.html)
 

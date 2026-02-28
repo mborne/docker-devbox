@@ -1,18 +1,16 @@
 # Headlamp
 
-Container running [Headlamp](https://headlamp.dev/), the "user-friendly Kubernetes UI focused on extensibility"
+Container running [Headlamp](https://headlamp.dev/), the "user-friendly Kubernetes UI focused on extensibility".
 
 ## Usage with Kubernetes
 
-!!!warning "Security warning"
-    A ServiceAccount named "admin-user" will be created in the headlamp namespace.
+> **WARNING** : A ServiceAccount named "admin-user" will be created in the headlamp namespace.
 
 * Read [k8s-install.sh](k8s-install.sh) and run :
 
 ```bash
 bash headlamp/k8s-install.sh
 ```
-
 
 * Get admin-user token :
 
@@ -22,23 +20,33 @@ kubectl -n headlamp create token admin-user
 
 * Open https://dashboard.dev.localhost
 
-## OIDC
+## Headlamp with OIDC
 
-!!!warning "Currently not working with my Keycloak instance..."
-    - `/clusters/main/me` is OK (email and groups)
-    - `/clusters/main/healthz` falls on "401 Unauthorized" with no logs even with cluster-admin permission for all authenticated users...
+> See [Kubernetes with OIDC authentification](../docs/k8s-oidc.md) if you are an OIDC / RBAC begginer.
 
-See [Headlamp - OIDC debug notes...](OIDC-DEBUG.md) (another motivation to learn Go to add logs ;))
+See Headlamp to create a client :
 
-## Debug
+- [How to Set Up Headlamp in minikube with Keycloak OIDC Authentication](https://headlamp.dev/docs/latest/installation/in-cluster/keycloak/)
+- [How to Set Up Headlamp in minikube with Dex OIDC Authentication](https://headlamp.dev/docs/latest/installation/in-cluster/dex/)
+
+Read [headlamp/helm/values.sh](helm/values.sh) and use the corresponding environments values :
 
 ```bash
+# Adapt to use your Keycloak or DEX instance
+export HEADLAMP_OIDC_ISSUER_URL=https://keycloak.example.com/realms/master
+
+# WARNING : ensure that audience is consistent with OIDC_CLIENT_ID
+# (I shamefully spent hours on this!)
+export HEADLAMP_OIDC_CLIENT_ID=headlamp
+export HEADLAMP_OIDC_CLIENT_SECRET=XXXXXXXXXXXXXXXXXXXXXX
+
 # preview helm values
 bash headlamp/helm/values.sh
 
-# get helm values
-helm -n headlamp get values headlamp
+# deploy
+bash headlamp/k8s-install.sh
 ```
+
 
 ## Resources
 

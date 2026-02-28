@@ -1,6 +1,6 @@
 # Kind - Quickstart with Ingress Controller and more...
 
-Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/) cluster with Ingress, NetworkPolicy support (with canal or calico) and RWX PersistentVolume (with extraMounts).
+Helper to create a realistic [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/) cluster.
 
 ## Requirements
 
@@ -10,34 +10,33 @@ Helper to create a local [Kubernetes in docker (kind)](https://kind.sigs.k8s.io/
 * [helm](https://helm.sh/docs/intro/install/)
 * Free port 80 and 443
 
-## Description
+## Features
 
-[kind/quickstart.sh](quickstart.sh) script performs the following operations :
-
-* Create a **kind cluster with a generated configuration** including :
-  * `extraPortMappings` to **allow the deployment of an ingress controller on the master node** (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
-  * The use of a **mirror for DockerHub** (optional, but **IMPORTANT** : see [Docker Hub pull usage and limits](https://docs.docker.com/docker-hub/usage/pulls/))
-  * `extraMounts` of `/var/devbox` on `/devbox` for each node (see [PV and PVC in docs/nginx-rwx.yml](docs/nginx-rwx.yml))
-  * OIDC authentication (optional, to test [kubectl with kubelogin](https://github.com/int128/kubelogin#readme) for example)
-* Optionally install custom CNI (canal or calico)
-* Install [metric-server](kind/metric-server/kustomization.yaml)
-* Install [cert-manager](../cert-manager/README.md) with a mkcert cluster issuer (if locally available)
-* Install [traefik](../traefik/README.md#usage-with-kind) with kind compatible config
-* Install [whoami](../whoami/README.md#usage-with-kubernetes) sample app
-* Install [kubernetes-dashboard](../kubernetes-dashboard/README.md#usage-with-kubernetes)
+* Ingress support with [traefik](../traefik/README.md)
+* Auto SSL certificates with [cert-manager](../cert-manager/README.md) 
+* OIDC (optional)
+* DockerHub proxy (optional) to avoid reaching [pull limit](https://docs.docker.com/docker-hub/usage/).
+* Custom CNI (canal or calico) for NetworkPolicy support (optional).
+* RWX PersistentVolume with `extraMounts` (`/var/devbox`).
 
 ## Parameters
 
-| Name                       | Description                                                                                             | Default value                   |
-| -------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| `KIND_CLUSTER_NAME`        | The name of the kind cluster                                                                            | `devbox`                        |
-| `KIND_WORKER_COUNT`        | The number of worker node                                                                               | `3`                             |
-| `KIND_CNI`                 | Customize CNI using "default", "calico" or "canal" (note that default doesn't supports NetworkPolicies) | `default`                       |
-| `KIND_ADMISSION_PLUGINS`   | Allows to customize admission plugins                                                                   | `NodeRestriction,ResourceQuota` |
-| `DEVBOX_INGRESS` (1)       | Allows to install either [traefik](../traefik/README.md)                                                | `traefik`                       |
-| `KIND_INGRESS_READY`       | Allows to disable `extraPortMappings` on ports 80 and 443                                               | `1`                             |
-| `DOCKERHUB_PROXY`          | Allows to use a mirror for DockerHub.                                                                   | `""`                            |
-| `KIND_OIDC_ISSUER_URL` (2) | Allows to enable OIDC authentication                                                                    | `""`                            |
+The [kind/quickstart.sh](quickstart.sh) scripts supports the following environment values :
+
+| Name                        | Description                                                                                                  | Default value                   |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| `KIND_CLUSTER_NAME`         | The name of the kind cluster                                                                                 | `devbox`                        |
+| `KIND_WORKER_COUNT`         | The number of worker node                                                                                    | `3`                             |
+| `KIND_CNI`                  | Customize CNI using "default", "calico" or "canal" (note that default doesn't supports NetworkPolicies)      | `default`                       |
+| `KIND_ADMISSION_PLUGINS`    | Allows to customize admission plugins                                                                        | `NodeRestriction,ResourceQuota` |
+| `DEVBOX_INGRESS` (1)        | Allows to install either [traefik](../traefik/README.md)                                                     | `traefik`                       |
+| `KIND_INGRESS_READY`        | Allows to disable `extraPortMappings` on ports 80 and 443                                                    | `1`                             |
+| `DOCKERHUB_PROXY`           | Allows to use a mirror for DockerHub (ex : https://mirror.gcr.io from Google)                                | `""`                            |
+| `KIND_OIDC_ISSUER_URL` (2)  | URL of the OIDC provider (ex : `https://keycloak.example.com/realms/master`), if empty OIDC will be disabled | `""`                            |
+| `KIND_OIDC_CLIENT_ID`       | Required value used to check **audience** in OIDC token                                                          | `"kubernetes"`                  |
+| `KIND_OIDC_USERNAME_CLAIM`  | Name of the claim in OIDC token to use as **username**                                                           | `"email"`                       |
+| `KIND_OIDC_USERNAME_PREFIX` | Prefix to add to username from OIDC token                                                                    | `"odic:"`                       |
+| `KIND_OIDC_GROUPS_PREFIX`   | Prefix to add to group names from OIDC token                                                                 | `"odic:"`                       |
 
 > (1) Note that `k8s-install.sh` must use the same value.
 > (2) Do not add useless "/" (`${KIND_OIDC_ISSUER_URL}/.well-known/openid-configuration` must exists)
@@ -54,7 +53,7 @@ bash kind/quickstart.sh
 
 ## How it works?
 
-An helper script ( [kind/config/generate.sh](config/generate.sh) ) allows to generate [kind configuration](https://kind.sigs.k8s.io/docs/user/configuration/) with some options :
+The [kind/config/generate.sh](config/generate.sh) script allows to generate [kind configuration](https://kind.sigs.k8s.io/docs/user/configuration/) with some options :
 
 ```bash
 # Number of worker nodes
@@ -71,6 +70,11 @@ export KIND_CNI=calico
 # Generate config to create kind cluster
 bash kind/config/generate.sh
 ```
+
+Note that :
+
+* `extraPortMappings` is configured to **allow the deployment of an ingress controller on the master node** (like [config/ingress-ready.yaml](config/ingress-ready.yaml))
+* `extraMounts` of `/var/devbox` on `/devbox` allows RWX PV creation (see [PV and PVC in docs/nginx-rwx.yml](docs/nginx-rwx.yml))
 
 ## Ressources
 
