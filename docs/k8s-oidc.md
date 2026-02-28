@@ -19,8 +19,7 @@ The K8S API server can be configured to support OIDC authentication based on JWT
 Note that :
 
 - Prefixes avoid conflicts with K8S groups
-- The `oidc-client-id` is used by K8S to control the audience of the token ("aud").
-- If you use a dedicated "headlamp" client, make sure that "kubernetes" is added (for Keycloak, `Client / Mappers / Add mapper (by configuration) / Audience / (-> kubernetes / add to id token)` : [screenshot](img/keycloak-audience-kubernetes.png) )
+- The `oidc-client-id` is used by K8S to control the audience of the token ("aud"). So, if you use a dedicated "headlamp" client, make sure that "kubernetes" is added (see [Add audience mapper with Keycloak](#add-audience-mapper-with-keycloak))
 
 ## Using OIDC with devbox
 
@@ -58,4 +57,20 @@ kubectl auth can-i list pods --as=system:authenticated
 kubectl auth can-i list pods --as=oidc:mborne@example.net
 kubectl auth can-i list pods --as=mborne@example.net
 ```
+
+## Resources
+
+### Add audience mapper with Keycloak
+
+See `Client / Mappers / Add mapper (by configuration) / Audience`, then :
+
+- Select "kubernetes" kubernetes
+- Check "Add to ID token"
+
+<details>
+	<summary>Show screenshot</summary>
+
+	![screenshot](img/keycloak-audience-kubernetes.png)
+</details>
+
 
