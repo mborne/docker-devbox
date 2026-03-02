@@ -70,8 +70,9 @@ This is my playground to learn and illustrate how to deploy application with [do
  
 ### Database
 
-* [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/).
 * [Redis](redis/README.md)
+* [cnpg](cnpg/README.md) : [CloudNativePG](https://cloudnative-pg.io/) with some PostgreSQL/PostGIS examples.
+* [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/).
 * [CloudBeaver](cloudbeaver/README.md) : Web-based UI for SQL databases (**docker only**)
 
 ### Logging and monitoring

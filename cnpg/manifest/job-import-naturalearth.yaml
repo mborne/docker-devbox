@@ -7,19 +7,9 @@ spec:
   template:
     spec:
       containers:
-      - command: ["node","bin/import.js","naturalearth"]
-        image: ghcr.io/mborne/postgis-integration:master
+      - command: ["uv","run","datasets/naturalearth/import.py"]
+        image: ghcr.io/mborne/postgis-integration:v1.0.0
         name: postgis-integration
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop: [ALL]
-          #readOnlyRootFilesystem: true
-          runAsGroup: 1000
-          runAsNonRoot: true
-          runAsUser: 1000
-          seccompProfile:
-            type: RuntimeDefault
         env:
           - name: PGHOST
             value: "postgis-cluster-rw"
@@ -37,4 +27,14 @@ spec:
               secretKeyRef:
                 name: postgis-cluster-app
                 key: password
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [ALL]
+          #readOnlyRootFilesystem: true
+          runAsGroup: 1000
+          runAsNonRoot: true
+          runAsUser: 1000
+          seccompProfile:
+            type: RuntimeDefault
       restartPolicy: Never
