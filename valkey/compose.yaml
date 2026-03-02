@@ -1,0 +1,19 @@
+services:
+  valkey:
+    image: valkey/valkey:9.0-alpine
+    container_name: valkey
+    ports:
+      - '${DEVBOX_PORT_PREFIX}6379:6379'
+    command: valkey-server --save 20 1 --loglevel warning --requirepass ${VALKEY_PASSWORD}
+    volumes: 
+      - valkey-data:/data
+    restart: unless-stopped
+
+volumes:
+  valkey-data:
+    name: valkey-data
+
+networks:
+  default:
+    name: devbox
+    external: true

@@ -1,0 +1,20 @@
+# https://github.com/valkey-io/valkey-helm/tree/main/valkey#valkey
+# https://github.com/valkey-io/valkey-helm/blob/main/valkey/values.yaml
+auth:
+  enabled: true
+  aclUsers:
+    default:
+      permissions: "~* &* +@all"
+      password: "ChangeIt"
+
+
+dataStorage:
+  enabled: false
+  requestedSize: "5Gi"
+
+replica:
+  enabled: true
+  persistence:
+    enabled: true
+    size: "5Gi"
+
