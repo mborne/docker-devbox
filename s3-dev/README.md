@@ -18,6 +18,9 @@ docker compose up -d
 * [Using S3 with rclone](docs/rclone.md)
 * [Using S3 object storage in a PHP Symfony project](docs/flysystem-bundle.md)
 
+## See also
+
+* [RustFS](https://rustfs.com/) (found with [koben.info - RustFS - L'alternative Rust à MinIO](https://korben.info/rustfs-stockage-objet-distribue-rust.html))
 
 ## Resources
 
