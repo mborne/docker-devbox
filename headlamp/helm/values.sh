@@ -40,6 +40,22 @@ podAnnotations:
 env:
   - name:  HEADLAMP_CONFIG_LOG_LEVEL
     value: "debug"
+EOF
+if [ ! -z "$HTTP_PROXY" ];
+then
+cat <<EOF
+  - name: HTTP_PROXY
+    value: "${HTTP_PROXY}"
+EOF
+fi
+if [ ! -z "$HTTPS_PROXY" ];
+then
+cat <<EOF
+  - name: HTTPS_PROXY
+    value: "${HTTPS_PROXY}"
+EOF
+fi
+cat <<EOF
 config:
   inCluster: true
   inClusterContextName: "main"
