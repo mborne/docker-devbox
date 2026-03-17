@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: crash-test
+  namespace: argocd
+spec:
+  project: default
+  syncPolicy:
+    automated:
+      prune: true
+  source:
+    chart: crash-test
+    repoURL: ghcr.io/mborne/helm-charts  # note: the oci:// syntax is not included.
+    targetRevision: 0.5.0
+    helm:
+      # helm show values oci://ghcr.io/mborne/helm-charts/crash-test
+      values: |
+        replicaCount: 3
+        ingress:
+          enabled: true
+          className: "traefik"
+          annotations:
+            cert-manager.io/cluster-issuer: selfsigned
+          hosts:
+            - host: crash-test.dev.localhost
+              paths:
+                - path: /
+                  pathType: ImplementationSpecific
+          tls:
+           - secretName: crash-test-tls
+             hosts:
+               - crash-test.dev.localhost
+  destination:
+    name: "in-cluster"
+    namespace: crash-test
+
