@@ -1,0 +1,16 @@
+services:
+  squid:
+    image: ubuntu/squid:6.6-24.04_edge
+    container_name: squid
+    environment:
+      - TZ=UTC
+    ports:
+      - "3128:3128"
+    restart: unless-stopped
+
+networks:
+  default:
+    external:
+      name: devbox
+
+
