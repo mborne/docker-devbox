@@ -1,0 +1,20 @@
+{
+  "mcpServers": {
+    "geocontext": {
+      "command": "npx",
+      "args": [
+        "@ignfab/geocontext"
+      ]
+    },
+    "datagouv": {
+      "type": "streamable",
+      "url": "https://mcp.data.gouv.fr/mcp"
+    },
+    "fetch": {
+        "command": "uvx",
+        "args": [
+            "mcp-server-fetch"
+        ]
+    }
+  }
+}

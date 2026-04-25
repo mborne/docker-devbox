@@ -40,7 +40,8 @@ This is my playground to learn and illustrate how to deploy application with [do
 ### LLM
 
 * [ollama](ollama/README.md) : [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use locally [open LLM models](https://ollama.com/search).
-* [open-webui](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md).
+* [AnythingLLM](anythingllm/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
+* [open-webui](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
 
 ### CI/CD pipeline
 

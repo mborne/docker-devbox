@@ -1,0 +1,24 @@
+services:
+  anythingllm:
+    container_name: anythingllm
+    image: mintplexlabs/anythingllm:latest
+    environment:
+      - STORAGE_DIR=/app/server/storage
+    ports:
+      - "3001:3001"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.anythingllm.rule=Host(`anythingllm.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.services.anythingllm-service.loadbalancer.server.port=3001"
+    volumes:
+      - anythingllm-storage:/app/server/storage:rw
+    restart: unless-stopped
+
+volumes:
+  anythingllm-storage:
+    name: anythingllm-storage
+
+networks:
+  default:
+    name: devbox
+    external: true
