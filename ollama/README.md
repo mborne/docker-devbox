@@ -4,13 +4,34 @@ Containers running [Ollama](https://hub.docker.com/r/ollama/ollama)
 
 ## Usage with docker
 
-* Ensure that GPU support is enabled in docker (or adapt [compose.yaml](compose.yaml)) :
+Two compose modes are available:
+
+* **CPU mode** (default): [compose.yaml](compose.yaml)
+* **GPU mode** (NVIDIA): [compose.yaml](compose.yaml) + [compose-gpu.yaml](compose-gpu.yaml) (override)
+
+### CPU mode (default)
+
+* Start : `docker compose up -d`
+* Stop : `docker compose down`
+
+### GPU mode (NVIDIA)
+
+* Ensure that GPU support is enabled in docker :
 
 ```bash
 docker run --gpus all nvcr.io/nvidia/k8s/cuda-sample:nbody nbody -gpu -benchmark
 ```
 
-* Start : `docker compose up -d`
+* Start : `docker compose -f compose.yaml -f compose-gpu.yaml up -d`
+* Stop : `docker compose -f compose.yaml -f compose-gpu.yaml down`
+
+> [!TIP]
+> alternative : `COMPOSE_FILE=compose.yaml:compose-gpu.yaml docker compose up -d`
+
+### CLI and API usage
+
+Use these commands once Ollama is started (CPU or GPU mode):
+
 * To use Ollama CLI :
 
 ```bash
@@ -50,9 +71,16 @@ ollama run geoassistant
 
 ## Ressources
 
+Ollama :
+
+* [ollama.com - Library](https://ollama.com/library) (**available models**)
+* [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
 * [github.com - ollama/ollama](https://github.com/ollama/ollama/tree/main?tab=readme-ov-file#ollama)
 * [hub.docker.com - ollama/ollama](https://hub.docker.com/r/ollama/ollama)
-* [ollama - API](https://github.com/ollama/ollama/blob/main/docs/api.md#api)
+
+GPU support :
+
+* [docker docs - GPU support](https://docs.docker.com/compose/how-tos/gpu-support/)
 * [mborne.github.io/outils/cuda-toolkit](https://mborne.github.io/outils/cuda-toolkit) (*french*)
 
 Clients :

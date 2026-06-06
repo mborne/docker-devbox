@@ -13,13 +13,6 @@ services:
     - HTTP_PROXY
     - HTTPS_PROXY
     - NO_PROXY=0.0.0.0,ollama,${NO_PROXY:-127.0.0.1,localhost}
-    deploy:
-     resources:
-       reservations:
-         devices:
-         - driver: nvidia
-           capabilities: ["gpu"]
-           count: all
     labels:
       - "traefik.enable=true"
       # https://ollama.dev.localhost
