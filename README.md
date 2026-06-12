@@ -66,7 +66,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 * [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only).
 * [restic-server](restic-server/README.md) : [Rest Server](https://github.com/restic/rest-server#readme) to **push [restic](https://restic.net/) backups over HTTPS** (warning : incomplete and not well documented).
 * [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) : Provides `ReadWriteMany` volumes using existing NFS server.
-    * [nfs-demo](nfs-demo/README.md) : Illustrates the use of a "nfs" storage class providing `ReadWriteMany` support.
     * [nfs-server](nfs-server/README.md) : **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md).
  
 ### Database
@@ -104,10 +103,6 @@ Option 2 (variant of the famous ELK stack) :
 ### Mailing
 
 * [Mailpit](mailpit/README.md) : Email & SMTP testing tool with API for developers (docker only)
-
-### Miscellaneous
-
-* [Matomo](matomo/README.md) : "Google Analytics alternative" (docker only)
 
 ## License
 
