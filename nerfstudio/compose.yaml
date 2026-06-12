@@ -1,0 +1,29 @@
+services:
+  nerfstudio:
+    image: ghcr.io/nerfstudio-project/nerfstudio:latest
+    container_name: nerfstudio
+    command: sleep infinity
+    volumes:
+      - nerfstudio-data:/workspace/
+      - nerfstudio-cache:/home/user/.cache/
+    ports:
+      - 7007:7007
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    restart: unless-stopped
+
+volumes:
+  nerfstudio-data:
+    name: nerfstudio-data
+  nerfstudio-cache:
+    name: nerfstudio-cache
+
+networks:
+  default:
+    name: devbox
+    external: true
