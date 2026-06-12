@@ -39,9 +39,9 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 ### LLM
 
-* [ollama](ollama/README.md) : [Ollama API](https://github.com/likelovewant/ollama-for-amd/blob/main/docs/api.md) to use locally [open LLM models](https://ollama.com/search).
+* [ollama](ollama/README.md) : [Ollama API](https://docs.ollama.com/api/introduction) to use locally [open LLM models](https://ollama.com/search).
 * [AnythingLLM](anythingllm/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
-* [open-webui](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
+* [Open WebUI](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
 
 ### CI/CD pipeline
 
@@ -64,7 +64,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 * [s3-dev](s3-dev/README.md) : **S3** compatible API based on [rclone serve s3](https://rclone.org/commands/rclone_serve_s3/).
 * [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only).
-* [restic-server](restic-server/README.md) : [Rest Server](https://github.com/restic/rest-server#readme) to **push [restic](https://restic.net/) backups over HTTPS** (warning : incomplete and not well documented).
 * [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) : Provides `ReadWriteMany` volumes using existing NFS server.
     * [nfs-server](nfs-server/README.md) : **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md).
  
@@ -72,7 +71,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 * [Redis](redis/README.md)
 * [Valkey](valkey/README.md) (forked from [Redis](redis/README.md))
-* [cnpg](cnpg/README.md) : [CloudNativePG](https://cloudnative-pg.io/) with some PostgreSQL/PostGIS examples.
+* [CloudNativePG](cnpg/README.md) with some PostgreSQL/PostGIS examples.
 * [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/).
 * [CloudBeaver](cloudbeaver/README.md) : Web-based UI for SQL databases (**docker only**)
 
