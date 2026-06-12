@@ -6,7 +6,6 @@
 additionalArguments:
   # added for kubernetes dashboard
   - "--serversTransport.insecureSkipVerify=true"
-  - "--providers.kubernetesIngressNGINX"
 
 ports:
   websecure:
