@@ -1,7 +1,7 @@
 services:
 
   whoami:
-    image: containous/whoami
+    image: traefik/whoami
     labels:
     - "traefik.enable=true"
     - "traefik.http.routers.whoami.rule=Host(`whoami.${DEVBOX_HOSTNAME}`)"
