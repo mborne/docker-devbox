@@ -96,10 +96,6 @@ Option 2 (variant of the famous ELK stack) :
 * [trivy](trivy/README.md) : [trivy-operator from Aqua Security](https://github.com/aquasecurity/trivy-operator#readme) (K8S only)
 * [SonarQube](sonarqube/README.md) : Centralisation of Code Quality and Code Security metrics.
 
-### GeoSpatial services
-
-* [GeoServer](geoserver/README.md) : Open source server for sharing **geospatial data** with [OGC](https://www.ogc.org/) compliant protocols (WMS, WMTS, WFS) (**docker only**)
-
 ### Mailing
 
 * [Mailpit](mailpit/README.md) : Email & SMTP testing tool with API for developers (docker only)
