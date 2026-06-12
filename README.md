@@ -48,12 +48,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 * [ArgoCD](argocd/README.md) : GitOps **continuous delivery** tool for **Kubernetes**.
 * [Jenkins](jenkins/README.md) : Open source automation server with hundred of plugins (ansible, jmeter,...).
 
-### Data pipeline orchestration
-
-> See also [www.zenml.io - Orchestration Showdown: Dagster vs Prefect vs Airflow](https://www.zenml.io/blog/orchestration-showdown-dagster-vs-prefect-vs-airflow)
-
-* [prefect](prefect/README.md) (docker only for now)
-
 ### Authentication
 
 > See also [dex](https://github.com/dexidp/dex#readme) and [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
