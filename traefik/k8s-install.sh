@@ -25,7 +25,7 @@ kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply
 
 # Deploy traefik with helm
 # helm search repo traefik/traefik
-CHART_VERSION=37.4.0 # APP_VERSION=v3.6.2
+CHART_VERSION=41.0.2 # APP_VERSION=v3.7.6
 helm -n traefik-system upgrade --install traefik traefik/traefik \
   -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}/values.yml \
   --version $CHART_VERSION
