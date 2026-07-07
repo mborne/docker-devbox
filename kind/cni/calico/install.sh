@@ -10,8 +10,8 @@ echo "---------------------------------------------"
 # Install calico
 # see https://docs.tigera.io/calico/latest/getting-started/kubernetes/quickstart#install-calico
 #---------------------------------------------------------------------------
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.2/manifests/operator-crds.yaml
-kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.2/manifests/tigera-operator.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/operator-crds.yaml
+kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/tigera-operator.yaml
 # wait for tigera-operator
 kubectl wait --namespace tigera-operator \
     --for=condition=ready pod \
@@ -32,7 +32,7 @@ kubectl wait --namespace tigera-operator \
 
 
 # install calico with consistent pod subnet
-#kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.31.2/manifests/custom-resources.yaml
+#kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.32.1/manifests/custom-resources.yaml
 kubectl apply -f "${SCRIPT_DIR}/custom-resources.yaml"
 
 # wait for calico pods

@@ -6,8 +6,3 @@
 additionalArguments:
   # added for kubernetes dashboard
   - "--serversTransport.insecureSkipVerify=true"
-
-ports:
-  websecure:
-    tls:
-      enabled: true

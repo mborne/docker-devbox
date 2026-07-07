@@ -59,7 +59,7 @@ echo "# - KIND_ADMISSION_PLUGINS=${KIND_ADMISSION_PLUGINS}"
 # Allows to select Kubernetes Version, see:
 # - https://kind.sigs.k8s.io/docs/user/configuration/#kubernetes-version 
 # - https://github.com/kubernetes-sigs/kind/releases
-KIND_IMAGE=${KIND_IMAGE:-kindest/node:v1.33.4@sha256:25a6018e48dfcaee478f4a59af81157a437f15e6e140bf103f85a2e7cd0cbbf2}
+KIND_IMAGE=${KIND_IMAGE:-kindest/node:v1.36.1@sha256:3489c7674813ba5d8b1a9977baea8a6e553784dab7b84759d1014dbd78f7ebd5}
 
 # Allows to use another CNI like canal
 KIND_CNI=${KIND_CNI:-default}
