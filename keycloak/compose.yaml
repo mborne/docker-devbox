@@ -2,9 +2,9 @@ services:
 
   keycloak:
     container_name: keycloak
-    image: quay.io/keycloak/keycloak:20.0
+    image: quay.io/keycloak/keycloak:26.6.4-1
     # see https://www.keycloak.org/server/reverseproxy
-    command: start --proxy edge
+    command: start --proxy-headers xforwarded --http-enabled=true
     depends_on:
       - "db"
     environment:
@@ -17,7 +17,6 @@ services:
       - KC_DB_PASSWORD=${POSTGRES_PASSWORD}
       - KEYCLOAK_WELCOME_THEME=custom
       - KEYCLOAK_DEFAULT_THEME=keycloak
-      - PROXY_ADDRESS_FORWARDING=true
     # volumes:
     #   - keycloak-data:/opt/jboss/keycloak/standalone
     labels:
@@ -28,7 +27,7 @@ services:
 
   db:
     container_name: keycloak_db
-    image: postgres:13
+    image: postgres:16-alpine
     environment:
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
