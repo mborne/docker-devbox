@@ -63,8 +63,6 @@ scrape_configs:
     static_configs:
       - targets:
         - 'https://www.quadtreeworld.net'
-        - 'https://www.quadtreeworld.net/api/resource-type'
-        - 'https://www.quadtreeworld.net/api/resource?type=dataset'
     relabel_configs:
       - source_labels: [__address__]
         target_label: __param_target
