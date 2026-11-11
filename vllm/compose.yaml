@@ -6,7 +6,7 @@ services:
     image: vllm/vllm-openai:${VLLM_VERSION:-v0.33.0}
     container_name: vllm
     ports:
-    - 8000:8000
+    - ${VLLM_PORT:-8000}:8000
     volumes:
     # models downloaded from Hugging Face
     - vllm:/root/.cache/huggingface

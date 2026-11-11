@@ -35,6 +35,7 @@ Parameters are defined in [.env](.env) :
 | Variable                      | Default                      | Description                                                    |
 | ----------------------------- | ---------------------------- | -------------------------------------------------------------- |
 | `VLLM_VERSION`                | `v0.33.0`                    | Version of the vLLM image                                      |
+| `VLLM_PORT`                   | `8000`                       | Port exposed on the host                                       |
 | `VLLM_MODEL`                  | `Qwen/Qwen3.5-0.8B`          | [Hugging Face](https://huggingface.co/models) model to serve   |
 | `VLLM_SERVED_MODEL_NAME`      | `qwen3.5-0.8b`               | Model name to use in API requests (`model` field)              |
 | `VLLM_MAX_MODEL_LEN`          | `8192`                       | Maximum context length (tokens)                                |
