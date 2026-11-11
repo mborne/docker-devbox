@@ -40,6 +40,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 ### LLM
 
 * [ollama](ollama/README.md) : [Ollama API](https://docs.ollama.com/api/introduction) to use locally [open LLM models](https://ollama.com/search).
+* [vllm](vllm/README.md) : [OpenAI-compatible API](https://docs.vllm.ai/en/stable/serving/openai_compatible_server.html) serving an open LLM model with [vLLM](https://docs.vllm.ai/) (NVIDIA GPU, supports tool calling).
 * [AnythingLLM](anythingllm/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
 * [Open WebUI](open-webui/README.md) : Web-based UI (ChatGPT-like) for [Ollama](ollama/README.md) and others.
 

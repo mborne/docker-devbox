@@ -1,0 +1,61 @@
+services:
+  # https://docs.vllm.ai/en/stable/deployment/docker/
+  # GPU (NVIDIA) only : CPU mode was too slow, see ollama for CPU usage
+  vllm:
+    # https://hub.docker.com/r/vllm/vllm-openai
+    image: vllm/vllm-openai:${VLLM_VERSION:-v0.33.0}
+    container_name: vllm
+    ports:
+    - 8000:8000
+    volumes:
+    # models downloaded from Hugging Face
+    - vllm:/root/.cache/huggingface
+    # torch.compile, inductor and triton caches (faster restarts)
+    - vllm-compile-cache:/root/.cache/vllm
+    environment:
+    - HF_TOKEN
+    - HTTP_PROXY
+    - HTTPS_PROXY
+    - NO_PROXY=0.0.0.0,vllm,${NO_PROXY:-127.0.0.1,localhost}
+    ipc: host
+    command:
+    - --model=${VLLM_MODEL:-Qwen/Qwen3.5-0.8B}
+    - --served-model-name=${VLLM_SERVED_MODEL_NAME:-qwen3.5-0.8b}
+    - --max-model-len=${VLLM_MAX_MODEL_LEN:-8192}
+    # max number of concurrent requests (each one reserves a Mamba cache block with Qwen3.5)
+    - --max-num-seqs=${VLLM_MAX_NUM_SEQS:-16}
+    - --gpu-memory-utilization=${VLLM_GPU_MEMORY_UTILIZATION:-0.75}
+    - --enable-auto-tool-choice
+    - --tool-call-parser=${VLLM_TOOL_CALL_PARSER:-qwen3_coder}
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - driver: nvidia
+            capabilities: ["gpu"]
+            count: all
+    labels:
+      - "traefik.enable=true"
+      # https://vllm.dev.localhost
+      - "traefik.http.routers.vllm.rule=Host(`vllm.${DEVBOX_HOSTNAME}`)"
+      - "traefik.http.routers.vllm.service=vllm-service@docker"
+      - "traefik.http.services.vllm-service.loadbalancer.server.port=8000"
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      # first start includes model download
+      start_period: 300s
+    restart: unless-stopped
+
+volumes:
+  vllm:
+    name: vllm
+  vllm-compile-cache:
+    name: vllm-compile-cache
+
+networks:
+  default:
+    name: devbox
+    external: true
