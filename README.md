@@ -46,7 +46,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 ### CI/CD pipeline
 
 * [ArgoCD](argocd/README.md) : GitOps **continuous delivery** tool for **Kubernetes**.
-* [Jenkins](jenkins/README.md) : Open source automation server with hundred of plugins (ansible, jmeter,...).
 
 ### Authentication
 
