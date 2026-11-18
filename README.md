@@ -83,7 +83,6 @@ Option 2 (variant of the famous ELK stack) :
 ### Security
 
 * [kyverno](kyverno/README.md) : [kyverno](https://artifacthub.io/packages/helm/kyverno/kyverno) with [kyverno-policies](https://artifacthub.io/packages/helm/kyverno/kyverno-policies) and [Policy Reporter](https://kyverno.github.io/policy-reporter/) (metrics & UI).
-* [trivy](trivy/README.md) : [trivy-operator from Aqua Security](https://github.com/aquasecurity/trivy-operator#readme) (K8S only)
 * [SonarQube](sonarqube/README.md) : Centralisation of Code Quality and Code Security metrics.
 
 ### Mailing
