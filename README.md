@@ -35,7 +35,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 
 * [portainer](portainer/README.md) : Web-based UI for Kubernetes, Docker, Swarm and Nomad.
 * [headlamp](headlamp/README.md) : Web-based UI for Kubernetes
-* [kubernetes-dashboard](kubernetes-dashboard/README.md) : Web-based UI for Kubernetes (**retired**)
 
 ### LLM
 
