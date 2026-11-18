@@ -15,7 +15,8 @@ deployment:
     prometheus.io/path: "/metrics"
 
 service:
-  type: NodePort
+  spec:
+    type: NodePort
 ports:
   web:
     nodePort: 30000

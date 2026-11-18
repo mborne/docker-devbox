@@ -25,7 +25,7 @@ kubectl create namespace traefik-system --dry-run=client -o yaml | kubectl apply
 
 # Deploy traefik with helm
 # helm search repo traefik/traefik
-CHART_VERSION=41.0.2 # APP_VERSION=v3.7.6
+CHART_VERSION=42.4.1 # APP_VERSION=v3.7.19
 helm -n traefik-system upgrade --install traefik traefik/traefik \
   -f ${SCRIPT_DIR}/helm/${TRAEFIK_MODE}/values.yml \
   --version $CHART_VERSION
@@ -46,15 +46,29 @@ spec:
     - traefik.$DEVBOX_HOSTNAME
 EOF
 
-# Create IngressRoute with dynamic hostname
+# Create IngressRoutes with dynamic hostname
+# (a router with "tls" only matches TLS connections, so HTTP needs its own route)
 cat <<EOF | kubectl -n traefik-system apply -f -
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(\`traefik.$DEVBOX_HOSTNAME\`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: dashboard
 spec:
   entryPoints:
-    - web
     - websecure
   routes:
     - match: Host(\`traefik.$DEVBOX_HOSTNAME\`)
