@@ -2,7 +2,7 @@ services:
 
   traefik:
     container_name: traefik
-    image: traefik:v3.7.6
+    image: traefik:v3.7.19
     ports:
      - "80:80"
      - "443:443"
