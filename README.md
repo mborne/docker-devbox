@@ -73,7 +73,6 @@ Option 1 :
 * [Grafana](grafana/README.md) : Grafana with Loki and Prometheus datasources and dashboards preconfigured.
 * [Prometheus](prometheus/README.md) : Grafana/**Prometheus** for system and monitoring.
 * [Loki](loki/README.md) : Grafana/**Loki** to store logs with Grafana/**Promtail** to ship logs.
-* [x509-certificate-exporter](x509-certificate-exporter/README.md) : Prometheus exportor to monitor TLS certicates (**K8S only**)
 
 Option 2 (variant of the famous ELK stack) :
 
