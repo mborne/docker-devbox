@@ -46,15 +46,29 @@ spec:
     - traefik.$DEVBOX_HOSTNAME
 EOF
 
-# Create IngressRoute with dynamic hostname
+# Create IngressRoutes with dynamic hostname
+# (a router with "tls" only matches TLS connections, so HTTP needs its own route)
 cat <<EOF | kubectl -n traefik-system apply -f -
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: dashboard-http
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(\`traefik.$DEVBOX_HOSTNAME\`)
+      kind: Rule
+      services:
+        - name: api@internal
+          kind: TraefikService
+---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: dashboard
 spec:
   entryPoints:
-    - web
     - websecure
   routes:
     - match: Host(\`traefik.$DEVBOX_HOSTNAME\`)
