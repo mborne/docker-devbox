@@ -57,7 +57,6 @@ This is my playground to learn and illustrate how to deploy application with [do
 ### Storage
 
 * [s3-dev](s3-dev/README.md) : **S3** compatible API based on [rclone serve s3](https://rclone.org/commands/rclone_serve_s3/).
-* [Longhorn](longhorn/README.md) : **Distributed block storage for K8S** providing `ReadWriteMany` volumes (K8S only).
 * [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md) : Provides `ReadWriteMany` volumes using existing NFS server.
     * [nfs-server](nfs-server/README.md) : **NFS server** to test [nfs-subdir-external-provisioner](nfs-subdir-external-provisioner/README.md).
  
