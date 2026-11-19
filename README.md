@@ -62,7 +62,7 @@ This is my playground to learn and illustrate how to deploy application with [do
 * [Redis](redis/README.md)
 * [Valkey](valkey/README.md) (forked from [Redis](redis/README.md))
 * [CloudNativePG](cnpg/README.md) with some PostgreSQL/PostGIS examples.
-* [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/).
+* [PostGIS](postgis/README.md) : [PostgreSQL](https://www.postgresql.org/) with the spatial extension [PostGIS](https://postgis.net/) (**docker only**, see [CloudNativePG](cnpg/README.md) for K8S)
 * [CloudBeaver](cloudbeaver/README.md) : Web-based UI for SQL databases (**docker only**)
 
 ### Logging and monitoring
